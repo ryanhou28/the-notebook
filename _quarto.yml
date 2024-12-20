@@ -1,0 +1,12 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "The Notebook"
+  navbar:
+    left:
+      - text: "Home"
+        file: index.qmd
+      - text: "The Digital Design Notebook"
+        href: digital-design/_book/index.html
