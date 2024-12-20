@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "The Notebook",
+    "section": "",
+    "text": "Welcome."
+  },
+  {
+    "objectID": "index.html#notebooks",
+    "href": "index.html#notebooks",
+    "title": "The Notebook",
+    "section": "Notebooks",
+    "text": "Notebooks\n\nThe Digital Design Notebook\nA notebook on digital design"
+  },
+  {
+    "objectID": "digital-design/summary.html",
+    "href": "digital-design/summary.html",
+    "title": "Summary",
+    "section": "",
+    "text": "Summary\nIn summary…"
+  },
+  {
+    "objectID": "digital-design/intro.html",
+    "href": "digital-design/intro.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Introduction\nIntro goes here."
+  },
+  {
+    "objectID": "digital-design/index.html",
+    "href": "digital-design/index.html",
+    "title": "Preface",
+    "section": "",
+    "text": "Preface\nThis is a collection of notes."
+  },
+  {
+    "objectID": "digital-design/references.html",
+    "href": "digital-design/references.html",
+    "title": "References",
+    "section": "",
+    "text": "References"
+  }
+]
