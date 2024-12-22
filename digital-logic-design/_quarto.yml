@@ -2,12 +2,20 @@ project:
   type: book
 
 book:
-  title: "digital-logic-design"
-  author: "Norah Jones"
+  title: "Digital Logic Design"
+  author: "Ryan Hou"
   date: "12/21/2024"
   chapters:
     - index.qmd
     - intro.qmd
+    - binary.qmd
+    - bool.qmd
+    - comb.qmd
+    - timing.qmd
+    - sequential.qmd
+    - fsm.qmd
+    - arithmetic.qmd
+    - memories.qmd
     - summary.qmd
     - references.qmd
 

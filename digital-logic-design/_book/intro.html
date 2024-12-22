@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Introduction – digital-logic-design</title>
+<title>1&nbsp; Introduction – Digital Logic Design</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,7 +30,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./binary.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -116,7 +96,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">digital-logic-design</a> 
+      <a href="./">Digital Logic Design</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -140,8 +120,56 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./binary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Binary Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bool.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Boolean Algebra</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comb.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Combinational Logic</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./timing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Timing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sequential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sequential Logic</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fsm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./arithmetic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Digital Arithmetic</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./memories.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Memories</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -155,8 +183,16 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#perspective" id="toc-perspective" class="nav-link active" data-scroll-target="#perspective"><span class="header-section-number">1.1</span> Perspective</a></li>
+  <li><a href="#analog-vs-digital" id="toc-analog-vs-digital" class="nav-link" data-scroll-target="#analog-vs-digital"><span class="header-section-number">1.2</span> Analog vs Digital</a></li>
+  <li><a href="#very-high-level-digital-circuit-design-flow" id="toc-very-high-level-digital-circuit-design-flow" class="nav-link" data-scroll-target="#very-high-level-digital-circuit-design-flow"><span class="header-section-number">1.3</span> (Very) High-Level Digital Circuit Design Flow</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -180,15 +216,42 @@ div.csl-indent {
 </header>
 
 
-<p>This is a book created from markdown and executable code.</p>
-<p>See <span class="citation" data-cites="knuth84">Knuth (<a href="references.html#ref-knuth84" role="doc-biblioref">1984</a>)</span> for additional discussion of literate programming.</p>
-
-
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-knuth84" class="csl-entry" role="listitem">
-Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https://doi.org/10.1093/comjnl/27.2.97</a>.
+<section id="perspective" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="perspective"><span class="header-section-number">1.1</span> Perspective</h2>
+<p><img src="images/intro/computing-stack.png" alt="Digital Logic Design in the Computing Stack" title="Digital Logic Design in the Computing Stack" style="width:25%; height:auto; display: block; margin: 20px auto;"> <em>Figure 1: Digital Logic Design in the Computing Stack</em></p>
+<div id="nte-binary-def" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;1.1: Definition - Digital
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p><strong>Digital</strong> signals can only take on discrete binary values in one of two states: 0 (low, false) or 1 (high, true).</p>
+</div>
+</div>
+<p>This notebook focuses on the design of <strong>digital circuits</strong>. We study both the logic/math used to build digital systems (Boolean algebra), as well as the circuit design implications (transistors, timing, etc).</p>
+</section>
+<section id="analog-vs-digital" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="analog-vs-digital"><span class="header-section-number">1.2</span> Analog vs Digital</h2>
+<p>In contrast to the discrete <strong>digital</strong> signals, <strong>analog</strong> signals are <em>continuous</em>. Signals from the physical world are inherently analog (e.g.&nbsp;sound, light, temperature, voltage). However, modern computing systems are primarily digital because of several key advantages:</p>
+<ul>
+<li>Reliability: Provides more noise resistance since it operates at low or high levels</li>
+<li>Digitized signals can represent analog values with good precision given enough digits</li>
+<li>Ease of data storage, transmission, and compression</li>
+<li>Digital circuit components are more cost-effective and scalable compared to analog components</li>
+</ul>
+</section>
+<section id="very-high-level-digital-circuit-design-flow" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="very-high-level-digital-circuit-design-flow"><span class="header-section-number">1.3</span> (Very) High-Level Digital Circuit Design Flow</h2>
+<p><em>Insert high-level design flow figure here</em></p>
+<p>The design flow of a digital circuit starts off with a problem statement or design specification. Digital circuits are then described by the designer in a <strong>Hardware Description Language (HDL)</strong>, most commonly <strong>Verilog/SystemVerilog</strong> or <strong>VHDL</strong>. The design is then simulated with a <strong>testbench</strong>, which feeds the design with test inputs. During <strong>simulation</strong>, we can use tools to inspect the state of the signals in the circuit to analyze, debug, and evaluate the design. At this point, such a <strong>behavioral</strong> description of the design merely describes the functionality and not yet its physical implementation. <strong>Synthesis</strong> maps the behavioral description of the design into <strong>netlist</strong> of standard cells, which indicates the physical mapping to circuit components. The <strong>place and route</strong> process then physically places the netlist of cells and routes the wires to connect the components, generating a hardware implementation.</p>
+<p>This notebook will cover basic Verilog. For more in-depth notes on Verilog/SystemVerilog, please refer to my other <a href="">notebook</a>.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -615,8 +678,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./binary.html" class="pagination-link" aria-label="Binary Basics">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Binary Basics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

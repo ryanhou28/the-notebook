@@ -1,5 +1,22 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+This is my notes on digital logic design.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+
+# Resources {.unnumbered}
+
+Some relevant resources:
+
+- [EECS 270 - Logic Design (University of Michigan)](https://www.eecs.umich.edu/courses/eecs270/overview.html)
+- [Digital Design and Computer Architecture (ETH Zurich)](https://safari.ethz.ch/ddca/spring2025/doku.php?id=start)
+
+Textbooks:
+
+- [J. F. Wakerly, Digital Design: Principles and Practices,
+4th ed., Prentice-Hall.]()
+- [J. P. Hayes, Introduction to Digital Logic Design,
+Addison-Wesley.]()
+- [C. H. Roth, Jr., Fundamentals of Logic Design.]()
+- [R. H. Katz, Contemporary Logic Design, Prentice-Hall.]()
+- [D. Thomas, P. Moorby, The Verilog Hardware
+Description Language.]()

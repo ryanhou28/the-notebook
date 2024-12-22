@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "digital-logic-design",
+    "title": "Digital Logic Design",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "Preface\nThis is my notes on digital logic design.\n\n\nResources\nSome relevant resources:\n\nEECS 270 - Logic Design (University of Michigan)\nDigital Design and Computer Architecture (ETH Zurich)\n\nTextbooks:\n\nJ. F. Wakerly, Digital Design: Principles and Practices, 4th ed., Prentice-Hall.\nJ. P. Hayes, Introduction to Digital Logic Design, Addison-Wesley.\nC. H. Roth, Jr., Fundamentals of Logic Design.\nR. H. Katz, Contemporary Logic Design, Prentice-Hall.\nD. Thomas, P. Moorby, The Verilog Hardware Description Language.",
     "crumbs": [
       "Preface"
     ]
@@ -14,29 +14,119 @@
     "href": "intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "1.1 Perspective\nFigure 1: Digital Logic Design in the Computing Stack\nThis notebook focuses on the design of digital circuits. We study both the logic/math used to build digital systems (Boolean algebra), as well as the circuit design implications (transistors, timing, etc).",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "2  Summary",
+    "objectID": "intro.html#perspective",
+    "href": "intro.html#perspective",
+    "title": "1  Introduction",
     "section": "",
-    "text": "In summary, this book has no content whatsoever.",
+    "text": "Note 1.1: Definition - Digital\n\n\n\nDigital signals can only take on discrete binary values in one of two states: 0 (low, false) or 1 (high, true).",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
-    "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "objectID": "intro.html#analog-vs-digital",
+    "href": "intro.html#analog-vs-digital",
+    "title": "1  Introduction",
+    "section": "1.2 Analog vs Digital",
+    "text": "1.2 Analog vs Digital\nIn contrast to the discrete digital signals, analog signals are continuous. Signals from the physical world are inherently analog (e.g. sound, light, temperature, voltage). However, modern computing systems are primarily digital because of several key advantages:\n\nReliability: Provides more noise resistance since it operates at low or high levels\nDigitized signals can represent analog values with good precision given enough digits\nEase of data storage, transmission, and compression\nDigital circuit components are more cost-effective and scalable compared to analog components",
     "crumbs": [
-      "References"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#very-high-level-digital-circuit-design-flow",
+    "href": "intro.html#very-high-level-digital-circuit-design-flow",
+    "title": "1  Introduction",
+    "section": "1.3 (Very) High-Level Digital Circuit Design Flow",
+    "text": "1.3 (Very) High-Level Digital Circuit Design Flow\nInsert high-level design flow figure here\nThe design flow of a digital circuit starts off with a problem statement or design specification. Digital circuits are then described by the designer in a Hardware Description Language (HDL), most commonly Verilog/SystemVerilog or VHDL. The design is then simulated with a testbench, which feeds the design with test inputs. During simulation, we can use tools to inspect the state of the signals in the circuit to analyze, debug, and evaluate the design. At this point, such a behavioral description of the design merely describes the functionality and not yet its physical implementation. Synthesis maps the behavioral description of the design into netlist of standard cells, which indicates the physical mapping to circuit components. The place and route process then physically places the netlist of cells and routes the wires to connect the components, generating a hardware implementation.\nThis notebook will cover basic Verilog. For more in-depth notes on Verilog/SystemVerilog, please refer to my other notebook.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "binary.html",
+    "href": "binary.html",
+    "title": "2  Binary Basics",
+    "section": "",
+    "text": "2.1",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Binary Basics</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html",
+    "href": "bool.html",
+    "title": "3  Boolean Algebra",
+    "section": "",
+    "text": "3.1",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "comb.html",
+    "href": "comb.html",
+    "title": "4  Combinational Logic",
+    "section": "",
+    "text": "4.1",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
+    ]
+  },
+  {
+    "objectID": "timing.html",
+    "href": "timing.html",
+    "title": "5  Timing",
+    "section": "",
+    "text": "5.1",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Timing</span>"
+    ]
+  },
+  {
+    "objectID": "sequential.html",
+    "href": "sequential.html",
+    "title": "6  Sequential Logic",
+    "section": "",
+    "text": "6.1",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
+    "objectID": "fsm.html",
+    "href": "fsm.html",
+    "title": "7  Finite State Machines",
+    "section": "",
+    "text": "7.1",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Finite State Machines</span>"
+    ]
+  },
+  {
+    "objectID": "arithmetic.html",
+    "href": "arithmetic.html",
+    "title": "8  Digital Arithmetic",
+    "section": "",
+    "text": "8.1",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Digital Arithmetic</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "10  Summary",
+    "section": "",
+    "text": "In summary…",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
     ]
   }
 ]
