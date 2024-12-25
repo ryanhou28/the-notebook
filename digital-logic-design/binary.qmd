@@ -1,6 +1,69 @@
 # Binary Basics
 
+## Analog vs Digital
 
+In contrast to the *discrete* **digital** signals, **analog** signals are *continuous*. Signals from the physical world are inherently analog (e.g. sound, light, temperature, voltage). However, modern computing systems are primarily digital because of several key advantages:
 
+- Reliability: Provides more noise resistance since it operates at low or high levels
+- Digitized signals can represent analog values with good precision given enough digits
+- Ease of data storage, transmission, and compression
+- Digital circuit components are more cost-effective and scalable compared to analog components
 
-## 
+## Why Binary?
+
+- Storing/transmitting binary values is much easier than three or more values
+- Binary switches are easier, more robust, and more noise tolerant in circuit implementation
+
+Note that digital ≠ binary!
+
+## Data Encoding
+
+Numbers are encoded in a system using digits and powers of a base number. In simpler terms, each position of a number represents a quantity. And the digit in each position indicates how many of that quantity there are in the number.
+
+![Data encoding in base 10, 8, and 2. Figure from EECS270-W24](images/binary/encoding.png){#fig-label fig-align="center" width="80%"}
+
+A **bit** is a binary digit. The total number of integers that can be represented with $n$ bits is $2^n$.
+
+The maximum (unsigned) decimal number that can be represented with $n$ bits is $\text{Max Value} = 2^n - 1$. This range can be generalized to other bases:
+
+::: {#nte-eqn-max-us-dec .callout-note}
+## Equation - Max Unsigned Decimal Value with n Digits
+$$\text{Max Value} = base^n - 1$$
+:::
+
+Common number systems:
+
+- Base-16: **Hexadecimal**
+- Base-10: **Decimal**
+- Base-8: **Octal**
+- Base-2: **Binary**
+
+The number of bits $n$ needed to represent an unsigned decimal number $x$ is given below:
+
+::: {#nte-eqn-num-bits-rep .callout-note}
+## Equation - Number of Bits to Represent Unsigned Decimal Number
+$$n = ceil(log_2(x + 1))$$
+
+where the ceil() function is a ceiling function that rounds up to the nearest integer.
+:::
+
+### Conversions
+
+#### Decimal - Binary
+
+To convert from decimal to binary:
+
+- Step 1: Divide the given number repeatedly by 2 until you get 0 as the quotient.
+- Step 2: Write the remainders in reverse order.
+
+![Example decimal to binary conversion](images/binary/dec-2-bin-example.png){#fig-label fig-align="center" width="65%"}
+
+### Hex - Octal - Binary
+
+Hexadecimal and octal have bases that are powers of 2, which makes conversion much simpler. Since hex is base 16, which is $2^4$, we can split each hex digit into 4 bits when converting to binary, conversely group every 4 bits into 1 hex digit. Similarly, an octal digit corresponds to 3 bits.
+
+*TODO: Add hex conversion chart.
+
+### ASCII
+
+Text can also be encoded by numbers. ASCII is a common character encoding standard that represents a character in 8 bits.

@@ -14,7 +14,7 @@
     "href": "intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Perspective\nFigure 1: Digital Logic Design in the Computing Stack\nThis notebook focuses on the design of digital circuits. We study both the logic/math used to build digital systems (Boolean algebra), as well as the circuit design implications (transistors, timing, etc).",
+    "text": "1.1 Perspective\nThis notebook focuses on the design of digital circuits. We study both the logic/math used to build digital systems (Boolean algebra), as well as the circuit design implications (transistors, timing, etc).",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -24,17 +24,7 @@
     "href": "intro.html#perspective",
     "title": "1  Introduction",
     "section": "",
-    "text": "Note 1.1: Definition - Digital\n\n\n\nDigital signals can only take on discrete binary values in one of two states: 0 (low, false) or 1 (high, true).",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "intro.html#analog-vs-digital",
-    "href": "intro.html#analog-vs-digital",
-    "title": "1  Introduction",
-    "section": "1.2 Analog vs Digital",
-    "text": "1.2 Analog vs Digital\nIn contrast to the discrete digital signals, analog signals are continuous. Signals from the physical world are inherently analog (e.g. sound, light, temperature, voltage). However, modern computing systems are primarily digital because of several key advantages:\n\nReliability: Provides more noise resistance since it operates at low or high levels\nDigitized signals can represent analog values with good precision given enough digits\nEase of data storage, transmission, and compression\nDigital circuit components are more cost-effective and scalable compared to analog components",
+    "text": "Figure 1.1: Digital Logic Design in the Computing Stack (figure from EECS270-W24)\n\n\n\n\n\n\n\n\n\nNote 1.1: Definition - Digital\n\n\n\nDigital signals represent information as discrete values, typically binary values where two valid states exist: 0 (low, false) or 1 (high, true).",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -43,8 +33,8 @@
     "objectID": "intro.html#very-high-level-digital-circuit-design-flow",
     "href": "intro.html#very-high-level-digital-circuit-design-flow",
     "title": "1  Introduction",
-    "section": "1.3 (Very) High-Level Digital Circuit Design Flow",
-    "text": "1.3 (Very) High-Level Digital Circuit Design Flow\nInsert high-level design flow figure here\nThe design flow of a digital circuit starts off with a problem statement or design specification. Digital circuits are then described by the designer in a Hardware Description Language (HDL), most commonly Verilog/SystemVerilog or VHDL. The design is then simulated with a testbench, which feeds the design with test inputs. During simulation, we can use tools to inspect the state of the signals in the circuit to analyze, debug, and evaluate the design. At this point, such a behavioral description of the design merely describes the functionality and not yet its physical implementation. Synthesis maps the behavioral description of the design into netlist of standard cells, which indicates the physical mapping to circuit components. The place and route process then physically places the netlist of cells and routes the wires to connect the components, generating a hardware implementation.\nThis notebook will cover basic Verilog. For more in-depth notes on Verilog/SystemVerilog, please refer to my other notebook.",
+    "section": "1.2 (Very) High-Level Digital Circuit Design Flow",
+    "text": "1.2 (Very) High-Level Digital Circuit Design Flow\nInsert high-level design flow figure here\nThe design flow of a digital circuit starts off with a problem statement or design specification. Digital circuits are then described by the designer in a Hardware Description Language (HDL), most commonly Verilog/SystemVerilog or VHDL. The design is then simulated with a testbench, which feeds the design with test inputs. During simulation, we can use tools to inspect the state of the signals in the circuit to analyze, debug, and evaluate the design. At this point, such a behavioral description of the design merely describes the functionality and not yet its physical implementation. Synthesis maps the behavioral description of the design into netlist of standard cells, which indicates the physical mapping to circuit components. The place and route process then physically places the netlist of cells and routes the wires to connect the components, generating a hardware implementation.\nThis notebook will cover basic Verilog. For more in-depth notes on Verilog/SystemVerilog, please refer to my other notebook.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -54,7 +44,37 @@
     "href": "binary.html",
     "title": "2  Binary Basics",
     "section": "",
-    "text": "2.1",
+    "text": "2.1 Analog vs Digital\nIn contrast to the discrete digital signals, analog signals are continuous. Signals from the physical world are inherently analog (e.g. sound, light, temperature, voltage). However, modern computing systems are primarily digital because of several key advantages:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Binary Basics</span>"
+    ]
+  },
+  {
+    "objectID": "binary.html#analog-vs-digital",
+    "href": "binary.html#analog-vs-digital",
+    "title": "2  Binary Basics",
+    "section": "",
+    "text": "Reliability: Provides more noise resistance since it operates at low or high levels\nDigitized signals can represent analog values with good precision given enough digits\nEase of data storage, transmission, and compression\nDigital circuit components are more cost-effective and scalable compared to analog components",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Binary Basics</span>"
+    ]
+  },
+  {
+    "objectID": "binary.html#why-binary",
+    "href": "binary.html#why-binary",
+    "title": "2  Binary Basics",
+    "section": "2.2 Why Binary?",
+    "text": "2.2 Why Binary?\n\nStoring/transmitting binary values is much easier than three or more values\nBinary switches are easier, more robust, and more noise tolerant in circuit implementation\n\nNote that digital ≠ binary!",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Binary Basics</span>"
+    ]
+  },
+  {
+    "objectID": "binary.html#data-encoding",
+    "href": "binary.html#data-encoding",
+    "title": "2  Binary Basics",
+    "section": "2.3 Data Encoding",
+    "text": "2.3 Data Encoding\nNumbers are encoded in a system using digits and powers of a base number. In simpler terms, each position of a number represents a quantity. And the digit in each position indicates how many of that quantity there are in the number.\n\n\n\n\n\n\nFigure 2.1: Data encoding in base 10, 8, and 2. Figure from EECS270-W24\n\n\n\nA bit is a binary digit. The total number of integers that can be represented with \\(n\\) bits is \\(2^n\\).\nThe maximum (unsigned) decimal number that can be represented with \\(n\\) bits is \\(\\text{Max Value} = 2^n - 1\\). This range can be generalized to other bases:\n\n\n\n\n\n\nNote 2.1: Equation - Max Unsigned Decimal Value with n Digits\n\n\n\n\\[\\text{Max Value} = base^n - 1\\]\n\n\nCommon number systems:\n\nBase-16: Hexadecimal\nBase-10: Decimal\nBase-8: Octal\nBase-2: Binary\n\nThe number of bits \\(n\\) needed to represent an unsigned decimal number \\(x\\) is given below:\n\n\n\n\n\n\nNote 2.2: Equation - Number of Bits to Represent Unsigned Decimal Number\n\n\n\n\\[n = ceil(log_2(x + 1))\\]\nwhere the ceil() function is a ceiling function that rounds up to the nearest integer.\n\n\n\n2.3.1 Conversions\n\n2.3.1.1 Decimal - Binary\nTo convert from decimal to binary:\n\nStep 1: Divide the given number repeatedly by 2 until you get 0 as the quotient.\nStep 2: Write the remainders in reverse order.\n\n\n\n\n\n\n\nFigure 2.2: Example decimal to binary conversion\n\n\n\n\n\n\n2.3.2 Hex - Octal - Binary\nHexadecimal and octal have bases that are powers of 2, which makes conversion much simpler. Since hex is base 16, which is \\(2^4\\), we can split each hex digit into 4 bits when converting to binary, conversely group every 4 bits into 1 hex digit. Similarly, an octal digit corresponds to 3 bits.\n*TODO: Add hex conversion chart.\n\n\n2.3.3 ASCII\nText can also be encoded by numbers. ASCII is a common character encoding standard that represents a character in 8 bits.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Binary Basics</span>"
     ]
@@ -75,6 +95,36 @@
     "title": "4  Combinational Logic",
     "section": "",
     "text": "4.1",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
+    ]
+  },
+  {
+    "objectID": "comb.html#transistors",
+    "href": "comb.html#transistors",
+    "title": "4  Combinational Logic",
+    "section": "4.2 Transistors",
+    "text": "4.2 Transistors",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
+    ]
+  },
+  {
+    "objectID": "comb.html#transistors-to-gates",
+    "href": "comb.html#transistors-to-gates",
+    "title": "4  Combinational Logic",
+    "section": "4.3 Transistors to Gates",
+    "text": "4.3 Transistors to Gates",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
+    ]
+  },
+  {
+    "objectID": "comb.html#transistor-scaling",
+    "href": "comb.html#transistor-scaling",
+    "title": "4  Combinational Logic",
+    "section": "4.4 Transistor Scaling",
+    "text": "4.4 Transistor Scaling",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
     ]

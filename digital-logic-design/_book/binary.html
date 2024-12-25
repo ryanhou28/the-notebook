@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -188,7 +217,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">2.1</span> </a></li>
+  <li><a href="#analog-vs-digital" id="toc-analog-vs-digital" class="nav-link active" data-scroll-target="#analog-vs-digital"><span class="header-section-number">2.1</span> Analog vs Digital</a></li>
+  <li><a href="#why-binary" id="toc-why-binary" class="nav-link" data-scroll-target="#why-binary"><span class="header-section-number">2.2</span> Why Binary?</a></li>
+  <li><a href="#data-encoding" id="toc-data-encoding" class="nav-link" data-scroll-target="#data-encoding"><span class="header-section-number">2.3</span> Data Encoding</a>
+  <ul class="collapse">
+  <li><a href="#conversions" id="toc-conversions" class="nav-link" data-scroll-target="#conversions"><span class="header-section-number">2.3.1</span> Conversions</a></li>
+  <li><a href="#hex---octal---binary" id="toc-hex---octal---binary" class="nav-link" data-scroll-target="#hex---octal---binary"><span class="header-section-number">2.3.2</span> Hex - Octal - Binary</a></li>
+  <li><a href="#ascii" id="toc-ascii" class="nav-link" data-scroll-target="#ascii"><span class="header-section-number">2.3.3</span> ASCII</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -214,10 +250,106 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="section" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="section"><span class="header-section-number">2.1</span> </h2>
+<section id="analog-vs-digital" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="analog-vs-digital"><span class="header-section-number">2.1</span> Analog vs Digital</h2>
+<p>In contrast to the <em>discrete</em> <strong>digital</strong> signals, <strong>analog</strong> signals are <em>continuous</em>. Signals from the physical world are inherently analog (e.g.&nbsp;sound, light, temperature, voltage). However, modern computing systems are primarily digital because of several key advantages:</p>
+<ul>
+<li>Reliability: Provides more noise resistance since it operates at low or high levels</li>
+<li>Digitized signals can represent analog values with good precision given enough digits</li>
+<li>Ease of data storage, transmission, and compression</li>
+<li>Digital circuit components are more cost-effective and scalable compared to analog components</li>
+</ul>
+</section>
+<section id="why-binary" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="why-binary"><span class="header-section-number">2.2</span> Why Binary?</h2>
+<ul>
+<li>Storing/transmitting binary values is much easier than three or more values</li>
+<li>Binary switches are easier, more robust, and more noise tolerant in circuit implementation</li>
+</ul>
+<p>Note that digital ≠ binary!</p>
+</section>
+<section id="data-encoding" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="data-encoding"><span class="header-section-number">2.3</span> Data Encoding</h2>
+<p>Numbers are encoded in a system using digits and powers of a base number. In simpler terms, each position of a number represents a quantity. And the digit in each position indicates how many of that quantity there are in the number.</p>
+<div id="fig-label" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/binary/encoding.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Data encoding in base 10, 8, and 2. Figure from EECS270-W24
+</figcaption>
+</figure>
+</div>
+<p>A <strong>bit</strong> is a binary digit. The total number of integers that can be represented with <span class="math inline">\(n\)</span> bits is <span class="math inline">\(2^n\)</span>.</p>
+<p>The maximum (unsigned) decimal number that can be represented with <span class="math inline">\(n\)</span> bits is <span class="math inline">\(\text{Max Value} = 2^n - 1\)</span>. This range can be generalized to other bases:</p>
+<div id="nte-eqn-max-us-dec" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;2.1: Equation - Max Unsigned Decimal Value with n Digits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\text{Max Value} = base^n - 1\]</span></p>
+</div>
+</div>
+<p>Common number systems:</p>
+<ul>
+<li>Base-16: <strong>Hexadecimal</strong></li>
+<li>Base-10: <strong>Decimal</strong></li>
+<li>Base-8: <strong>Octal</strong></li>
+<li>Base-2: <strong>Binary</strong></li>
+</ul>
+<p>The number of bits <span class="math inline">\(n\)</span> needed to represent an unsigned decimal number <span class="math inline">\(x\)</span> is given below:</p>
+<div id="nte-eqn-num-bits-rep" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;2.2: Equation - Number of Bits to Represent Unsigned Decimal Number
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[n = ceil(log_2(x + 1))\]</span></p>
+<p>where the ceil() function is a ceiling function that rounds up to the nearest integer.</p>
+</div>
+</div>
+<section id="conversions" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="conversions"><span class="header-section-number">2.3.1</span> Conversions</h3>
+<section id="decimal---binary" class="level4" data-number="2.3.1.1">
+<h4 data-number="2.3.1.1" class="anchored" data-anchor-id="decimal---binary"><span class="header-section-number">2.3.1.1</span> Decimal - Binary</h4>
+<p>To convert from decimal to binary:</p>
+<ul>
+<li>Step 1: Divide the given number repeatedly by 2 until you get 0 as the quotient.</li>
+<li>Step 2: Write the remainders in reverse order.</li>
+</ul>
+<div id="fig-label" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/binary/dec-2-bin-example.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Example decimal to binary conversion
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="hex---octal---binary" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="hex---octal---binary"><span class="header-section-number">2.3.2</span> Hex - Octal - Binary</h3>
+<p>Hexadecimal and octal have bases that are powers of 2, which makes conversion much simpler. Since hex is base 16, which is <span class="math inline">\(2^4\)</span>, we can split each hex digit into 4 bits when converting to binary, conversely group every 4 bits into 1 hex digit. Similarly, an octal digit corresponds to 3 bits.</p>
+<p>*TODO: Add hex conversion chart.</p>
+</section>
+<section id="ascii" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="ascii"><span class="header-section-number">2.3.3</span> ASCII</h3>
+<p>Text can also be encoded by numbers. ASCII is a common character encoding standard that represents a character in 8 bits.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

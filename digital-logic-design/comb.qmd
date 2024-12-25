@@ -2,5 +2,18 @@
 
 
 
+::: {#nte-comb-logic-def .callout-note}
+## Definition - Combinational Logic
+**Combinational Logic**: output is a pure function of the present input only.
+:::
 
 ## 
+
+
+
+## Transistors
+
+## Transistors to Gates
+
+
+## Transistor Scaling
