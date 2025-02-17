@@ -13,7 +13,29 @@
 
 ## Transistors
 
-## Transistors to Gates
+Logic gates are built from switches that consist of three parts: input, output, and control.
 
+![Operation of NMOS and PMOS transistors. Source: EECS270-W24](images/comb/transistor-basics.png)
+
+Complementary Metal-Oxide Semiconductor (CMOS) is the predominant technology used as today's switches. CMOS switches consist of NMOS and PMOS transistors. The gate terminal serves as the control, and carriers (electrons or holes) flow from the source to the drain. For more detailed notes, please see the CMOS & VLSI notebook.
+
+![Pull-up and Pull-Down of Transistors, and illegal states. Source: EECS270-W24](images/comb/cmos-pull.png)
+
+Why does CMOS use both NMOS and PMOS?
+- Transistors are not ideal switches
+- NMOS is good at propagating 0s (pull-down)
+- PMOS is good at propagating 1s (pull-up)
+
+Asides from propagating 1s and 0s, transistors could also be in illegal states:
+
+The symbol X indicates that the circuit node has an unknown or illegal value. This commonly happens if it is being driven to both 0 and 1 at the same time. 
+
+The symbol Z indicates that a node is being driven neither HIGH nor LOW. The node is said to be floating, high impedance, or high Z.  A floating node does not always mean there is an error in the circuit, as long as some other circuit element does drive the node to a valid logic level when the value of the node is relevant to circuit operation. 
+
+![CMOS uses pull-up and pull-down as "complement". Source: EECS270-W24](images/comb/cmos-pull-networks.png)
 
 ## Transistor Scaling
+
+Moore’s law: The number of transistors in a dense integrated circuit (IC) doubles about every 18-24 months.
+
+Dennard scaling: As the dimensions of a device go down, so does power consumption.

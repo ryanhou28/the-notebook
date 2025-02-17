@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b6b4e5ca75ba39a1f986e6d06a1c53b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -157,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./arithmetic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Digital Arithmetic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Binary Arithmetic</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -190,8 +190,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">4.1</span> </a></li>
   <li><a href="#transistors" id="toc-transistors" class="nav-link" data-scroll-target="#transistors"><span class="header-section-number">4.2</span> Transistors</a></li>
-  <li><a href="#transistors-to-gates" id="toc-transistors-to-gates" class="nav-link" data-scroll-target="#transistors-to-gates"><span class="header-section-number">4.3</span> Transistors to Gates</a></li>
-  <li><a href="#transistor-scaling" id="toc-transistor-scaling" class="nav-link" data-scroll-target="#transistor-scaling"><span class="header-section-number">4.4</span> Transistor Scaling</a></li>
+  <li><a href="#transistor-scaling" id="toc-transistor-scaling" class="nav-link" data-scroll-target="#transistor-scaling"><span class="header-section-number">4.3</span> Transistor Scaling</a></li>
   </ul>
 </nav>
     </div>
@@ -235,12 +234,35 @@ Note&nbsp;4.1: Definition - Combinational Logic
 </section>
 <section id="transistors" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="transistors"><span class="header-section-number">4.2</span> Transistors</h2>
+<p>Logic gates are built from switches that consist of three parts: input, output, and control.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/comb/transistor-basics.png" class="img-fluid figure-img"></p>
+<figcaption>Operation of NMOS and PMOS transistors. Source: EECS270-W24</figcaption>
+</figure>
+</div>
+<p>Complementary Metal-Oxide Semiconductor (CMOS) is the predominant technology used as today’s switches. CMOS switches consist of NMOS and PMOS transistors. The gate terminal serves as the control, and carriers (electrons or holes) flow from the source to the drain. For more detailed notes, please see the CMOS &amp; VLSI notebook.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/comb/cmos-pull.png" class="img-fluid figure-img"></p>
+<figcaption>Pull-up and Pull-Down of Transistors, and illegal states. Source: EECS270-W24</figcaption>
+</figure>
+</div>
+<p>Why does CMOS use both NMOS and PMOS? - Transistors are not ideal switches - NMOS is good at propagating 0s (pull-down) - PMOS is good at propagating 1s (pull-up)</p>
+<p>Asides from propagating 1s and 0s, transistors could also be in illegal states:</p>
+<p>The symbol X indicates that the circuit node has an unknown or illegal value. This commonly happens if it is being driven to both 0 and 1 at the same time.</p>
+<p>The symbol Z indicates that a node is being driven neither HIGH nor LOW. The node is said to be floating, high impedance, or high Z. A floating node does not always mean there is an error in the circuit, as long as some other circuit element does drive the node to a valid logic level when the value of the node is relevant to circuit operation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/comb/cmos-pull-networks.png" class="img-fluid figure-img"></p>
+<figcaption>CMOS uses pull-up and pull-down as “complement”. Source: EECS270-W24</figcaption>
+</figure>
+</div>
 </section>
-<section id="transistors-to-gates" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="transistors-to-gates"><span class="header-section-number">4.3</span> Transistors to Gates</h2>
-</section>
-<section id="transistor-scaling" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="transistor-scaling"><span class="header-section-number">4.4</span> Transistor Scaling</h2>
+<section id="transistor-scaling" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="transistor-scaling"><span class="header-section-number">4.3</span> Transistor Scaling</h2>
+<p>Moore’s law: The number of transistors in a dense integrated circuit (IC) doubles about every 18-24 months.</p>
+<p>Dennard scaling: As the dimensions of a device go down, so does power consumption.</p>
 
 
 </section>

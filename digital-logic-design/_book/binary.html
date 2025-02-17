@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b6b4e5ca75ba39a1f986e6d06a1c53b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -186,7 +186,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./arithmetic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Digital Arithmetic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Binary Arithmetic</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -333,7 +333,7 @@ Note&nbsp;2.2: Equation - Number of Bits to Represent Unsigned Decimal Number
 <img src="images/binary/dec-2-bin-example.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: Example decimal to binary conversion
+Figure&nbsp;2.2: Example decimal to binary conversion. Figure source: EECS 270
 </figcaption>
 </figure>
 </div>
@@ -341,12 +341,22 @@ Figure&nbsp;2.2: Example decimal to binary conversion
 </section>
 <section id="hex---octal---binary" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="hex---octal---binary"><span class="header-section-number">2.3.2</span> Hex - Octal - Binary</h3>
-<p>Hexadecimal and octal have bases that are powers of 2, which makes conversion much simpler. Since hex is base 16, which is <span class="math inline">\(2^4\)</span>, we can split each hex digit into 4 bits when converting to binary, conversely group every 4 bits into 1 hex digit. Similarly, an octal digit corresponds to 3 bits.</p>
-<p>*TODO: Add hex conversion chart.</p>
+<p>Hexadecimal and octal have bases that are powers of 2, which makes conversion much simpler. Since hex is base 16, which is <span class="math inline">\(2^4\)</span>, we can split each <strong>hex digit into 4 bits</strong> when converting to binary, conversely group every 4 bits into 1 hex digit. Similarly, an <strong>octal digit corresponds to 3 bits</strong>.</p>
+<div id="fig-label" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/binary/hex-chart.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Hexadecimal Conversion Chart. <a href="https://miro.medium.com/v2/resize:fit:604/1*PkHLh296lpvyEyJ2KPxdSw.png">Source</a>
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="ascii" class="level3" data-number="2.3.3">
 <h3 data-number="2.3.3" class="anchored" data-anchor-id="ascii"><span class="header-section-number">2.3.3</span> ASCII</h3>
 <p>Text can also be encoded by numbers. ASCII is a common character encoding standard that represents a character in 8 bits.</p>
+<p>An ASCII conversion chart can be found <a href="https://www.ascii-code.com/">here</a>.</p>
 
 
 </section>

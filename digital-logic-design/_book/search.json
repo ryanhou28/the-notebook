@@ -34,7 +34,7 @@
     "href": "intro.html#very-high-level-digital-circuit-design-flow",
     "title": "1  Introduction",
     "section": "1.2 (Very) High-Level Digital Circuit Design Flow",
-    "text": "1.2 (Very) High-Level Digital Circuit Design Flow\nInsert high-level design flow figure here\nThe design flow of a digital circuit starts off with a problem statement or design specification. Digital circuits are then described by the designer in a Hardware Description Language (HDL), most commonly Verilog/SystemVerilog or VHDL. The design is then simulated with a testbench, which feeds the design with test inputs. During simulation, we can use tools to inspect the state of the signals in the circuit to analyze, debug, and evaluate the design. At this point, such a behavioral description of the design merely describes the functionality and not yet its physical implementation. Synthesis maps the behavioral description of the design into netlist of standard cells, which indicates the physical mapping to circuit components. The place and route process then physically places the netlist of cells and routes the wires to connect the components, generating a hardware implementation.\nThis notebook will cover basic Verilog. For more in-depth notes on Verilog/SystemVerilog, please refer to my other notebook.",
+    "text": "1.2 (Very) High-Level Digital Circuit Design Flow\n\n\n\n\n\n\nFigure 1.2: High-level design flow of a digital circuit to be run on FPGA\n\n\n\nThe design flow of a digital circuit starts off with a problem statement or design specification. Digital circuits are then described by the designer in a Hardware Description Language (HDL), most commonly Verilog/SystemVerilog or VHDL. The design is then simulated with a testbench, which feeds the design with test inputs. During simulation, we can use tools to inspect the state of the signals in the circuit to analyze, debug, and evaluate the design. At this point, such a behavioral description of the design merely describes the functionality and not yet its physical implementation. Synthesis maps the behavioral description of the design into netlist of standard cells, which indicates the physical mapping to circuit components. The place and route process then physically places the netlist of cells and routes the wires to connect the components, generating a hardware implementation.\nThis notebook will cover basic Verilog. For more in-depth notes on Verilog/SystemVerilog, please refer to my other notebook.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -74,7 +74,7 @@
     "href": "binary.html#data-encoding",
     "title": "2  Binary Basics",
     "section": "2.3 Data Encoding",
-    "text": "2.3 Data Encoding\nNumbers are encoded in a system using digits and powers of a base number. In simpler terms, each position of a number represents a quantity. And the digit in each position indicates how many of that quantity there are in the number.\n\n\n\n\n\n\nFigure 2.1: Data encoding in base 10, 8, and 2. Figure from EECS270-W24\n\n\n\nA bit is a binary digit. The total number of integers that can be represented with \\(n\\) bits is \\(2^n\\).\nThe maximum (unsigned) decimal number that can be represented with \\(n\\) bits is \\(\\text{Max Value} = 2^n - 1\\). This range can be generalized to other bases:\n\n\n\n\n\n\nNote 2.1: Equation - Max Unsigned Decimal Value with n Digits\n\n\n\n\\[\\text{Max Value} = base^n - 1\\]\n\n\nCommon number systems:\n\nBase-16: Hexadecimal\nBase-10: Decimal\nBase-8: Octal\nBase-2: Binary\n\nThe number of bits \\(n\\) needed to represent an unsigned decimal number \\(x\\) is given below:\n\n\n\n\n\n\nNote 2.2: Equation - Number of Bits to Represent Unsigned Decimal Number\n\n\n\n\\[n = ceil(log_2(x + 1))\\]\nwhere the ceil() function is a ceiling function that rounds up to the nearest integer.\n\n\n\n2.3.1 Conversions\n\n2.3.1.1 Decimal - Binary\nTo convert from decimal to binary:\n\nStep 1: Divide the given number repeatedly by 2 until you get 0 as the quotient.\nStep 2: Write the remainders in reverse order.\n\n\n\n\n\n\n\nFigure 2.2: Example decimal to binary conversion\n\n\n\n\n\n\n2.3.2 Hex - Octal - Binary\nHexadecimal and octal have bases that are powers of 2, which makes conversion much simpler. Since hex is base 16, which is \\(2^4\\), we can split each hex digit into 4 bits when converting to binary, conversely group every 4 bits into 1 hex digit. Similarly, an octal digit corresponds to 3 bits.\n*TODO: Add hex conversion chart.\n\n\n2.3.3 ASCII\nText can also be encoded by numbers. ASCII is a common character encoding standard that represents a character in 8 bits.",
+    "text": "2.3 Data Encoding\nNumbers are encoded in a system using digits and powers of a base number. In simpler terms, each position of a number represents a quantity. And the digit in each position indicates how many of that quantity there are in the number.\n\n\n\n\n\n\nFigure 2.1: Data encoding in base 10, 8, and 2. Figure from EECS270-W24\n\n\n\nA bit is a binary digit. The total number of integers that can be represented with \\(n\\) bits is \\(2^n\\).\nThe maximum (unsigned) decimal number that can be represented with \\(n\\) bits is \\(\\text{Max Value} = 2^n - 1\\). This range can be generalized to other bases:\n\n\n\n\n\n\nNote 2.1: Equation - Max Unsigned Decimal Value with n Digits\n\n\n\n\\[\\text{Max Value} = base^n - 1\\]\n\n\nCommon number systems:\n\nBase-16: Hexadecimal\nBase-10: Decimal\nBase-8: Octal\nBase-2: Binary\n\nThe number of bits \\(n\\) needed to represent an unsigned decimal number \\(x\\) is given below:\n\n\n\n\n\n\nNote 2.2: Equation - Number of Bits to Represent Unsigned Decimal Number\n\n\n\n\\[n = ceil(log_2(x + 1))\\]\nwhere the ceil() function is a ceiling function that rounds up to the nearest integer.\n\n\n\n2.3.1 Conversions\n\n2.3.1.1 Decimal - Binary\nTo convert from decimal to binary:\n\nStep 1: Divide the given number repeatedly by 2 until you get 0 as the quotient.\nStep 2: Write the remainders in reverse order.\n\n\n\n\n\n\n\nFigure 2.2: Example decimal to binary conversion. Figure source: EECS 270\n\n\n\n\n\n\n2.3.2 Hex - Octal - Binary\nHexadecimal and octal have bases that are powers of 2, which makes conversion much simpler. Since hex is base 16, which is \\(2^4\\), we can split each hex digit into 4 bits when converting to binary, conversely group every 4 bits into 1 hex digit. Similarly, an octal digit corresponds to 3 bits.\n\n\n\n\n\n\nFigure 2.3: Hexadecimal Conversion Chart. Source\n\n\n\n\n\n2.3.3 ASCII\nText can also be encoded by numbers. ASCII is a common character encoding standard that represents a character in 8 bits.\nAn ASCII conversion chart can be found here.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Binary Basics</span>"
     ]
@@ -84,7 +84,127 @@
     "href": "bool.html",
     "title": "3  Boolean Algebra",
     "section": "",
-    "text": "3.1",
+    "text": "3.1 Simple Equations\nOperator Precedence Rules: 1. NOT (highest priority) 2. AND 3. OR\nA truth table relates the inputs to a combinational logic circuit to its outputs, showing output for every possible combination of inputs.\nTo generalize, for a Boolean function with \\(N\\) binary inputs:",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#simple-equations",
+    "href": "bool.html#simple-equations",
+    "title": "3  Boolean Algebra",
+    "section": "",
+    "text": "There are \\(2^N\\) possible input combinations, i.e. number of rows in the truth table\nThere are \\(2^{2^N}\\) “semantically” different Boolean functions\n\nDerivation: There are \\(2^N\\) entries in the truth table. The output of each truth table entry takes on 2 possible values, thus there are \\(2^{2^N}\\) different ways you can pick a combination of outputs.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#boolean-algebra-basics",
+    "href": "bool.html#boolean-algebra-basics",
+    "title": "3  Boolean Algebra",
+    "section": "3.2 Boolean Algebra Basics",
+    "text": "3.2 Boolean Algebra Basics\nBoolean Algebra is an algebra manipulating Boolean values of 0s and 1s.\nWe start with:\n\nAxioms: basic things about objects and operations that we assume to be true as the start\nThen using axioms we derive:\n\nLaws and theorems: which allow us to manipulate Boolean expressions and perform simplifications\n\nThen we derive more sophisticated properties for manipulating Boolean equations",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#axioms",
+    "href": "bool.html#axioms",
+    "title": "3  Boolean Algebra",
+    "section": "3.3 Axioms",
+    "text": "3.3 Axioms\n\n\n\n\n\n\nNote 3.1: Axiom - Binary\n\n\n\n[A1] \\(a = 0\\) if \\(a \\neq 1\\)\n[A1’] \\(a = 1\\) if \\(a \\neq 0\\)\n\n\n\n\n\n\n\n\nNote 3.2: Axiom - Complement\n\n\n\n[A2] if \\(a = 0\\), then \\(\\bar{a} = 1\\)\n[A2’] if \\(a = 1\\), then \\(\\bar{a} = 0\\)\n\n\n\n\n\n\n\n\nNote 3.3: Axiom - AND and OR\n\n\n\n[A3] \\(0 \\cdot 0 = 0\\)\n[A3’] \\(1 + 1 = 1\\)\n[A4] \\(1 \\cdot 1 = 1\\)\n[A4’] \\(0 + 0 = 0\\)\n[A5] \\(0 \\cdot 1 = 1 \\cdot 0 = 0\\)\n[A5’] \\(1 + 0 = 0 + 1 = 1\\)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#single-variable-theorems",
+    "href": "bool.html#single-variable-theorems",
+    "title": "3  Boolean Algebra",
+    "section": "3.4 Single Variable Theorems",
+    "text": "3.4 Single Variable Theorems\n\n\n\nA list of single variable theorems. Source: EECS270-W24\n\n\nTo prove the idempotency theorems [T3] and [T3’]:\nTODO:",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#two-and-three-variable-theorems",
+    "href": "bool.html#two-and-three-variable-theorems",
+    "title": "3  Boolean Algebra",
+    "section": "3.5 Two and Three Variable Theorems",
+    "text": "3.5 Two and Three Variable Theorems",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#de-morgans-law",
+    "href": "bool.html#de-morgans-law",
+    "title": "3  Boolean Algebra",
+    "section": "3.6 De Morgan’s Law",
+    "text": "3.6 De Morgan’s Law\n\nDe Morgan’s law essentially says that negation distributes over AND and OR by inverting operators and complementing terms. In simpler words, De Morgan’s swaps ANDs and ORs while pushing the complements inside the variables.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#more-boolean-gates",
+    "href": "bool.html#more-boolean-gates",
+    "title": "3  Boolean Algebra",
+    "section": "3.7 More Boolean Gates",
+    "text": "3.7 More Boolean Gates\n\n\nNote that XNOR can also be expressed by the symbol \\(\\odot\\).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#functional-completeness",
+    "href": "bool.html#functional-completeness",
+    "title": "3  Boolean Algebra",
+    "section": "3.8 Functional Completeness",
+    "text": "3.8 Functional Completeness\nA set of operations is functionally-complete (or universal) if and only if all possible truth tables can be expressed entirely by means of operations from this set.\nBasic functionally-complete operation sets:\n\n\\(\\{ +, \\cdot, '\\}\\) - by definition\n\\(\\{ +, '\\}\\) - by De Morgan’s\n\\(\\{ \\cdot, '\\}\\) - by De Morgan’s\n\\(\\{ \\uparrow \\}\\) - NAND can implement AND, OR, and NOT\n\\(\\{ \\downarrow \\}\\) - NOR can implement AND, OR and NOT\n\nNote that XOR and XNOR by themselves are not functionally complete.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#canonical-forms",
+    "href": "bool.html#canonical-forms",
+    "title": "3  Boolean Algebra",
+    "section": "3.9 Canonical Forms",
+    "text": "3.9 Canonical Forms\n\n\n\n\n\n\n\nNote 3.4: Definition - Literal\n\n\n\nLiteral: a single variable or its complement\nE.g.: \\(a, a'\\)\n\n\n\n\n\n\n\n\nNote 3.5: Definition - Product Term\n\n\n\nProduct Term: AND of (more than one) literals\nE.g.: \\(abc, a'bc'\\)\n\n\n\n\n\n\n\n\nNote 3.6: Definition - Sum Term\n\n\n\nSum Term: OR of (more than one) literals\nE.g.: \\(a+b+c, a+b'+c'\\)\n\n\n\n\n\n\n\n\nNote 3.7: Definition - Sum of Products (SOP)\n\n\n\nSum of Products (SoP): sum of On Set input patterns, i.e. the OR of minterms (product terms)\nE.g.: \\(F = a'b'c + a'bc' + ab'c' + abc\\) is the SOP of the example truth table above (blue rows).\n\n\n\n\n\n\n\n\nNote 3.8: Definition - Product of Sums (POS)\n\n\n\nProduct of Sums (PoS): product of Off Set input patterns, i.e. the AND of maxterms (sum terms)\nE.g.: \\(F = (a+b+c)(a+b’+c’)(a’+b+c’)(a’+b’+c)\\) is the POS of the example truth table above (red rows).\n\n\nNotice that the POS and SOP can be derived from each other via De Morgan’s: \\(F_{POS} = \\bar{F}_{SOP}\\). Due to this De Morgan’s derivation, notice how essentially the product and sum terms have the variables in complement.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#minterms-maxterms",
+    "href": "bool.html#minterms-maxterms",
+    "title": "3  Boolean Algebra",
+    "section": "3.10 Minterms & Maxterms",
+    "text": "3.10 Minterms & Maxterms\n\n\n\n\n\n\nNote 3.9: Definition - Normal Term\n\n\n\nNormal Term: product or sum term in which every variable appears once\nE.g.: For function \\(F(a,b,c,d)\\), terms \\(ab'cd', a+b+c+d'\\) are normal terms\n\n\n\n\n\n\n\n\nNote 3.10: Definition - Minterm\n\n\n\nMinterm: Normal product\nE.g.: For function \\(F(a,b,c)\\), \\(ab'c, a'b'c'\\) are minterms.\n\n\n\n\n\n\n\n\nNote 3.11: Definition - Maxterm\n\n\n\nMaxterm: Normal sum\nE.g.: For function \\(F(a,b,c)\\), \\((a+b'+c), (a'+b'+c')\\) are maxterms.\n\n\n\nEach input combination has a corresponding minterm and maxterm.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#canonical-form",
+    "href": "bool.html#canonical-form",
+    "title": "3  Boolean Algebra",
+    "section": "3.11 Canonical Form",
+    "text": "3.11 Canonical Form\nA canonical form is a representation such that every object has a unique representation. Do note that canonical form \\(\\neq\\) minimal form.\n\nNotice how the SOP and POS have mutually exclusive set of indices!",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#shannons-expansion-theorem",
+    "href": "bool.html#shannons-expansion-theorem",
+    "title": "3  Boolean Algebra",
+    "section": "3.12 Shannon’s Expansion Theorem",
+    "text": "3.12 Shannon’s Expansion Theorem\nA Boolean function may be expanded with respect to any of its variables.\n\n\n\n\n\n\nNote 3.12: Theorem - Shannon’s Expansion Theorem\n\n\n\nShannon’s Expansion Theorem, a.k.a. Boole’s Expansion Theorem, Shannon Decomposition: \\[F(X_1, X_2, \\ldots, X_n) = X_1 \\cdot F(1, X_2, \\ldots, X_n) + X_1' \\cdot F(0, X_2, \\ldots, X_n)\\]\n\n\nThis can help us with MUX-based logic function implementations:",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
     ]
@@ -104,17 +224,7 @@
     "href": "comb.html#transistors",
     "title": "4  Combinational Logic",
     "section": "4.2 Transistors",
-    "text": "4.2 Transistors",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
-    ]
-  },
-  {
-    "objectID": "comb.html#transistors-to-gates",
-    "href": "comb.html#transistors-to-gates",
-    "title": "4  Combinational Logic",
-    "section": "4.3 Transistors to Gates",
-    "text": "4.3 Transistors to Gates",
+    "text": "4.2 Transistors\nLogic gates are built from switches that consist of three parts: input, output, and control.\n\n\n\nOperation of NMOS and PMOS transistors. Source: EECS270-W24\n\n\nComplementary Metal-Oxide Semiconductor (CMOS) is the predominant technology used as today’s switches. CMOS switches consist of NMOS and PMOS transistors. The gate terminal serves as the control, and carriers (electrons or holes) flow from the source to the drain. For more detailed notes, please see the CMOS & VLSI notebook.\n\n\n\nPull-up and Pull-Down of Transistors, and illegal states. Source: EECS270-W24\n\n\nWhy does CMOS use both NMOS and PMOS? - Transistors are not ideal switches - NMOS is good at propagating 0s (pull-down) - PMOS is good at propagating 1s (pull-up)\nAsides from propagating 1s and 0s, transistors could also be in illegal states:\nThe symbol X indicates that the circuit node has an unknown or illegal value. This commonly happens if it is being driven to both 0 and 1 at the same time.\nThe symbol Z indicates that a node is being driven neither HIGH nor LOW. The node is said to be floating, high impedance, or high Z. A floating node does not always mean there is an error in the circuit, as long as some other circuit element does drive the node to a valid logic level when the value of the node is relevant to circuit operation.\n\n\n\nCMOS uses pull-up and pull-down as “complement”. Source: EECS270-W24",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
     ]
@@ -123,8 +233,8 @@
     "objectID": "comb.html#transistor-scaling",
     "href": "comb.html#transistor-scaling",
     "title": "4  Combinational Logic",
-    "section": "4.4 Transistor Scaling",
-    "text": "4.4 Transistor Scaling",
+    "section": "4.3 Transistor Scaling",
+    "text": "4.3 Transistor Scaling\nMoore’s law: The number of transistors in a dense integrated circuit (IC) doubles about every 18-24 months.\nDennard scaling: As the dimensions of a device go down, so does power consumption.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
     ]
@@ -162,11 +272,11 @@
   {
     "objectID": "arithmetic.html",
     "href": "arithmetic.html",
-    "title": "8  Digital Arithmetic",
+    "title": "8  Binary Arithmetic",
     "section": "",
     "text": "8.1",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Digital Arithmetic</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
     ]
   },
   {

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b6b4e5ca75ba39a1f986e6d06a1c53b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -157,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./arithmetic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Digital Arithmetic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Binary Arithmetic</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -244,7 +244,16 @@ Note&nbsp;1.1: Definition - Digital
 </section>
 <section id="very-high-level-digital-circuit-design-flow" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="very-high-level-digital-circuit-design-flow"><span class="header-section-number">1.2</span> (Very) High-Level Digital Circuit Design Flow</h2>
-<p><em>Insert high-level design flow figure here</em></p>
+<div id="fig-label" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/intro/designflow.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: High-level design flow of a digital circuit to be run on FPGA
+</figcaption>
+</figure>
+</div>
 <p>The design flow of a digital circuit starts off with a problem statement or design specification. Digital circuits are then described by the designer in a <strong>Hardware Description Language (HDL)</strong>, most commonly <strong>Verilog/SystemVerilog</strong> or <strong>VHDL</strong>. The design is then simulated with a <strong>testbench</strong>, which feeds the design with test inputs. During <strong>simulation</strong>, we can use tools to inspect the state of the signals in the circuit to analyze, debug, and evaluate the design. At this point, such a <strong>behavioral</strong> description of the design merely describes the functionality and not yet its physical implementation. <strong>Synthesis</strong> maps the behavioral description of the design into <strong>netlist</strong> of standard cells, which indicates the physical mapping to circuit components. The <strong>place and route</strong> process then physically places the netlist of cells and routes the wires to connect the components, generating a hardware implementation.</p>
 <p>This notebook will cover basic Verilog. For more in-depth notes on Verilog/SystemVerilog, please refer to my other <a href="">notebook</a>.</p>
 

@@ -1,6 +1,197 @@
 # Boolean Algebra
 
 
+## Simple Equations
+
+Operator Precedence Rules:
+1. NOT (highest priority)
+2. AND
+3. OR
+
+A **truth table** relates the inputs to a combinational logic circuit to its outputs, showing output for every possible combination of inputs.
+
+![](images/bool/truthtable.png)
+
+To generalize, for a Boolean function with $N$ binary inputs:
+
+- There are $2^N$ possible input combinations, i.e. number of rows in the truth table
+- There are $2^{2^N}$ "semantically" different Boolean functions
+  - Derivation: There are $2^N$ entries in the truth table. The output of each truth table entry takes on 2 possible values, thus there are $2^{2^N}$ different ways you can pick a combination of outputs. 
+
+## Boolean Algebra Basics
+
+Boolean Algebra is an algebra manipulating Boolean values of 0s and 1s.
+
+We start with:
+
+- **Axioms**: basic things about objects and operations that we assume to be true as the start
+- Then using axioms we derive:
+  - **Laws and theorems**: which allow us to manipulate Boolean expressions and perform simplifications
+- Then we derive more sophisticated **properties** for manipulating Boolean equations
+
+## Axioms
+
+::: {#nte-axiom-binary .callout-note}
+## Axiom - Binary
+[A1] $a = 0$ if $a \neq 1$
+
+[A1'] $a = 1$ if $a \neq 0$ 
+:::
+
+::: {#nte-axiom-complement .callout-note}
+## Axiom - Complement
+[A2] if $a = 0$, then $\bar{a} = 1$
+
+[A2'] if $a = 1$, then $\bar{a} = 0$
+:::
+
+::: {#nte-axiom-AND-OR .callout-note}
+## Axiom - AND and OR
+[A3] $0 \cdot 0 = 0$
+
+[A3'] $1 + 1 = 1$
+
+[A4] $1 \cdot 1 = 1$
+
+[A4'] $0 + 0 = 0$
+
+[A5] $0 \cdot 1 = 1 \cdot 0 = 0$
+
+[A5'] $1 + 0 = 0 + 1 = 1$
+:::
+
+## Single Variable Theorems
+
+![A list of single variable theorems. Source: EECS270-W24](images/bool/single-var-theorems.png)
+
+To prove the idempotency theorems [T3] and [T3']:
+
+TODO:
+
+## Two and Three Variable Theorems
+
+![](images/bool/var-theorem-1.png)
+
+![](images/bool/var-theorem-2.png)
+
+## De Morgan's Law
+
+![](images/bool/demorgan.png)
+
+De Morgan's law essentially says that **negation distributes over AND and OR by inverting operators and complementing terms**. In simpler words, De Morgan's swaps ANDs and ORs while pushing the complements inside the variables.
+
+## More Boolean Gates
+
+![](images/bool/nandnor.png)
+
+![](images/bool/xorxnor.png)
+
+Note that XNOR can also be expressed by the symbol $\odot$.
+
+## Functional Completeness
+
+A set of operations is **functionally-complete (or universal)** if and only if all possible truth tables can be expressed entirely by means of operations from this set.
+
+Basic functionally-complete operation sets:
+
+- $\{ +, \cdot, '\}$ - by definition
+- $\{ +, '\}$ - by De Morgan's 
+- $\{ \cdot, '\}$ - by De Morgan's
+- $\{ \uparrow \}$ - NAND can implement AND, OR, and NOT
+- $\{ \downarrow \}$ - NOR can implement AND, OR and NOT
+
+Note that XOR and XNOR by themselves are not functionally complete.
+
+## Canonical Forms
+
+![](images/bool/onoffset.png)
+
+::: {#nte-literal-def .callout-note}
+## Definition - Literal
+**Literal**: a single variable or its complement
+
+E.g.: $a, a'$
+:::
+
+::: {#nte-prod-term-def .callout-note}
+## Definition - Product Term
+**Product Term**: AND of (more than one) literals
+
+E.g.: $abc, a'bc'$
+:::
+
+::: {#nte-sum-term-def .callout-note}
+## Definition - Sum Term
+**Sum Term**: OR of (more than one) literals
+
+E.g.: $a+b+c, a+b'+c'$
+:::
 
 
-## 
+::: {#nte-sop-def .callout-note}
+## Definition - Sum of Products (SOP)
+**Sum of Products (SoP)**: sum of On Set input patterns, i.e. the OR of minterms (product terms)
+
+E.g.: $F = a'b'c + a'bc' + ab'c' + abc$ is the SOP of the example truth table above (blue rows).
+:::
+
+::: {#nte-pos-def .callout-note}
+## Definition - Product of Sums (POS)
+**Product of Sums (PoS)**: product of Off Set input patterns, i.e. the AND of maxterms (sum terms)
+
+E.g.: $F = (a+b+c)(a+b’+c’)(a’+b+c’)(a’+b’+c)$ is the POS of the example truth table above (red rows).
+:::
+
+Notice that the POS and SOP can be derived from each other via De Morgan's: $F_{POS} = \bar{F}_{SOP}$. Due to this De Morgan's derivation, notice how essentially the product and sum terms have the variables in complement.
+
+## Minterms & Maxterms
+
+::: {#nte-norm-term-def .callout-note}
+## Definition - Normal Term
+**Normal Term**: product or sum term in which every variable appears once
+
+E.g.: For function $F(a,b,c,d)$, terms $ab'cd', a+b+c+d'$ are normal terms
+:::
+
+::: {#nte-minterm-def .callout-note}
+## Definition - Minterm
+**Minterm**: Normal product
+
+E.g.: For function $F(a,b,c)$, $ab'c, a'b'c'$ are minterms.
+:::
+
+::: {#nte-maxterm-def .callout-note}
+## Definition - Maxterm
+**Maxterm**: Normal sum
+
+E.g.: For function $F(a,b,c)$, $(a+b'+c), (a'+b'+c')$ are maxterms.
+:::
+
+![](images/bool/minmaxtable.png)
+
+Each input combination has a corresponding minterm and maxterm.
+
+## Canonical Form
+
+A **canonical form** is a representation such that every object has a unique representation. Do note that canonical form $\neq$ minimal form.
+
+![](images/bool/canonical.png)
+
+Notice how the SOP and POS have **mutually exclusive** set of indices!
+
+## Shannon's Expansion Theorem
+
+A Boolean function may be expanded with respect to any of its variables.
+
+::: {#nte-shannon-exapnsion .callout-note}
+## Theorem - Shannon's Expansion Theorem
+**Shannon's Expansion Theorem**, a.k.a. Boole's Expansion Theorem, Shannon Decomposition: 
+$$F(X_1, X_2, \ldots, X_n) = X_1 \cdot F(1, X_2, \ldots, X_n) + X_1' \cdot F(0, X_2, \ldots, X_n)$$
+:::
+
+This can help us with MUX-based logic function implementations:
+
+![](images/bool/mux-1.png)
+
+![](images/bool/mux-2.png)
+

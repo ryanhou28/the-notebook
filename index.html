@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Notebook | Ryan Hou</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --background-color: #f8f9fa;
-            --card-background: white;
+            --secondary-color: #34495e;
+            --accent-color: #2980b9;
             --text-color: #2c3e50;
-            --border-color: #e9ecef;
+            --background-color: #fdfdfd;
+            --card-background: #ffffff;
+            --border-color: #dfe6e9;
         }
 
         body {
-            font-family: "EB Garamond", Georgia, serif;
-            line-height: 1.6;
+            font-family: "Merriweather", serif;
+            line-height: 1.8;
             margin: 0;
             padding: 0;
             background-color: var(--background-color);
@@ -33,14 +35,13 @@
             text-align: center;
             margin-bottom: 3rem;
             padding: 2rem 0;
-            border-bottom: 1px solid var(--border-color);
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-weight: 400;
+            font-weight: 600;
+            font-family: "Inter", sans-serif;
         }
 
         .subtitle {
@@ -51,33 +52,34 @@
 
         .notebooks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
         }
 
         .notebook-card {
             background: var(--card-background);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
+            border-radius: 10px;
+            padding: 1.8rem;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .notebook-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
         }
 
         .notebook-card h2 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-top: 0;
-            color: var(--primary-color);
+            font-family: "Inter", sans-serif;
+            color: var(--text-color);
         }
 
         .notebook-card a {
-            color: inherit;
+            color: var(--accent-color);
             text-decoration: none;
+            font-weight: 600;
         }
 
         .notebook-card p {
@@ -87,7 +89,7 @@
 
         .notebook-meta {
             font-size: 0.9rem;
-            color: #666;
+            color: #777;
             border-top: 1px solid var(--border-color);
             padding-top: 1rem;
             margin-top: 1rem;
@@ -97,12 +99,10 @@
             text-align: center;
             margin-top: 4rem;
             padding: 2rem 0;
-            border-top: 1px solid var(--border-color);
-            color: #666;
             font-size: 0.9rem;
+            color: #777;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -113,16 +113,105 @@
 
         <div class="notebooks-grid">
             <div class="notebook-card">
-                <h2><a href="digital-logic-design/_book/index.html">The Digital Logic Design Book</a></h2>
-                <p>Basics of digital logic design.</p>
+                <h2><a href="digital-logic-design/_book/index.html">Digital Logic Design</a></h2>
+                <p>Foundations of digital logic.</p>
                 <div class="notebook-meta">
-                    Last updated: December 2024
+                    Last updated: Jan. 2025
                 </div>
             </div>
+            
+            <div class="notebook-card">
+                <h2><a href="????/_book/index.html">Computer Architecture</a></h2>
+                <p>Description.</p>
+                <div class="notebook-meta">
+                    Last updated: Jan. 2025
+                </div>
+            </div>
+
+            <div class="notebook-card">
+                <h2><a href="????/_book/index.html">Parallel Computer Architecture</a></h2>
+                <p>Description.</p>
+                <div class="notebook-meta">
+                    Last updated: Jan. 2025
+                </div>
+            </div>
+
+            <div class="notebook-card">
+                <h2><a href="????/_book/index.html">CUDA</a></h2>
+                <p>Description.</p>
+                <div class="notebook-meta">
+                    Last updated: Jan. 2025
+                </div>
+            </div>
+
+            <div class="notebook-card">
+                <h2><a href="????/_book/index.html">CMOS & VLSI</a></h2>
+                <p>Description.</p>
+                <div class="notebook-meta">
+                    Last updated: Jan. 2025
+                </div>
+            </div>
+
+            <div class="notebook-card">
+                <h2><a href="????/_book/index.html">Data Structures & Algorithms</a></h2>
+                <p>Description.</p>
+                <div class="notebook-meta">
+                    Last updated: Jan. 2025
+                </div>
+            </div>
+
+            <!-- <div class="notebook-card">
+                <h2><a href="????/_book/index.html">Computer Organization</a></h2>
+                <p>Description.</p>
+                <div class="notebook-meta">
+                    Last updated: Jan. 2025
+                </div>
+            </div> -->
+
+            <div class="notebook-card">
+                <h2><a href="????/_book/index.html">Operating Systems</a></h2>
+                <p>Description.</p>
+                <div class="notebook-meta">
+                    Last updated: Jan. 2025
+                </div>
+            </div>
+
+            <div class="notebook-card">
+                <h2><a href="????/_book/index.html">Design Verification</a></h2>
+                <p>Description.</p>
+                <div class="notebook-meta">
+                    Last updated: Jan. 2025
+                </div>
+            </div>
+
+            <div class="notebook-card">
+                <h2><a href="????/_book/index.html">Machine Learning Systems</a></h2>
+                <p>Description.</p>
+                <div class="notebook-meta">
+                    Last updated: Jan. 2025
+                </div>
+            </div>
+            
+            <div class="notebook-card">
+                <h2><a href="????/_book/index.html">Computer Vision</a></h2>
+                <p>Description.</p>
+                <div class="notebook-meta">
+                    Last updated: Jan. 2025
+                </div>
+            </div>
+
+            <div class="notebook-card">
+                <h2><a href="????/_book/index.html">Machine Learning</a></h2>
+                <p>Description.</p>
+                <div class="notebook-meta">
+                    Last updated: Jan. 2025
+                </div>
+            </div>
+
         </div>
 
         <footer>
-            2024
+            &copy; 2024 Ryan Hou
         </footer>
     </div>
 </body>

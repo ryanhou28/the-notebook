@@ -56,14 +56,17 @@ To convert from decimal to binary:
 - Step 1: Divide the given number repeatedly by 2 until you get 0 as the quotient.
 - Step 2: Write the remainders in reverse order.
 
-![Example decimal to binary conversion](images/binary/dec-2-bin-example.png){#fig-label fig-align="center" width="65%"}
+![Example decimal to binary conversion. Figure source: EECS 270](images/binary/dec-2-bin-example.png){#fig-label fig-align="center" width="65%"}
 
 ### Hex - Octal - Binary
 
-Hexadecimal and octal have bases that are powers of 2, which makes conversion much simpler. Since hex is base 16, which is $2^4$, we can split each hex digit into 4 bits when converting to binary, conversely group every 4 bits into 1 hex digit. Similarly, an octal digit corresponds to 3 bits.
+Hexadecimal and octal have bases that are powers of 2, which makes conversion much simpler. Since hex is base 16, which is $2^4$, we can split each **hex digit into 4 bits** when converting to binary, conversely group every 4 bits into 1 hex digit. Similarly, an **octal digit corresponds to 3 bits**.
 
-*TODO: Add hex conversion chart.
+![Hexadecimal Conversion Chart. [Source](https://miro.medium.com/v2/resize:fit:604/1*PkHLh296lpvyEyJ2KPxdSw.png)](images/binary/hex-chart.png){#fig-label fig-align="center" width="65%"}
+
 
 ### ASCII
 
 Text can also be encoded by numbers. ASCII is a common character encoding standard that represents a character in 8 bits.
+
+An ASCII conversion chart can be found [here](https://www.ascii-code.com/).
