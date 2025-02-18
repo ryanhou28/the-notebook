@@ -1,0 +1,222 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Structures & Algorithms",
+    "section": "",
+    "text": "Preface\nThis is my notes on Data Structures & Algorithms in C++.\n\n\nResources\nSome relevant resources:\n\nEECS 280 - Programming and Intro Data Structures (University of Michigan)\nEECS 281 - Data Structures and Algorithms (University of Michigan)\nEECS 376 - Foundations of Computer Science\nData Structures & Algorithms - Google Tech Dev Guide\nEECS 281 References\nThe Algorithms\n\nPractice Resources:\n\nLeetCode\nNeetCode\n\nBlind 75\n\nCodeforces\n\nInterview Resources:\n\nLeetcode Patterns\nLearning Resources - Reddit-wiki-programming\nAlgoMonster\nTech Interview Handbook\n\nC++ Guides:\n\nlearncpp.com\n\nBooks:\n\nAlgorithms - Jeff Erickson\nCracking the Coding Interview",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 Perspective\nThis notebook contains programming basics, data structures, and algorithms. The language of choice is C++, and concepts from C++ STL are also covered.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#perspective",
+    "href": "intro.html#perspective",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "Note 1.1: Definition - Definition goes here\n\n\n\nDefinition is defined by: definition.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#subheading",
+    "href": "intro.html#subheading",
+    "title": "1  Introduction",
+    "section": "1.2 Subheading",
+    "text": "1.2 Subheading",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "foundations.html",
+    "href": "foundations.html",
+    "title": "2  Foundations",
+    "section": "",
+    "text": "2.1 Resources",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Foundations</span>"
+    ]
+  },
+  {
+    "objectID": "complexity.html",
+    "href": "complexity.html",
+    "title": "16  Complexity Analysis",
+    "section": "",
+    "text": "16.1 References",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Complexity Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "complexity.html#references",
+    "href": "complexity.html#references",
+    "title": "16  Complexity Analysis",
+    "section": "",
+    "text": "AlgoMonster - Runtime Summary",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Complexity Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "complexity.html#runtime-overview",
+    "href": "complexity.html#runtime-overview",
+    "title": "16  Complexity Analysis",
+    "section": "16.2 Runtime Overview",
+    "text": "16.2 Runtime Overview",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Complexity Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "complexity.html#common-time-complexities",
+    "href": "complexity.html#common-time-complexities",
+    "title": "16  Complexity Analysis",
+    "section": "16.3 Common Time Complexities",
+    "text": "16.3 Common Time Complexities\n\n16.3.1 O(1) - Constant\nConstant time complexity. Could be\n\nHashmap lookup\nArray access and update\nPushing and popping elements from a stack\nFinding and applying math formula\n\n\n\n16.3.2 O(log(N)) - Logarithmic\n\\(log(N)\\) grows very slowly\nIn coding interviews, log(N) typically means:\n\nBinary search or variant\nBalanced binary search tree lookup\nProcessing the digits of a number\n\nUnless specified, typically log(N) refers to \\(log_2(N)\\)\nExample C++:\nint N = 100000000;\nwhile (N &gt; 0) {\n  // some constant operation\n  N /= 2;\n}\nMany mainstream relational databases use binary trees for indexing by default, thus lookup by primary key in a relational database is log(N).\n\n\n16.3.3 O(N) - Linear\nLinear time typically means looping through a linear data structure a constant number of times. Most commonly, this means:\n\nGoing through array/linked list\nTwo pointers\nSome types of greedy\nTree/graph traversal\nStack/Queue\n\nExample C++:\nfor (int i = 1; i &lt;= N; i++) {\n  // constant time code\n}\n\nfor (int i = 1; i &lt; 5 * N + 17; i++) {\n  // constant time code\n}\n\nfor (int i = 1; i &lt; N + 538238; i++) {\n  // constant time code\n}\n\n\n16.3.4 O(K log(N))\n\nHeap push/pop K times. When you encounter problems that seek the “top K elements”, you can often solve them by pushing and popping to a heap K times, resulting in an O(K log(N)) runtime. e.g., K closest points, merge K sorted lists.\nBinary search K times.\n\nSince K is constant this kind of isn’t its own time complexity and can be grouped with O(log(N))\n\n\n16.3.5 O(N log(N)) - Log-Linear\n\nSorting. The default sorting algorithm’s expected runtime in all mainstream languages is N log(N). For example, java uses a variant of merge sort for object sorting and a variant of Quick Sort for primitive type sorting.\nDivide and conquer with a linear time merge operation. Divide is normally log(N), and if merge is O(N) then the overall runtime is O(N log(N)). An example problem is smaller numbers to the right.\n\n\n\n16.3.6 O(N^2) - Quadratic\n\nNested loops, e.g., visiting each matrix entry\nMany brute force solutions\n\nfor (int i = 1; i &lt;= N; i++) {\n  for (int j = 1; j &lt;= N; j++) {\n    // constant time code\n  }\n}\n\n\n16.3.7 O(2^N) - Exponential\nGrows very rapidly. Often requires memoization to avoid repeated computations and reduce complexity.\n\nCombinatorial problems, backtracking, e.g. subsets\nOften involves recursion and is harder to analyze time complexity at first sight\n\nE.g.: A recursive Fibonacci algorithm is \\(O(2^N)\\)\nint Fib(int n) {\n  if (n == 0 || n == 1) {\n    return 1;\n  }\n  return Fib(n - 1) + Fib(n - 2);\n}\n\n\n16.3.8 O(N!) - Factorial\nGrows very very rapidly. Only solvable by computers for small N. Often requires memoization to avoid repeated computations and reduce complexity.\n\nCombinatorial problems, backtracking, e.g. permutations\nOften involves recursion and is harder to analyze time complexity at first sight",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Complexity Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "complexity.html#amortized-time-complexity",
+    "href": "complexity.html#amortized-time-complexity",
+    "title": "16  Complexity Analysis",
+    "section": "16.4 Amortized Time Complexity",
+    "text": "16.4 Amortized Time Complexity",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Complexity Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "heaps.html",
+    "href": "heaps.html",
+    "title": "18  Heaps",
+    "section": "",
+    "text": "18.1 References",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Heaps</span>"
+    ]
+  },
+  {
+    "objectID": "heaps.html#references",
+    "href": "heaps.html#references",
+    "title": "18  Heaps",
+    "section": "",
+    "text": "AlgoMonster - Heap Fundamentals",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Heaps</span>"
+    ]
+  },
+  {
+    "objectID": "heaps.html#heap-priority-queue",
+    "href": "heaps.html#heap-priority-queue",
+    "title": "18  Heaps",
+    "section": "18.2 Heap? Priority Queue?",
+    "text": "18.2 Heap? Priority Queue?\nPriority Queue is an Abstract Data Type, and Heap is the concrete data structure we use to implement a priority queue. Source",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Heaps</span>"
+    ]
+  },
+  {
+    "objectID": "heaps.html#heap-in-c",
+    "href": "heaps.html#heap-in-c",
+    "title": "18  Heaps",
+    "section": "18.3 Heap in C++",
+    "text": "18.3 Heap in C++",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Heaps</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "27  Summary",
+    "section": "",
+    "text": "In summary…",
+    "crumbs": [
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "tips.html",
+    "href": "tips.html",
+    "title": "28  Tips on Solving DS&A Questions",
+    "section": "",
+    "text": "28.1 Problem Solving Flowchart",
+    "crumbs": [
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+    ]
+  },
+  {
+    "objectID": "tips.html#problem-solving-flowchart",
+    "href": "tips.html#problem-solving-flowchart",
+    "title": "28  Tips on Solving DS&A Questions",
+    "section": "",
+    "text": "Figure 28.1: Tips on problem approach.Image Source",
+    "crumbs": [
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+    ]
+  },
+  {
+    "objectID": "tips.html#dsa-roadmap",
+    "href": "tips.html#dsa-roadmap",
+    "title": "28  Tips on Solving DS&A Questions",
+    "section": "28.2 DS&A Roadmap",
+    "text": "28.2 DS&A Roadmap\n\n\n\nA Roadmap for studying. Source",
+    "crumbs": [
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+    ]
+  },
+  {
+    "objectID": "tips.html#problem-flowchart",
+    "href": "tips.html#problem-flowchart",
+    "title": "28  Tips on Solving DS&A Questions",
+    "section": "28.3 Problem Flowchart",
+    "text": "28.3 Problem Flowchart\n\n\n\n\n\n\nFigure 28.2: A problem solving flowchart based on AlgoMonster’s flowchart. Open the SVG in a new tab and zoom in/out for better viewing.",
+    "crumbs": [
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+    ]
+  },
+  {
+    "objectID": "tips.html#roi",
+    "href": "tips.html#roi",
+    "title": "28  Tips on Solving DS&A Questions",
+    "section": "28.4 ROI",
+    "text": "28.4 ROI\n\n\n\n\n\n\nFigure 28.3: Studying to Maximizing ROI according to AlgoMonster.",
+    "crumbs": [
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+    ]
+  },
+  {
+    "objectID": "tips.html#academic-algorithms",
+    "href": "tips.html#academic-algorithms",
+    "title": "28  Tips on Solving DS&A Questions",
+    "section": "28.5 “Academic” Algorithms",
+    "text": "28.5 “Academic” Algorithms\nAccording to AlgoMonster, some algorithms that are very rarely/almost never asked in interviews:\n\nMinimal spanning tree: Kruskal’s algorithm and Prim’s algorithm\nMinimum cut: Ford-Fulkerson algorithm\nShortest path in weight graphs: Bellman-Ford-Moore algorithm\nString search: Boyer-Moore algorithm",
+    "crumbs": [
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+    ]
+  },
+  {
+    "objectID": "tips.html#keyword-to-algo",
+    "href": "tips.html#keyword-to-algo",
+    "title": "28  Tips on Solving DS&A Questions",
+    "section": "28.6 Keyword to Algo",
+    "text": "28.6 Keyword to Algo\nAlgoMonster provides a convenient “Keyword to Algorithm” summary:\n“Top k”\n\nHeap\n\nE.g. K closest points\n\n\n“How many ways..”\n\nDFS\n\nE.g. Decode ways\n\nDP\n\nE.g. Robot paths\n\n\n“Substring”\n\nSliding window\n\nE.g. Longest substring without repeating characters\n\n\n“Palindrome”\n\ntwo pointers: Valid Palindrome\nDFS: Palindrome Partitioning\nDP: Palindrome Partitioning II\n\n“Tree”\n\nshortest, level-order\n\nBFS: Binary Tree Level-Order Traversal\n\nelse: DFS: Max Depth\n\n“Parentheses”\n\nStack: Valid Parentheses\n\n“Subarray”\n\nSliding window: Maximum subarray sum\nPrefix sum: Subarray sum\nHashmap: Continuous subarray sum\n\nMax subarray\n\nGreedy: Kadane’s Algorithm\n\n“X Sum”\n\nTwo pointer: Two sum\n\n“Max/longest sequence”\n\nDynamic programming, DFS: Longest increasing subsequence\nmono deque: Sliding window maximum\n\n“Minimum/Shortest”\n\nDynamic programming, DFS: Minimal path sum\nBFS: Shortest path\n\n“Partition/split … array/string”\n\nDFS: Decode ways\n\n“Subsequence”\n\nDynamic programming, DFS: Longest increasing subsequence\nSliding window: Longest increasing subsequence\n\n“Matrix”\n\nBFS, DFS: Flood fill, Islands\nDynamic programming: Maximal square\n\n“Jump”\n\nGreedy/DP: Jump game\n\n“Game”\n\nDynamic programming: Divisor game, Stone game\n\n“Connected component”, “Cut/remove” “Regions/groups/connections”\n\nUnion Find: Number of connected components, Redundant connections\n\nTransitive relationship\n\nIf the items are related to one another and the relationship is transitive, then chances are we can build a graph and use BFS or Union Find.\n\nstring converting to another, BFS: Word Ladder\nstring converting to another, BFS, Union Find: Sentence Similarity\nnumbers having divisional relationship, BFS, Union Find: Evaluate Division\n\n\n“Interval”\n\nGreedy: sort by start/end time and then go through sorted intervals Interval Pattern",
+    "crumbs": [
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+    ]
+  }
+]

@@ -1,0 +1,16 @@
+# Heaps
+
+## References
+
+- [AlgoMonster - Heap Fundamentals](https://algo.monster/problems/heap_intro)
+
+## Heap? Priority Queue?
+
+Priority Queue is an **Abstract Data Type**, and Heap is the concrete data structure we use to implement a priority queue. [Source](https://algo.monster/problems/heap_intro)
+
+
+
+
+
+## Heap in C++
+

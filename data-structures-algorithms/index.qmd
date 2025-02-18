@@ -1,0 +1,37 @@
+# Preface {.unnumbered}
+
+This is my notes on Data Structures & Algorithms in C++.
+
+# Resources {.unnumbered}
+
+Some relevant resources:
+
+- [EECS 280 - Programming and Intro Data Structures (University of Michigan)](https://eecs280.org/)
+- [EECS 281 - Data Structures and Algorithms (University of Michigan)](https://eecs281staff.github.io/eecs281.org/)
+- [EECS 376 - Foundations of Computer Science](https://eecs376.org/)
+- [Data Structures & Algorithms - Google Tech Dev Guide](https://techdevguide.withgoogle.com/paths/data-structures-and-algorithms/)
+- [EECS 281 References](https://datastructures.maximal.io/)
+- [The Algorithms](https://github.com/TheAlgorithms)
+
+Practice Resources:
+
+- [LeetCode](https://leetcode.com/problemset/)
+- [NeetCode](https://neetcode.io/)
+  - [Blind 75](https://neetcode.io/practice)
+- [Codeforces](https://codeforces.com/problemset)
+
+Interview Resources:
+
+- [Leetcode Patterns](https://seanprashad.com/leetcode-patterns/)
+- [Learning Resources - Reddit-wiki-programming](https://github.com/avgspacelover/Reddit-wiki-programming)
+- [AlgoMonster](https://algo.monster/)
+- [Tech Interview Handbook](https://www.techinterviewhandbook.org/)
+
+C++ Guides:
+
+- [learncpp.com](https://www.learncpp.com/)
+
+Books:
+
+- [Algorithms - Jeff Erickson](https://jeffe.cs.illinois.edu/teaching/algorithms/)
+- [Cracking the Coding Interview]()

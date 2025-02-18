@@ -1,0 +1,15 @@
+# Introduction
+
+## Perspective
+
+::: {#nte-binary-def .callout-note}
+## Definition - Definition goes here
+**Definition** is defined by: definition.
+:::
+
+This notebook contains programming basics, data structures, and algorithms. The language of choice is C++, and concepts from C++ STL are also covered. 
+
+
+## Subheading
+
+<!-- ![Image Caption](images/intro/???.png){#fig-label fig-align="center" width="70%"} -->
