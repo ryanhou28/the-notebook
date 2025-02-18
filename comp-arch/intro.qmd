@@ -1,0 +1,15 @@
+# Introduction
+
+## Perspective
+
+
+::: {#nte-some-def .callout-note}
+## Definition - Some definition
+**Term** is defined as blah blah blah...
+:::
+
+This note does ...
+
+## High Level Ideas
+
+<!-- ![Some image caption](images/xyz.png){#fig-label fig-align="center" width="70%"} -->
