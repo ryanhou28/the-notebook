@@ -1,1 +1,253 @@
-# Stacks & Queues
+# Stacks, Queues, Deque, Priority Queue
+
+## Stack
+
+### Stack - Interface
+
+Stack is a data structure that supports insertion/removal in Last In, First Out (LIFO) order
+
+
+Stack ADT Interface:
+
+| Method           | Description                           |
+|-----------------|---------------------------------------|
+| `push(object)`  | Add object to top of the stack       |
+| `pop()`        | Remove top element                   |
+| `object &top()` | Return a reference to top element   |
+| `size()`       | Number of elements in stack         |
+| `empty()`      | Checks if stack has no elements     |
+
+### Stack Implementation
+
+A stack can be implemented with an array/vector or linked list
+
+<!-- TODO: Add tables on implementation, interface, and complexity tradeoff -->
+
+
+### Stack in STL
+
+```cpp
+#include <stack>
+std::stack<>
+```
+
+The underlying containers are `std::deque<>` (by default), and `std::list<>, std::vector<>` (optional).
+
+## Queue
+
+### Queue - Interface
+
+Queue is a data structure that supports insertion/removal in First In, First Out (FIFO) order
+
+<!-- TODO: Add in tables -->
+
+
+### Queue Implementation
+
+<!-- TODO -->
+
+### Queue in STL
+
+
+```cpp
+#include <queue>
+std::queue<>
+```
+
+The underlying containers are `std::deque<>` (by default), and `std::list<>` (optional).
+
+## Deque
+
+### Deque - Interface
+
+Deque is an abbreviation of Double-Ended Queue
+
+```cpp
+#include <deque>
+std::deque<>
+```
+
+Main methods:
+
+- `push_front()`
+- `pop_front()`
+- `front()`
+- `push_back()`
+- `pop_back()`
+- `back()`
+- `size()`
+- `empty()`
+- Random Access: `[]` or `.at()`
+
+STL incudes constant time `operator[]()`
+
+
+### Deque - Implementation
+
+<!-- TODO -->
+
+Circular Buffer
+
+Doubly-linked list
+
+
+## Priority Queue
+
+Each datum in the priority queue is paired with a priority value (usually numbers, should be comparable). Supports **insertion**, **inspection** of data, and **removal** of datum with highest priority.
+
+![Example Priority Queue. Source: EECS 281. Lower numbers here indicate higher priority. Top element would be red node.](images/stacks-queues/priority-queue.png)
+
+### ADT - Interface
+
+| Method             | Description                                      |
+|--------------------|--------------------------------------------------|
+| `push(object)`     | Add object to the priority queue                |
+| `pop()`           | Remove highest priority element                  |
+| `const object &top()` | Return a reference to highest priority element |
+| `size()`          | Number of elements in priority queue             |
+| `empty()`         | Checks if priority queue has no elements         |
+
+### Priority Queue Implementations
+
+Priority queues can be implemented with many data structures. Heap is a common implementation.
+
+|                               | **Insert**    | **Remove**    |
+|-------------------------------|--------------|--------------|
+| Unordered sequence container  | Constant     | Linear       |
+| Sorted sequence container     | Linear       | Constant     |
+| Heap                          | Logarithmic  | Logarithmic  |
+| Array of linked lists (for priorities of small integers) | Constant | Constant |
+
+### C++ Priority Queue
+
+`std::priority_queue<>`
+
+By default, uses `std::less<>` to determine priority. A default priority queue is a "max-PQ", where the largest element has highest priority. To implement a "min-PQ", use `std::greater<>`. Custom comparator (function object) needed if the elements cannot be compared with std less/greater.
+
+Max PQ (`std::less<>`):
+
+`std::priority_queue<T> myPQ;`
+
+PQ with custom comparator type, `COMP`:
+
+`std::priority_queue<T, vector<T>, COMP> myPQ;`
+
+Manual priority queue implementation with standard library functions:
+
+```cpp
+#include <algorithm>
+std::make_heap();
+std::push_heap();
+std::pop_heap();
+```
+
+# Generating Permutations
+
+We can generate permutations by "juggling with stacks and queues"
+
+Essentially, given $N$ elements, we want to generate all $N$ element permutations.
+
+Main ingredients:
+
+- One recursive function
+- One stack
+- One queue
+
+Technique: move elements between the two containers
+
+
+```cpp
+// Helper function for printing
+template <typename T>
+ostream &operator<<(ostream &out, const vector<T> &v) {
+    // display contents of a vector on a single line
+    for (auto &el : v) {
+        out << el << ' ';
+    }
+    return out;
+}
+
+// Implementation
+template <typename T>
+void genPerms(vector<T> &perm, deque<T> &unused) {
+    if (unused.empty()) {
+        // Base case: we have reached a permutation when unused is empty
+        //    i.e. a full permutation has been formed
+        cout << perm << '\n';
+        return;
+    }
+
+    for (size_t k = 0; k != unused.size(); ++k) {
+        perm.push_back(unused.front());   // Pick the first element from unused
+        unused.pop_front();               // Remove this element from unused
+        genPerms(perm, unused);           // Recursively generate permutation
+        unused.push_back(perm.back());    // Restore this element to unused
+        perm.pop_back();                  // Remove it from the permutation
+    }
+}
+
+// Example Usage
+int main() {
+    size_t n = 16;
+
+    vector<size_t> perm;
+    deque<size_t> unused(n);
+    iota(unused.begin(), unused.end(), 1); // Fills unused with consecutive numbers starting from 1
+    genPerms(perm, unused);
+
+    return 0;
+}
+```
+
+Explanation of `genPerms()`:
+
+- The function iterates over `unused` and chooses each element one by one as it fills up a permutation
+- The chosen element is moved from `unused` to `perm` (backtracking)
+- The function is recursively called to generate the remaining permutation (as each call picks another element from `unused`)
+- After the recursion returns, the removed element is restored to `unused`
+- Time complexity: $O(n!)$ since it generates all permutations
+
+**Another Implementation of `genPerms`**
+
+```cpp
+template <typename T>
+void genPerms(vector<T> &path, size_t permLength) {
+    if (permLength == path.size()) {
+        // Do something with the path
+        return;
+    }
+    if (!promising(path, permLength))
+        return;
+    for (size_t i = permLength; i < path.size(); ++i) {
+        swap(path[permLength], path[i]);
+        genPerms(path, permLength + 1);
+        swap(path[permLength], path[i]);
+    }
+}
+```
+
+<!-- TODO: Add explanations for this implementation -->
+
+### STL next_permutation()
+
+The STL has function `std::next_permutation()`
+
+[Example Usage](https://en.cppreference.com/w/cpp/algorithm/next_permutation)
+```cpp
+#include <algorithm>
+#include <iostream>
+#include <string>
+ 
+int main()
+{
+    std::string s = "aba";
+ 
+    do
+    {
+        std::cout << s << '\n';
+    }
+    while (std::next_permutation(s.begin(), s.end()));
+ 
+    std::cout << s << '\n';
+}
+```

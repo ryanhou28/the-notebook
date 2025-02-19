@@ -1,1 +1,144 @@
 # Linked List
+
+Linked list is a **non-contiguous**  data structure with efficient **insertion** and **deletion**. Often used to implement other data structures like stacks, queues, or deques.
+
+Main types of linked lists include:
+
+- Singly linked list
+- Doubly linked list
+- Circular linked list
+
+## Summary
+
+|                     | **Array**                                    | **Linked List**                               |
+|---------------------|--------------------------------------------|----------------------------------------------|
+| **Access**         | **best** time complexity **O(1)**         | **best** time complexity **O(1)**         |
+|                   | **average** time complexity **O(1)**      | **average** time complexity **O(n)**      |
+|                   | **worst** time complexity **O(1)**        | **worst** time complexity **O(n)**        |
+| **Insertion**      | **best** time complexity **O(1)**         | **best** time complexity **O(1)**         |
+|                   | **average** time complexity **O(n)**      | **average** time complexity **O(n)**      |
+|                   | **worst** time complexity **O(n)**        | **worst** time complexity **O(n)**        |
+| **Memory Overhead** | If array size is chosen well, the array uses less memory | Additional memory is required for pointers |
+| **Memory Efficiency** | May contain unused memory                | Can change dynamically in size resulting in no wasted memory |
+
+
+## C++ Example
+
+Structure of a singly linked list node:
+
+```cpp
+class IntList {
+private:
+
+    struct Node {
+        int datum; // contains the element of the node
+        Node *next; // points to the next node in the list
+    }
+
+public:
+    Node *first;
+    Node *last;
+};
+```
+
+We can set the next pointer of the last node to `nullptr` as a sentinel value.
+
+
+A more complete implementation:
+
+
+```cpp
+template <typename T>
+class LinkedList {
+private:
+    struct Node {
+        T datum; // contains the element of the node
+        Node *next; // points to the next node in the list
+    }
+
+    Node *first;
+    Node *last;
+
+public:
+    // Constructor builds an empty list
+    LinkedList() : first(nullptr) {}
+
+    bool isEmpty() const {
+        return first == nullptr;
+    }
+
+    // Return by reference the first element;
+    T & front() {
+        assert(!empty());
+        return first->datum;
+    }
+
+    // Push a new node to the front
+    void push_front(T datum) {
+        Node *p = new Node;
+        p->datum = datum;
+        p->next = first;
+        first = p;
+    }
+
+    void push_back(T datum) {
+        Node *p = new Node;
+        p->datum = datum;
+        p->next = nullptr;
+        if (empty()) {
+            first = last = p;
+        } else {
+            last->next = p;
+            last = p;
+        }
+    }
+
+    // Pop the front node
+    void pop_front() {
+        assert(!empty());
+        Node *victim = first;
+        first = first->next;
+        delete victim;
+    }
+
+    // Printing the linked list to os
+    void print(ostream &os) const {
+        for (Node *np = first; np; np = np->next) {
+            os << np->datum << " ";
+        }
+    }
+
+    void pop_all() {
+        while (!empty()) {
+            pop_front();
+        }
+    }
+
+    void push_all(const LinkedList &other) {
+        for (Node *np = other.first; np; np = np->next) {
+            push_back(np->datum);
+        }
+    }
+
+    // - The Big Three for LinkedList - 
+
+    // Destructor
+    ~LinkedList() {
+        pop_all();
+    }
+
+    // Copy constructor
+    LinkedList(const LinkedList &other) : first(nullptr), last(nullptr) {
+        push_all(other);
+    }
+
+    // Assignment Operator
+    LinkedList & operator=(const LinkedList &rhs) {
+        if (this == &rhs) { return *this; }
+        pop_all();
+        push_all(rhs);
+        return *this;
+    }
+
+};
+```

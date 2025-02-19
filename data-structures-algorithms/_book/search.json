@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Data Structures & Algorithms",
     "section": "",
-    "text": "Preface\nThis is my notes on Data Structures & Algorithms in C++.\n\n\nResources\nSome relevant resources:\n\nEECS 280 - Programming and Intro Data Structures (University of Michigan)\nEECS 281 - Data Structures and Algorithms (University of Michigan)\nEECS 376 - Foundations of Computer Science\nData Structures & Algorithms - Google Tech Dev Guide\nEECS 281 References\nThe Algorithms\n\nPractice Resources:\n\nLeetCode\nNeetCode\n\nBlind 75\n\nCodeforces\n\nInterview Resources:\n\nLeetcode Patterns\nLearning Resources - Reddit-wiki-programming\nAlgoMonster\nTech Interview Handbook\n\nC++ Guides:\n\nlearncpp.com\n\nBooks:\n\nAlgorithms - Jeff Erickson\nCracking the Coding Interview",
+    "text": "Preface\nThis is my notes on Data Structures & Algorithms in C++.\n\n\nResources\nSome relevant resources:\n\nEECS 280 - Programming and Intro Data Structures (University of Michigan)\nEECS 281 - Data Structures and Algorithms (University of Michigan)\nEECS 376 - Foundations of Computer Science\nData Structures & Algorithms - Google Tech Dev Guide\nEECS 281 References\nThe Algorithms\n\nPractice Resources:\n\nLeetCode\nNeetCode\nBlind 75\nGrind 75\n\nAbout Grind 75\n\nCodeforces\n\nInterview Resources:\n\nLeetcode Patterns\nLearning Resources - Reddit-wiki-programming\nAlgoMonster\nTech Interview Handbook\n\nStudy Cheatsheet\n\nZero To Mastery\n\nC++ Guides:\n\nlearncpp.com\n\nBooks:\n\nAlgorithms - Jeff Erickson\nCracking the Coding Interview",
     "crumbs": [
       "Preface"
     ]
@@ -50,6 +50,146 @@
     ]
   },
   {
+    "objectID": "abstract.html",
+    "href": "abstract.html",
+    "title": "7  Abstract Data Type",
+    "section": "",
+    "text": "Note 7.1: Definition - Abstract Data Type\n\n\n\nAn Abstract Data Type (ADT) combines data with valid operations and their behaviors on stored data\n\n\n\ne.g. insert, delete, access\nADTs define an interface\n\nMeanwhile, a data structure provides a concrete implementation of an ADT.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Abstract Data Type</span>"
+    ]
+  },
+  {
+    "objectID": "linkedlist.html",
+    "href": "linkedlist.html",
+    "title": "10  Linked List",
+    "section": "",
+    "text": "10.1 Summary\nLinked list is a non-contiguous data structure with efficient insertion and deletion. Often used to implement other data structures like stacks, queues, or deques.\nMain types of linked lists include:",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Linked List</span>"
+    ]
+  },
+  {
+    "objectID": "linkedlist.html#summary",
+    "href": "linkedlist.html#summary",
+    "title": "10  Linked List",
+    "section": "",
+    "text": "Array\nLinked List\n\n\n\n\nAccess\nbest time complexity O(1)\nbest time complexity O(1)\n\n\n\naverage time complexity O(1)\naverage time complexity O(n)\n\n\n\nworst time complexity O(1)\nworst time complexity O(n)\n\n\nInsertion\nbest time complexity O(1)\nbest time complexity O(1)\n\n\n\naverage time complexity O(n)\naverage time complexity O(n)\n\n\n\nworst time complexity O(n)\nworst time complexity O(n)\n\n\nMemory Overhead\nIf array size is chosen well, the array uses less memory\nAdditional memory is required for pointers\n\n\nMemory Efficiency\nMay contain unused memory\nCan change dynamically in size resulting in no wasted memory",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Linked List</span>"
+    ]
+  },
+  {
+    "objectID": "linkedlist.html#c-example",
+    "href": "linkedlist.html#c-example",
+    "title": "10  Linked List",
+    "section": "10.2 C++ Example",
+    "text": "10.2 C++ Example\nStructure of a singly linked list node:\nclass IntList {\nprivate:\n\n    struct Node {\n        int datum; // contains the element of the node\n        Node *next; // points to the next node in the list\n    }\n\npublic:\n    Node *first;\n    Node *last;\n};\nWe can set the next pointer of the last node to nullptr as a sentinel value.\nA more complete implementation:\ntemplate &lt;typename T&gt;\nclass LinkedList {\nprivate:\n    struct Node {\n        T datum; // contains the element of the node\n        Node *next; // points to the next node in the list\n    }\n\n    Node *first;\n    Node *last;\n\npublic:\n    // Constructor builds an empty list\n    LinkedList() : first(nullptr) {}\n\n    bool isEmpty() const {\n        return first == nullptr;\n    }\n\n    // Return by reference the first element;\n    T & front() {\n        assert(!empty());\n        return first-&gt;datum;\n    }\n\n    // Push a new node to the front\n    void push_front(T datum) {\n        Node *p = new Node;\n        p-&gt;datum = datum;\n        p-&gt;next = first;\n        first = p;\n    }\n\n    void push_back(T datum) {\n        Node *p = new Node;\n        p-&gt;datum = datum;\n        p-&gt;next = nullptr;\n        if (empty()) {\n            first = last = p;\n        } else {\n            last-&gt;next = p;\n            last = p;\n        }\n    }\n\n    // Pop the front node\n    void pop_front() {\n        assert(!empty());\n        Node *victim = first;\n        first = first-&gt;next;\n        delete victim;\n    }\n\n    // Printing the linked list to os\n    void print(ostream &os) const {\n        for (Node *np = first; np; np = np-&gt;next) {\n            os &lt;&lt; np-&gt;datum &lt;&lt; \" \";\n        }\n    }\n\n    void pop_all() {\n        while (!empty()) {\n            pop_front();\n        }\n    }\n\n    void push_all(const LinkedList &other) {\n        for (Node *np = other.first; np; np = np-&gt;next) {\n            push_back(np-&gt;datum);\n        }\n    }\n\n    // - The Big Three for LinkedList - \n\n    // Destructor\n    ~LinkedList() {\n        pop_all();\n    }\n\n    // Copy constructor\n    LinkedList(const LinkedList &other) : first(nullptr), last(nullptr) {\n        push_all(other);\n    }\n\n    // Assignment Operator\n    LinkedList & operator=(const LinkedList &rhs) {\n        if (this == &rhs) { return *this; }\n        pop_all();\n        push_all(rhs);\n        return *this;\n    }\n\n};",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Linked List</span>"
+    ]
+  },
+  {
+    "objectID": "iterators.html",
+    "href": "iterators.html",
+    "title": "11  Iterators",
+    "section": "",
+    "text": "11.1 References",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "iterators.html#references",
+    "href": "iterators.html#references",
+    "title": "11  Iterators",
+    "section": "",
+    "text": "Geeks for Geeks Iterators in STL",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "iterators.html#iterators-in-c-stl",
+    "href": "iterators.html#iterators-in-c-stl",
+    "title": "11  Iterators",
+    "section": "11.2 Iterators in C++ STL",
+    "text": "11.2 Iterators in C++ STL\nIterator Declaration\n&lt;type&gt;::iterator it;\nCan then be initialize by assigning some valid iterator. If we already have an iterator to be assigned at the time of delcaration, then we can skip the type declaration using the auto keyword.\nauto it = iter\nExample:\nvector&lt;int&gt; arr = {1, 2, 3, 4, 5};\n\nvector&lt;int&gt;::iterator first = arr.begin();\n\nvector&lt;int&gt;::iterator last = arr.end();\n\nwhile(first != last) {\n    cout &lt;&lt; *first &lt;&lt; \" \";\n    first++;\n}\nIterator Function\nReturn Value\nbegin()\nReturns an iterator to the beginning of container.\nend()\nReturns an iterator to the theoretical element just after the last element of the container.\ncbegin()\nReturns a constant iterator to the beginning of container. A constant iterator cannot modify the value of the element it is pointing to.\ncend()\nReturns a constant iterator to the theoretical element just after the last element of the container.\nrbegin()\nReturns a reverse iterator to the beginning of container.\nrend()\nReturns a reverse iterator to the theoretical element just after the last element of the container.\ncrbegin()\nReturns a constant reverse iterator to the beginning of container.\ncrend()\nReturns a constant reverse iterator to the theoretical element just after the last element of the container.\n\n\n11.2.1 Iterator Operations\n*it;            // Access\n*it = new_val;  // Update\nit++;           // post-increment\n++it;           // pre-increment\nit--;\n--it;\nit + int_val;   // can add or subtract by int val or another iterator\n// Comparing two iterators also works (e.g. !=, &lt;=, etc)",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "recursion.html",
+    "href": "recursion.html",
+    "title": "12  Recursion",
+    "section": "",
+    "text": "12.1 Recurrence Relations\nRecurrence relation describes the way a problem depends on a subproblem",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Recursion</span>"
+    ]
+  },
+  {
+    "objectID": "recursion.html#recurrence-relations",
+    "href": "recursion.html#recurrence-relations",
+    "title": "12  Recursion",
+    "section": "",
+    "text": "12.1.1 Solving Recurrences: Linear\n\\[\nT(n) =\n\\begin{cases}\n    c_0, & \\text{if } n = 0 \\\\\n    T(n-1) + c_1, & \\text{if } n &gt; 0\n\\end{cases}\n\\]\nRecurrence: \\(T(n) = T(n - 1) + c\\)\nComplexity: \\(\\Theta(n)\\)\n\n\n12.1.2 Solving Recurrences: Logarithmic\n\\[\nT(n) =\n\\begin{cases}\n    c_0, & \\text{if } n = 0 \\\\\n    T(\\frac{n}{2}) + c_1, & \\text{if } n &gt; 0\n\\end{cases}\n\\]\nRecurrence: \\(T(n) = T(n / 2) + c\\)\nComplexity: \\(\\Theta(log n)\\)\n\n\n12.1.3 Master Theorem\nA.k.a Master Method\nLet \\(T(n)\\) be a monotonically increasing function that satisfies:\n\\[T(n) = aT(\\frac{n}{b}) + f(n)\\]\n\\(T(1) = c_0\\) or \\(T(0) = c_0\\)\nwhere \\(a \\geq 1\\), \\(b &gt; 1\\). If \\(f(n) \\in \\Theta(n^c)\\), then:\n\\[\nT(n) \\in\n\\begin{cases}\n    \\Theta(n^{\\log_b a}) & \\text{if } a &gt; b^c \\\\\n    \\Theta(n^c \\log n) & \\text{if } a = b^c \\\\\n    \\Theta(n^c) & \\text{if } a &lt; b^c\n\\end{cases}\n\\]\nWhen NOT to use Master Theorem:\n\n\\(T(n)\\) is not monotonic, such as \\(T(n) = sin(n)\\)\n\\(f(n)\\) is not a polynomial, e.g. \\(f(n) = 2^n\\)\n\\(b\\) cannot be expressed as a constant, e.g. \\(T(n) = T(\\sqrt(sin(n)))\\)\n\n\n\n12.1.4 Fourth Condition\nA fourth condition that allows polylogarithmic functions:",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Recursion</span>"
+    ]
+  },
+  {
+    "objectID": "stacks-queues.html",
+    "href": "stacks-queues.html",
+    "title": "15  Stacks, Queues, Deque, Priority Queue",
+    "section": "",
+    "text": "15.1 Stack",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Stacks, Queues, Deque, Priority Queue</span>"
+    ]
+  },
+  {
+    "objectID": "stacks-queues.html#stack",
+    "href": "stacks-queues.html#stack",
+    "title": "15  Stacks, Queues, Deque, Priority Queue",
+    "section": "",
+    "text": "15.1.1 Stack - Interface\nStack is a data structure that supports insertion/removal in Last In, First Out (LIFO) order\nStack ADT Interface:\n\n\n\nMethod\nDescription\n\n\n\n\npush(object)\nAdd object to top of the stack\n\n\npop()\nRemove top element\n\n\nobject &top()\nReturn a reference to top element\n\n\nsize()\nNumber of elements in stack\n\n\nempty()\nChecks if stack has no elements\n\n\n\n\n\n15.1.2 Stack Implementation\nA stack can be implemented with an array/vector or linked list\n\n\n\n15.1.3 Stack in STL\n#include &lt;stack&gt;\nstd::stack&lt;&gt;\nThe underlying containers are std::deque&lt;&gt; (by default), and std::list&lt;&gt;, std::vector&lt;&gt; (optional).",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Stacks, Queues, Deque, Priority Queue</span>"
+    ]
+  },
+  {
+    "objectID": "stacks-queues.html#queue",
+    "href": "stacks-queues.html#queue",
+    "title": "15  Stacks, Queues, Deque, Priority Queue",
+    "section": "15.2 Queue",
+    "text": "15.2 Queue\n\n15.2.1 Queue - Interface\nQueue is a data structure that supports insertion/removal in First In, First Out (FIFO) order\n\n\n\n15.2.2 Queue Implementation\n\n\n\n15.2.3 Queue in STL\n#include &lt;queue&gt;\nstd::queue&lt;&gt;\nThe underlying containers are std::deque&lt;&gt; (by default), and std::list&lt;&gt; (optional).",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Stacks, Queues, Deque, Priority Queue</span>"
+    ]
+  },
+  {
+    "objectID": "stacks-queues.html#deque",
+    "href": "stacks-queues.html#deque",
+    "title": "15  Stacks, Queues, Deque, Priority Queue",
+    "section": "15.3 Deque",
+    "text": "15.3 Deque\n\n15.3.1 Deque - Interface\nDeque is an abbreviation of Double-Ended Queue\n#include &lt;deque&gt;\nstd::deque&lt;&gt;\nMain methods:\n\npush_front()\npop_front()\nfront()\npush_back()\npop_back()\nback()\nsize()\nempty()\nRandom Access: [] or .at()\n\nSTL incudes constant time operator[]()\n\n\n15.3.2 Deque - Implementation\n\nCircular Buffer\nDoubly-linked list",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Stacks, Queues, Deque, Priority Queue</span>"
+    ]
+  },
+  {
+    "objectID": "stacks-queues.html#priority-queue",
+    "href": "stacks-queues.html#priority-queue",
+    "title": "15  Stacks, Queues, Deque, Priority Queue",
+    "section": "15.4 Priority Queue",
+    "text": "15.4 Priority Queue\nEach datum in the priority queue is paired with a priority value (usually numbers, should be comparable). Supports insertion, inspection of data, and removal of datum with highest priority.\n\n\n\nExample Priority Queue. Source: EECS 281. Lower numbers here indicate higher priority. Top element would be red node.\n\n\n\n15.4.1 ADT - Interface\n\n\n\n\n\n\n\nMethod\nDescription\n\n\n\n\npush(object)\nAdd object to the priority queue\n\n\npop()\nRemove highest priority element\n\n\nconst object &top()\nReturn a reference to highest priority element\n\n\nsize()\nNumber of elements in priority queue\n\n\nempty()\nChecks if priority queue has no elements\n\n\n\n\n\n15.4.2 Priority Queue Implementations\nPriority queues can be implemented with many data structures. Heap is a common implementation.\n\n\n\n\n\n\n\n\n\nInsert\nRemove\n\n\n\n\nUnordered sequence container\nConstant\nLinear\n\n\nSorted sequence container\nLinear\nConstant\n\n\nHeap\nLogarithmic\nLogarithmic\n\n\nArray of linked lists (for priorities of small integers)\nConstant\nConstant\n\n\n\n\n\n15.4.3 C++ Priority Queue\nstd::priority_queue&lt;&gt;\nBy default, uses std::less&lt;&gt; to determine priority. A default priority queue is a “max-PQ”, where the largest element has highest priority. To implement a “min-PQ”, use std::greater&lt;&gt;. Custom comparator (function object) needed if the elements cannot be compared with std less/greater.\nMax PQ (std::less&lt;&gt;):\nstd::priority_queue&lt;T&gt; myPQ;\nPQ with custom comparator type, COMP:\nstd::priority_queue&lt;T, vector&lt;T&gt;, COMP&gt; myPQ;\nManual priority queue implementation with standard library functions:\n#include &lt;algorithm&gt;\nstd::make_heap();\nstd::push_heap();\nstd::pop_heap();",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Stacks, Queues, Deque, Priority Queue</span>"
+    ]
+  },
+  {
     "objectID": "complexity.html",
     "href": "complexity.html",
     "title": "16  Complexity Analysis",
@@ -84,7 +224,17 @@
     "href": "complexity.html#common-time-complexities",
     "title": "16  Complexity Analysis",
     "section": "16.3 Common Time Complexities",
-    "text": "16.3 Common Time Complexities\n\n16.3.1 O(1) - Constant\nConstant time complexity. Could be\n\nHashmap lookup\nArray access and update\nPushing and popping elements from a stack\nFinding and applying math formula\n\n\n\n16.3.2 O(log(N)) - Logarithmic\n\\(log(N)\\) grows very slowly\nIn coding interviews, log(N) typically means:\n\nBinary search or variant\nBalanced binary search tree lookup\nProcessing the digits of a number\n\nUnless specified, typically log(N) refers to \\(log_2(N)\\)\nExample C++:\nint N = 100000000;\nwhile (N &gt; 0) {\n  // some constant operation\n  N /= 2;\n}\nMany mainstream relational databases use binary trees for indexing by default, thus lookup by primary key in a relational database is log(N).\n\n\n16.3.3 O(N) - Linear\nLinear time typically means looping through a linear data structure a constant number of times. Most commonly, this means:\n\nGoing through array/linked list\nTwo pointers\nSome types of greedy\nTree/graph traversal\nStack/Queue\n\nExample C++:\nfor (int i = 1; i &lt;= N; i++) {\n  // constant time code\n}\n\nfor (int i = 1; i &lt; 5 * N + 17; i++) {\n  // constant time code\n}\n\nfor (int i = 1; i &lt; N + 538238; i++) {\n  // constant time code\n}\n\n\n16.3.4 O(K log(N))\n\nHeap push/pop K times. When you encounter problems that seek the “top K elements”, you can often solve them by pushing and popping to a heap K times, resulting in an O(K log(N)) runtime. e.g., K closest points, merge K sorted lists.\nBinary search K times.\n\nSince K is constant this kind of isn’t its own time complexity and can be grouped with O(log(N))\n\n\n16.3.5 O(N log(N)) - Log-Linear\n\nSorting. The default sorting algorithm’s expected runtime in all mainstream languages is N log(N). For example, java uses a variant of merge sort for object sorting and a variant of Quick Sort for primitive type sorting.\nDivide and conquer with a linear time merge operation. Divide is normally log(N), and if merge is O(N) then the overall runtime is O(N log(N)). An example problem is smaller numbers to the right.\n\n\n\n16.3.6 O(N^2) - Quadratic\n\nNested loops, e.g., visiting each matrix entry\nMany brute force solutions\n\nfor (int i = 1; i &lt;= N; i++) {\n  for (int j = 1; j &lt;= N; j++) {\n    // constant time code\n  }\n}\n\n\n16.3.7 O(2^N) - Exponential\nGrows very rapidly. Often requires memoization to avoid repeated computations and reduce complexity.\n\nCombinatorial problems, backtracking, e.g. subsets\nOften involves recursion and is harder to analyze time complexity at first sight\n\nE.g.: A recursive Fibonacci algorithm is \\(O(2^N)\\)\nint Fib(int n) {\n  if (n == 0 || n == 1) {\n    return 1;\n  }\n  return Fib(n - 1) + Fib(n - 2);\n}\n\n\n16.3.8 O(N!) - Factorial\nGrows very very rapidly. Only solvable by computers for small N. Often requires memoization to avoid repeated computations and reduce complexity.\n\nCombinatorial problems, backtracking, e.g. permutations\nOften involves recursion and is harder to analyze time complexity at first sight",
+    "text": "16.3 Common Time Complexities\n\n\n\nNotation\nName\n\n\n\n\nO(1)\nConstant\n\n\nO(log n)\nLogarithmic\n\n\nO(n)\nLinear\n\n\nO(n log n)\nLoglinear, Linearithmic\n\n\nO(n²)\nQuadratic\n\n\nO(n³), O(n⁴), …\nPolynomial\n\n\nO(cⁿ)\nExponential\n\n\nO(n!)\nFactorial\n\n\nO(2^(2ⁿ))\nDoubly Exponential\n\n\n\n\n\n\nGraphing Complexities. Source: EECS 281.\n\n\n\n16.3.1 O(1) - Constant\nConstant time complexity. Could be\n\nHashmap lookup\nArray access and update\nPushing and popping elements from a stack\nFinding and applying math formula\n\n\n\n16.3.2 O(log(N)) - Logarithmic\n\\(log(N)\\) grows very slowly\nIn coding interviews, log(N) typically means:\n\nBinary search or variant\nBalanced binary search tree lookup\nProcessing the digits of a number\n\nUnless specified, typically log(N) refers to \\(log_2(N)\\)\nExample C++:\nint N = 100000000;\nwhile (N &gt; 0) {\n  // some constant operation\n  N /= 2;\n}\nMany mainstream relational databases use binary trees for indexing by default, thus lookup by primary key in a relational database is log(N).\n\n\n16.3.3 O(N) - Linear\nLinear time typically means looping through a linear data structure a constant number of times. Most commonly, this means:\n\nGoing through array/linked list\nTwo pointers\nSome types of greedy\nTree/graph traversal\nStack/Queue\n\nExample C++:\nfor (int i = 1; i &lt;= N; i++) {\n  // constant time code\n}\n\nfor (int i = 1; i &lt; 5 * N + 17; i++) {\n  // constant time code\n}\n\nfor (int i = 1; i &lt; N + 538238; i++) {\n  // constant time code\n}\n\n\n16.3.4 O(K log(N))\n\nHeap push/pop K times. When you encounter problems that seek the “top K elements”, you can often solve them by pushing and popping to a heap K times, resulting in an O(K log(N)) runtime. e.g., K closest points, merge K sorted lists.\nBinary search K times.\n\nSince K is constant this kind of isn’t its own time complexity and can be grouped with O(log(N))\n\n\n16.3.5 O(N log(N)) - Log-Linear\n\nSorting. The default sorting algorithm’s expected runtime in all mainstream languages is N log(N). For example, java uses a variant of merge sort for object sorting and a variant of Quick Sort for primitive type sorting.\nDivide and conquer with a linear time merge operation. Divide is normally log(N), and if merge is O(N) then the overall runtime is O(N log(N)). An example problem is smaller numbers to the right.\n\n\n\n16.3.6 O(N^2) - Quadratic\n\nNested loops, e.g., visiting each matrix entry\nMany brute force solutions\n\nfor (int i = 1; i &lt;= N; i++) {\n  for (int j = 1; j &lt;= N; j++) {\n    // constant time code\n  }\n}\n\n\n16.3.7 O(2^N) - Exponential\nGrows very rapidly. Often requires memoization to avoid repeated computations and reduce complexity.\n\nCombinatorial problems, backtracking, e.g. subsets\nOften involves recursion and is harder to analyze time complexity at first sight\n\nE.g.: A recursive Fibonacci algorithm is \\(O(2^N)\\)\nint Fib(int n) {\n  if (n == 0 || n == 1) {\n    return 1;\n  }\n  return Fib(n - 1) + Fib(n - 2);\n}\n\n\n16.3.8 O(N!) - Factorial\nGrows very very rapidly. Only solvable by computers for small N. Often requires memoization to avoid repeated computations and reduce complexity.\n\nCombinatorial problems, backtracking, e.g. permutations\nOften involves recursion and is harder to analyze time complexity at first sight",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Complexity Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "complexity.html#big-o-big-theta-and-big-omega",
+    "href": "complexity.html#big-o-big-theta-and-big-omega",
+    "title": "16  Complexity Analysis",
+    "section": "16.4 Big-O, Big-Theta, and Big-Omega",
+    "text": "16.4 Big-O, Big-Theta, and Big-Omega\n\n\n\n\n\n\n\n\n\n\nBig-O (O)\nBig-Theta (Θ)\nBig-Omega (Ω)\n\n\n\n\nDefines\nAsymptotic upper bound\nAsymptotic tight bound\nAsymptotic lower bound\n\n\nDefinition\n\\(f(n) = O(g(n))\\) if and only if there exists an integer \\(n_0\\) and a real number \\(c\\) such that for all \\(n \\geq n_0\\), \\(f(n) \\leq c \\cdot g(n)\\)\n\\(f(n) = \\Theta(g(n))\\) if and only if there exists an integer \\(n_0\\) and real constants \\(c_1\\) and \\(c_2\\) such that for all \\(n \\geq n_0\\) : \\(c_1 \\cdot g(n) \\leq f(n) \\leq c_2 \\cdot g(n)\\)\n\\(f(n) = \\Omega(g(n))\\) if and only if there exists an integer \\(n_0\\) and a real number \\(c\\) such that for all \\(n \\geq n_0\\), \\(f(n) \\geq c \\cdot g(n)\\)\n\n\nMathematical Definition\n\\(\\exists n_0 \\in \\mathbb{Z}, \\exists c \\in \\mathbb{R}\\):\\(\\forall n \\geq n_0, f(n) \\leq c \\cdot g(n)\\)\n\\(\\Theta(f(n)) = O(f(n)) \\cap \\Omega(f(n))\\)\n\\(\\exists n_0 \\in \\mathbb{Z}, \\exists c \\in \\mathbb{R}\\):\\(\\forall n \\geq n_0, f(n) \\geq c \\cdot g(n)\\)\n\n\n\\(f_1(n) = 2n + 1\\)\n\\(O(n)\\) or \\(O(n^2)\\) or \\(O(n^3)\\)…\n\\(\\Theta(n)\\)\n\\(\\Omega(n)\\) or \\(\\Omega(1)\\)\n\n\n\\(f_2(n) = n^2 + n + 5\\)\n\\(O(n^2)\\) or \\(O(n^3)\\)…\n\\(\\Theta(n^2)\\)\n\\(\\Omega(n^2)\\) or \\(\\Omega(n)\\) or \\(\\Omega(1)\\)",
     "crumbs": [
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Complexity Analysis</span>"
     ]
@@ -93,50 +243,60 @@
     "objectID": "complexity.html#amortized-time-complexity",
     "href": "complexity.html#amortized-time-complexity",
     "title": "16  Complexity Analysis",
-    "section": "16.4 Amortized Time Complexity",
-    "text": "16.4 Amortized Time Complexity",
+    "section": "16.5 Amortized Time Complexity",
+    "text": "16.5 Amortized Time Complexity",
     "crumbs": [
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Complexity Analysis</span>"
     ]
   },
   {
+    "objectID": "trees.html",
+    "href": "trees.html",
+    "title": "18  Trees",
+    "section": "",
+    "text": "A graph consists of nodes/vertices connected together by edges. Each node can contain some data.\nA tree is\n\nA connected graph (nodes + edges) without cycles\nA graph where any 2 nodes are connected by a unique shortest path\n\nThe two definitions above are equivalent.\nIn a directed tree, we can identify child and parent relationships between nodes.\nIn a binary tree, a node has at most two children.\nTerminology:\n\nRoot: the topmost node in the tree\nParent: Immediate predecessor of a node\nChild: Node where current node is parent\nAncestor: parent of a parent (closer to root)\nDescendent: child of a child (further from root)\nInternal node: a node with children\nLeaf node: a node without children\n\ntemplate &lt;class Item&gt;\nstruct Node {       // a binary tree node\n    Node *left;     // pointer to left child\n    Node *right;    // pointer to right child\n    Item item;      // data or KEY\n}\nTree Properties\nHeight:\nheight(empty) = 0\nheight(node) = max(heght(left_child), height(right_child)) + 1\nSize:\nsize(empty) = 0\nsize(node) = size(left_child) + size(right_child) + 1\nDepth:\ndepth(empty) = 0\ndepth(node) = depth(parent) + 1\n\n18.0.1 Complete (Binary) Trees\n\n\n\n\n\n\nNote 18.1: Definition - Complete Binary Tree\n\n\n\nComplete Binary Tree: every level, except possibly the last, is completely filled, and all nodes are as far left as possible\n\n\n\n\n\nSource: EECS 281.\n\n\nA complete binary tree can be stored efficiently in a growable array (vector) by indexing nodes according to level-ordering",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Trees</span>"
+    ]
+  },
+  {
     "objectID": "heaps.html",
     "href": "heaps.html",
-    "title": "18  Heaps",
+    "title": "19  Heaps",
     "section": "",
-    "text": "18.1 References",
+    "text": "19.1 References",
     "crumbs": [
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Heaps</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Heaps</span>"
     ]
   },
   {
     "objectID": "heaps.html#references",
     "href": "heaps.html#references",
-    "title": "18  Heaps",
+    "title": "19  Heaps",
     "section": "",
-    "text": "AlgoMonster - Heap Fundamentals",
+    "text": "AlgoMonster - Heap Fundamentals\nGeeks for Geeks - STL Heap",
     "crumbs": [
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Heaps</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Heaps</span>"
     ]
   },
   {
     "objectID": "heaps.html#heap-priority-queue",
     "href": "heaps.html#heap-priority-queue",
-    "title": "18  Heaps",
-    "section": "18.2 Heap? Priority Queue?",
-    "text": "18.2 Heap? Priority Queue?\nPriority Queue is an Abstract Data Type, and Heap is the concrete data structure we use to implement a priority queue. Source",
+    "title": "19  Heaps",
+    "section": "19.2 Heap? Priority Queue?",
+    "text": "19.2 Heap? Priority Queue?\nPriority Queue is an Abstract Data Type, and Heap is the concrete data structure we use to implement a priority queue. Source\nDefinition: A tree is (max) heap-ordered if each node’s priority is not greater than the priority of the node’s parent\nDefinition: A heap is a set of nodes with keys arranged in a complete heap-ordered tree, represented as an array\nProperty: No node in a heap has a key larger than the root’s key\nA heap has two crucial properties (representation invariants):\n\nCompleteness\nHeap-ordering\n\nThese two properties can be leveraged to create an efficient priority queue and an efficient sorting algorithm using a heap!\nLoose definition: data structure that gives easy access to the most extreme element, e.g., maximum or minimum\n“Max Heap”: heap with largest element being the “most extreme”\n“Min Heap”: heap with smallest element being the “most extreme”\nHeaps use complete (binary) trees* as the underlying structure, but are often implemented using arrays\nNote: Not to be confused with binary search trees.\n\n\n\nSource: EECS 281",
     "crumbs": [
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Heaps</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Heaps</span>"
     ]
   },
   {
     "objectID": "heaps.html#heap-in-c",
     "href": "heaps.html#heap-in-c",
-    "title": "18  Heaps",
-    "section": "18.3 Heap in C++",
-    "text": "18.3 Heap in C++",
+    "title": "19  Heaps",
+    "section": "19.3 Heap in C++",
+    "text": "19.3 Heap in C++\nstd::make_heap() is used to convert the given range in a container to a heap. Max heap by default. Use a custom comparator to change it to a min heap.\n// Initializing a vector\nstd::vector&lt;int&gt; v1 = { 20, 30, 40, 25, 15 };\n\n// Converting vector into a heap\nstd::make_heap(v1.begin(), v1.end());\n\nstd::cout &lt;&lt; v1.front() &lt;&lt; '\\n'; // Displays max element of heap\nstd::push_heap(begin_iterator, end_iterator) sorts the heap after insertion. Can you push_back() of vector class to insert.\nvector&lt;int&gt; vc{ 20, 30, 40, 10 };\nmake_heap(vc.begin(), vc.end());\n\nvc.push_back(50);\npush_heap(vc.begin(), vc.end()); // now the heap is sorted\nTime Complexity: \\(O(log N)\\)\nNote: The push_heap() function should only be used after the insertion of a single element at the back. Undefined for random insertion or for building a heap.\npop_heap() is used to move largest element of the heap to the end of the heap, so then a pop_back() can be used to remove the element\npop_heap(vc.begin(), vc.end()); // moves largest element to the end\nvc.pop_back(); // removes element at the end\nTime Complexity: \\(O(logN)\\)\nsort_heap() is used to sort the heap in ascending order using heapsort.\nsort_heap(v1.begin(), v1.end());\nTime Complexity: \\(O(NlogN)\\)\nis_heap() can be used to check whether a given range of the container is a heap. Default checks for max heap.\nis_heap_until()",
     "crumbs": [
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Heaps</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Heaps</span>"
     ]
   },
   {

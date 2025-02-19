@@ -24,8 +24,8 @@ book:
     - stacks-queues.qmd
     - complexity.qmd
     - stl.qmd
-    - heaps.qmd
     - trees.qmd
+    - heaps.qmd
     - searching.qmd
     - sorting.qmd
     - hash.qmd

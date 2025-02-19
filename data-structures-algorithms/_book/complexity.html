@@ -214,7 +214,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./abstract.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abstract</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abstract Data Type</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -262,7 +262,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stacks-queues.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks &amp; Queues</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks, Queues, Deque, Priority Queue</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -279,14 +279,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./heaps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Heaps</span></span></a>
+  <a href="./trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./trees.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
+  <a href="./heaps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Heaps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -372,7 +372,8 @@ window.Quarto = {
   <li><a href="#o2n---exponential" id="toc-o2n---exponential" class="nav-link" data-scroll-target="#o2n---exponential"><span class="header-section-number">16.3.7</span> O(2^N) - Exponential</a></li>
   <li><a href="#on---factorial" id="toc-on---factorial" class="nav-link" data-scroll-target="#on---factorial"><span class="header-section-number">16.3.8</span> O(N!) - Factorial</a></li>
   </ul></li>
-  <li><a href="#amortized-time-complexity" id="toc-amortized-time-complexity" class="nav-link" data-scroll-target="#amortized-time-complexity"><span class="header-section-number">16.4</span> Amortized Time Complexity</a></li>
+  <li><a href="#big-o-big-theta-and-big-omega" id="toc-big-o-big-theta-and-big-omega" class="nav-link" data-scroll-target="#big-o-big-theta-and-big-omega"><span class="header-section-number">16.4</span> Big-O, Big-Theta, and Big-Omega</a></li>
+  <li><a href="#amortized-time-complexity" id="toc-amortized-time-complexity" class="nav-link" data-scroll-target="#amortized-time-complexity"><span class="header-section-number">16.5</span> Amortized Time Complexity</a></li>
   </ul>
 </nav>
     </div>
@@ -409,6 +410,58 @@ window.Quarto = {
 </section>
 <section id="common-time-complexities" class="level2" data-number="16.3">
 <h2 data-number="16.3" class="anchored" data-anchor-id="common-time-complexities"><span class="header-section-number">16.3</span> Common Time Complexities</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Notation</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>O(1)</td>
+<td>Constant</td>
+</tr>
+<tr class="even">
+<td>O(log n)</td>
+<td>Logarithmic</td>
+</tr>
+<tr class="odd">
+<td>O(n)</td>
+<td>Linear</td>
+</tr>
+<tr class="even">
+<td>O(n log n)</td>
+<td>Loglinear, Linearithmic</td>
+</tr>
+<tr class="odd">
+<td>O(n²)</td>
+<td>Quadratic</td>
+</tr>
+<tr class="even">
+<td>O(n³), O(n⁴), …</td>
+<td>Polynomial</td>
+</tr>
+<tr class="odd">
+<td>O(cⁿ)</td>
+<td>Exponential</td>
+</tr>
+<tr class="even">
+<td>O(n!)</td>
+<td>Factorial</td>
+</tr>
+<tr class="odd">
+<td>O(2^(2ⁿ))</td>
+<td>Doubly Exponential</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/complexity/complexities-graph.png" class="img-fluid figure-img"></p>
+<figcaption>Graphing Complexities. Source: EECS 281.</figcaption>
+</figure>
+</div>
 <section id="o1---constant" class="level3" data-number="16.3.1">
 <h3 data-number="16.3.1" class="anchored" data-anchor-id="o1---constant"><span class="header-section-number">16.3.1</span> O(1) - Constant</h3>
 <p>Constant time complexity. Could be</p>
@@ -511,8 +564,60 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="amortized-time-complexity" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="amortized-time-complexity"><span class="header-section-number">16.4</span> Amortized Time Complexity</h2>
+<section id="big-o-big-theta-and-big-omega" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="big-o-big-theta-and-big-omega"><span class="header-section-number">16.4</span> Big-O, Big-Theta, and Big-Omega</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 28%">
+<col style="width: 28%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Big-O (O)</strong></th>
+<th><strong>Big-Theta (Θ)</strong></th>
+<th><strong>Big-Omega (Ω)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Defines</strong></td>
+<td>Asymptotic upper bound</td>
+<td>Asymptotic tight bound</td>
+<td>Asymptotic lower bound</td>
+</tr>
+<tr class="even">
+<td><strong>Definition</strong></td>
+<td><span class="math inline">\(f(n) = O(g(n))\)</span> if and only if there exists an integer <span class="math inline">\(n_0\)</span> and a real number <span class="math inline">\(c\)</span> such that for all <span class="math inline">\(n \geq n_0\)</span>, <span class="math inline">\(f(n) \leq c \cdot g(n)\)</span></td>
+<td><span class="math inline">\(f(n) = \Theta(g(n))\)</span> if and only if there exists an integer <span class="math inline">\(n_0\)</span> and real constants <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span> such that for all <span class="math inline">\(n \geq n_0\)</span> : <span class="math inline">\(c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n)\)</span></td>
+<td><span class="math inline">\(f(n) = \Omega(g(n))\)</span> if and only if there exists an integer <span class="math inline">\(n_0\)</span> and a real number <span class="math inline">\(c\)</span> such that for all <span class="math inline">\(n \geq n_0\)</span>, <span class="math inline">\(f(n) \geq c \cdot g(n)\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Mathematical Definition</strong></td>
+<td><span class="math inline">\(\exists n_0 \in \mathbb{Z}, \exists c \in \mathbb{R}\)</span>:<span class="math inline">\(\forall n \geq n_0, f(n) \leq c \cdot g(n)\)</span></td>
+<td><span class="math inline">\(\Theta(f(n)) = O(f(n)) \cap \Omega(f(n))\)</span></td>
+<td><span class="math inline">\(\exists n_0 \in \mathbb{Z}, \exists c \in \mathbb{R}\)</span>:<span class="math inline">\(\forall n \geq n_0, f(n) \geq c \cdot g(n)\)</span></td>
+</tr>
+<tr class="even">
+<td><strong><span class="math inline">\(f_1(n) = 2n + 1\)</span></strong></td>
+<td><span class="math inline">\(O(n)\)</span> or <span class="math inline">\(O(n^2)\)</span> or <span class="math inline">\(O(n^3)\)</span>…</td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+<td><span class="math inline">\(\Omega(n)\)</span> or <span class="math inline">\(\Omega(1)\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong><span class="math inline">\(f_2(n) = n^2 + n + 5\)</span></strong></td>
+<td><span class="math inline">\(O(n^2)\)</span> or <span class="math inline">\(O(n^3)\)</span>…</td>
+<td><span class="math inline">\(\Theta(n^2)\)</span></td>
+<td><span class="math inline">\(\Omega(n^2)\)</span> or <span class="math inline">\(\Omega(n)\)</span> or <span class="math inline">\(\Omega(1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<!-- TODO:  Fix table -->
+</section>
+<section id="amortized-time-complexity" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="amortized-time-complexity"><span class="header-section-number">16.5</span> Amortized Time Complexity</h2>
 
 
 </section>
@@ -937,8 +1042,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./stacks-queues.html" class="pagination-link" aria-label="Stacks &amp; Queues">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks &amp; Queues</span></span>
+      <a href="./stacks-queues.html" class="pagination-link" aria-label="Stacks, Queues, Deque, Priority Queue">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks, Queues, Deque, Priority Queue</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

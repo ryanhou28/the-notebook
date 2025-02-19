@@ -3,11 +3,11 @@
 
 ## Problem Solving Flowchart
 
-![Tips on problem approach.[Image Source](https://seanprashad.com/leetcode-patterns/)](leetcode-patterns-tips.png){#fig-label fig-align="center" width="70%"}
+![Tips on problem approach.[Image Source](https://seanprashad.com/leetcode-patterns/)](images/tips/leetcode-patterns-tips.png){#fig-label fig-align="center" width="70%"}
 
 ## DS&A Roadmap
 
-![A Roadmap for studying. [Source](https://neetcode.io/roadmap)](neetcode-roadmap.png)
+![A Roadmap for studying. [Source](https://neetcode.io/roadmap)](images/tips/neetcode-roadmap.png)
 
 ## Problem Flowchart
 

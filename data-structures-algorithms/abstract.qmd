@@ -1,1 +1,12 @@
-# Abstract
+# Abstract Data Type
+
+
+::: {#nte-adt-def .callout-note}
+## Definition - Abstract Data Type
+An **Abstract Data Type (ADT)** combines data with valid operations and their behaviors on stored data
+:::
+
+- e.g. insert, delete, access
+- ADTs define an **interface**
+
+Meanwhile, a **data structure** provides a concrete implementation of an ADT.

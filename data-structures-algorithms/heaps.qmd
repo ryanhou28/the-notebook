@@ -3,6 +3,7 @@
 ## References
 
 - [AlgoMonster - Heap Fundamentals](https://algo.monster/problems/heap_intro)
+- [Geeks for Geeks - STL Heap](https://www.geeksforgeeks.org/cpp-stl-heap/)
 
 ## Heap? Priority Queue?
 
@@ -10,7 +11,78 @@ Priority Queue is an **Abstract Data Type**, and Heap is the concrete data struc
 
 
 
+Definition: A tree is (max) heap-ordered if each node’s priority is not greater than the priority of the node’s parent
 
+Definition: A heap is a set of nodes with keys arranged in a complete heap-ordered tree, represented as an array
+
+Property: No node in a heap has a key larger than the root’s key
+
+A heap has two crucial properties (representation invariants):
+
+1. Completeness
+2. Heap-ordering
+
+These two properties can be leveraged to create an efficient priority queue and an efficient sorting algorithm using a heap!
+
+Loose definition: data structure that gives easy access to the most extreme element, e.g., maximum or minimum
+
+“Max Heap”: heap with largest element being the “most extreme”
+
+“Min Heap”: heap with smallest element being the “most extreme”
+
+Heaps use complete (binary) trees* as the underlying structure, but are often implemented using arrays
+
+Note: Not to be confused with binary *search* trees.
+
+![Source: EECS 281](images/heaps/heap-high-level.png)
 
 ## Heap in C++
 
+`std::make_heap()` is used to convert the given range in a container to a heap. Max heap by default. Use a custom comparator to change it to a min heap.
+
+```cpp
+// Initializing a vector
+std::vector<int> v1 = { 20, 30, 40, 25, 15 };
+
+// Converting vector into a heap
+std::make_heap(v1.begin(), v1.end());
+
+std::cout << v1.front() << '\n'; // Displays max element of heap
+```
+
+`std::push_heap(begin_iterator, end_iterator)` sorts the heap after insertion. Can you `push_back()` of vector class to insert.
+
+```cpp
+vector<int> vc{ 20, 30, 40, 10 };
+make_heap(vc.begin(), vc.end());
+
+vc.push_back(50);
+push_heap(vc.begin(), vc.end()); // now the heap is sorted
+```
+
+Time Complexity: $O(log N)$
+
+Note: The push_heap() function should only be used after the insertion of a single element at the back. Undefined for random insertion or for building a heap.
+
+`pop_heap()` is used to move largest element of the heap to the end of the heap, so then a `pop_back()` can be used to remove the element
+
+```cpp
+pop_heap(vc.begin(), vc.end()); // moves largest element to the end
+vc.pop_back(); // removes element at the end
+```
+
+Time Complexity: $O(logN)$
+
+`sort_heap()` is used to sort the heap in ascending order using heapsort.
+
+```cpp
+sort_heap(v1.begin(), v1.end());
+```
+
+Time Complexity: $O(NlogN)$
+
+
+`is_heap()` can be used to check whether a given range of the container is a heap. Default checks for max heap.
+
+
+is_heap_until()

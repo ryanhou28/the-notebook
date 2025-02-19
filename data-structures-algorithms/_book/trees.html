@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>19&nbsp; Trees – Data Structures &amp; Algorithms</title>
+<title>18&nbsp; Trees – Data Structures &amp; Algorithms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./searching.html" rel="next">
-<link href="./heaps.html" rel="prev">
+<link href="./heaps.html" rel="next">
+<link href="./stl.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./trees.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Trees</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./trees.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trees</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./abstract.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abstract</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abstract Data Type</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -199,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stacks-queues.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks &amp; Queues</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks, Queues, Deque, Priority Queue</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -216,14 +250,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./heaps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Heaps</span></span></a>
+  <a href="./trees.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./trees.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
+  <a href="./heaps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Heaps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -291,15 +325,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#complete-binary-trees" id="toc-complete-binary-trees" class="nav-link active" data-scroll-target="#complete-binary-trees"><span class="header-section-number">18.0.1</span> Complete (Binary) Trees</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Trees</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trees</span></h1>
 </div>
 
 
@@ -316,8 +356,67 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>A <strong>graph</strong> consists of <strong>nodes/vertices</strong> connected together by <strong>edges</strong>. Each node can contain some data.</p>
+<p>A <strong>tree</strong> is</p>
+<ol type="1">
+<li>A connected graph (nodes + edges) without cycles</li>
+<li>A graph where any 2 nodes are connected by a unique shortest path</li>
+</ol>
+<p>The two definitions above are equivalent.</p>
+<p>In a <strong>directed tree</strong>, we can identify <strong>child</strong> and <strong>parent</strong> relationships between nodes.</p>
+<p>In a <strong>binary tree</strong>, a node has at most two children.</p>
+<p><strong>Terminology:</strong></p>
+<ul>
+<li><strong>Root</strong>: the topmost node in the tree</li>
+<li><strong>Parent</strong>: Immediate predecessor of a node</li>
+<li><strong>Child</strong>: Node where current node is parent</li>
+<li><strong>Ancestor</strong>: parent of a parent (closer to root)</li>
+<li><strong>Descendent</strong>: child of a child (further from root)</li>
+<li><strong>Internal node</strong>: a node with children</li>
+<li><strong>Leaf node</strong>: a node without children</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> Item<span class="op">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Node <span class="op">{</span>       <span class="co">// a binary tree node</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    Node <span class="op">*</span>left<span class="op">;</span>     <span class="co">// pointer to left child</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Node <span class="op">*</span>right<span class="op">;</span>    <span class="co">// pointer to right child</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    Item item<span class="op">;</span>      <span class="co">// data or KEY</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Tree Properties</strong></p>
+<p>Height:</p>
+<p>height(empty) = 0</p>
+<p>height(node) = max(heght(left_child), height(right_child)) + 1</p>
+<p>Size:</p>
+<p>size(empty) = 0</p>
+<p>size(node) = size(left_child) + size(right_child) + 1</p>
+<p>Depth:</p>
+<p>depth(empty) = 0</p>
+<p>depth(node) = depth(parent) + 1</p>
+<section id="complete-binary-trees" class="level3" data-number="18.0.1">
+<h3 data-number="18.0.1" class="anchored" data-anchor-id="complete-binary-trees"><span class="header-section-number">18.0.1</span> Complete (Binary) Trees</h3>
+<div id="nte-complete-bt-def" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;18.1: Definition - Complete Binary Tree
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Complete Binary Tree:</strong> every level, except possibly the last, is completely filled, and all nodes are as far left as possible</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/trees/complete-bt.png" class="img-fluid figure-img"></p>
+<figcaption>Source: EECS 281.</figcaption>
+</figure>
+</div>
+<p>A complete binary tree can be stored efficiently in a growable array (vector) by indexing nodes according to level-ordering</p>
+<!-- TODO: Add a diagram -->
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -739,13 +838,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./heaps.html" class="pagination-link" aria-label="Heaps">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Heaps</span></span>
+      <a href="./stl.html" class="pagination-link" aria-label="STL">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">STL</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./searching.html" class="pagination-link" aria-label="Searching">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Searching</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./heaps.html" class="pagination-link" aria-label="Heaps">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Heaps</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

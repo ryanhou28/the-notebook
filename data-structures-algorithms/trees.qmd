@@ -1,1 +1,68 @@
 # Trees
+
+A **graph** consists of **nodes/vertices** connected together by **edges**. Each node can contain some data.
+
+A **tree** is 
+
+1. A connected graph (nodes + edges) without cycles
+2. A graph where any 2 nodes are connected by a unique shortest path
+
+The two definitions above are equivalent.
+
+In a **directed tree**, we can identify **child** and **parent** relationships between nodes.
+
+In a **binary tree**, a node has at most two children.
+
+**Terminology:**
+
+- **Root**: the topmost node in the tree
+- **Parent**: Immediate predecessor of a node
+- **Child**: Node where current node is parent
+- **Ancestor**: parent of a parent (closer to root)
+- **Descendent**: child of a child (further from root)
+- **Internal node**: a node with children
+- **Leaf node**: a node without children
+
+
+
+```cpp
+template <class Item>
+struct Node {       // a binary tree node
+    Node *left;     // pointer to left child
+    Node *right;    // pointer to right child
+    Item item;      // data or KEY
+}
+```
+
+**Tree Properties**
+
+Height:
+
+height(empty) = 0
+
+height(node) = max(heght(left_child), height(right_child)) + 1
+
+Size:
+
+size(empty) = 0
+
+size(node) = size(left_child) + size(right_child) + 1
+
+Depth:
+
+depth(empty) = 0
+
+depth(node) = depth(parent) + 1
+
+### Complete (Binary) Trees
+
+::: {#nte-complete-bt-def .callout-note}
+## Definition - Complete Binary Tree
+**Complete Binary Tree:** every level, except possibly the last, is completely filled, and all nodes are as far left as possible
+:::
+
+![Source: EECS 281.](images/trees/complete-bt.png)
+
+A complete binary tree can be stored efficiently in a growable array (vector) by indexing nodes according to level-ordering
+
+<!-- TODO: Add a diagram -->

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>18&nbsp; Heaps – Data Structures &amp; Algorithms</title>
+<title>19&nbsp; Heaps – Data Structures &amp; Algorithms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./trees.html" rel="next">
-<link href="./stl.html" rel="prev">
+<link href="./searching.html" rel="next">
+<link href="./trees.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,6 +103,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./heaps.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Heaps</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./heaps.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Heaps</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./abstract.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abstract</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abstract Data Type</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -199,7 +262,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stacks-queues.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks &amp; Queues</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks, Queues, Deque, Priority Queue</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -216,14 +279,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./heaps.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Heaps</span></span></a>
+  <a href="./trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./trees.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
+  <a href="./heaps.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Heaps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -296,9 +359,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references"><span class="header-section-number">18.1</span> References</a></li>
-  <li><a href="#heap-priority-queue" id="toc-heap-priority-queue" class="nav-link" data-scroll-target="#heap-priority-queue"><span class="header-section-number">18.2</span> Heap? Priority Queue?</a></li>
-  <li><a href="#heap-in-c" id="toc-heap-in-c" class="nav-link" data-scroll-target="#heap-in-c"><span class="header-section-number">18.3</span> Heap in C++</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references"><span class="header-section-number">19.1</span> References</a></li>
+  <li><a href="#heap-priority-queue" id="toc-heap-priority-queue" class="nav-link" data-scroll-target="#heap-priority-queue"><span class="header-section-number">19.2</span> Heap? Priority Queue?</a></li>
+  <li><a href="#heap-in-c" id="toc-heap-in-c" class="nav-link" data-scroll-target="#heap-in-c"><span class="header-section-number">19.3</span> Heap in C++</a></li>
   </ul>
 </nav>
     </div>
@@ -307,7 +370,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Heaps</span></h1>
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Heaps</span></h1>
 </div>
 
 
@@ -324,18 +387,64 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="references" class="level2" data-number="18.1">
-<h2 data-number="18.1" class="anchored" data-anchor-id="references"><span class="header-section-number">18.1</span> References</h2>
+<section id="references" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="references"><span class="header-section-number">19.1</span> References</h2>
 <ul>
 <li><a href="https://algo.monster/problems/heap_intro">AlgoMonster - Heap Fundamentals</a></li>
+<li><a href="https://www.geeksforgeeks.org/cpp-stl-heap/">Geeks for Geeks - STL Heap</a></li>
 </ul>
 </section>
-<section id="heap-priority-queue" class="level2" data-number="18.2">
-<h2 data-number="18.2" class="anchored" data-anchor-id="heap-priority-queue"><span class="header-section-number">18.2</span> Heap? Priority Queue?</h2>
+<section id="heap-priority-queue" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="heap-priority-queue"><span class="header-section-number">19.2</span> Heap? Priority Queue?</h2>
 <p>Priority Queue is an <strong>Abstract Data Type</strong>, and Heap is the concrete data structure we use to implement a priority queue. <a href="https://algo.monster/problems/heap_intro">Source</a></p>
+<p>Definition: A tree is (max) heap-ordered if each node’s priority is not greater than the priority of the node’s parent</p>
+<p>Definition: A heap is a set of nodes with keys arranged in a complete heap-ordered tree, represented as an array</p>
+<p>Property: No node in a heap has a key larger than the root’s key</p>
+<p>A heap has two crucial properties (representation invariants):</p>
+<ol type="1">
+<li>Completeness</li>
+<li>Heap-ordering</li>
+</ol>
+<p>These two properties can be leveraged to create an efficient priority queue and an efficient sorting algorithm using a heap!</p>
+<p>Loose definition: data structure that gives easy access to the most extreme element, e.g., maximum or minimum</p>
+<p>“Max Heap”: heap with largest element being the “most extreme”</p>
+<p>“Min Heap”: heap with smallest element being the “most extreme”</p>
+<p>Heaps use complete (binary) trees* as the underlying structure, but are often implemented using arrays</p>
+<p>Note: Not to be confused with binary <em>search</em> trees.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/heaps/heap-high-level.png" class="img-fluid figure-img"></p>
+<figcaption>Source: EECS 281</figcaption>
+</figure>
+</div>
 </section>
-<section id="heap-in-c" class="level2" data-number="18.3">
-<h2 data-number="18.3" class="anchored" data-anchor-id="heap-in-c"><span class="header-section-number">18.3</span> Heap in C++</h2>
+<section id="heap-in-c" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="heap-in-c"><span class="header-section-number">19.3</span> Heap in C++</h2>
+<p><code>std::make_heap()</code> is used to convert the given range in a container to a heap. Max heap by default. Use a custom comparator to change it to a min heap.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Initializing a vector</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> v1 <span class="op">=</span> <span class="op">{</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">40</span><span class="op">,</span> <span class="dv">25</span><span class="op">,</span> <span class="dv">15</span> <span class="op">};</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Converting vector into a heap</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>make_heap<span class="op">(</span>v1<span class="op">.</span>begin<span class="op">(),</span> v1<span class="op">.</span>end<span class="op">());</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> v1<span class="op">.</span>front<span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span> <span class="co">// Displays max element of heap</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>std::push_heap(begin_iterator, end_iterator)</code> sorts the heap after insertion. Can you <code>push_back()</code> of vector class to insert.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> vc<span class="op">{</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">40</span><span class="op">,</span> <span class="dv">10</span> <span class="op">};</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>make_heap<span class="op">(</span>vc<span class="op">.</span>begin<span class="op">(),</span> vc<span class="op">.</span>end<span class="op">());</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>vc<span class="op">.</span>push_back<span class="op">(</span><span class="dv">50</span><span class="op">);</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>push_heap<span class="op">(</span>vc<span class="op">.</span>begin<span class="op">(),</span> vc<span class="op">.</span>end<span class="op">());</span> <span class="co">// now the heap is sorted</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Time Complexity: <span class="math inline">\(O(log N)\)</span></p>
+<p>Note: The push_heap() function should only be used after the insertion of a single element at the back. Undefined for random insertion or for building a heap.</p>
+<p><code>pop_heap()</code> is used to move largest element of the heap to the end of the heap, so then a <code>pop_back()</code> can be used to remove the element</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pop_heap<span class="op">(</span>vc<span class="op">.</span>begin<span class="op">(),</span> vc<span class="op">.</span>end<span class="op">());</span> <span class="co">// moves largest element to the end</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>vc<span class="op">.</span>pop_back<span class="op">();</span> <span class="co">// removes element at the end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Time Complexity: <span class="math inline">\(O(logN)\)</span></p>
+<p><code>sort_heap()</code> is used to sort the heap in ascending order using heapsort.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sort_heap<span class="op">(</span>v1<span class="op">.</span>begin<span class="op">(),</span> v1<span class="op">.</span>end<span class="op">());</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Time Complexity: <span class="math inline">\(O(NlogN)\)</span></p>
+<p><code>is_heap()</code> can be used to check whether a given range of the container is a heap. Default checks for max heap.</p>
+<p>is_heap_until()</p>
 
 
 </section>
@@ -760,13 +869,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./stl.html" class="pagination-link" aria-label="STL">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">STL</span></span>
+      <a href="./trees.html" class="pagination-link" aria-label="Trees">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trees</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./trees.html" class="pagination-link" aria-label="Trees">
-        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Trees</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./searching.html" class="pagination-link" aria-label="Searching">
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Searching</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

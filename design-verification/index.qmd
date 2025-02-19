@@ -1,13 +1,38 @@
 # Preface {.unnumbered}
 
-This is my notes on ????.
+This is my notes on Design Verification. The notes will mainly cover verification concepts, Verilog and SystemVerilog, and UVM. Pre-req: digital logic design fundamentals (see my Digital Logic Design notebook).
 
 # Resources {.unnumbered}
 
 Some relevant resources:
 
-- [Resource Name](url)
+- [ChipVerify](https://www.chipverify.com/)
+- [Verification Guide](https://verificationguide.com/)
+- [Verification Academy](https://verificationacademy.com/)
+- [HDLBits](https://hdlbits.01xz.net/wiki/Main_Page)
+- [BSG SystemVerilog Coding Standards](https://docs.google.com/document/d/1xA5XUzBtz_D6aSyIBQUwFk_kSUdckrfxa2uzGjMgmCU/edit?tab=t.0#heading=h.mtsevafs4tag)
+
+
+UVM Specific Resources:
+- [ClueLogic](https://cluelogic.com/)
 
 Textbooks:
 
 - [Book 1](url)
+
+For playing around with simulations:
+
+- [EDA Playground]()
+
+List of interview questions:
+- [Verification Guide - ASIC Verification Interview Questions](https://verificationguide.com/asic-verification/asic-verification-interview-questions/)
+- [Verification Guide - SOC Verification Interview Questions](https://verificationguide.com/interview-questions/soc-verification-interview-questions/)
+- [Verification Guide - UVM Interview Questions](https://verificationguide.com/interview-questions/soc-verification-interview-questions/)
+- [Verification Guide - SystemVerilog Interview Questions](https://verificationguide.com/interview-questions/soc-verification-interview-questions/)
+- [ChipVerify - Verilog Interview Set 1](https://www.chipverify.com/verilog/verilog-interview-questions-set-1)
+  - More can be found on their website
+- [ChipVerify - SystemVerilog Interview Set 1](https://www.chipverify.com/systemverilog/systemverilog-interview-questions-set-1)
+  - More can be found on their website
+- [ChipVerify - UVM Interview Set 1](https://www.chipverify.com/uvm/uvm-interview-questions-set-1)
+  - More can be found on their website
+- [NAND LAND - FPGA Interview Questions](https://nandland.com/part-2-the-interview/)

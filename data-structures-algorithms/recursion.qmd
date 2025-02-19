@@ -1,1 +1,68 @@
 # Recursion
+
+
+## Recurrence Relations
+
+**Recurrence relation** describes the way a problem depends on a subproblem
+
+### Solving Recurrences: Linear
+
+$$
+T(n) =
+\begin{cases} 
+    c_0, & \text{if } n = 0 \\
+    T(n-1) + c_1, & \text{if } n > 0
+\end{cases}
+$$
+
+Recurrence: $T(n) = T(n - 1) + c$
+
+Complexity: $\Theta(n)$
+
+### Solving Recurrences: Logarithmic
+
+$$
+T(n) =
+\begin{cases} 
+    c_0, & \text{if } n = 0 \\
+    T(\frac{n}{2}) + c_1, & \text{if } n > 0
+\end{cases}
+$$
+
+Recurrence: $T(n) = T(n / 2) + c$
+
+Complexity: $\Theta(log n)$
+
+### Master Theorem
+
+A.k.a Master Method
+
+Let $T(n)$ be a monotonically increasing function that satisfies:
+
+$$T(n) = aT(\frac{n}{b}) + f(n)$$
+
+$T(1) = c_0$ or $T(0) = c_0$
+
+where $a \geq 1$, $b > 1$. If $f(n) \in \Theta(n^c)$, then:
+
+$$
+T(n) \in 
+\begin{cases} 
+    \Theta(n^{\log_b a}) & \text{if } a > b^c \\
+    \Theta(n^c \log n) & \text{if } a = b^c \\
+    \Theta(n^c) & \text{if } a < b^c
+\end{cases}
+$$
+
+
+**When NOT to use Master Theorem:**
+
+- $T(n)$ is not monotonic, such as $T(n) = sin(n)$
+- $f(n)$ is not a polynomial, e.g. $f(n) = 2^n$
+- $b$ cannot be expressed as a constant, e.g. $T(n) = T(\sqrt(sin(n)))$
+
+### Fourth Condition
+
+A fourth condition that allows polylogarithmic functions:
+
+<!-- TODO: Add the missing contents -->

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>15&nbsp; Stacks &amp; Queues – Data Structures &amp; Algorithms</title>
+<title>15&nbsp; Stacks, Queues, Deque, Priority Queue – Data Structures &amp; Algorithms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -69,6 +103,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stacks-queues.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks &amp; Queues</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stacks-queues.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks, Queues, Deque, Priority Queue</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./abstract.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abstract</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abstract Data Type</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -199,7 +262,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stacks-queues.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks &amp; Queues</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks, Queues, Deque, Priority Queue</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -216,14 +279,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./heaps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Heaps</span></span></a>
+  <a href="./trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./trees.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
+  <a href="./heaps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Heaps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -291,15 +354,47 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#stack" id="toc-stack" class="nav-link active" data-scroll-target="#stack"><span class="header-section-number">15.1</span> Stack</a>
+  <ul class="collapse">
+  <li><a href="#stack---interface" id="toc-stack---interface" class="nav-link" data-scroll-target="#stack---interface"><span class="header-section-number">15.1.1</span> Stack - Interface</a></li>
+  <li><a href="#stack-implementation" id="toc-stack-implementation" class="nav-link" data-scroll-target="#stack-implementation"><span class="header-section-number">15.1.2</span> Stack Implementation</a></li>
+  <li><a href="#stack-in-stl" id="toc-stack-in-stl" class="nav-link" data-scroll-target="#stack-in-stl"><span class="header-section-number">15.1.3</span> Stack in STL</a></li>
+  </ul></li>
+  <li><a href="#queue" id="toc-queue" class="nav-link" data-scroll-target="#queue"><span class="header-section-number">15.2</span> Queue</a>
+  <ul class="collapse">
+  <li><a href="#queue---interface" id="toc-queue---interface" class="nav-link" data-scroll-target="#queue---interface"><span class="header-section-number">15.2.1</span> Queue - Interface</a></li>
+  <li><a href="#queue-implementation" id="toc-queue-implementation" class="nav-link" data-scroll-target="#queue-implementation"><span class="header-section-number">15.2.2</span> Queue Implementation</a></li>
+  <li><a href="#queue-in-stl" id="toc-queue-in-stl" class="nav-link" data-scroll-target="#queue-in-stl"><span class="header-section-number">15.2.3</span> Queue in STL</a></li>
+  </ul></li>
+  <li><a href="#deque" id="toc-deque" class="nav-link" data-scroll-target="#deque"><span class="header-section-number">15.3</span> Deque</a>
+  <ul class="collapse">
+  <li><a href="#deque---interface" id="toc-deque---interface" class="nav-link" data-scroll-target="#deque---interface"><span class="header-section-number">15.3.1</span> Deque - Interface</a></li>
+  <li><a href="#deque---implementation" id="toc-deque---implementation" class="nav-link" data-scroll-target="#deque---implementation"><span class="header-section-number">15.3.2</span> Deque - Implementation</a></li>
+  </ul></li>
+  <li><a href="#priority-queue" id="toc-priority-queue" class="nav-link" data-scroll-target="#priority-queue"><span class="header-section-number">15.4</span> Priority Queue</a>
+  <ul class="collapse">
+  <li><a href="#adt---interface" id="toc-adt---interface" class="nav-link" data-scroll-target="#adt---interface"><span class="header-section-number">15.4.1</span> ADT - Interface</a></li>
+  <li><a href="#priority-queue-implementations" id="toc-priority-queue-implementations" class="nav-link" data-scroll-target="#priority-queue-implementations"><span class="header-section-number">15.4.2</span> Priority Queue Implementations</a></li>
+  <li><a href="#c-priority-queue" id="toc-c-priority-queue" class="nav-link" data-scroll-target="#c-priority-queue"><span class="header-section-number">15.4.3</span> C++ Priority Queue</a></li>
+  </ul></li>
+  <li><a href="#generating-permutations" id="toc-generating-permutations" class="nav-link" data-scroll-target="#generating-permutations"><span class="header-section-number">16</span> Generating Permutations</a>
+  <ul class="collapse">
+  <li><a href="#stl-next_permutation" id="toc-stl-next_permutation" class="nav-link" data-scroll-target="#stl-next_permutation"><span class="header-section-number">16.0.1</span> STL next_permutation()</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks &amp; Queues</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Stacks, Queues, Deque, Priority Queue</span></h1>
 </div>
 
 
@@ -316,8 +411,301 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="stack" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="stack"><span class="header-section-number">15.1</span> Stack</h2>
+<section id="stack---interface" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="stack---interface"><span class="header-section-number">15.1.1</span> Stack - Interface</h3>
+<p>Stack is a data structure that supports insertion/removal in Last In, First Out (LIFO) order</p>
+<p>Stack ADT Interface:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>push(object)</code></td>
+<td>Add object to top of the stack</td>
+</tr>
+<tr class="even">
+<td><code>pop()</code></td>
+<td>Remove top element</td>
+</tr>
+<tr class="odd">
+<td><code>object &amp;top()</code></td>
+<td>Return a reference to top element</td>
+</tr>
+<tr class="even">
+<td><code>size()</code></td>
+<td>Number of elements in stack</td>
+</tr>
+<tr class="odd">
+<td><code>empty()</code></td>
+<td>Checks if stack has no elements</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stack-implementation" class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="stack-implementation"><span class="header-section-number">15.1.2</span> Stack Implementation</h3>
+<p>A stack can be implemented with an array/vector or linked list</p>
+<!-- TODO: Add tables on implementation, interface, and complexity tradeoff -->
+</section>
+<section id="stack-in-stl" class="level3" data-number="15.1.3">
+<h3 data-number="15.1.3" class="anchored" data-anchor-id="stack-in-stl"><span class="header-section-number">15.1.3</span> Stack in STL</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stack&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>stack<span class="op">&lt;&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The underlying containers are <code>std::deque&lt;&gt;</code> (by default), and <code>std::list&lt;&gt;, std::vector&lt;&gt;</code> (optional).</p>
+</section>
+</section>
+<section id="queue" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="queue"><span class="header-section-number">15.2</span> Queue</h2>
+<section id="queue---interface" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="queue---interface"><span class="header-section-number">15.2.1</span> Queue - Interface</h3>
+<p>Queue is a data structure that supports insertion/removal in First In, First Out (FIFO) order</p>
+<!-- TODO: Add in tables -->
+</section>
+<section id="queue-implementation" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="queue-implementation"><span class="header-section-number">15.2.2</span> Queue Implementation</h3>
+<!-- TODO -->
+</section>
+<section id="queue-in-stl" class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="queue-in-stl"><span class="header-section-number">15.2.3</span> Queue in STL</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;queue&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>queue<span class="op">&lt;&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The underlying containers are <code>std::deque&lt;&gt;</code> (by default), and <code>std::list&lt;&gt;</code> (optional).</p>
+</section>
+</section>
+<section id="deque" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="deque"><span class="header-section-number">15.3</span> Deque</h2>
+<section id="deque---interface" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="deque---interface"><span class="header-section-number">15.3.1</span> Deque - Interface</h3>
+<p>Deque is an abbreviation of Double-Ended Queue</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;deque&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>deque<span class="op">&lt;&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Main methods:</p>
+<ul>
+<li><code>push_front()</code></li>
+<li><code>pop_front()</code></li>
+<li><code>front()</code></li>
+<li><code>push_back()</code></li>
+<li><code>pop_back()</code></li>
+<li><code>back()</code></li>
+<li><code>size()</code></li>
+<li><code>empty()</code></li>
+<li>Random Access: <code>[]</code> or <code>.at()</code></li>
+</ul>
+<p>STL incudes constant time <code>operator[]()</code></p>
+</section>
+<section id="deque---implementation" class="level3" data-number="15.3.2">
+<h3 data-number="15.3.2" class="anchored" data-anchor-id="deque---implementation"><span class="header-section-number">15.3.2</span> Deque - Implementation</h3>
+<!-- TODO -->
+<p>Circular Buffer</p>
+<p>Doubly-linked list</p>
+</section>
+</section>
+<section id="priority-queue" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="priority-queue"><span class="header-section-number">15.4</span> Priority Queue</h2>
+<p>Each datum in the priority queue is paired with a priority value (usually numbers, should be comparable). Supports <strong>insertion</strong>, <strong>inspection</strong> of data, and <strong>removal</strong> of datum with highest priority.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/stacks-queues/priority-queue.png" class="img-fluid figure-img"></p>
+<figcaption>Example Priority Queue. Source: EECS 281. Lower numbers here indicate higher priority. Top element would be red node.</figcaption>
+</figure>
+</div>
+<section id="adt---interface" class="level3" data-number="15.4.1">
+<h3 data-number="15.4.1" class="anchored" data-anchor-id="adt---interface"><span class="header-section-number">15.4.1</span> ADT - Interface</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>push(object)</code></td>
+<td>Add object to the priority queue</td>
+</tr>
+<tr class="even">
+<td><code>pop()</code></td>
+<td>Remove highest priority element</td>
+</tr>
+<tr class="odd">
+<td><code>const object &amp;top()</code></td>
+<td>Return a reference to highest priority element</td>
+</tr>
+<tr class="even">
+<td><code>size()</code></td>
+<td>Number of elements in priority queue</td>
+</tr>
+<tr class="odd">
+<td><code>empty()</code></td>
+<td>Checks if priority queue has no elements</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="priority-queue-implementations" class="level3" data-number="15.4.2">
+<h3 data-number="15.4.2" class="anchored" data-anchor-id="priority-queue-implementations"><span class="header-section-number">15.4.2</span> Priority Queue Implementations</h3>
+<p>Priority queues can be implemented with many data structures. Heap is a common implementation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Insert</strong></th>
+<th><strong>Remove</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unordered sequence container</td>
+<td>Constant</td>
+<td>Linear</td>
+</tr>
+<tr class="even">
+<td>Sorted sequence container</td>
+<td>Linear</td>
+<td>Constant</td>
+</tr>
+<tr class="odd">
+<td>Heap</td>
+<td>Logarithmic</td>
+<td>Logarithmic</td>
+</tr>
+<tr class="even">
+<td>Array of linked lists (for priorities of small integers)</td>
+<td>Constant</td>
+<td>Constant</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="c-priority-queue" class="level3" data-number="15.4.3">
+<h3 data-number="15.4.3" class="anchored" data-anchor-id="c-priority-queue"><span class="header-section-number">15.4.3</span> C++ Priority Queue</h3>
+<p><code>std::priority_queue&lt;&gt;</code></p>
+<p>By default, uses <code>std::less&lt;&gt;</code> to determine priority. A default priority queue is a “max-PQ”, where the largest element has highest priority. To implement a “min-PQ”, use <code>std::greater&lt;&gt;</code>. Custom comparator (function object) needed if the elements cannot be compared with std less/greater.</p>
+<p>Max PQ (<code>std::less&lt;&gt;</code>):</p>
+<p><code>std::priority_queue&lt;T&gt; myPQ;</code></p>
+<p>PQ with custom comparator type, <code>COMP</code>:</p>
+<p><code>std::priority_queue&lt;T, vector&lt;T&gt;, COMP&gt; myPQ;</code></p>
+<p>Manual priority queue implementation with standard library functions:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;algorithm&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>make_heap<span class="op">();</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>push_heap<span class="op">();</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>pop_heap<span class="op">();</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="generating-permutations" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Generating Permutations</h1>
+<p>We can generate permutations by “juggling with stacks and queues”</p>
+<p>Essentially, given <span class="math inline">\(N\)</span> elements, we want to generate all <span class="math inline">\(N\)</span> element permutations.</p>
+<p>Main ingredients:</p>
+<ul>
+<li>One recursive function</li>
+<li>One stack</li>
+<li>One queue</li>
+</ul>
+<p>Technique: move elements between the two containers</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Helper function for printing</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ostream <span class="op">&amp;</span><span class="kw">operator</span><span class="op">&lt;&lt;(</span>ostream <span class="op">&amp;</span>out<span class="op">,</span> <span class="at">const</span> vector<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">&amp;</span>v<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// display contents of a vector on a single line</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="op">&amp;</span>el <span class="op">:</span> v<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        out <span class="op">&lt;&lt;</span> el <span class="op">&lt;&lt;</span> <span class="ch">' '</span><span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Implementation</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> genPerms<span class="op">(</span>vector<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">&amp;</span>perm<span class="op">,</span> deque<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">&amp;</span>unused<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>unused<span class="op">.</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Base case: we have reached a permutation when unused is empty</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    i.e. a full permutation has been formed</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> perm <span class="op">&lt;&lt;</span> <span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">!=</span> unused<span class="op">.</span>size<span class="op">();</span> <span class="op">++</span>k<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        perm<span class="op">.</span>push_back<span class="op">(</span>unused<span class="op">.</span>front<span class="op">());</span>   <span class="co">// Pick the first element from unused</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        unused<span class="op">.</span>pop_front<span class="op">();</span>               <span class="co">// Remove this element from unused</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        genPerms<span class="op">(</span>perm<span class="op">,</span> unused<span class="op">);</span>           <span class="co">// Recursively generate permutation</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        unused<span class="op">.</span>push_back<span class="op">(</span>perm<span class="op">.</span>back<span class="op">());</span>    <span class="co">// Restore this element to unused</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        perm<span class="op">.</span>pop_back<span class="op">();</span>                  <span class="co">// Remove it from the permutation</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co">// Example Usage</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="dt">size_t</span> n <span class="op">=</span> <span class="dv">16</span><span class="op">;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    vector<span class="op">&lt;</span><span class="dt">size_t</span><span class="op">&gt;</span> perm<span class="op">;</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    deque<span class="op">&lt;</span><span class="dt">size_t</span><span class="op">&gt;</span> unused<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    iota<span class="op">(</span>unused<span class="op">.</span>begin<span class="op">(),</span> unused<span class="op">.</span>end<span class="op">(),</span> <span class="dv">1</span><span class="op">);</span> <span class="co">// Fills unused with consecutive numbers starting from 1</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    genPerms<span class="op">(</span>perm<span class="op">,</span> unused<span class="op">);</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Explanation of <code>genPerms()</code>:</p>
+<ul>
+<li>The function iterates over <code>unused</code> and chooses each element one by one as it fills up a permutation</li>
+<li>The chosen element is moved from <code>unused</code> to <code>perm</code> (backtracking)</li>
+<li>The function is recursively called to generate the remaining permutation (as each call picks another element from <code>unused</code>)</li>
+<li>After the recursion returns, the removed element is restored to <code>unused</code></li>
+<li>Time complexity: <span class="math inline">\(O(n!)\)</span> since it generates all permutations</li>
+</ul>
+<p><strong>Another Implementation of <code>genPerms</code></strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> genPerms<span class="op">(</span>vector<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">&amp;</span>path<span class="op">,</span> <span class="dt">size_t</span> permLength<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>permLength <span class="op">==</span> path<span class="op">.</span>size<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Do something with the path</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>promising<span class="op">(</span>path<span class="op">,</span> permLength<span class="op">))</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> i <span class="op">=</span> permLength<span class="op">;</span> i <span class="op">&lt;</span> path<span class="op">.</span>size<span class="op">();</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        swap<span class="op">(</span>path<span class="op">[</span>permLength<span class="op">],</span> path<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        genPerms<span class="op">(</span>path<span class="op">,</span> permLength <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        swap<span class="op">(</span>path<span class="op">[</span>permLength<span class="op">],</span> path<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- TODO: Add explanations for this implementation -->
+<section id="stl-next_permutation" class="level3" data-number="16.0.1">
+<h3 data-number="16.0.1" class="anchored" data-anchor-id="stl-next_permutation"><span class="header-section-number">16.0.1</span> STL next_permutation()</h3>
+<p>The STL has function <code>std::next_permutation()</code></p>
+<p><a href="https://en.cppreference.com/w/cpp/algorithm/next_permutation">Example Usage</a></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;algorithm&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>string s <span class="op">=</span> <span class="st">"aba"</span><span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">do</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> s <span class="op">&lt;&lt;</span> <span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="bu">std::</span>next_permutation<span class="op">(</span>s<span class="op">.</span>begin<span class="op">(),</span> s<span class="op">.</span>end<span class="op">()));</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> s <span class="op">&lt;&lt;</span> <span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

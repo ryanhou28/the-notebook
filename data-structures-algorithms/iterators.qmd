@@ -1,1 +1,84 @@
 # Iterators
+
+## References
+
+- [Geeks for Geeks Iterators in STL](https://www.geeksforgeeks.org/iterators-c-stl/)
+
+## Iterators in C++ STL
+
+**Iterator Declaration**
+
+```cpp
+<type>::iterator it;
+```
+
+Can then be initialize by assigning some valid iterator. If we already have an iterator to be assigned at the time of delcaration, then we can skip the type declaration using the auto keyword.
+
+`auto it = iter`
+
+
+Example:
+
+```cpp
+vector<int> arr = {1, 2, 3, 4, 5};
+
+vector<int>::iterator first = arr.begin();
+
+vector<int>::iterator last = arr.end();
+
+while(first != last) {
+    cout << *first << " ";
+    first++;
+}
+```
+
+Iterator Function
+
+Return Value
+
+begin()
+
+Returns an iterator to the beginning of container.
+
+end()
+
+Returns an iterator to the theoretical element just after the last element of the container.
+
+cbegin()
+
+Returns a constant iterator to the beginning of container. A constant iterator cannot modify the value of the element it is pointing to.
+
+cend()
+
+Returns a constant iterator to the theoretical element just after the last element of the container.
+
+rbegin()
+
+Returns a reverse iterator to the beginning of container.
+
+rend()
+
+Returns a reverse iterator to the theoretical element just after the last element of the container.
+
+crbegin()
+
+Returns a constant reverse iterator to the beginning of container.
+
+crend()
+
+Returns a constant reverse iterator to the theoretical element just after the last element of the container.
+
+<!-- TODO, put this into a table -->
+
+### Iterator Operations
+
+```cpp
+*it;            // Access
+*it = new_val;  // Update
+it++;           // post-increment
+++it;           // pre-increment
+it--;
+--it;
+it + int_val;   // can add or subtract by int val or another iterator
+// Comparing two iterators also works (e.g. !=, <=, etc)
+```

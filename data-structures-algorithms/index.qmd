@@ -17,7 +17,9 @@ Practice Resources:
 
 - [LeetCode](https://leetcode.com/problemset/)
 - [NeetCode](https://neetcode.io/)
-  - [Blind 75](https://neetcode.io/practice)
+- [Blind 75](https://neetcode.io/practice)
+- [Grind 75](https://www.techinterviewhandbook.org/grind75/)
+  - [About Grind 75](https://www.techinterviewhandbook.org/grind75/about)
 - [Codeforces](https://codeforces.com/problemset)
 
 Interview Resources:
@@ -26,6 +28,8 @@ Interview Resources:
 - [Learning Resources - Reddit-wiki-programming](https://github.com/avgspacelover/Reddit-wiki-programming)
 - [AlgoMonster](https://algo.monster/)
 - [Tech Interview Handbook](https://www.techinterviewhandbook.org/)
+  - [Study Cheatsheet](https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/)
+- [Zero To Mastery](https://zerotomastery.io/cheatsheets/data-structures-and-algorithms-cheat-sheet/)
 
 C++ Guides:
 

@@ -8,6 +8,20 @@
 
 ## Common Time Complexities
 
+| Notation         | Name                        |
+|-----------------|----------------------------|
+| O(1)           | Constant                    |
+| O(log n)       | Logarithmic                 |
+| O(n)           | Linear                      |
+| O(n log n)     | Loglinear, Linearithmic     |
+| O(n²)          | Quadratic                   |
+| O(n³), O(n⁴), … | Polynomial                  |
+| O(cⁿ)          | Exponential                 |
+| O(n!)         | Factorial                    |
+| O(2^(2ⁿ))      | Doubly Exponential          |
+
+![Graphing Complexities. Source: EECS 281.](images/complexity/complexities-graph.png)
+
 ### O(1) - Constant
 
 Constant time complexity. Could be
@@ -116,5 +130,18 @@ Grows very very rapidly. Only solvable by computers for small N. Often requires 
 - Combinatorial problems, backtracking, e.g. permutations
 - Often involves recursion and is harder to analyze time complexity at first sight
 
+## Big-O, Big-Theta, and Big-Omega
+
+|                   | **Big-O (O)**                      | **Big-Theta (Θ)**                 | **Big-Omega (Ω)**                |
+|-------------------|----------------------------------|----------------------------------|----------------------------------|
+| **Defines**       | Asymptotic upper bound          | Asymptotic tight bound          | Asymptotic lower bound          |
+| **Definition**    | $f(n) = O(g(n))$ if and only if there exists an integer $n_0$ and a real number $c$ such that for all $n \geq n_0$, $f(n) \leq c \cdot g(n)$ | $f(n) = \Theta(g(n))$ if and only if there exists an integer $n_0$ and real constants $c_1$ and $c_2$ such that for all $n \geq n_0$ : $c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n)$ | $f(n) = \Omega(g(n))$ if and only if there exists an integer $n_0$ and a real number $c$ such that for all $n \geq n_0$, $f(n) \geq c \cdot g(n)$ |
+| **Mathematical Definition** |$\exists n_0 \in \mathbb{Z}, \exists c \in \mathbb{R}$:$\forall n \geq n_0, f(n) \leq c \cdot g(n)$|$\Theta(f(n)) = O(f(n)) \cap \Omega(f(n))$|$\exists n_0 \in \mathbb{Z}, \exists c \in \mathbb{R}$:$\forall n \geq n_0, f(n) \geq c \cdot g(n)$ |
+| **$f_1(n) = 2n + 1$** | $O(n)$ or $O(n^2)$ or $O(n^3)$... | $\Theta(n)$ | $\Omega(n)$ or $\Omega(1)$ |
+| **$f_2(n) = n^2 + n + 5$** |$O(n^2)$ or $O(n^3)$... | $\Theta(n^2)$ | $\Omega(n^2)$ or $\Omega(n)$ or $\Omega(1)$ |
+
+<!-- TODO:  Fix table -->
 
 ## Amortized Time Complexity
+
+
