@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Empty Book Template",
+    "title": "CMOS VLSI Notebook",
     "section": "",
     "text": "Preface\nNotes on CMOS Integrated Circuits & VLSI.\n\n\nResources\nSome relevant resources:\n\nEECS 312 - University of Michigan\nEECS 427 - University of Michigan\nCMOS VLSI Design Web Supplements\n\nContains supplemental materials e.g. lecture slides, figures, solutions, code, etc\n\nDigital VLSI Chip Design with Cadence and Synopsys CAD Tools\n\nTextbooks:\n\nJ. Rabaey, A. Chandrakasan, and B. Nikolic. Digital Integrated Circuits A Design Perspective, Edition: 2. Alexandria, VA: Prentice Hall, 2003\nCMOS VLSI Design: A Circuits and Systems Perspective 4th Edition",
     "crumbs": [
@@ -240,11 +240,71 @@
     ]
   },
   {
+    "objectID": "cmosbasic.html",
+    "href": "cmosbasic.html",
+    "title": "4  CMOS Basics",
+    "section": "",
+    "text": "4.1 MOS Transistor Basics",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>CMOS Basics</span>"
+    ]
+  },
+  {
+    "objectID": "cmosbasic.html#mos-transistor-basics",
+    "href": "cmosbasic.html#mos-transistor-basics",
+    "title": "4  CMOS Basics",
+    "section": "",
+    "text": "4.1.1 Silicon Lattice\nSilicon (Si)\n\nsemiconductor, forms basic starting material\nA Group IV element -&gt; forms covalent bonds with 4 adjacent atoms\n\nwith pure silicon, all valence electrons are in chemical bonds, thus a poor conductor\n\nRaise conductivity adding dopants into the lattice (adding impurities)\nDopant from Group V (e.g. arsenic As) has 5 valence electrons\n\nReplacing one silicon atom leads to the lattice having 4 bonds but 1 valence electron loosely bound (b in fig. below)\nFree electron can carry current thus raising conductivity\nThis is an n-type semiconductor\n\nFree carriers are negatively charged electrons\n\n\nDopant from Group III (e.g. boron B) has 3 valence electrons\n\nSimilarly, boron atom can borrow electron from neighboring Si which is now short by one electron\n\nThis creates a hole (a missing electron)\nhole acts as positive carrier\n\nThis is a p-type semiconductor (c in fig. below)\n\n\n\n\n\nSilicon lattice shown as 2D plane for simplicity (but is actually 3D cubic crystal). Source: (Weste and Harris 2010)\n\n\n\n\n4.1.2 PN Junction\n\n\n\n\n\n\nFigure 4.1: PN Junction. Source: (Weste and Harris 2010)\n\n\n\nJunction between p-type (anode) and n-type (cathode) is a diode\n\nVoltage on p-type &gt; n-type: diode is forward biased and current flows\nOtherwise (p-type \\(\\leq\\) n-type): diode is reverse biased, very little current flows\n\n\n\n\nSource\n\n\n\ncharge transfer (of electrons and holes) across the junction is called diffusion\nfree electrons in the anode fills up some holes in the cathode\nthis forms a depletion layer\n\ndepletion layer is depleted of any free carriers (electrons or holes)\n\nin comparison on the n- and p-regions there are still free carriers\n\nacts as a barrier to further current flow\n\nWhen applying forward bias (anode has higher voltage)\n\nPositive voltage on p-type pushes holes towards junction\nNegative voltage on n-type pushes electrons towards junction\nShrinks depletion region\n\nOnce voltage is high enough, depletion region becomes so thin that electrons can freely pass (current flow)\n\n\nWhen applying reverse bias (anode has lower voltage)\n\nNegative voltage on p-type pulls holes away from junction\nPositive voltage on n-type pulls electrons away from junction\nMakes depletion region wider\n\nCreates stronger barrier to current flow\n\n\n\nAnalogy: A hill between two valleys. Forward bias reduces height of the hill, making it easy for charges to cross the hill. Reverse bias makes the hill taller, making it more difficult.\nWhy does the depletion region create a barrier? Why don’t more electrons cross into p-type to fill up holes?\n\nWhen an electron fills a hole in the p-type\n\nleaves behind positive ion on n-type (an atom lost its extra electron)\nleaves behind a negative ion on the p-type (an atom has an extra electron)\n\nThus depletion region becomes filled with positive ions on n-type side and negative ions on p-type side\n\nRecall that ions are charged particles - (i.e. has more electrons than protons, or more protons than electrons)\n\nIons create an electric field\n\n(+) ions in the n-side and (-) ions in the p-side create an electric field pointing from n to p\n\nelectric field opposes the further flow of electrons\nThink of like building static electricity: more charge separates, the stronger the opposing force becomes\n\n\n\n\n\n\n\n\n\nFigure 4.2: Source",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>CMOS Basics</span>"
+    ]
+  },
+  {
+    "objectID": "cmosbasic.html#long-channel-i-v-characteristics",
+    "href": "cmosbasic.html#long-channel-i-v-characteristics",
+    "title": "4  CMOS Basics",
+    "section": "4.2 Long-Channel I-V Characteristics",
+    "text": "4.2 Long-Channel I-V Characteristics",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>CMOS Basics</span>"
+    ]
+  },
+  {
+    "objectID": "cmosbasic.html#c-v-characteristics",
+    "href": "cmosbasic.html#c-v-characteristics",
+    "title": "4  CMOS Basics",
+    "section": "4.3 C-V Characteristics",
+    "text": "4.3 C-V Characteristics",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>CMOS Basics</span>"
+    ]
+  },
+  {
+    "objectID": "cmosbasic.html#nonideal-i-v-effects",
+    "href": "cmosbasic.html#nonideal-i-v-effects",
+    "title": "4  CMOS Basics",
+    "section": "4.4 Nonideal I-V Effects",
+    "text": "4.4 Nonideal I-V Effects",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>CMOS Basics</span>"
+    ]
+  },
+  {
+    "objectID": "cmosbasic.html#dc-transfer-characteristics",
+    "href": "cmosbasic.html#dc-transfer-characteristics",
+    "title": "4  CMOS Basics",
+    "section": "4.5 DC Transfer Characteristics",
+    "text": "4.5 DC Transfer Characteristics\n\n\n\n\nWeste, Neil, and David Harris. 2010. CMOS VLSI Design: A Circuits and Systems Perspective. 4th ed. USA: Addison-Wesley Publishing Company.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>CMOS Basics</span>"
+    ]
+  },
+  {
     "objectID": "combcircuit.html",
     "href": "combcircuit.html",
     "title": "13  Combinational Circuit Design",
     "section": "",
-    "text": "Ref (Weste and Harris 2015)\n\n\n\n\nWeste, Neil HE, and David Harris. 2015. CMOS VLSI Design: A Circuits and Systems Perspective. Pearson Education India.",
+    "text": "Ref (cmosvlsi-4th?)",
     "crumbs": [
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Combinational Circuit Design</span>"
     ]

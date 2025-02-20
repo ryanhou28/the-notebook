@@ -134,6 +134,33 @@ PQ with custom comparator type, `COMP`:
 
 `std::priority_queue<T, vector<T>, COMP> myPQ;`
 
+Key methods:
+
+- `push()`
+- `top()`
+- `empty()`
+- `pop()`
+
+Example Usage ([Source](https://www.geeksforgeeks.org/priority-queue-in-cpp-stl/)):
+
+```cpp
+priority_queue<int> pq;
+int arr[6] = { 10, 2, 4, 8, 6, 9 };
+for (int i = 0; i < 6; i++) {
+    pq.push(arr[i]);
+}
+
+while (!pq.empty()) {
+    cout << pq.top() << ' ';
+    pq.pop();
+}
+
+// Creating a min-heap (rather than a default max-heap)
+//      vector<int> is the internal container used
+priority_queue <int, vector<int>, greater<int>> gq;
+
+```
+
 Manual priority queue implementation with standard library functions:
 
 ```cpp

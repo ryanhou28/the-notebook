@@ -1,2 +1,85 @@
 # CMOS Basics
 
+## MOS Transistor Basics
+
+
+### Silicon Lattice
+
+**Silicon (Si)**
+
+- semiconductor, forms basic starting material
+- A Group IV element -> forms covalent bonds with 4 adjacent atoms
+  - with **pure silicon**, all valence electrons are in chemical bonds, thus a **poor conductor**
+- Raise conductivity adding **dopants** into the lattice (adding impurities)
+- Dopant from Group V (e.g. arsenic As) has 5 valence electrons
+  - Replacing one silicon atom leads to the lattice having 4 bonds but 1 valence electron loosely bound (b in fig. below)
+  - Free electron can carry current thus raising conductivity
+  - This is an **n-type** semiconductor
+    - Free **carriers** are **negatively charged electrons**
+- Dopant from Group III (e.g. boron B) has 3 valence electrons
+  - Similarly, boron atom can borrow electron from neighboring Si which is now short by one electron
+    - This creates a **hole** (a missing electron)
+    - hole acts as positive carrier
+  - This is a **p-type** semiconductor (c in fig. below)
+
+![Silicon lattice shown as 2D plane for simplicity (but is actually 3D cubic crystal). Source: [@cmosvlsi]](images/cmosbasic/si-lattice.png)
+
+### PN Junction
+
+![PN Junction. Source: [@cmosvlsi]](images/cmosbasic/pn.png){#fig-label fig-align="center" width="40%"}
+
+Junction between p-type (anode) and n-type (cathode) is a **diode**
+
+- Voltage on p-type > n-type: diode is **forward biased** and current flows
+- Otherwise (p-type $\leq$ n-type): diode is **reverse biased**, very little current flows
+
+![[Source](https://toshiba.semicon-storage.com/us/semiconductor/knowledge/e-learning/discrete/chap1/chap1-6.html)](images/cmosbasic/pn-dep.png)
+
+- charge transfer (of electrons and holes) across the junction is called **diffusion**
+- free electrons in the anode fills up some holes in the cathode
+- this forms a **depletion layer**
+  - depletion layer is depleted of any free carriers (electrons or holes)
+    - in comparison on the n- and p-regions there are still free carriers
+  - acts as a barrier to further current flow
+- When applying **forward bias** (anode has higher voltage)
+  - Positive voltage on p-type pushes holes towards junction
+  - Negative voltage on n-type pushes electrons towards junction
+  - Shrinks depletion region
+    - Once voltage is high enough, depletion region becomes so thin that electrons can freely pass (current flow)
+- When applying **reverse bias** (anode has lower voltage)
+  - Negative voltage on p-type pulls holes away from junction
+  - Positive voltage on n-type pulls electrons away from junction
+  - Makes depletion region wider
+    - Creates stronger barrier to current flow
+
+Analogy: A hill between two valleys. Forward bias reduces height of the hill, making it easy for charges to cross the hill. Reverse bias makes the hill taller, making it more difficult.
+
+**Why does the depletion region create a barrier? Why don't more electrons cross into p-type to fill up holes?**
+
+- When an electron fills a hole in the p-type
+  - leaves behind positive ion on n-type (an atom lost its extra electron)
+  - leaves behind a negative ion on the p-type (an atom has an extra electron)
+- Thus depletion region becomes filled with positive ions on n-type side and negative ions on p-type side
+  - Recall that ions are charged particles - (i.e. has more electrons than protons, or more protons than electrons)
+- **Ions create an electric field**
+  - (+) ions in the n-side and (-) ions in the p-side create an electric field pointing from n to p
+    - electric field opposes the further flow of electrons
+    - Think of like building static electricity: more charge separates, the stronger the opposing force becomes
+
+
+![[Source](https://www.electronics-tutorials.ws/diode/diode_2.html)](images/cmosbasic/pn-dep2.png){#fig-label fig-align="center" width="50%"}
+
+## Long-Channel I-V Characteristics
+
+
+
+
+## C-V Characteristics
+
+
+## Nonideal I-V Effects
+
+
+## DC Transfer Characteristics
+
+

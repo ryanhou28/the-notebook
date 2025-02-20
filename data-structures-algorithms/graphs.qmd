@@ -8,6 +8,10 @@
 
 Adjacency Matrix, Distance Matrix, Adjacency List
 
+### Adjacency List
+
+Can be represented by a 2D vector. The first dimension indexes the vertex index, then the inner vector contains all the adjacent vertices.
+
 
 ## Shortest Path
 
@@ -51,4 +55,106 @@ Two algorithms to find MST:
 ### Prim's Algorithm
 
 ### Kruskal's Algorithm
+
+
+## Topological Sort
+
+Topological sorting (of a DAG) is a linear ordering of vertices such that for every directed edge u-v, u comes before v
+
+There can be more than one topological sorting for a graph.
+
+Topological sort can be done using DFS or BFS
+
+Commonly used for:
+
+- scheduling tasks or events based on dependencies
+- detect cycles in a directed graph
+- solve problems with precedence constraints
+
+### Topological Sort with DFS
+
+Essentially uses post-order DFS: In DFS we print a vertex then recursively call DFS for adjacent vertices, whereas to perform topological sort, we need to print a vertex before its adjacent vertices (since we need to maintain topological ordering)
+
+Approach:
+
+- Initialize stack and a `visited` array of size `n`
+- For each unvisited vertex in the graph:
+  - Call DFS on the vertex
+    - Inside DFS function
+      - Mark vertex as visited
+      - Recursively call DFS for all unvisited neighbors of this vertex
+      - Push vertex onto stack
+- Once all vertices have been visited, pop all elements from the stack to the output vector
+- Output vector is a topological sorting of the graph
+
+
+#### C++ Implementation
+
+[Geeks for Geeks Reference](https://www.geeksforgeeks.org/topological-sorting/)
+
+```cpp
+
+// Function to perform DFS and topological sorting
+void topologicalSortUtil(int v, vector<vector<int> >& adj,
+    vector<bool>& visited, stack<int>& st) {
+        
+    // Mark the current node as visited
+    visited[v] = true;
+
+    // Recur for all adjacent vertices
+    for (int i : adj[v]) {
+        if (!visited[i])
+            topologicalSortUtil(i, adj, visited, st);
+    }
+
+    // Push current vertex to stack which stores the result
+    st.push(v);
+}
+
+// Function to perform Topological Sort
+vector<int> topologicalSort(vector<vector<int>>& adj) {
+    int V = adj.size();
+    
+    // Stack to store the result
+    stack<int> st; 
+    vector<bool> visited(V, false);
+
+    // Call the recursive helper function to store
+    // Topological Sort starting from all vertices one by
+    // one
+    for (int i = 0; i < V; i++) {
+        if (!visited[i])
+            topologicalSortUtil(i, adj, visited, st);
+    }
+    
+    vector<int> ans;
+
+    // append contents of stack
+    while (!st.empty()) {
+        ans.push_back(st.top());
+        st.pop();
+    }
+    
+    return ans;
+}
+
+int main() {
+
+    // Graph represented as an adjacency list
+    vector<vector<int>> adj = {{1}, {2}, {}, {1, 2}};
+
+    vector<int> ans = topologicalSort(adj);
+    
+    for (auto node: ans) {
+        cout << node << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+```
+
+### Topological Sort with BFS
+
+Aka Kahn's Algorithm
 

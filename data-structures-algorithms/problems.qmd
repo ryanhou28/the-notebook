@@ -251,14 +251,83 @@ public:
 };
 ```
 
+### Combination Sum
+
+Difficulty: Leetcode Medium
+
+Concepts: Array, Dynamic Programming
+
+Note:
+
+- Ordering of the combination matters!
+
+
 
 ## Graph
 
 ### Course Schedule
 
-
+Difficulty: Leetcode Medium
 
 Concepts: DFS, BFS, Graph, Topological Sort
+
+Problem: There are `numCourses` courses that must be taken, labeled from 0 to `numCourses - 1`. Given an array `prerequisites` where `prerequisites[i] = [ai, bi]`, where bi must be taken before taking ai. Return true if you can finish all courses. Otherwise, return false. Pair [0, 1], indicates that to take course 0, you have to first take course 1.
+
+At a glance:
+
+- Notice that this is essentially a directed graph
+- Equivalent to finding whether a cycle exists, since if a cycle exists it is impossible to take all classes
+
+Approach:
+
+- Topological sort via DFS (or BFS)
+- `pair<int, int>` is not convenient, can transform to adjacency list
+
+**Example C++ Implementation with DFS** ([Source](https://leetcode.com/problems/course-schedule/solutions/58509/c-bfs-dfs/)):
+
+
+```cpp
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+        graph g = buildGraph(numCourses, prerequisites);
+        vector<bool> todo(numCourses, false), done(numCourses, false);
+        for (int i = 0; i < numCourses; i++) {
+            if (!done[i] && !acyclic(g, todo, done, i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+private:
+    typedef vector<vector<int>> graph;
+    
+    graph buildGraph(int numCourses, vector<pair<int, int>>& prerequisites) {
+        graph g(numCourses);
+        for (auto p : prerequisites) {
+            g[p.second].push_back(p.first);
+        }
+        return g;
+    }
+    
+    bool acyclic(graph& g, vector<bool>& todo, vector<bool>& done, int node) {
+        if (todo[node]) {
+            return false;
+        }
+        if (done[node]) {
+            return true;
+        }
+        todo[node] = done[node] = true;
+        for (int v : g[node]) {
+            if (!acyclic(g, todo, done, v)) {
+                return false;
+            }
+        }
+        todo[node] = false;
+        return true;
+    }
+};
+```
 
 ### Number of Islands
 
@@ -267,6 +336,42 @@ Approach:
 - Starting from land, all cells of the island can be found by doing DFS / BFS
 
 ### Longest Consecutive Sequence
+
+Difficulty: Leetcode Medium
+
+Concepts: Array, Hash Table, Union Find
+
+Problem: Given an unsorted array of integers `nums`, return the length of the longest consecutive elements sequence. You must write an algorithm that runs in O(n) time.
+
+
+
+At a glance:
+
+
+Approaches:
+
+- Brute Force: array + triple nested loops
+- Brute Force Optimized: array + sorting
+- hash table: use array + hash table (unordered map)
+- hash optimized: use array + hash table (unordered set)
+
+**Brute Force Approach**
+
+
+**Brute Force Optimized**
+
+**Hash Table (Unordered Map)**
+
+- First pass builds a hash table of the given array (int key to bool value)
+- Second pass tries to mark the start of potential sequences
+  - goes through each number and checks if the predecessor (number-1) exists
+  - If predecessor exists, mark the current number as false in the array
+- Third pass tries to find the longest sequence
+  - Go through the hash table and on a true (start of a sequence)
+    - Keep checking consecutive numbers and whether they exist in the hash table
+  - Count how long each sequence extends and update curr_max if logner than what it has seen
+
+
 
 ## Interval
 
@@ -297,7 +402,6 @@ Classic
 
 Classic
 
-
 ## Tree
 
 
@@ -306,7 +410,55 @@ Classic
 
 ### Merge K Sorted Lists
 
+Difficulty: Leetcode Hard
+
 ### Top K Frequent Elements
+
+Difficulty: Leetcode Medium
+
+Concepts: Array, Hash Table, Divide and Conquer, Sorting, Heap (Priority Queue), Bucket Sort, Counting, Quickselect
+
+Approach
+
+- First use hash table to find the frequency of each element
+- Then use a priority queue to essentially build a sorted list of the element's frequency
+
+Example C++ Solution ([Source](https://leetcode.com/problems/top-k-frequent-elements/solutions/81624/c-o-n-log-n-k-unordered-map-and-priority-queue-maxheap-solution/)):
+
+```cpp
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        // Build hash table that stores the frequency of each number
+        unordered_map<int,int> map;
+        for(int num : nums){
+            map[num]++;
+        }
+        
+        vector<int> res;
+        // pair<first, second>: first is frequency,  second is number
+        //    Recall that C++ pair compares the first element first, then compares the second if tied
+        priority_queue<pair<int,int>> pq; 
+
+        // Go over every number that occurred in the given vector
+        for(auto it = map.begin(); it != map.end(); it++){
+
+          // Insert a pair into the 
+            pq.push(make_pair(it->second, it->first));
+            if(pq.size() > (int)map.size() - k){
+              //  If the priority queue size is larger than the target top K
+                res.push_back(pq.top().second);   // insert the highest freq number from the PQ
+                pq.pop();                         // pop from the top of the PQ
+            }
+        }
+
+        return res;
+    }
+};
+```
 
 ### Find Median from Data Stream
 
+Difficulty: Leetcode Hard
+
+Concepts: Two Pointers, Sorting, Heap (Priority Queue), Data Stream

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; CMOS Basics – Empty Book Template</title>
+<title>4&nbsp; CMOS Basics – CMOS VLSI Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,10 +57,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b6b4e5ca75ba39a1f986e6d06a1c53b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -69,6 +89,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -96,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Empty Book Template</a> 
+      <a href="./">CMOS VLSI Notebook</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -249,8 +298,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#mos-transistor-basics" id="toc-mos-transistor-basics" class="nav-link active" data-scroll-target="#mos-transistor-basics"><span class="header-section-number">4.1</span> MOS Transistor Basics</a>
+  <ul class="collapse">
+  <li><a href="#silicon-lattice" id="toc-silicon-lattice" class="nav-link" data-scroll-target="#silicon-lattice"><span class="header-section-number">4.1.1</span> Silicon Lattice</a></li>
+  <li><a href="#pn-junction" id="toc-pn-junction" class="nav-link" data-scroll-target="#pn-junction"><span class="header-section-number">4.1.2</span> PN Junction</a></li>
+  </ul></li>
+  <li><a href="#long-channel-i-v-characteristics" id="toc-long-channel-i-v-characteristics" class="nav-link" data-scroll-target="#long-channel-i-v-characteristics"><span class="header-section-number">4.2</span> Long-Channel I-V Characteristics</a></li>
+  <li><a href="#c-v-characteristics" id="toc-c-v-characteristics" class="nav-link" data-scroll-target="#c-v-characteristics"><span class="header-section-number">4.3</span> C-V Characteristics</a></li>
+  <li><a href="#nonideal-i-v-effects" id="toc-nonideal-i-v-effects" class="nav-link" data-scroll-target="#nonideal-i-v-effects"><span class="header-section-number">4.4</span> Nonideal I-V Effects</a></li>
+  <li><a href="#dc-transfer-characteristics" id="toc-dc-transfer-characteristics" class="nav-link" data-scroll-target="#dc-transfer-characteristics"><span class="header-section-number">4.5</span> DC Transfer Characteristics</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -274,8 +337,149 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="mos-transistor-basics" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="mos-transistor-basics"><span class="header-section-number">4.1</span> MOS Transistor Basics</h2>
+<section id="silicon-lattice" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="silicon-lattice"><span class="header-section-number">4.1.1</span> Silicon Lattice</h3>
+<p><strong>Silicon (Si)</strong></p>
+<ul>
+<li>semiconductor, forms basic starting material</li>
+<li>A Group IV element -&gt; forms covalent bonds with 4 adjacent atoms
+<ul>
+<li>with <strong>pure silicon</strong>, all valence electrons are in chemical bonds, thus a <strong>poor conductor</strong></li>
+</ul></li>
+<li>Raise conductivity adding <strong>dopants</strong> into the lattice (adding impurities)</li>
+<li>Dopant from Group V (e.g.&nbsp;arsenic As) has 5 valence electrons
+<ul>
+<li>Replacing one silicon atom leads to the lattice having 4 bonds but 1 valence electron loosely bound (b in fig.&nbsp;below)</li>
+<li>Free electron can carry current thus raising conductivity</li>
+<li>This is an <strong>n-type</strong> semiconductor
+<ul>
+<li>Free <strong>carriers</strong> are <strong>negatively charged electrons</strong></li>
+</ul></li>
+</ul></li>
+<li>Dopant from Group III (e.g.&nbsp;boron B) has 3 valence electrons
+<ul>
+<li>Similarly, boron atom can borrow electron from neighboring Si which is now short by one electron
+<ul>
+<li>This creates a <strong>hole</strong> (a missing electron)</li>
+<li>hole acts as positive carrier</li>
+</ul></li>
+<li>This is a <strong>p-type</strong> semiconductor (c in fig.&nbsp;below)</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cmosbasic/si-lattice.png" class="img-fluid figure-img"></p>
+<figcaption>Silicon lattice shown as 2D plane for simplicity (but is actually 3D cubic crystal). Source: <span class="citation" data-cites="cmosvlsi">(<a href="#ref-cmosvlsi" role="doc-biblioref">Weste and Harris 2010</a>)</span></figcaption>
+</figure>
+</div>
+</section>
+<section id="pn-junction" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="pn-junction"><span class="header-section-number">4.1.2</span> PN Junction</h3>
+<div id="fig-label" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/cmosbasic/pn.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: PN Junction. Source: <span class="citation" data-cites="cmosvlsi">(<a href="#ref-cmosvlsi" role="doc-biblioref">Weste and Harris 2010</a>)</span>
+</figcaption>
+</figure>
+</div>
+<p>Junction between p-type (anode) and n-type (cathode) is a <strong>diode</strong></p>
+<ul>
+<li>Voltage on p-type &gt; n-type: diode is <strong>forward biased</strong> and current flows</li>
+<li>Otherwise (p-type <span class="math inline">\(\leq\)</span> n-type): diode is <strong>reverse biased</strong>, very little current flows</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cmosbasic/pn-dep.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://toshiba.semicon-storage.com/us/semiconductor/knowledge/e-learning/discrete/chap1/chap1-6.html">Source</a></figcaption>
+</figure>
+</div>
+<ul>
+<li>charge transfer (of electrons and holes) across the junction is called <strong>diffusion</strong></li>
+<li>free electrons in the anode fills up some holes in the cathode</li>
+<li>this forms a <strong>depletion layer</strong>
+<ul>
+<li>depletion layer is depleted of any free carriers (electrons or holes)
+<ul>
+<li>in comparison on the n- and p-regions there are still free carriers</li>
+</ul></li>
+<li>acts as a barrier to further current flow</li>
+</ul></li>
+<li>When applying <strong>forward bias</strong> (anode has higher voltage)
+<ul>
+<li>Positive voltage on p-type pushes holes towards junction</li>
+<li>Negative voltage on n-type pushes electrons towards junction</li>
+<li>Shrinks depletion region
+<ul>
+<li>Once voltage is high enough, depletion region becomes so thin that electrons can freely pass (current flow)</li>
+</ul></li>
+</ul></li>
+<li>When applying <strong>reverse bias</strong> (anode has lower voltage)
+<ul>
+<li>Negative voltage on p-type pulls holes away from junction</li>
+<li>Positive voltage on n-type pulls electrons away from junction</li>
+<li>Makes depletion region wider
+<ul>
+<li>Creates stronger barrier to current flow</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Analogy: A hill between two valleys. Forward bias reduces height of the hill, making it easy for charges to cross the hill. Reverse bias makes the hill taller, making it more difficult.</p>
+<p><strong>Why does the depletion region create a barrier? Why don’t more electrons cross into p-type to fill up holes?</strong></p>
+<ul>
+<li>When an electron fills a hole in the p-type
+<ul>
+<li>leaves behind positive ion on n-type (an atom lost its extra electron)</li>
+<li>leaves behind a negative ion on the p-type (an atom has an extra electron)</li>
+</ul></li>
+<li>Thus depletion region becomes filled with positive ions on n-type side and negative ions on p-type side
+<ul>
+<li>Recall that ions are charged particles - (i.e.&nbsp;has more electrons than protons, or more protons than electrons)</li>
+</ul></li>
+<li><strong>Ions create an electric field</strong>
+<ul>
+<li>(+) ions in the n-side and (-) ions in the p-side create an electric field pointing from n to p
+<ul>
+<li>electric field opposes the further flow of electrons</li>
+<li>Think of like building static electricity: more charge separates, the stronger the opposing force becomes</li>
+</ul></li>
+</ul></li>
+</ul>
+<div id="fig-label" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/cmosbasic/pn-dep2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: <a href="https://www.electronics-tutorials.ws/diode/diode_2.html">Source</a>
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="long-channel-i-v-characteristics" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="long-channel-i-v-characteristics"><span class="header-section-number">4.2</span> Long-Channel I-V Characteristics</h2>
+</section>
+<section id="c-v-characteristics" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="c-v-characteristics"><span class="header-section-number">4.3</span> C-V Characteristics</h2>
+</section>
+<section id="nonideal-i-v-effects" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="nonideal-i-v-effects"><span class="header-section-number">4.4</span> Nonideal I-V Effects</h2>
+</section>
+<section id="dc-transfer-characteristics" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="dc-transfer-characteristics"><span class="header-section-number">4.5</span> DC Transfer Characteristics</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-cmosvlsi" class="csl-entry" role="listitem">
+Weste, Neil, and David Harris. 2010. <em>CMOS VLSI Design: A Circuits and Systems Perspective</em>. 4th ed. USA: Addison-Wesley Publishing Company.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

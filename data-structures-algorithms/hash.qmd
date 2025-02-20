@@ -51,6 +51,9 @@ if (it == months.end()) {
     cout << it->first << " has " << it->second << " days\n";
 }
 
+// .count() counts how many elements with KEY there are, and since unordered_map has no duplicate keys
+//      it essentially is the same as .find() but it returns a size_type
+months.count("February");
 ```
 
 **When NOT to use hash tables:**

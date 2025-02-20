@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,10 +70,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b6b4e5ca75ba39a1f986e6d06a1c53b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -389,6 +389,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#coin-change" id="toc-coin-change" class="nav-link" data-scroll-target="#coin-change"><span class="header-section-number">31.3.1</span> Coin Change</a></li>
   <li><a href="#longest-common-subsequence" id="toc-longest-common-subsequence" class="nav-link" data-scroll-target="#longest-common-subsequence"><span class="header-section-number">31.3.2</span> Longest Common Subsequence</a></li>
+  <li><a href="#combination-sum" id="toc-combination-sum" class="nav-link" data-scroll-target="#combination-sum"><span class="header-section-number">31.3.3</span> Combination Sum</a></li>
   </ul></li>
   <li><a href="#graph" id="toc-graph" class="nav-link" data-scroll-target="#graph"><span class="header-section-number">31.4</span> Graph</a>
   <ul class="collapse">
@@ -701,12 +702,74 @@ window.Quarto = {
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="combination-sum" class="level3" data-number="31.3.3">
+<h3 data-number="31.3.3" class="anchored" data-anchor-id="combination-sum"><span class="header-section-number">31.3.3</span> Combination Sum</h3>
+<p>Difficulty: Leetcode Medium</p>
+<p>Concepts: Array, Dynamic Programming</p>
+<p>Note:</p>
+<ul>
+<li>Ordering of the combination matters!</li>
+</ul>
+</section>
 </section>
 <section id="graph" class="level2" data-number="31.4">
 <h2 data-number="31.4" class="anchored" data-anchor-id="graph"><span class="header-section-number">31.4</span> Graph</h2>
 <section id="course-schedule" class="level3" data-number="31.4.1">
 <h3 data-number="31.4.1" class="anchored" data-anchor-id="course-schedule"><span class="header-section-number">31.4.1</span> Course Schedule</h3>
+<p>Difficulty: Leetcode Medium</p>
 <p>Concepts: DFS, BFS, Graph, Topological Sort</p>
+<p>Problem: There are <code>numCourses</code> courses that must be taken, labeled from 0 to <code>numCourses - 1</code>. Given an array <code>prerequisites</code> where <code>prerequisites[i] = [ai, bi]</code>, where bi must be taken before taking ai. Return true if you can finish all courses. Otherwise, return false. Pair [0, 1], indicates that to take course 0, you have to first take course 1.</p>
+<p>At a glance:</p>
+<ul>
+<li>Notice that this is essentially a directed graph</li>
+<li>Equivalent to finding whether a cycle exists, since if a cycle exists it is impossible to take all classes</li>
+</ul>
+<p>Approach:</p>
+<ul>
+<li>Topological sort via DFS (or BFS)</li>
+<li><code>pair&lt;int, int&gt;</code> is not convenient, can transform to adjacency list</li>
+</ul>
+<p><strong>Example C++ Implementation with DFS</strong> (<a href="https://leetcode.com/problems/course-schedule/solutions/58509/c-bfs-dfs/">Source</a>):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> canFinish<span class="op">(</span><span class="dt">int</span> numCourses<span class="op">,</span> vector<span class="op">&lt;</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">int</span><span class="op">&gt;&gt;&amp;</span> prerequisites<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        graph g <span class="op">=</span> buildGraph<span class="op">(</span>numCourses<span class="op">,</span> prerequisites<span class="op">);</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        vector<span class="op">&lt;</span><span class="dt">bool</span><span class="op">&gt;</span> todo<span class="op">(</span>numCourses<span class="op">,</span> <span class="kw">false</span><span class="op">),</span> done<span class="op">(</span>numCourses<span class="op">,</span> <span class="kw">false</span><span class="op">);</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> numCourses<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(!</span>done<span class="op">[</span>i<span class="op">]</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>acyclic<span class="op">(</span>g<span class="op">,</span> todo<span class="op">,</span> done<span class="op">,</span> i<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">typedef</span> vector<span class="op">&lt;</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&gt;</span> graph<span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    graph buildGraph<span class="op">(</span><span class="dt">int</span> numCourses<span class="op">,</span> vector<span class="op">&lt;</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">int</span><span class="op">&gt;&gt;&amp;</span> prerequisites<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        graph g<span class="op">(</span>numCourses<span class="op">);</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> p <span class="op">:</span> prerequisites<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>            g<span class="op">[</span>p<span class="op">.</span>second<span class="op">].</span>push_back<span class="op">(</span>p<span class="op">.</span>first<span class="op">);</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> g<span class="op">;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> acyclic<span class="op">(</span>graph<span class="op">&amp;</span> g<span class="op">,</span> vector<span class="op">&lt;</span><span class="dt">bool</span><span class="op">&gt;&amp;</span> todo<span class="op">,</span> vector<span class="op">&lt;</span><span class="dt">bool</span><span class="op">&gt;&amp;</span> done<span class="op">,</span> <span class="dt">int</span> node<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>todo<span class="op">[</span>node<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>done<span class="op">[</span>node<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        todo<span class="op">[</span>node<span class="op">]</span> <span class="op">=</span> done<span class="op">[</span>node<span class="op">]</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> v <span class="op">:</span> g<span class="op">[</span>node<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(!</span>acyclic<span class="op">(</span>g<span class="op">,</span> todo<span class="op">,</span> done<span class="op">,</span> v<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        todo<span class="op">[</span>node<span class="op">]</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="number-of-islands" class="level3" data-number="31.4.2">
 <h3 data-number="31.4.2" class="anchored" data-anchor-id="number-of-islands"><span class="header-section-number">31.4.2</span> Number of Islands</h3>
@@ -717,6 +780,36 @@ window.Quarto = {
 </section>
 <section id="longest-consecutive-sequence" class="level3" data-number="31.4.3">
 <h3 data-number="31.4.3" class="anchored" data-anchor-id="longest-consecutive-sequence"><span class="header-section-number">31.4.3</span> Longest Consecutive Sequence</h3>
+<p>Difficulty: Leetcode Medium</p>
+<p>Concepts: Array, Hash Table, Union Find</p>
+<p>Problem: Given an unsorted array of integers <code>nums</code>, return the length of the longest consecutive elements sequence. You must write an algorithm that runs in O(n) time.</p>
+<p>At a glance:</p>
+<p>Approaches:</p>
+<ul>
+<li>Brute Force: array + triple nested loops</li>
+<li>Brute Force Optimized: array + sorting</li>
+<li>hash table: use array + hash table (unordered map)</li>
+<li>hash optimized: use array + hash table (unordered set)</li>
+</ul>
+<p><strong>Brute Force Approach</strong></p>
+<p><strong>Brute Force Optimized</strong></p>
+<p><strong>Hash Table (Unordered Map)</strong></p>
+<ul>
+<li>First pass builds a hash table of the given array (int key to bool value)</li>
+<li>Second pass tries to mark the start of potential sequences
+<ul>
+<li>goes through each number and checks if the predecessor (number-1) exists</li>
+<li>If predecessor exists, mark the current number as false in the array</li>
+</ul></li>
+<li>Third pass tries to find the longest sequence
+<ul>
+<li>Go through the hash table and on a true (start of a sequence)
+<ul>
+<li>Keep checking consecutive numbers and whether they exist in the hash table</li>
+</ul></li>
+<li>Count how long each sequence extends and update curr_max if logner than what it has seen</li>
+</ul></li>
+</ul>
 </section>
 </section>
 <section id="interval" class="level2" data-number="31.5">
@@ -759,12 +852,52 @@ window.Quarto = {
 <h2 data-number="31.10" class="anchored" data-anchor-id="heap"><span class="header-section-number">31.10</span> Heap</h2>
 <section id="merge-k-sorted-lists-1" class="level3" data-number="31.10.1">
 <h3 data-number="31.10.1" class="anchored" data-anchor-id="merge-k-sorted-lists-1"><span class="header-section-number">31.10.1</span> Merge K Sorted Lists</h3>
+<p>Difficulty: Leetcode Hard</p>
 </section>
 <section id="top-k-frequent-elements" class="level3" data-number="31.10.2">
 <h3 data-number="31.10.2" class="anchored" data-anchor-id="top-k-frequent-elements"><span class="header-section-number">31.10.2</span> Top K Frequent Elements</h3>
+<p>Difficulty: Leetcode Medium</p>
+<p>Concepts: Array, Hash Table, Divide and Conquer, Sorting, Heap (Priority Queue), Bucket Sort, Counting, Quickselect</p>
+<p>Approach</p>
+<ul>
+<li>First use hash table to find the frequency of each element</li>
+<li>Then use a priority queue to essentially build a sorted list of the element’s frequency</li>
+</ul>
+<p>Example C++ Solution (<a href="https://leetcode.com/problems/top-k-frequent-elements/solutions/81624/c-o-n-log-n-k-unordered-map-and-priority-queue-maxheap-solution/">Source</a>):</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> topKFrequent<span class="op">(</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> nums<span class="op">,</span> <span class="dt">int</span> k<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Build hash table that stores the frequency of each number</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        unordered_map<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span><span class="dt">int</span><span class="op">&gt;</span> map<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> num <span class="op">:</span> nums<span class="op">){</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            map<span class="op">[</span>num<span class="op">]++;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> res<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">// pair&lt;first, second&gt;: first is frequency,  second is number</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    Recall that C++ pair compares the first element first, then compares the second if tied</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        priority_queue<span class="op">&lt;</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span><span class="dt">int</span><span class="op">&gt;&gt;</span> pq<span class="op">;</span> </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Go over every number that occurred in the given vector</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span><span class="op">(</span><span class="kw">auto</span> it <span class="op">=</span> map<span class="op">.</span>begin<span class="op">();</span> it <span class="op">!=</span> map<span class="op">.</span>end<span class="op">();</span> it<span class="op">++){</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>          <span class="co">// Insert a pair into the </span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>            pq<span class="op">.</span>push<span class="op">(</span>make_pair<span class="op">(</span>it<span class="op">-&gt;</span>second<span class="op">,</span> it<span class="op">-&gt;</span>first<span class="op">));</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span><span class="op">(</span>pq<span class="op">.</span>size<span class="op">()</span> <span class="op">&gt;</span> <span class="op">(</span><span class="dt">int</span><span class="op">)</span>map<span class="op">.</span>size<span class="op">()</span> <span class="op">-</span> k<span class="op">){</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>              <span class="co">//  If the priority queue size is larger than the target top K</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                res<span class="op">.</span>push_back<span class="op">(</span>pq<span class="op">.</span>top<span class="op">().</span>second<span class="op">);</span>   <span class="co">// insert the highest freq number from the PQ</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                pq<span class="op">.</span>pop<span class="op">();</span>                         <span class="co">// pop from the top of the PQ</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> res<span class="op">;</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="find-median-from-data-stream" class="level3" data-number="31.10.3">
 <h3 data-number="31.10.3" class="anchored" data-anchor-id="find-median-from-data-stream"><span class="header-section-number">31.10.3</span> Find Median from Data Stream</h3>
+<p>Difficulty: Leetcode Hard</p>
+<p>Concepts: Two Pointers, Sorting, Heap (Priority Queue), Data Stream</p>
 
 
 </section>
