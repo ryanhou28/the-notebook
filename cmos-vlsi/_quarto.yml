@@ -8,7 +8,26 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
+    - circuit.qmd
+    - highlevel.qmd
+    - cmosbasic.qmd
+    - fab.qmd
+    - cmoscap.qmd
+    - invgates.qmd
+    - delay.qmd
+    - power.qmd
+    - interconnect.qmd
+    - robust.qmd
+    - sim.qmd
+    - combcircuit.qmd
+    - seqcircuit.qmd
+    - datapath.qmd
+    - array.qmd
+    - special.qmd
+    - methodtools.qmd
+    - testdebugverif.qmd
     - summary.qmd
+    - interview.qmd
     - references.qmd
 
 bibliography: references.bib

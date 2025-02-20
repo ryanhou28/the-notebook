@@ -1,0 +1,228 @@
+# Circuit Basics
+
+A brief review of the fundamental concepts of electrical circuits that form the foundation for understanding CMOS and VLSI design.
+
+## Important Constants
+
+| Constant | Symbol | Value | Units |
+|----------|--------|-------|-------|
+| Elementary Charge | $e$ | $1.602 \times 10^{-19}$ | C |
+| Boltzmann Constant | $k_B$ | $1.380 \times 10^{-23}$ | J/K |
+| Room Temperature | $T$ | 300 | K |
+| Thermal Voltage at 300K | $V_T$ | 25.9 | mV |
+| Silicon Bandgap | $E_g$ | 1.12 | eV |
+| Permittivity of Free Space | $\epsilon_0$ | $8.854 \times 10^{-12}$ | F/m |
+| Silicon Relative Permittivity | $\epsilon_r$ | 11.7 | - |
+| Silicon Oxide Relative Permittivity | $\epsilon_{ox}$ | 3.9 | - |
+
+## Common Unit Conversions
+
+| From | To | Conversion |
+|------|-----|------------|
+| eV | Joules | $1\text{ eV} = 1.602 \times 10^{-19}\text{ J}$ |
+| Temperature | Thermal Voltage | $V_T = \frac{k_BT}{q}$ |
+| Frequency | Time Period | $T = \frac{1}{f}$ |
+| Resistance × Capacitance | Time Constant | $\tau = RC$ |
+
+## Charge, Voltage, Current, Power
+
+### Charge (Q)
+Electric charge is measured in Coulombs (C). The fundamental unit of charge is the electron charge:
+
+$$Q_e = -1.602 \times 10^{-19} \text{ C}$$
+
+The movement of charge carriers (typically electrons in circuits) creates current.
+
+### Voltage (V)
+Voltage is the electric potential difference between two points, measured in Volts (V). Key equations:
+
+$$V = IR \text{ (Ohm's Law)}$$
+
+$$V = \frac{dW}{dQ} \text{ (Work per unit charge)}$$
+
+### Current (I)
+Current is the rate of charge flow, measured in Amperes (A):
+
+$$I = \frac{dQ}{dt}$$
+
+For sinusoidal signals:
+$$I = I_0\sin(\omega t)$$
+
+### Power (P)
+Power is the rate of energy transfer, measured in Watts (W):
+
+$$P = VI \text{ (instantaneous)}$$
+$$P = I^2R \text{ (resistive loss)}$$
+$$P = CV^2f \text{ (dynamic CMOS)}$$
+$$P_{avg} = \frac{1}{T}\int_0^T p(t)dt \text{ (average)}$$
+
+## Capacitance, Inductance
+
+### Capacitance (C)
+Capacitance is measured in Farads (F). Key equations:
+
+$$Q = CV \text{ (charge stored)}$$
+$$I_C = C\frac{dV}{dt} \text{ (capacitor current)}$$
+$$\tau = RC \text{ (time constant)}$$
+
+For parallel plate capacitors:
+$$C = \frac{\epsilon_0\epsilon_r A}{d}$$
+
+where:
+- $A$ is plate area
+- $d$ is plate separation
+- $\epsilon_0$ is permittivity of free space
+- $\epsilon_r$ is relative permittivity
+
+### Inductance (L)
+Inductance is measured in Henries (H):
+
+$$V_L = L\frac{dI}{dt}$$
+$$\tau_L = \frac{L}{R} \text{ (inductive time constant)}$$
+$$E = \frac{1}{2}LI^2 \text{ (stored energy)}$$
+
+## KVL & KCL
+
+### Kirchhoff's Voltage Law (KVL)
+The sum of voltages around any closed loop equals zero:
+
+$$\sum_{k=1}^n V_k = 0$$
+
+### Kirchhoff's Current Law (KCL)
+The sum of currents entering a node equals the sum of currents leaving it:
+
+$$\sum I_{in} = \sum I_{out}$$
+$$\sum_{k=1}^n I_k = 0 \text{ (node equation)}$$
+
+## Additional Topics Relevant to CMOS/VLSI
+
+### Small Signal Analysis
+Key parameters and equations:
+
+$$g_m = \frac{\partial I_D}{\partial V_{GS}} \text{ (transconductance)}$$
+$$r_o = \frac{\partial V_{DS}}{\partial I_D} \text{ (output resistance)}$$
+$$A_v = -g_m r_o \text{ (small-signal gain)}$$
+
+### RC Networks
+Time domain analysis:
+
+$$v(t) = V(1-e^{-t/RC}) \text{ (charging)}$$
+$$v(t) = Ve^{-t/RC} \text{ (discharging)}$$
+$$t_p \approx 0.69RC \text{ (propagation delay)}$$
+
+### Noise and Signal Integrity
+Thermal noise power spectral density:
+$$S_v(f) = 4k_BTR \text{ (V²/Hz)}$$
+
+Shot noise current spectral density:
+$$S_i(f) = 2qI_D \text{ (A²/Hz)}$$
+
+Signal-to-Noise Ratio:
+$$SNR = \frac{P_{signal}}{P_{noise}} = \frac{V_{signal,rms}^2}{V_{noise,rms}^2}$$
+
+### Semiconductor Physics Basics
+Carrier concentration:
+$$n_i^2 = N_C N_V e^{-E_g/k_BT}$$
+
+Built-in potential:
+$$V_{bi} = V_T \ln(\frac{N_A N_D}{n_i^2})$$
+
+MOSFET threshold voltage:
+$$V_{th} = V_{FB} + 2\phi_F + \frac{\sqrt{2\epsilon_s q N_A (2\phi_F)}}{C_{ox}}$$
+
+where:
+
+- $V_{FB}$ is the flatband voltage
+- $\phi_F$ is the Fermi potential
+- $N_A$ is acceptor concentration
+- $C_{ox}$ is oxide capacitance per unit area
+
+
+## PN Junctions
+
+The PN junction is fundamental to semiconductor devices and CMOS operation. Key concepts and equations:
+
+### Built-in Potential
+
+The built-in potential ($V_{bi}$) across the junction at equilibrium:
+
+$V_{bi} = V_T \ln(\frac{N_A N_D}{n_i^2})$
+
+where:
+
+- $N_A$ is acceptor concentration in p-region
+- $N_D$ is donor concentration in n-region
+- $n_i$ is intrinsic carrier concentration
+- $V_T$ is thermal voltage ($k_BT/q$)
+
+### Depletion Region
+
+The depletion width ($W$) under bias:
+
+$W = \sqrt{\frac{2\epsilon_s}{q}(\frac{N_A + N_D}{N_A N_D})(V_{bi} - V_A)}$
+
+where:
+
+- $V_A$ is the applied voltage
+- $\epsilon_s$ is semiconductor permittivity
+- $q$ is elementary charge
+
+### Current-Voltage Relationship
+
+The ideal diode equation:
+
+$I_D = I_S(e^{V_D/V_T} - 1)$
+
+where:
+
+- $I_S$ is the reverse saturation current
+- $V_D$ is the diode voltage
+- $V_T$ is thermal voltage
+
+The saturation current:
+
+$I_S = qA(\frac{D_p}{L_p}p_n + \frac{D_n}{L_n}n_p)$
+
+where:
+
+- $D_p, D_n$ are diffusion coefficients
+- $L_p, L_n$ are diffusion lengths
+- $A$ is junction area
+
+### Junction Capacitance
+
+The junction capacitance has two components:
+
+**Depletion capacitance:**
+
+$C_j = \frac{C_{j0}}{\sqrt{1 - V_D/V_{bi}}}$
+
+**Diffusion capacitance:**
+
+$C_d = \tau_T\frac{dI_D}{dV_D} = \tau_T\frac{I_D + I_S}{V_T}$
+
+where:
+
+- $C_{j0}$ is zero-bias junction capacitance
+- $\tau_T$ is transit time
+
+### Temperature Effects
+
+Temperature dependence of key parameters:
+
+$I_S(T) \propto T^3e^{-E_g/k_BT}$
+
+$V_{bi}(T) = V_{bi}(T_0) - \beta(T-T_0)$
+
+where $\beta$ is the temperature coefficient.
+
+## Note
+
+::: {.callout-note}
+## Note on Temperature Dependencies
+Many parameters in CMOS circuits have significant temperature dependencies. Key relationships include:
+
+- Mobility: $\mu(T) \propto T^{-3/2}$
+- Threshold voltage: $V_{th}(T) = V_{th}(T_0) + \alpha(T-T_0)$
+- Leakage current: $I_{leak} \propto T^2e^{-E_g/2k_BT}$
+:::

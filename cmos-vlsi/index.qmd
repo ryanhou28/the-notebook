@@ -6,8 +6,14 @@ Notes on CMOS Integrated Circuits & VLSI.
 
 Some relevant resources:
 
-- [Resource Name](url)
+- [EECS 312 - University of Michigan]()
+- [EECS 427 - University of Michigan]()
+- [CMOS VLSI Design Web Supplements](https://pages.hmc.edu/harris/cmosvlsi/4e/index.html)
+  - Contains supplemental materials e.g. lecture slides, figures, solutions, code, etc
+- [Digital VLSI Chip Design with Cadence and Synopsys CAD Tools](https://users.cs.utah.edu/~elb/cadbook/)
 
 Textbooks:
 
-- [Book 1](url)
+- [J. Rabaey, A. Chandrakasan, and B. Nikolic. Digital Integrated Circuits A Design Perspective, Edition: 2. Alexandria, VA: Prentice Hall, 2003]()
+- [CMOS VLSI Design: A Circuits and Systems Perspective 4th Edition]()
+

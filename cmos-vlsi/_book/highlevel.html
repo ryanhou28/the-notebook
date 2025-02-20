@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ryan Hou">
 
-<title>Empty Book Template</title>
+<title>3&nbsp; High-level Overview – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./cmosbasic.html" rel="next">
+<link href="./circuit.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./highlevel.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">High-level Overview</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -108,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -126,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./highlevel.html" class="sidebar-item-text sidebar-link">
+  <a href="./highlevel.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">High-level Overview</span></span></a>
   </div>
 </li>
@@ -254,8 +254,30 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  <li><a href="#mos-transistors" id="toc-mos-transistors" class="nav-link active" data-scroll-target="#mos-transistors"><span class="header-section-number">3.1</span> MOS Transistors</a></li>
+  <li><a href="#cmos-logic" id="toc-cmos-logic" class="nav-link" data-scroll-target="#cmos-logic"><span class="header-section-number">3.2</span> CMOS Logic</a>
+  <ul class="collapse">
+  <li><a href="#pass-transistors-transmission-gates" id="toc-pass-transistors-transmission-gates" class="nav-link" data-scroll-target="#pass-transistors-transmission-gates"><span class="header-section-number">3.2.1</span> Pass Transistors, Transmission Gates</a></li>
+  <li><a href="#tristates" id="toc-tristates" class="nav-link" data-scroll-target="#tristates"><span class="header-section-number">3.2.2</span> Tristates</a></li>
+  <li><a href="#multiplexers" id="toc-multiplexers" class="nav-link" data-scroll-target="#multiplexers"><span class="header-section-number">3.2.3</span> Multiplexers</a></li>
+  </ul></li>
+  <li><a href="#sequential-circuits" id="toc-sequential-circuits" class="nav-link" data-scroll-target="#sequential-circuits"><span class="header-section-number">3.3</span> Sequential Circuits</a>
+  <ul class="collapse">
+  <li><a href="#latches" id="toc-latches" class="nav-link" data-scroll-target="#latches"><span class="header-section-number">3.3.1</span> Latches</a></li>
+  <li><a href="#flip-flops" id="toc-flip-flops" class="nav-link" data-scroll-target="#flip-flops"><span class="header-section-number">3.3.2</span> Flip-Flops</a></li>
+  </ul></li>
+  <li><a href="#fabrication-layout" id="toc-fabrication-layout" class="nav-link" data-scroll-target="#fabrication-layout"><span class="header-section-number">3.4</span> Fabrication &amp; Layout</a>
+  <ul class="collapse">
+  <li><a href="#fabrication-process" id="toc-fabrication-process" class="nav-link" data-scroll-target="#fabrication-process"><span class="header-section-number">3.4.1</span> Fabrication Process</a></li>
+  <li><a href="#layout-design-rules" id="toc-layout-design-rules" class="nav-link" data-scroll-target="#layout-design-rules"><span class="header-section-number">3.4.2</span> Layout Design Rules</a></li>
+  </ul></li>
+  <li><a href="#design-partitioning" id="toc-design-partitioning" class="nav-link" data-scroll-target="#design-partitioning"><span class="header-section-number">3.5</span> Design Partitioning</a></li>
+  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture"><span class="header-section-number">3.6</span> Architecture</a></li>
+  <li><a href="#logic-design" id="toc-logic-design" class="nav-link" data-scroll-target="#logic-design"><span class="header-section-number">3.7</span> Logic Design</a></li>
+  <li><a href="#circuit-design" id="toc-circuit-design" class="nav-link" data-scroll-target="#circuit-design"><span class="header-section-number">3.8</span> Circuit Design</a></li>
+  <li><a href="#physical-design" id="toc-physical-design" class="nav-link" data-scroll-target="#physical-design"><span class="header-section-number">3.9</span> Physical Design</a></li>
+  <li><a href="#design-verification" id="toc-design-verification" class="nav-link" data-scroll-target="#design-verification"><span class="header-section-number">3.10</span> Design Verification</a></li>
+  <li><a href="#fabrication-packaging-and-testing" id="toc-fabrication-packaging-and-testing" class="nav-link" data-scroll-target="#fabrication-packaging-and-testing"><span class="header-section-number">3.11</span> Fabrication, Packaging, and Testing</a></li>
   </ul>
 </nav>
     </div>
@@ -264,26 +286,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Empty Book Template</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">High-level Overview</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ryan Hou </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Invalid Date</p>
-    </div>
-  </div>
   
     
   </div>
@@ -293,27 +303,68 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>Notes on CMOS Integrated Circuits &amp; VLSI.</p>
+<section id="mos-transistors" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="mos-transistors"><span class="header-section-number">3.1</span> MOS Transistors</h2>
+<p>Silicon Lattice</p>
+<p>PN Junction</p>
+<p>NMOS PMOS</p>
 </section>
-<section id="resources" class="level1 unnumbered">
-<h1 class="unnumbered">Resources</h1>
-<p>Some relevant resources:</p>
-<ul>
-<li><a href="">EECS 312 - University of Michigan</a></li>
-<li><a href="">EECS 427 - University of Michigan</a></li>
-<li><a href="https://pages.hmc.edu/harris/cmosvlsi/4e/index.html">CMOS VLSI Design Web Supplements</a>
-<ul>
-<li>Contains supplemental materials e.g.&nbsp;lecture slides, figures, solutions, code, etc</li>
-</ul></li>
-<li><a href="https://users.cs.utah.edu/~elb/cadbook/">Digital VLSI Chip Design with Cadence and Synopsys CAD Tools</a></li>
-</ul>
-<p>Textbooks:</p>
-<ul>
-<li><a href="">J. Rabaey, A. Chandrakasan, and B. Nikolic. Digital Integrated Circuits A Design Perspective, Edition: 2. Alexandria, VA: Prentice Hall, 2003</a></li>
-<li><a href="">CMOS VLSI Design: A Circuits and Systems Perspective 4th Edition</a></li>
-</ul>
+<section id="cmos-logic" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="cmos-logic"><span class="header-section-number">3.2</span> CMOS Logic</h2>
+<section id="pass-transistors-transmission-gates" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="pass-transistors-transmission-gates"><span class="header-section-number">3.2.1</span> Pass Transistors, Transmission Gates</h3>
+</section>
+<section id="tristates" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="tristates"><span class="header-section-number">3.2.2</span> Tristates</h3>
+</section>
+<section id="multiplexers" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="multiplexers"><span class="header-section-number">3.2.3</span> Multiplexers</h3>
+</section>
+</section>
+<section id="sequential-circuits" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="sequential-circuits"><span class="header-section-number">3.3</span> Sequential Circuits</h2>
+<section id="latches" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="latches"><span class="header-section-number">3.3.1</span> Latches</h3>
+</section>
+<section id="flip-flops" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="flip-flops"><span class="header-section-number">3.3.2</span> Flip-Flops</h3>
+</section>
+</section>
+<section id="fabrication-layout" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="fabrication-layout"><span class="header-section-number">3.4</span> Fabrication &amp; Layout</h2>
+<section id="fabrication-process" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="fabrication-process"><span class="header-section-number">3.4.1</span> Fabrication Process</h3>
+</section>
+<section id="layout-design-rules" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="layout-design-rules"><span class="header-section-number">3.4.2</span> Layout Design Rules</h3>
+<section id="gate-layout" class="level4" data-number="3.4.2.1">
+<h4 data-number="3.4.2.1" class="anchored" data-anchor-id="gate-layout"><span class="header-section-number">3.4.2.1</span> Gate Layout</h4>
+</section>
+<section id="stick-diagrams" class="level4" data-number="3.4.2.2">
+<h4 data-number="3.4.2.2" class="anchored" data-anchor-id="stick-diagrams"><span class="header-section-number">3.4.2.2</span> Stick Diagrams</h4>
+</section>
+</section>
+</section>
+<section id="design-partitioning" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="design-partitioning"><span class="header-section-number">3.5</span> Design Partitioning</h2>
+</section>
+<section id="architecture" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="architecture"><span class="header-section-number">3.6</span> Architecture</h2>
+</section>
+<section id="logic-design" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="logic-design"><span class="header-section-number">3.7</span> Logic Design</h2>
+</section>
+<section id="circuit-design" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="circuit-design"><span class="header-section-number">3.8</span> Circuit Design</h2>
+</section>
+<section id="physical-design" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="physical-design"><span class="header-section-number">3.9</span> Physical Design</h2>
+</section>
+<section id="design-verification" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="design-verification"><span class="header-section-number">3.10</span> Design Verification</h2>
+</section>
+<section id="fabrication-packaging-and-testing" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="fabrication-packaging-and-testing"><span class="header-section-number">3.11</span> Fabrication, Packaging, and Testing</h2>
 
 
 </section>
@@ -738,10 +789,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./circuit.html" class="pagination-link" aria-label="Circuit Basics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Circuit Basics</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./cmosbasic.html" class="pagination-link" aria-label="CMOS Basics">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CMOS Basics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

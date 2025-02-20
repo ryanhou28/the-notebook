@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Empty Book Template",
     "section": "",
-    "text": "Preface\nThis is my notes on ????.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
+    "text": "Preface\nNotes on CMOS Integrated Circuits & VLSI.\n\n\nResources\nSome relevant resources:\n\nEECS 312 - University of Michigan\nEECS 427 - University of Michigan\nCMOS VLSI Design Web Supplements\n\nContains supplemental materials e.g. lecture slides, figures, solutions, code, etc\n\nDigital VLSI Chip Design with Cadence and Synopsys CAD Tools\n\nTextbooks:\n\nJ. Rabaey, A. Chandrakasan, and B. Nikolic. Digital Integrated Circuits A Design Perspective, Edition: 2. Alexandria, VA: Prentice Hall, 2003\nCMOS VLSI Design: A Circuits and Systems Perspective 4th Edition",
     "crumbs": [
       "Preface"
     ]
@@ -40,13 +40,243 @@
     ]
   },
   {
+    "objectID": "circuit.html",
+    "href": "circuit.html",
+    "title": "2  Circuit Basics",
+    "section": "",
+    "text": "2.1 Important Constants\nA brief review of the fundamental concepts of electrical circuits that form the foundation for understanding CMOS and VLSI design.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Circuit Basics</span>"
+    ]
+  },
+  {
+    "objectID": "circuit.html#important-constants",
+    "href": "circuit.html#important-constants",
+    "title": "2  Circuit Basics",
+    "section": "",
+    "text": "Constant\nSymbol\nValue\nUnits\n\n\n\n\nElementary Charge\n\\(e\\)\n\\(1.602 \\times 10^{-19}\\)\nC\n\n\nBoltzmann Constant\n\\(k_B\\)\n\\(1.380 \\times 10^{-23}\\)\nJ/K\n\n\nRoom Temperature\n\\(T\\)\n300\nK\n\n\nThermal Voltage at 300K\n\\(V_T\\)\n25.9\nmV\n\n\nSilicon Bandgap\n\\(E_g\\)\n1.12\neV\n\n\nPermittivity of Free Space\n\\(\\epsilon_0\\)\n\\(8.854 \\times 10^{-12}\\)\nF/m\n\n\nSilicon Relative Permittivity\n\\(\\epsilon_r\\)\n11.7\n-\n\n\nSilicon Oxide Relative Permittivity\n\\(\\epsilon_{ox}\\)\n3.9\n-",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Circuit Basics</span>"
+    ]
+  },
+  {
+    "objectID": "circuit.html#common-unit-conversions",
+    "href": "circuit.html#common-unit-conversions",
+    "title": "2  Circuit Basics",
+    "section": "2.2 Common Unit Conversions",
+    "text": "2.2 Common Unit Conversions\n\n\n\nFrom\nTo\nConversion\n\n\n\n\neV\nJoules\n\\(1\\text{ eV} = 1.602 \\times 10^{-19}\\text{ J}\\)\n\n\nTemperature\nThermal Voltage\n\\(V_T = \\frac{k_BT}{q}\\)\n\n\nFrequency\nTime Period\n\\(T = \\frac{1}{f}\\)\n\n\nResistance × Capacitance\nTime Constant\n\\(\\tau = RC\\)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Circuit Basics</span>"
+    ]
+  },
+  {
+    "objectID": "circuit.html#charge-voltage-current-power",
+    "href": "circuit.html#charge-voltage-current-power",
+    "title": "2  Circuit Basics",
+    "section": "2.3 Charge, Voltage, Current, Power",
+    "text": "2.3 Charge, Voltage, Current, Power\n\n2.3.1 Charge (Q)\nElectric charge is measured in Coulombs (C). The fundamental unit of charge is the electron charge:\n\\[Q_e = -1.602 \\times 10^{-19} \\text{ C}\\]\nThe movement of charge carriers (typically electrons in circuits) creates current.\n\n\n2.3.2 Voltage (V)\nVoltage is the electric potential difference between two points, measured in Volts (V). Key equations:\n\\[V = IR \\text{ (Ohm's Law)}\\]\n\\[V = \\frac{dW}{dQ} \\text{ (Work per unit charge)}\\]\n\n\n2.3.3 Current (I)\nCurrent is the rate of charge flow, measured in Amperes (A):\n\\[I = \\frac{dQ}{dt}\\]\nFor sinusoidal signals: \\[I = I_0\\sin(\\omega t)\\]\n\n\n2.3.4 Power (P)\nPower is the rate of energy transfer, measured in Watts (W):\n\\[P = VI \\text{ (instantaneous)}\\] \\[P = I^2R \\text{ (resistive loss)}\\] \\[P = CV^2f \\text{ (dynamic CMOS)}\\] \\[P_{avg} = \\frac{1}{T}\\int_0^T p(t)dt \\text{ (average)}\\]",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Circuit Basics</span>"
+    ]
+  },
+  {
+    "objectID": "circuit.html#capacitance-inductance",
+    "href": "circuit.html#capacitance-inductance",
+    "title": "2  Circuit Basics",
+    "section": "2.4 Capacitance, Inductance",
+    "text": "2.4 Capacitance, Inductance\n\n2.4.1 Capacitance (C)\nCapacitance is measured in Farads (F). Key equations:\n\\[Q = CV \\text{ (charge stored)}\\] \\[I_C = C\\frac{dV}{dt} \\text{ (capacitor current)}\\] \\[\\tau = RC \\text{ (time constant)}\\]\nFor parallel plate capacitors: \\[C = \\frac{\\epsilon_0\\epsilon_r A}{d}\\]\nwhere: - \\(A\\) is plate area - \\(d\\) is plate separation - \\(\\epsilon_0\\) is permittivity of free space - \\(\\epsilon_r\\) is relative permittivity\n\n\n2.4.2 Inductance (L)\nInductance is measured in Henries (H):\n\\[V_L = L\\frac{dI}{dt}\\] \\[\\tau_L = \\frac{L}{R} \\text{ (inductive time constant)}\\] \\[E = \\frac{1}{2}LI^2 \\text{ (stored energy)}\\]",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Circuit Basics</span>"
+    ]
+  },
+  {
+    "objectID": "circuit.html#kvl-kcl",
+    "href": "circuit.html#kvl-kcl",
+    "title": "2  Circuit Basics",
+    "section": "2.5 KVL & KCL",
+    "text": "2.5 KVL & KCL\n\n2.5.1 Kirchhoff’s Voltage Law (KVL)\nThe sum of voltages around any closed loop equals zero:\n\\[\\sum_{k=1}^n V_k = 0\\]\n\n\n2.5.2 Kirchhoff’s Current Law (KCL)\nThe sum of currents entering a node equals the sum of currents leaving it:\n\\[\\sum I_{in} = \\sum I_{out}\\] \\[\\sum_{k=1}^n I_k = 0 \\text{ (node equation)}\\]",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Circuit Basics</span>"
+    ]
+  },
+  {
+    "objectID": "circuit.html#additional-topics-relevant-to-cmosvlsi",
+    "href": "circuit.html#additional-topics-relevant-to-cmosvlsi",
+    "title": "2  Circuit Basics",
+    "section": "2.6 Additional Topics Relevant to CMOS/VLSI",
+    "text": "2.6 Additional Topics Relevant to CMOS/VLSI\n\n2.6.1 Small Signal Analysis\nKey parameters and equations:\n\\[g_m = \\frac{\\partial I_D}{\\partial V_{GS}} \\text{ (transconductance)}\\] \\[r_o = \\frac{\\partial V_{DS}}{\\partial I_D} \\text{ (output resistance)}\\] \\[A_v = -g_m r_o \\text{ (small-signal gain)}\\]\n\n\n2.6.2 RC Networks\nTime domain analysis:\n\\[v(t) = V(1-e^{-t/RC}) \\text{ (charging)}\\] \\[v(t) = Ve^{-t/RC} \\text{ (discharging)}\\] \\[t_p \\approx 0.69RC \\text{ (propagation delay)}\\]\n\n\n2.6.3 Noise and Signal Integrity\nThermal noise power spectral density: \\[S_v(f) = 4k_BTR \\text{ (V²/Hz)}\\]\nShot noise current spectral density: \\[S_i(f) = 2qI_D \\text{ (A²/Hz)}\\]\nSignal-to-Noise Ratio: \\[SNR = \\frac{P_{signal}}{P_{noise}} = \\frac{V_{signal,rms}^2}{V_{noise,rms}^2}\\]\n\n\n2.6.4 Semiconductor Physics Basics\nCarrier concentration: \\[n_i^2 = N_C N_V e^{-E_g/k_BT}\\]\nBuilt-in potential: \\[V_{bi} = V_T \\ln(\\frac{N_A N_D}{n_i^2})\\]\nMOSFET threshold voltage: \\[V_{th} = V_{FB} + 2\\phi_F + \\frac{\\sqrt{2\\epsilon_s q N_A (2\\phi_F)}}{C_{ox}}\\]\nwhere:\n\n\\(V_{FB}\\) is the flatband voltage\n\\(\\phi_F\\) is the Fermi potential\n\\(N_A\\) is acceptor concentration\n\\(C_{ox}\\) is oxide capacitance per unit area",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Circuit Basics</span>"
+    ]
+  },
+  {
+    "objectID": "circuit.html#pn-junctions",
+    "href": "circuit.html#pn-junctions",
+    "title": "2  Circuit Basics",
+    "section": "2.7 PN Junctions",
+    "text": "2.7 PN Junctions\nThe PN junction is fundamental to semiconductor devices and CMOS operation. Key concepts and equations:\n\n2.7.1 Built-in Potential\nThe built-in potential (\\(V_{bi}\\)) across the junction at equilibrium:\n\\(V_{bi} = V_T \\ln(\\frac{N_A N_D}{n_i^2})\\)\nwhere:\n\n\\(N_A\\) is acceptor concentration in p-region\n\\(N_D\\) is donor concentration in n-region\n\\(n_i\\) is intrinsic carrier concentration\n\\(V_T\\) is thermal voltage (\\(k_BT/q\\))\n\n\n\n2.7.2 Depletion Region\nThe depletion width (\\(W\\)) under bias:\n\\(W = \\sqrt{\\frac{2\\epsilon_s}{q}(\\frac{N_A + N_D}{N_A N_D})(V_{bi} - V_A)}\\)\nwhere:\n\n\\(V_A\\) is the applied voltage\n\\(\\epsilon_s\\) is semiconductor permittivity\n\\(q\\) is elementary charge\n\n\n\n2.7.3 Current-Voltage Relationship\nThe ideal diode equation:\n\\(I_D = I_S(e^{V_D/V_T} - 1)\\)\nwhere:\n\n\\(I_S\\) is the reverse saturation current\n\\(V_D\\) is the diode voltage\n\\(V_T\\) is thermal voltage\n\nThe saturation current:\n\\(I_S = qA(\\frac{D_p}{L_p}p_n + \\frac{D_n}{L_n}n_p)\\)\nwhere:\n\n\\(D_p, D_n\\) are diffusion coefficients\n\\(L_p, L_n\\) are diffusion lengths\n\\(A\\) is junction area\n\n\n\n2.7.4 Junction Capacitance\nThe junction capacitance has two components:\nDepletion capacitance:\n\\(C_j = \\frac{C_{j0}}{\\sqrt{1 - V_D/V_{bi}}}\\)\nDiffusion capacitance:\n\\(C_d = \\tau_T\\frac{dI_D}{dV_D} = \\tau_T\\frac{I_D + I_S}{V_T}\\)\nwhere:\n\n\\(C_{j0}\\) is zero-bias junction capacitance\n\\(\\tau_T\\) is transit time\n\n\n\n2.7.5 Temperature Effects\nTemperature dependence of key parameters:\n\\(I_S(T) \\propto T^3e^{-E_g/k_BT}\\)\n\\(V_{bi}(T) = V_{bi}(T_0) - \\beta(T-T_0)\\)\nwhere \\(\\beta\\) is the temperature coefficient.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Circuit Basics</span>"
+    ]
+  },
+  {
+    "objectID": "circuit.html#note",
+    "href": "circuit.html#note",
+    "title": "2  Circuit Basics",
+    "section": "2.8 Note",
+    "text": "2.8 Note\n\n\n\n\n\n\nNote on Temperature Dependencies\n\n\n\nMany parameters in CMOS circuits have significant temperature dependencies. Key relationships include:\n\nMobility: \\(\\mu(T) \\propto T^{-3/2}\\)\nThreshold voltage: \\(V_{th}(T) = V_{th}(T_0) + \\alpha(T-T_0)\\)\nLeakage current: \\(I_{leak} \\propto T^2e^{-E_g/2k_BT}\\)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Circuit Basics</span>"
+    ]
+  },
+  {
+    "objectID": "highlevel.html",
+    "href": "highlevel.html",
+    "title": "3  High-level Overview",
+    "section": "",
+    "text": "3.1 MOS Transistors\nSilicon Lattice\nPN Junction\nNMOS PMOS",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>High-level Overview</span>"
+    ]
+  },
+  {
+    "objectID": "highlevel.html#cmos-logic",
+    "href": "highlevel.html#cmos-logic",
+    "title": "3  High-level Overview",
+    "section": "3.2 CMOS Logic",
+    "text": "3.2 CMOS Logic\n\n3.2.1 Pass Transistors, Transmission Gates\n\n\n3.2.2 Tristates\n\n\n3.2.3 Multiplexers",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>High-level Overview</span>"
+    ]
+  },
+  {
+    "objectID": "highlevel.html#sequential-circuits",
+    "href": "highlevel.html#sequential-circuits",
+    "title": "3  High-level Overview",
+    "section": "3.3 Sequential Circuits",
+    "text": "3.3 Sequential Circuits\n\n3.3.1 Latches\n\n\n3.3.2 Flip-Flops",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>High-level Overview</span>"
+    ]
+  },
+  {
+    "objectID": "highlevel.html#fabrication-layout",
+    "href": "highlevel.html#fabrication-layout",
+    "title": "3  High-level Overview",
+    "section": "3.4 Fabrication & Layout",
+    "text": "3.4 Fabrication & Layout\n\n3.4.1 Fabrication Process\n\n\n3.4.2 Layout Design Rules\n\n3.4.2.1 Gate Layout\n\n\n3.4.2.2 Stick Diagrams",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>High-level Overview</span>"
+    ]
+  },
+  {
+    "objectID": "highlevel.html#design-partitioning",
+    "href": "highlevel.html#design-partitioning",
+    "title": "3  High-level Overview",
+    "section": "3.5 Design Partitioning",
+    "text": "3.5 Design Partitioning",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>High-level Overview</span>"
+    ]
+  },
+  {
+    "objectID": "highlevel.html#architecture",
+    "href": "highlevel.html#architecture",
+    "title": "3  High-level Overview",
+    "section": "3.6 Architecture",
+    "text": "3.6 Architecture",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>High-level Overview</span>"
+    ]
+  },
+  {
+    "objectID": "highlevel.html#logic-design",
+    "href": "highlevel.html#logic-design",
+    "title": "3  High-level Overview",
+    "section": "3.7 Logic Design",
+    "text": "3.7 Logic Design",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>High-level Overview</span>"
+    ]
+  },
+  {
+    "objectID": "highlevel.html#circuit-design",
+    "href": "highlevel.html#circuit-design",
+    "title": "3  High-level Overview",
+    "section": "3.8 Circuit Design",
+    "text": "3.8 Circuit Design",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>High-level Overview</span>"
+    ]
+  },
+  {
+    "objectID": "highlevel.html#physical-design",
+    "href": "highlevel.html#physical-design",
+    "title": "3  High-level Overview",
+    "section": "3.9 Physical Design",
+    "text": "3.9 Physical Design",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>High-level Overview</span>"
+    ]
+  },
+  {
+    "objectID": "highlevel.html#design-verification",
+    "href": "highlevel.html#design-verification",
+    "title": "3  High-level Overview",
+    "section": "3.10 Design Verification",
+    "text": "3.10 Design Verification",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>High-level Overview</span>"
+    ]
+  },
+  {
+    "objectID": "highlevel.html#fabrication-packaging-and-testing",
+    "href": "highlevel.html#fabrication-packaging-and-testing",
+    "title": "3  High-level Overview",
+    "section": "3.11 Fabrication, Packaging, and Testing",
+    "text": "3.11 Fabrication, Packaging, and Testing",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>High-level Overview</span>"
+    ]
+  },
+  {
+    "objectID": "combcircuit.html",
+    "href": "combcircuit.html",
+    "title": "13  Combinational Circuit Design",
+    "section": "",
+    "text": "Ref (Weste and Harris 2015)\n\n\n\n\nWeste, Neil HE, and David Harris. 2015. CMOS VLSI Design: A Circuits and Systems Perspective. Pearson Education India.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Combinational Circuit Design</span>"
+    ]
+  },
+  {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "2  Summary",
+    "title": "20  Summary",
     "section": "",
     "text": "In summary…",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "interview.html",
+    "href": "interview.html",
+    "title": "21  Interview & Problems",
+    "section": "",
+    "text": "21.1 Interview\nConcepts to know:",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Interview & Problems</span>"
+    ]
+  },
+  {
+    "objectID": "interview.html#problems",
+    "href": "interview.html#problems",
+    "title": "21  Interview & Problems",
+    "section": "21.2 Problems",
+    "text": "21.2 Problems\nCommon interview problems:\n\n21.2.1 CMOS\n\n\n21.2.2 Logic Design",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Interview & Problems</span>"
     ]
   }
 ]
