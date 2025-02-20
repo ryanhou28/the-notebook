@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Data Structures & Algorithms",
     "section": "",
-    "text": "Preface\nThis is my notes on Data Structures & Algorithms in C++.\n\n\nResources\nSome relevant resources:\n\nEECS 280 - Programming and Intro Data Structures (University of Michigan)\nEECS 281 - Data Structures and Algorithms (University of Michigan)\nEECS 376 - Foundations of Computer Science\nData Structures & Algorithms - Google Tech Dev Guide\nEECS 281 References\nThe Algorithms\n\nPractice Resources:\n\nLeetCode\nNeetCode\nBlind 75\nGrind 75\n\nAbout Grind 75\n\nCodeforces\n\nInterview Resources:\n\nLeetcode Patterns\nLearning Resources - Reddit-wiki-programming\nAlgoMonster\nTech Interview Handbook\n\nStudy Cheatsheet\n\nZero To Mastery\n\nC++ Guides:\n\nlearncpp.com\n\nBooks:\n\nAlgorithms - Jeff Erickson\nCracking the Coding Interview",
+    "text": "Preface\nNotes on Data Structures & Algorithms, illustrated in C++.\n\n\nResources\nSome relevant resources:\n\nEECS 280 - Programming and Intro Data Structures (University of Michigan)\nEECS 281 - Data Structures and Algorithms (University of Michigan)\nEECS 376 - Foundations of Computer Science\nData Structures & Algorithms - Google Tech Dev Guide\nEECS 281 References\nThe Algorithms\n\nPractice Resources:\n\nLeetCode\nNeetCode\nBlind 75\nGrind 75\n\nAbout Grind 75\n\nCodeforces\n\nInterview Resources:\n\nLeetcode Patterns\nLearning Resources - Reddit-wiki-programming\nAlgoMonster\nTech Interview Handbook\n\nStudy Cheatsheet\n\nZero To Mastery\n\nC++ Guides:\n\nlearncpp.com\n\nBooks:\n\nAlgorithms - Jeff Erickson\nCracking the Coding Interview",
     "crumbs": [
       "Preface"
     ]
@@ -30,11 +30,21 @@
     ]
   },
   {
-    "objectID": "intro.html#subheading",
-    "href": "intro.html#subheading",
+    "objectID": "intro.html#data-structures",
+    "href": "intro.html#data-structures",
     "title": "1  Introduction",
-    "section": "1.2 Subheading",
-    "text": "1.2 Subheading",
+    "section": "1.2 Data Structures",
+    "text": "1.2 Data Structures",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#algorithm-families",
+    "href": "intro.html#algorithm-families",
+    "title": "1  Introduction",
+    "section": "1.3 Algorithm Families",
+    "text": "1.3 Algorithm Families\n\nBrute-Force\nGreedy\nDivide and Conquer\nDynamic Programming\nBacktracking\nBranch and Bound",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -184,7 +194,7 @@
     "href": "stacks-queues.html#priority-queue",
     "title": "15  Stacks, Queues, Deque, Priority Queue",
     "section": "15.4 Priority Queue",
-    "text": "15.4 Priority Queue\nEach datum in the priority queue is paired with a priority value (usually numbers, should be comparable). Supports insertion, inspection of data, and removal of datum with highest priority.\n\n\n\nExample Priority Queue. Source: EECS 281. Lower numbers here indicate higher priority. Top element would be red node.\n\n\n\n15.4.1 ADT - Interface\n\n\n\n\n\n\n\nMethod\nDescription\n\n\n\n\npush(object)\nAdd object to the priority queue\n\n\npop()\nRemove highest priority element\n\n\nconst object &top()\nReturn a reference to highest priority element\n\n\nsize()\nNumber of elements in priority queue\n\n\nempty()\nChecks if priority queue has no elements\n\n\n\n\n\n15.4.2 Priority Queue Implementations\nPriority queues can be implemented with many data structures. Heap is a common implementation.\n\n\n\n\n\n\n\n\n\nInsert\nRemove\n\n\n\n\nUnordered sequence container\nConstant\nLinear\n\n\nSorted sequence container\nLinear\nConstant\n\n\nHeap\nLogarithmic\nLogarithmic\n\n\nArray of linked lists (for priorities of small integers)\nConstant\nConstant\n\n\n\n\n\n15.4.3 C++ Priority Queue\nstd::priority_queue&lt;&gt;\nBy default, uses std::less&lt;&gt; to determine priority. A default priority queue is a “max-PQ”, where the largest element has highest priority. To implement a “min-PQ”, use std::greater&lt;&gt;. Custom comparator (function object) needed if the elements cannot be compared with std less/greater.\nMax PQ (std::less&lt;&gt;):\nstd::priority_queue&lt;T&gt; myPQ;\nPQ with custom comparator type, COMP:\nstd::priority_queue&lt;T, vector&lt;T&gt;, COMP&gt; myPQ;\nManual priority queue implementation with standard library functions:\n#include &lt;algorithm&gt;\nstd::make_heap();\nstd::push_heap();\nstd::pop_heap();",
+    "text": "15.4 Priority Queue\nEach datum in the priority queue is paired with a priority value (usually numbers, should be comparable). Supports insertion, inspection of data, and removal of datum with highest priority.\nFor elements of the same priority, they are served according to their order in the queue (following FIFO order).\n\n\n\nExample Priority Queue. Source: EECS 281. Lower numbers here indicate higher priority. Top element would be red node. At priority 2, orange node would be served before purple.\n\n\n\n15.4.1 ADT - Interface\n\n\n\n\n\n\n\nMethod\nDescription\n\n\n\n\npush(object)\nAdd object to the priority queue\n\n\npop()\nRemove highest priority element\n\n\nconst object &top()\nReturn a reference to highest priority element\n\n\nsize()\nNumber of elements in priority queue\n\n\nempty()\nChecks if priority queue has no elements\n\n\n\n\n\n15.4.2 Priority Queue Implementations\nPriority queues can be implemented with many data structures. Heap is a common implementation.\n\n\n\n\n\n\n\n\n\nInsert\nRemove\n\n\n\n\nUnordered sequence container\nConstant\nLinear\n\n\nSorted sequence container\nLinear\nConstant\n\n\nHeap\nLogarithmic\nLogarithmic\n\n\nArray of linked lists (for priorities of small integers)\nConstant\nConstant\n\n\n\n\n\n15.4.3 C++ Priority Queue\nstd::priority_queue&lt;&gt;\nBy default, uses std::less&lt;&gt; to determine priority. A default priority queue is a “max-PQ”, where the largest element has highest priority. To implement a “min-PQ”, use std::greater&lt;&gt;. Custom comparator (function object) needed if the elements cannot be compared with std less/greater.\nMax PQ (std::less&lt;&gt;):\nstd::priority_queue&lt;T&gt; myPQ;\nPQ with custom comparator type, COMP:\nstd::priority_queue&lt;T, vector&lt;T&gt;, COMP&gt; myPQ;\nManual priority queue implementation with standard library functions:\n#include &lt;algorithm&gt;\nstd::make_heap();\nstd::push_heap();\nstd::pop_heap();",
     "crumbs": [
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Stacks, Queues, Deque, Priority Queue</span>"
     ]
@@ -254,7 +264,47 @@
     "href": "trees.html",
     "title": "18  Trees",
     "section": "",
-    "text": "A graph consists of nodes/vertices connected together by edges. Each node can contain some data.\nA tree is\n\nA connected graph (nodes + edges) without cycles\nA graph where any 2 nodes are connected by a unique shortest path\n\nThe two definitions above are equivalent.\nIn a directed tree, we can identify child and parent relationships between nodes.\nIn a binary tree, a node has at most two children.\nTerminology:\n\nRoot: the topmost node in the tree\nParent: Immediate predecessor of a node\nChild: Node where current node is parent\nAncestor: parent of a parent (closer to root)\nDescendent: child of a child (further from root)\nInternal node: a node with children\nLeaf node: a node without children\n\ntemplate &lt;class Item&gt;\nstruct Node {       // a binary tree node\n    Node *left;     // pointer to left child\n    Node *right;    // pointer to right child\n    Item item;      // data or KEY\n}\nTree Properties\nHeight:\nheight(empty) = 0\nheight(node) = max(heght(left_child), height(right_child)) + 1\nSize:\nsize(empty) = 0\nsize(node) = size(left_child) + size(right_child) + 1\nDepth:\ndepth(empty) = 0\ndepth(node) = depth(parent) + 1\n\n18.0.1 Complete (Binary) Trees\n\n\n\n\n\n\nNote 18.1: Definition - Complete Binary Tree\n\n\n\nComplete Binary Tree: every level, except possibly the last, is completely filled, and all nodes are as far left as possible\n\n\n\n\n\nSource: EECS 281.\n\n\nA complete binary tree can be stored efficiently in a growable array (vector) by indexing nodes according to level-ordering",
+    "text": "18.1 Complete (Binary) Trees\nA graph consists of nodes/vertices connected together by edges. Each node can contain some data.\nA tree is\nThe two definitions above are equivalent.\nTypes of Trees:\nIn a directed tree, we can identify child and parent relationships between nodes.\nIn a binary tree, a node has at most two children.\nTerminology:\nTree Properties\nHeight:\nheight(empty) = 0\nheight(node) = max(heght(left_child), height(right_child)) + 1\nSize:\nsize(empty) = 0\nsize(node) = size(left_child) + size(right_child) + 1\nDepth:\ndepth(empty) = 0\ndepth(node) = depth(parent) + 1\nA complete binary tree can be stored efficiently in a growable array (vector) by indexing nodes according to level-ordering",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Trees</span>"
+    ]
+  },
+  {
+    "objectID": "trees.html#complete-binary-trees",
+    "href": "trees.html#complete-binary-trees",
+    "title": "18  Trees",
+    "section": "",
+    "text": "Note 18.1: Definition - Complete Binary Tree\n\n\n\nComplete Binary Tree: every level, except possibly the last, is completely filled, and all nodes are as far left as possible\n\n\n\n\n\nSource: EECS 281.\n\n\n\n\nCompleteness ensures no gaps in the array, thus easily indexable\nIndex start at 1 (to make math easier)\n\nTo achieve 1-based indexing with 0-indexed vector, just add a dummy element at position 0 and ignore it\n\n\n\n\n\nSource: EECS 281.",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Trees</span>"
+    ]
+  },
+  {
+    "objectID": "trees.html#binary-search-trees-bst",
+    "href": "trees.html#binary-search-trees-bst",
+    "title": "18  Trees",
+    "section": "18.2 Binary Search Trees (BST)",
+    "text": "18.2 Binary Search Trees (BST)\nEach node in a BST has at most two children, with the left child containing values less than the parent and the right child containing values greater than the parent.\nAllows for efficient searching, insertion, and deletion.\nE.g. finding the max/min is as simple as finding the rightmost or leftmost node. E.g., rightmost can be found by keeping on accessing the right child until a node no longer has a right child.",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Trees</span>"
+    ]
+  },
+  {
+    "objectID": "trees.html#tree-traversals",
+    "href": "trees.html#tree-traversals",
+    "title": "18  Trees",
+    "section": "18.3 Tree Traversals",
+    "text": "18.3 Tree Traversals\nIn-Order traversal visits:\n\nleft subtree\ncurrent node\nright subtree\n\nPre-Order traversal visits:\n\ncurrent node\nleft subtree\nright subtree\n\nPost-Order traversal visits:\n\nleft subtree\nright subtree\ncurrent node\n\nLevel-Order traversal visits nodes in order of increasing depth in tree. Same as bradth-first traversal.\nC++ example:\ntemplate &lt;class KEY&gt;\nstruct Node {\n    KEY key;\n    Node *left = nullptr;\n    Node *right = nullptr;\n};  // Node{}\n\nvoid preorder(Node *p) {\n    if (!p) return;\n    visit(p-&gt;key);\n    preorder(p-&gt;left);\n    preorder(p-&gt;right);\n}  // preorder()\n\nvoid postorder(Node *p) {\n    if (!p) return;\n    postorder(p-&gt;left);\n    postorder(p-&gt;right);\n    visit(p-&gt;key);\n}  // postorder()\n\nvoid inorder(Node *p) {\n    if (!p) return;\n    inorder(p-&gt;left);\n    visit(p-&gt;key);\n    inorder(p-&gt;right);\n}  // inorder()",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Trees</span>"
+    ]
+  },
+  {
+    "objectID": "trees.html#avl-tree",
+    "href": "trees.html#avl-tree",
+    "title": "18  Trees",
+    "section": "18.4 AVL Tree",
+    "text": "18.4 AVL Tree",
     "crumbs": [
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>Trees</span>"
     ]
@@ -284,7 +334,27 @@
     "href": "heaps.html#heap-priority-queue",
     "title": "19  Heaps",
     "section": "19.2 Heap? Priority Queue?",
-    "text": "19.2 Heap? Priority Queue?\nPriority Queue is an Abstract Data Type, and Heap is the concrete data structure we use to implement a priority queue. Source\nDefinition: A tree is (max) heap-ordered if each node’s priority is not greater than the priority of the node’s parent\nDefinition: A heap is a set of nodes with keys arranged in a complete heap-ordered tree, represented as an array\nProperty: No node in a heap has a key larger than the root’s key\nA heap has two crucial properties (representation invariants):\n\nCompleteness\nHeap-ordering\n\nThese two properties can be leveraged to create an efficient priority queue and an efficient sorting algorithm using a heap!\nLoose definition: data structure that gives easy access to the most extreme element, e.g., maximum or minimum\n“Max Heap”: heap with largest element being the “most extreme”\n“Min Heap”: heap with smallest element being the “most extreme”\nHeaps use complete (binary) trees* as the underlying structure, but are often implemented using arrays\nNote: Not to be confused with binary search trees.\n\n\n\nSource: EECS 281",
+    "text": "19.2 Heap? Priority Queue?\nPriority Queue is an Abstract Data Type, and Heap is the concrete data structure we use to implement a priority queue. Source",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Heaps</span>"
+    ]
+  },
+  {
+    "objectID": "heaps.html#heap---definitions-properties",
+    "href": "heaps.html#heap---definitions-properties",
+    "title": "19  Heaps",
+    "section": "19.3 Heap - Definitions & Properties",
+    "text": "19.3 Heap - Definitions & Properties\nDefinition: A tree is (max) heap-ordered if each node’s priority is not greater than the priority of the node’s parent\nDefinition: A heap is a set of nodes with keys (priorities) arranged in a complete heap-ordered tree, represented as an array\nProperty: No node in a heap has a key (priority) larger than the root’s key\nA heap has two crucial properties (representation invariants):\n\nCompleteness\nHeap-ordering\n\nThese two properties can be leveraged to create an efficient priority queue and an efficient sorting algorithm using a heap!\nLoose definition: data structure that gives easy access to the most extreme element, e.g., maximum or minimum\n“Max Heap”: heap with largest element being the “most extreme”\n“Min Heap”: heap with smallest element being the “most extreme”\nHeaps use complete (binary) trees* as the underlying structure, but are often implemented with arrays\nNote: Not to be confused with binary search* trees.\n\n\n\nSource: EECS 281",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Heaps</span>"
+    ]
+  },
+  {
+    "objectID": "heaps.html#modifying-heaps",
+    "href": "heaps.html#modifying-heaps",
+    "title": "19  Heaps",
+    "section": "19.4 Modifying Heaps",
+    "text": "19.4 Modifying Heaps\n\n19.4.1 Increasing Node Priority\nIf the priority of a node in the heap is increased, we need to fix bottom-up:\n\nPass index k of array element with increased priority\nSwap the node’s key with the parent’s key until:\n\n\nthe node has no parent (it is the root), or\n\n\nthe node’s parent has a higher (or equal) priority key\n\n\n\nCode goes here\n\n\n19.4.2 Decreasing Node Priority\nfix top-down",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>Heaps</span>"
     ]
@@ -293,90 +363,580 @@
     "objectID": "heaps.html#heap-in-c",
     "href": "heaps.html#heap-in-c",
     "title": "19  Heaps",
-    "section": "19.3 Heap in C++",
-    "text": "19.3 Heap in C++\nstd::make_heap() is used to convert the given range in a container to a heap. Max heap by default. Use a custom comparator to change it to a min heap.\n// Initializing a vector\nstd::vector&lt;int&gt; v1 = { 20, 30, 40, 25, 15 };\n\n// Converting vector into a heap\nstd::make_heap(v1.begin(), v1.end());\n\nstd::cout &lt;&lt; v1.front() &lt;&lt; '\\n'; // Displays max element of heap\nstd::push_heap(begin_iterator, end_iterator) sorts the heap after insertion. Can you push_back() of vector class to insert.\nvector&lt;int&gt; vc{ 20, 30, 40, 10 };\nmake_heap(vc.begin(), vc.end());\n\nvc.push_back(50);\npush_heap(vc.begin(), vc.end()); // now the heap is sorted\nTime Complexity: \\(O(log N)\\)\nNote: The push_heap() function should only be used after the insertion of a single element at the back. Undefined for random insertion or for building a heap.\npop_heap() is used to move largest element of the heap to the end of the heap, so then a pop_back() can be used to remove the element\npop_heap(vc.begin(), vc.end()); // moves largest element to the end\nvc.pop_back(); // removes element at the end\nTime Complexity: \\(O(logN)\\)\nsort_heap() is used to sort the heap in ascending order using heapsort.\nsort_heap(v1.begin(), v1.end());\nTime Complexity: \\(O(NlogN)\\)\nis_heap() can be used to check whether a given range of the container is a heap. Default checks for max heap.\nis_heap_until()",
+    "section": "19.5 Heap in C++",
+    "text": "19.5 Heap in C++\n\n19.5.1 make_heap()\nstd::make_heap() is used to convert the given range in a container to a heap. Max heap by default. Use a custom comparator to change it to a min heap.\n// Initializing a vector\nstd::vector&lt;int&gt; v1 = { 20, 30, 40, 25, 15 };\n\n// Converting vector into a heap\nstd::make_heap(v1.begin(), v1.end());\n\nstd::cout &lt;&lt; v1.front() &lt;&lt; '\\n'; // Displays max element of heap\n\n\n19.5.2 push_heap()\nstd::push_heap(begin_iterator, end_iterator) sorts the heap after insertion. Can you push_back() of vector class to insert.\nvector&lt;int&gt; vc{ 20, 30, 40, 10 };\nmake_heap(vc.begin(), vc.end());\n\nvc.push_back(50);\npush_heap(vc.begin(), vc.end()); // now the heap is sorted\nTime Complexity: \\(O(log N)\\)\nNote: The push_heap() function should only be used after the insertion of a single element at the back. Undefined for random insertion or for building a heap.\n\n\n19.5.3 pop_head()\npop_heap() is used to move largest element of the heap to the end of the heap, so then a pop_back() can be used to remove the element\npop_heap(vc.begin(), vc.end()); // moves largest element to the end\nvc.pop_back(); // removes element at the end\nTime Complexity: \\(O(logN)\\)\n\n\n19.5.4 sort_heap()\nsort_heap() is used to sort the heap in ascending order using heapsort.\nsort_heap(v1.begin(), v1.end());\nTime Complexity: \\(O(NlogN)\\)\n\n\n19.5.5 is_heap()\nis_heap() can be used to check whether a given range of the container is a heap. Default checks for max heap.\n\n\n19.5.6 is_heap_until()\nis_heap_until()",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>Heaps</span>"
     ]
   },
   {
+    "objectID": "heaps.html#priority-queue---heap-implementation",
+    "href": "heaps.html#priority-queue---heap-implementation",
+    "title": "19  Heaps",
+    "section": "19.6 Priority Queue - Heap Implementation",
+    "text": "19.6 Priority Queue - Heap Implementation\nDefinition: A priority queue is a data structure that supports the following three basic operations:\n\npush(): insertion of a new node\ntop(): inspection of highest priority node\npop(): removal of highest priority node\n\nPriority queue is useful for many algorithms: e.g., Dijkstra’s, heapsort, sorting in reverse order\nPriority queues are often implemented using heaps because the same time complexity of insertion/removal.\n\n19.6.1 Insertion & Deletion\nTODO\n\n\n19.6.2 Priority Queue - Summary\nAnother summary can be found in the Stacks, Queues, Priority Queues page.\n\n\n\n\n\n\n\n\n\n\nPriority Queue Type\nInsertion Complexity\nInspection Complexity\nRemoval Complexity\nNotes\n\n\n\n\nUnordered Array PQ\nO(1)\nO(n)\nO(n), or O(1)\n-\n\n\nSorted Array PQ\nO(n)\nO(1)\nO(1)\n-\n\n\nHeap\nO(log n) using fixUp()\nO(1)\nO(log n) using fixDown()\nMust maintain heap property",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Heaps</span>"
+    ]
+  },
+  {
+    "objectID": "heaps.html#heapify",
+    "href": "heaps.html#heapify",
+    "title": "19  Heaps",
+    "section": "19.7 Heapify",
+    "text": "19.7 Heapify",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Heaps</span>"
+    ]
+  },
+  {
+    "objectID": "heaps.html#heapsort",
+    "href": "heaps.html#heapsort",
+    "title": "19  Heaps",
+    "section": "19.8 Heapsort",
+    "text": "19.8 Heapsort",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Heaps</span>"
+    ]
+  },
+  {
+    "objectID": "searching.html",
+    "href": "searching.html",
+    "title": "20  Searching",
+    "section": "",
+    "text": "20.1 Linear Search",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Searching</span>"
+    ]
+  },
+  {
+    "objectID": "searching.html#binary-search",
+    "href": "searching.html#binary-search",
+    "title": "20  Searching",
+    "section": "20.2 Binary Search",
+    "text": "20.2 Binary Search\nSearching in a sorted container.\nAsymptotic Complexity = O(log n)\n\n20.2.1 C++ Implementation\nBasic Implementation:\nint bsearch(double a[], double val, int left, int right) {\n    // n = right - left = size of a[]\n    while (right &gt; left) {                      // loops at most k times\n        int mid = left + (right - left) / 2;    // find midpoint of current range\n        if (val == a[mid]) return mid;          // midpoint is the search val, return it\n\n        if (val &lt; a[mid]) right = mid;          // target val is less than midpoint, update right bound\n        else left = mid + 1;                    // target val is greater than midpoint, update left bound\n    }\n\n    return -1;      // val not found\n}\nOptimization - 2 comparisons half the time:\nint bsearch(double a[], double val, int left, int right) {\n    // n = right - left = size of a[]\n    while (right &gt; left) {                      // loops at most k times\n        int mid = left + (right - left) / 2;    // find midpoint of current range\n\n        if (val &gt; a[mid]) left = mid + 1;\n        else if (val &lt; a[mid]) right = mid;\n        else return mid;\n    }\n\n    return -1;      // val not found\n}\nOptimization - always 2 comparisons per loop (requires val to be present in a[]):\nint bsearch(double a[], double val, int left, int right) {\n    // n = right - left = size of a[]\n    while (right &gt; left) {\n        int mid = left + (right - left) / 2;    // find midpoint of current range\n\n        if (val &gt; a[mid]) left = mid + 1;       // target val greater than midpoint, update left bound\n        else right = mid;                       // target val &lt;= midpoint, update right bound\n    }\n\n    return left;\n}\n\n\n20.2.2 STL Binary Search\nbinary_search() returns a bool\nTo find locations (iterators):\n\nlower_bound() First item not less than target\nupper_bound() First item greater than target\nequal_range() Pair(lb, ub), all items equal to target",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Searching</span>"
+    ]
+  },
+  {
+    "objectID": "searching.html#tree-search",
+    "href": "searching.html#tree-search",
+    "title": "20  Searching",
+    "section": "20.3 Tree Search",
+    "text": "20.3 Tree Search\n\n20.3.1 Depth-First Search (DFS)\n\n\n20.3.2 Breadth-First Search (BFS)\n\n\n20.3.3 Dijkstra’s Algorithm\n\n\n20.3.4 Floyd’s Algorithm\n\n\n20.3.5 Bellman-Ford\nCan handle negative weight edges that Dijkstra’s cannot.",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Searching</span>"
+    ]
+  },
+  {
+    "objectID": "sets.html",
+    "href": "sets.html",
+    "title": "21  Sets",
+    "section": "",
+    "text": "21.1 Set Operations",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Sets</span>"
+    ]
+  },
+  {
+    "objectID": "sets.html#set-operations",
+    "href": "sets.html#set-operations",
+    "title": "21  Sets",
+    "section": "",
+    "text": "Union (\\(\\cup\\)): in one set or the other (OR)\nIntersection (\\(\\cap\\)): in both sets (AND)\nSet Difference (\\(\\setminus\\)): in one and not the other (AND-NOT)\nSymmetric Difference (\\(\\div\\)): in only one (XOR)\naddElement (\\(+\\))\nisElement (\\(\\in\\))\nisEmpty\n\n\n21.1.1 set_union()\n\n\n\nMethod\nAsymptotic Complexity\n\n\n\n\ninitialize()\nO(1) or O(n log n)\n\n\nclear()\nO(1) or O(n)\n\n\nisMember()\nO(log n)\n\n\ncopy()\nO(n)\n\n\nset_union()\nO(n)\n\n\nset_intersection()\nO(n)",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Sets</span>"
+    ]
+  },
+  {
+    "objectID": "sets.html#set-in-c",
+    "href": "sets.html#set-in-c",
+    "title": "21  Sets",
+    "section": "21.2 Set in C++",
+    "text": "21.2 Set in C++\n\n21.2.1 References\nGeeks for Geeks - C++ STL Set\nstd::set&lt;data_type&gt; set_name;\n\nset&lt;int&gt; my_set;\nset&lt;int&gt; my_set = {1, 4, 5, 12};\n\nmy_set.insert(10);\n\nfor (auto& num : my_set) {\n    std::cout &lt;&lt; num &lt;&lt; ' ';\n}\n\nset&lt;int&gt;::iterator it;\n\nmy_set.erase(12);\n\n// returns an iterator to the element, otherwise returns my_set.end()\nmy_set.find(5);",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Sets</span>"
+    ]
+  },
+  {
+    "objectID": "sets.html#union-find",
+    "href": "sets.html#union-find",
+    "title": "21  Sets",
+    "section": "21.3 Union-Find",
+    "text": "21.3 Union-Find",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Sets</span>"
+    ]
+  },
+  {
+    "objectID": "sorting.html",
+    "href": "sorting.html",
+    "title": "22  Sorting",
+    "section": "",
+    "text": "22.1 Types\nSTL sorting is done with iterators:\nNon-Adaptive Sort\nAdaptive Sort",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Sorting</span>"
+    ]
+  },
+  {
+    "objectID": "sorting.html#bubble-sort",
+    "href": "sorting.html#bubble-sort",
+    "title": "22  Sorting",
+    "section": "22.2 Bubble Sort",
+    "text": "22.2 Bubble Sort",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Sorting</span>"
+    ]
+  },
+  {
+    "objectID": "sorting.html#selection-sort",
+    "href": "sorting.html#selection-sort",
+    "title": "22  Sorting",
+    "section": "22.3 Selection Sort",
+    "text": "22.3 Selection Sort",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Sorting</span>"
+    ]
+  },
+  {
+    "objectID": "sorting.html#insertion-sort",
+    "href": "sorting.html#insertion-sort",
+    "title": "22  Sorting",
+    "section": "22.4 Insertion Sort",
+    "text": "22.4 Insertion Sort",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Sorting</span>"
+    ]
+  },
+  {
+    "objectID": "sorting.html#counting-sort",
+    "href": "sorting.html#counting-sort",
+    "title": "22  Sorting",
+    "section": "22.5 Counting Sort",
+    "text": "22.5 Counting Sort",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Sorting</span>"
+    ]
+  },
+  {
+    "objectID": "sorting.html#quick-sort",
+    "href": "sorting.html#quick-sort",
+    "title": "22  Sorting",
+    "section": "22.6 Quick Sort",
+    "text": "22.6 Quick Sort\nHigh-level idea:\n\nChoose a pivot element from the array\nPartition array into two subarrays\n\nOne containing elements smaller than the pivot\nOne containing elements larger than the pivot\n\nRecursively apply quick sort to each subarray until the entire array is sorted\n\nAverage time complexity: O(n log n) Worst-case time complexity: O(n^2)\nWorst case comes when the pivot element is selected as the max/min element of the entire array, thus the pivot doesn’t do much. Can avoid by picking a good pivot, such as by using the median or a random element.\nQuick sort is an in-place algorithm, requiring no additional memory beyond the original array.",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Sorting</span>"
+    ]
+  },
+  {
+    "objectID": "sorting.html#merge-sort",
+    "href": "sorting.html#merge-sort",
+    "title": "22  Sorting",
+    "section": "22.7 Merge Sort",
+    "text": "22.7 Merge Sort",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Sorting</span>"
+    ]
+  },
+  {
+    "objectID": "sorting.html#heapsort",
+    "href": "sorting.html#heapsort",
+    "title": "22  Sorting",
+    "section": "22.8 Heapsort",
+    "text": "22.8 Heapsort\nRefer to heaps notes.",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Sorting</span>"
+    ]
+  },
+  {
+    "objectID": "sorting.html#radix-sort",
+    "href": "sorting.html#radix-sort",
+    "title": "22  Sorting",
+    "section": "22.9 Radix Sort",
+    "text": "22.9 Radix Sort",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Sorting</span>"
+    ]
+  },
+  {
+    "objectID": "hash.html",
+    "href": "hash.html",
+    "title": "23  Dictionary and Hash Maps",
+    "section": "",
+    "text": "23.1 Dictionary Abstract Data Type\naka Hash Tables\nA container of items (key/value pairs) that supports two basic operations:\nOperations:",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Dictionary and Hash Maps</span>"
+    ]
+  },
+  {
+    "objectID": "hash.html#dictionary-abstract-data-type",
+    "href": "hash.html#dictionary-abstract-data-type",
+    "title": "23  Dictionary and Hash Maps",
+    "section": "",
+    "text": "Insert a new item\nSearch (retrieve) an item with a given key",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Dictionary and Hash Maps</span>"
+    ]
+  },
+  {
+    "objectID": "hash.html#hash-maps-hash-tables",
+    "href": "hash.html#hash-maps-hash-tables",
+    "title": "23  Dictionary and Hash Maps",
+    "section": "23.2 Hash Maps / Hash Tables",
+    "text": "23.2 Hash Maps / Hash Tables\n\n23.2.1 Hashing - Definition\n\n\n23.2.2 Collision Resolution\n\n\n23.2.3 Hash Maps in C++\nC++ hash table containers:\n\nunordered_set&lt;&gt;, unordered_multiset&lt;&gt;\nunordered_map&lt;&gt;, unordered_multimap&lt;&gt;\n\nExample:\n#include &lt;unordered_map&gt; // among other includes...\nunordered_map&lt;string, int&gt; months;\nstring month;\n\nmonths[\"January\"] = 31;\nmonths[\"February\"] = 28;\n...\n\n// Looking up an item\nmonth = \"March\";\nauto it = months.find(month);\nif (it == months.end()) {\n    // month not found\n} else {\n    cout &lt;&lt; it-&gt;first &lt;&lt; \" has \" &lt;&lt; it-&gt;second &lt;&lt; \" days\\n\";\n}\nWhen NOT to use hash tables:\n\nSignificant space overhead of nested containers\nEvery access computes hash function\nO(n) worst-case time (STL implementations)\nWhen keys are small ints (use bucket arrays)\nFor static data, set membership, or lookup (consider sorting + binary search)\nKey-value storage but traversal is needed and not lookup",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Dictionary and Hash Maps</span>"
+    ]
+  },
+  {
+    "objectID": "graphs.html",
+    "href": "graphs.html",
+    "title": "24  Graphs",
+    "section": "",
+    "text": "24.1 Definitions & Terminologies",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "graphs.html#representations",
+    "href": "graphs.html#representations",
+    "title": "24  Graphs",
+    "section": "24.2 Representations",
+    "text": "24.2 Representations\nAdjacency Matrix, Distance Matrix, Adjacency List",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "graphs.html#shortest-path",
+    "href": "graphs.html#shortest-path",
+    "title": "24  Graphs",
+    "section": "24.3 Shortest Path",
+    "text": "24.3 Shortest Path\nSingle-source shortest path, can solve with:\n\nDFS\n\nOnly works on trees\n\nBFS\n\nWorks for unweighted edges (or when all edges have same weight)\n\nDijkstra’s\n\nWorks for weighted edges",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "graphs.html#traveling-salesman-problem",
+    "href": "graphs.html#traveling-salesman-problem",
+    "title": "24  Graphs",
+    "section": "24.4 Traveling Salesman Problem",
+    "text": "24.4 Traveling Salesman Problem\nGiven a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?\nI.e. given an undirected weighted graph, find a path that visits every node and returns to the first node with minimum total cost.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "graphs.html#minimum-spanning-tree",
+    "href": "graphs.html#minimum-spanning-tree",
+    "title": "24  Graphs",
+    "section": "24.5 Minimum Spanning Tree",
+    "text": "24.5 Minimum Spanning Tree\nGiven: edge-weighted, undirected graph \\(G=(V,E)\\)\nFind: subgraph \\(T=(V,E'), E' \\subseteq E\\) such that:\n\nAll vertices are pair-wise connected\nThe sum of all edge weights in \\(T\\) is minimal\n\nIf there’s a cycle in T, remove edge with highest weight\nTherefore T must be a tree (since it must have no cycles)\nTwo algorithms to find MST:\n\nPrim’s\nKruskal’s\n\n\n24.5.1 Prim’s Algorithm\n\n\n24.5.2 Kruskal’s Algorithm",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "brutegreedy.html",
+    "href": "brutegreedy.html",
+    "title": "25  Brute-Force & Greedy Algorithms",
+    "section": "",
+    "text": "25.1 Brute-Force\nDefinition:",
+    "crumbs": [
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Brute-Force & Greedy Algorithms</span>"
+    ]
+  },
+  {
+    "objectID": "brutegreedy.html#greedy-algorithms",
+    "href": "brutegreedy.html#greedy-algorithms",
+    "title": "25  Brute-Force & Greedy Algorithms",
+    "section": "25.2 Greedy Algorithms",
+    "text": "25.2 Greedy Algorithms\nDefinition: At every decision step, makes the locally optimal decision.\nTo guarantee correctness/optimality, must show that locally optimal solutions lead to globally optimal solution",
+    "crumbs": [
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Brute-Force & Greedy Algorithms</span>"
+    ]
+  },
+  {
+    "objectID": "brutegreedy.html#summary",
+    "href": "brutegreedy.html#summary",
+    "title": "25  Brute-Force & Greedy Algorithms",
+    "section": "25.3 Summary",
+    "text": "25.3 Summary\nBrute-force\n\nSolve problem in simplest way\nGenerate entire solution set, pick best\nWill give optimal solution with (typically) poor efficiency\n\nGreedy\n\nMake local, best decision, and don’t look back\nMay give optimal solution with (typically) ‘better’ efficiency\nDepends upon ‘greedy-choice property’\nGlobal optimum found by series of local optimum choices",
+    "crumbs": [
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Brute-Force & Greedy Algorithms</span>"
+    ]
+  },
+  {
+    "objectID": "divideconquer-dp.html",
+    "href": "divideconquer-dp.html",
+    "title": "26  Divide and Conquer, Dynamic Programming",
+    "section": "",
+    "text": "26.1 Divide and Conquer\nRepeatedly divide a problem into smaller non-overlapping problems (preferably of equal size)\nAlternatively, there is also “Combine and Conquer” Algorithms, that are bottom-up: start with smallest subproblem possible, then combine increasingly large subdomains until the given problem size.",
+    "crumbs": [
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Divide and Conquer, Dynamic Programming</span>"
+    ]
+  },
+  {
+    "objectID": "divideconquer-dp.html#divide-and-conquer",
+    "href": "divideconquer-dp.html#divide-and-conquer",
+    "title": "26  Divide and Conquer, Dynamic Programming",
+    "section": "",
+    "text": "Often recursive\nOften involve log n complexities\nTop down approach\nE.g. binary search, quicksort\n\n\n\nE.g. Merge Sort",
+    "crumbs": [
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Divide and Conquer, Dynamic Programming</span>"
+    ]
+  },
+  {
+    "objectID": "divideconquer-dp.html#dynamic-programming",
+    "href": "divideconquer-dp.html#dynamic-programming",
+    "title": "26  Divide and Conquer, Dynamic Programming",
+    "section": "26.2 Dynamic Programming",
+    "text": "26.2 Dynamic Programming\nRemembers partial solutions (memoization) of overlapping subproblems\nSolve small subproblems first and store the results, then use these results when needed.\nCan use bottom-up or top-down approach\n\n26.2.1 Simple Example - Fibonacci\nTop-Down DP:\nuint64_t fib(uint32_t n) {\n    // Array of known Fibonacci numbers. Start out with 0, 1,\n    // and the rest get automatically initialized to 0.\n    // MAX_FIB + 1 used to account for 0-indexing\n    static uint64_t fibs[MAX_FIB + 1] = { 0, 1 };\n\n    // Doesn't fit in 64 bits, so don't even bother computing\n    if (n &gt; MAX_FIB)\n        return 0;\n\n    // Is already in array, so look it up\n    if (fibs[n] &gt; 0 || n == 0)\n        return fibs[n];\n\n    // Currently unknown, so calculate and store it for later\n    fibs[n] = fib(n - 1) + fib(n - 2);\n    return fibs[n];\n}\nBottom-Up DP:\nuint64_t fibBU(uint32_t i) {\n    uint64_t f[MAX_N];\n    i = min(i, MAX_N - 1);\n    f[0] = 0;\n    f[1] = 1;\n    for (size_t k = 2; k &lt;= i; k++)\n        f[k] = f[k - 1] + f[k - 2];\n    return f[i];\n}\n\n\n26.2.2 Simple Example - Binomial Coefficient\n\n\n26.2.3 General Approach\nTop-Down:\n\nSave known values as they are calculated\nGenerally preferred because it can be more naturally transformed from recursive solution, the order of computing the subproblems takes care of itself, and it may not need to compute all subproblems\n\nBottom-Up:\n\nPrecompute values from base case up towards the solution. Note it will compute all subproblems, regardless if it is needed.\n\n\n\n26.2.4 Example - Knight Moves\n\n\n26.2.5 Example - Knapsack Problem\n\n26.2.5.1 Problem Definition\nA knapsack has capacity \\(M\\). An item has various weights and values.\nProblem: Find the maximum value of items that can be packed into the knapsack with \\(N\\) items that does not exceed capacity \\(M\\).\nMany variations of the problem exist:\n\nEach item is unique (the standard formulation), aka 0-1 Knapsack Problem. Must take (1) or leave (0) an item\nFinite amount of each item\nInfinite number of copies of each item\nFractional amount of item can be taken\n\n\n\n26.2.5.2 Bottom-Up Example\nApproach:\n\nFor each item:\n\nCan fit AND improves overall value? Take the item\nToo large to fit in current capacity (or doesn’t improve value)? Leave behind\n\n\nSubproblem: What is the maximum value of items at this index with this capacity?\nThus, will use two nested loops:\n\nLoop through all items\nLook through knapsack sizes from 0 to \\(M\\)\n\nSafe:\n\n\n\n\n1\n2\n3\n4\n5\n\n\n\n\nSize\n1\n2\n5\n6\n7\n\n\nValue\n1\n6\n18\n22\n28\n\n\n\nKnapsack:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSafe Item # \\ Knapsack Size\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n\n\n\n\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\n1\n0\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n\n\n2\n0\n1\n6\n7\n7\n7\n7\n7\n7\n7\n7\n7\n\n\n3\n0\n1\n6\n7\n7\n18\n19\n24\n25\n25\n25\n25\n\n\n4\n0\n1\n6\n7\n7\n18\n22\n24\n28\n29\n29\n40\n\n\n5\n0\n1\n6\n7\n7\n18\n22\n28\n29\n34\n35\n40\n\n\n\nC++ implementation:\nuint32_t knapsackDP(const vector&lt;Item&gt; &items, const size_t m) {\n    const size_t n = items.size();  // Get the number of items\n    vector&lt;vector&lt;uint32_t&gt;&gt; memo(n + 1, vector&lt;uint32_t&gt;(m + 1, 0)); // DP table, initialized to 0\n\n    for (size_t i = 0; i &lt; n; ++i) {         // Iterate over items\n        for (size_t j = 0; j &lt; m + 1; ++j) { // Iterate over capacities (0 to m)\n            if (j &lt; items[i].size)           // If item doesn't fit in knapsack\n                memo[i + 1][j] = memo[i][j]; // Inherit value from previous row\n            else                             // If item fits in the knapsack\n                memo[i + 1][j] = max(memo[i][j], \n                                     memo[i][j - items[i].size] + items[i].value); \n                                             // Either take it or leave it (maximize value)\n        }\n    }\n\n    return memo[n][m];  // Maximum value obtainable with `n` items and capacity `m`\n}\nTime complexity: \\(O(MN)\\)\nExplanation:\n\nTable construction:\n\n\\(i\\) represents the number of items that is being considered, i.e. considering all items 0 to index \\(i\\)\n\\(j\\) represents the current knapsack capacity\nEach cell of the DP table stores the max value that can be obtained using the first \\(i\\) items within capacity \\(j\\)\n\nAlgorithm:\n\nStart with no items and an empty knapsack\nGo through each item and each capacity (double for loop)\n\nIf the item fits and increases overall value: take it\n\nmemo[i][j] is the value of the previous row, i.e. not taking the item\nmemo[i][j - items[i].size()] + items[i].value is the value of taking this item (value of knapsack with capacity that just reaches current capacity if you take this item + this item’s value)\n\nOtherwise, don’t take the item: keep value from previous row\n\n\nSubproblem:\n\nmemo[i][j] stores the best value possible using only the first \\(i\\) items and knapsack of size \\(j\\)\n\n\nReconstructing the solution:\n\nincluded items improve a smaller solution, while excluded items don’t\nif a smaller solution + an item is \\(\\geq\\) a full solution without the item, it is included. Otherwise, exclude\nthe items taken can be reconstructed from the completed memo by working backwords from \\((n, m)\\) to \\((0, 0)\\)\n\nC++ implementation of the reconstruction:\nvector&lt;bool&gt; knapDPReconstruct(const vector&lt;Item&gt; &items,\n                               const vector&lt;vector&lt;uint32_t&gt;&gt; &memo, \n                               const size_t m) {\n    const size_t n = items.size();  // Number of items\n    size_t c = m;                   // Current capacity (tracking remaining space)\n    vector&lt;bool&gt; taken(n, false);   // Boolean vector to track selected items\n\n    for (int i = n - 1; i &gt;= 0; --i) {  // Iterate in reverse to reconstruct solution\n        if (items[i].size &lt;= c) {       // If the item fits in the remaining capacity\n            if (memo[i][c - items[i].size] + items[i].value &gt;= memo[i][c]) {\n                taken[i] = true;        // Mark item as taken\n                c -= items[i].size;     // Reduce the remaining capacity\n            }\n        }\n    }\n\n    return taken; // Return boolean array indicating chosen items\n}",
+    "crumbs": [
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Divide and Conquer, Dynamic Programming</span>"
+    ]
+  },
+  {
+    "objectID": "bbb.html",
+    "href": "bbb.html",
+    "title": "27  Backtracking & Branch and Bound Algorithms",
+    "section": "",
+    "text": "27.1 Backtracking Algorithms\nCan be used to solve the following types of algorithm problems:\nConsider all possible outcomes of each decision, but prune searches that do not satisfy constraints\nThis prevents us from having to perform exhaustive search, however the search space is still large.",
+    "crumbs": [
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Backtracking & Branch and Bound Algorithms</span>"
+    ]
+  },
+  {
+    "objectID": "bbb.html#backtracking-algorithms",
+    "href": "bbb.html#backtracking-algorithms",
+    "title": "27  Backtracking & Branch and Bound Algorithms",
+    "section": "",
+    "text": "Branch on every possibility\nMaintain one or more “partial solutions”\nCheck every partial solution for validity\n\nIf a partial solution violates some constraint, prune it since it makes no sense to go further, i.e. backtrack\n\n\n\n27.1.1 General Form\nPseudocode:\nAlgorithm checknode(node v)\n    if (promising(v))\n        if (solution(v))\n            write solution*\n        else\n            for each node u adjacent to v\n                checknode(u)\nAlternate Form:\nAlgorithm checknode(node v)\n    if (solution(v))\n        write solution*\n    else\n        for each node u adjacent to v\n            if (promising(u))\n                checknode(u)\nsolution(v) - checks ‘depth’ of the solution (constraint satisfaction)\npromising(v) - checks whether should be pruned. Different for each application\nchecknode(v) - called only if partial solution is both promising and not a solution (i.e. branch to check further)\nOften the most difficult part is determining promising()\n\n\n27.1.2 Example: M-Coloring\nGiven:\n\nn (number of nodes)\nm (number of colors)\nW[0…n)[0…n) (adjacency matrix), where W[i][j] is true iff i is connected to node j\n\nFind all possible colorings of graph represented by int vcolor[0...n), where vcolor[i] is the color associated with node i\nPseudocode:\nAlgorithm m_coloring(index i = 0)\n    if (i == n)\n        print vcolor(0) thru vcolor(n - 1)\n        return\n    for (color = 0; color &lt; m; color++)\n        vcolor[i] = color\n        if (promising(i))\n            m_coloring(i + 1)\n\nbool promising(index i)\n    for (index j = 0; j &lt; i; ++j)\n        if (W[i][j] and vcolor[i] == vcolor[j])\n            return false\npromising is essentially where we check partial solution for validity. If it is not promising, we don’t go further, i.e. prune this branch.\n\n\n27.1.3 Example: n Queens\nCan \\(n\\) queens be placed on a \\(1\\times1\\) board so that it doesn’t threaten another?",
+    "crumbs": [
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Backtracking & Branch and Bound Algorithms</span>"
+    ]
+  },
+  {
+    "objectID": "bbb.html#branch-and-bound-algorithms",
+    "href": "bbb.html#branch-and-bound-algorithms",
+    "title": "27  Backtracking & Branch and Bound Algorithms",
+    "section": "27.2 Branch and Bound Algorithms",
+    "text": "27.2 Branch and Bound Algorithms\nEssentially extends backtracking to optimization problems\nMinimizing a function with this property:\n\na partial solution is pruned if its cost \\(\\geq\\) cost of best known complete solution\ne.g. length of a path\n\nThe property is esentially saying that if the cost of a partial solution is too big, drop this partial solution (because cannot be optimal)\n\n27.2.1 General Form\nPseudocode:\nAlgorithm checknode(Node v, Best currBest)\n    Node u\n    if (promising(v, currBest))\n        if (solution(v)) then\n            update(currBest)\n        else\n            for each child u of v\n                checknode(u, currBest)\n    return currBest\nsolution() - checks ‘depth’ of solution (constraint satisfaction)\nupdate() - if the new solution is better than the current solution, update the known current best solution\nchecknode() - called only if promising and not solution (extend and go further to this branch)\nlowerbound() - an estimate of the solution based on the cost so far and the underestimate of the remaining cost (bound)\npromising() - return true when lowerbound() &lt; currBest, i.e. it is promising to look into further since it is potentially (by the lowerbound) the optimal solution. Return of false results in pruning\nThe key idea to B&B is the bound, by bounding away (pruning) unpromising partial solutions\nMinimizing With B&B:\n\nStart with an “infinity” bound\nFind first complete solution – use its cost as an upper bound to prune the rest of the search\nMeasure each partial solution and calculate a lower bound estimate needed to complete the solution\nPrune partial solutions whose lower bounds exceed the current upper bound\nIf another complete solution yields a lower cost – that will be the new upper bound\nWhen search is done, the current upper bound will be a minimal solution\n\nMaximizing With B&B\n\nStart with a “zero” bound\nFind first complete solution – use its cost as a lower bound to prune the rest of the search\nMeasure each partial solution and calculate an upper bound estimate needed to complete the solution\nPrune partial solutions whose upper bounds are less than the current lower bound\nIf another complete solution yields a larger value – that will be the new lower bound\nWhen search is done, the current lower bound will be a maximal solution\n\n\n\n27.2.2 Summary",
+    "crumbs": [
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Backtracking & Branch and Bound Algorithms</span>"
+    ]
+  },
+  {
+    "objectID": "bbb.html#traveling-salesperson-problem-tsp",
+    "href": "bbb.html#traveling-salesperson-problem-tsp",
+    "title": "27  Backtracking & Branch and Bound Algorithms",
+    "section": "27.3 Traveling Salesperson Problem (TSP)",
+    "text": "27.3 Traveling Salesperson Problem (TSP)\n\n27.3.1 Definition\nHamiltonian Cycle -\nTSP is a optimization problem that asks to find the Hamiltonian cycle with least weight\nWe can apply both backtracking and B&B to TSP.",
+    "crumbs": [
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Backtracking & Branch and Bound Algorithms</span>"
+    ]
+  },
+  {
+    "objectID": "trie.html",
+    "href": "trie.html",
+    "title": "28  Trie",
+    "section": "",
+    "text": "A.k.a. Prefix Tree, Radix Tree, or Digital Tree",
+    "crumbs": [
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Trie</span>"
+    ]
+  },
+  {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "27  Summary",
+    "title": "29  Summary",
     "section": "",
     "text": "In summary…",
     "crumbs": [
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {
     "objectID": "tips.html",
     "href": "tips.html",
-    "title": "28  Tips on Solving DS&A Questions",
+    "title": "30  Tips on Solving DS&A Questions",
     "section": "",
-    "text": "28.1 Problem Solving Flowchart",
+    "text": "30.1 Problem Solving Flowchart",
     "crumbs": [
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
     ]
   },
   {
     "objectID": "tips.html#problem-solving-flowchart",
     "href": "tips.html#problem-solving-flowchart",
-    "title": "28  Tips on Solving DS&A Questions",
+    "title": "30  Tips on Solving DS&A Questions",
     "section": "",
-    "text": "Figure 28.1: Tips on problem approach.Image Source",
+    "text": "Figure 30.1: Tips on problem approach.Image Source",
     "crumbs": [
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
     ]
   },
   {
     "objectID": "tips.html#dsa-roadmap",
     "href": "tips.html#dsa-roadmap",
-    "title": "28  Tips on Solving DS&A Questions",
-    "section": "28.2 DS&A Roadmap",
-    "text": "28.2 DS&A Roadmap\n\n\n\nA Roadmap for studying. Source",
+    "title": "30  Tips on Solving DS&A Questions",
+    "section": "30.2 DS&A Roadmap",
+    "text": "30.2 DS&A Roadmap\n\n\n\nA Roadmap for studying. Source",
     "crumbs": [
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
     ]
   },
   {
     "objectID": "tips.html#problem-flowchart",
     "href": "tips.html#problem-flowchart",
-    "title": "28  Tips on Solving DS&A Questions",
-    "section": "28.3 Problem Flowchart",
-    "text": "28.3 Problem Flowchart\n\n\n\n\n\n\nFigure 28.2: A problem solving flowchart based on AlgoMonster’s flowchart. Open the SVG in a new tab and zoom in/out for better viewing.",
+    "title": "30  Tips on Solving DS&A Questions",
+    "section": "30.3 Problem Flowchart",
+    "text": "30.3 Problem Flowchart\n\n\n\n\n\n\nFigure 30.2: A problem solving flowchart based on AlgoMonster’s flowchart. Open the SVG in a new tab and zoom in/out for better viewing.",
     "crumbs": [
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
     ]
   },
   {
     "objectID": "tips.html#roi",
     "href": "tips.html#roi",
-    "title": "28  Tips on Solving DS&A Questions",
-    "section": "28.4 ROI",
-    "text": "28.4 ROI\n\n\n\n\n\n\nFigure 28.3: Studying to Maximizing ROI according to AlgoMonster.",
+    "title": "30  Tips on Solving DS&A Questions",
+    "section": "30.4 ROI",
+    "text": "30.4 ROI\n\n\n\n\n\n\nFigure 30.3: Studying to Maximizing ROI according to AlgoMonster.",
     "crumbs": [
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
     ]
   },
   {
     "objectID": "tips.html#academic-algorithms",
     "href": "tips.html#academic-algorithms",
-    "title": "28  Tips on Solving DS&A Questions",
-    "section": "28.5 “Academic” Algorithms",
-    "text": "28.5 “Academic” Algorithms\nAccording to AlgoMonster, some algorithms that are very rarely/almost never asked in interviews:\n\nMinimal spanning tree: Kruskal’s algorithm and Prim’s algorithm\nMinimum cut: Ford-Fulkerson algorithm\nShortest path in weight graphs: Bellman-Ford-Moore algorithm\nString search: Boyer-Moore algorithm",
+    "title": "30  Tips on Solving DS&A Questions",
+    "section": "30.5 “Academic” Algorithms",
+    "text": "30.5 “Academic” Algorithms\nAccording to AlgoMonster, some algorithms that are very rarely/almost never asked in interviews:\n\nMinimal spanning tree: Kruskal’s algorithm and Prim’s algorithm\nMinimum cut: Ford-Fulkerson algorithm\nShortest path in weight graphs: Bellman-Ford-Moore algorithm\nString search: Boyer-Moore algorithm",
     "crumbs": [
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
     ]
   },
   {
     "objectID": "tips.html#keyword-to-algo",
     "href": "tips.html#keyword-to-algo",
-    "title": "28  Tips on Solving DS&A Questions",
-    "section": "28.6 Keyword to Algo",
-    "text": "28.6 Keyword to Algo\nAlgoMonster provides a convenient “Keyword to Algorithm” summary:\n“Top k”\n\nHeap\n\nE.g. K closest points\n\n\n“How many ways..”\n\nDFS\n\nE.g. Decode ways\n\nDP\n\nE.g. Robot paths\n\n\n“Substring”\n\nSliding window\n\nE.g. Longest substring without repeating characters\n\n\n“Palindrome”\n\ntwo pointers: Valid Palindrome\nDFS: Palindrome Partitioning\nDP: Palindrome Partitioning II\n\n“Tree”\n\nshortest, level-order\n\nBFS: Binary Tree Level-Order Traversal\n\nelse: DFS: Max Depth\n\n“Parentheses”\n\nStack: Valid Parentheses\n\n“Subarray”\n\nSliding window: Maximum subarray sum\nPrefix sum: Subarray sum\nHashmap: Continuous subarray sum\n\nMax subarray\n\nGreedy: Kadane’s Algorithm\n\n“X Sum”\n\nTwo pointer: Two sum\n\n“Max/longest sequence”\n\nDynamic programming, DFS: Longest increasing subsequence\nmono deque: Sliding window maximum\n\n“Minimum/Shortest”\n\nDynamic programming, DFS: Minimal path sum\nBFS: Shortest path\n\n“Partition/split … array/string”\n\nDFS: Decode ways\n\n“Subsequence”\n\nDynamic programming, DFS: Longest increasing subsequence\nSliding window: Longest increasing subsequence\n\n“Matrix”\n\nBFS, DFS: Flood fill, Islands\nDynamic programming: Maximal square\n\n“Jump”\n\nGreedy/DP: Jump game\n\n“Game”\n\nDynamic programming: Divisor game, Stone game\n\n“Connected component”, “Cut/remove” “Regions/groups/connections”\n\nUnion Find: Number of connected components, Redundant connections\n\nTransitive relationship\n\nIf the items are related to one another and the relationship is transitive, then chances are we can build a graph and use BFS or Union Find.\n\nstring converting to another, BFS: Word Ladder\nstring converting to another, BFS, Union Find: Sentence Similarity\nnumbers having divisional relationship, BFS, Union Find: Evaluate Division\n\n\n“Interval”\n\nGreedy: sort by start/end time and then go through sorted intervals Interval Pattern",
+    "title": "30  Tips on Solving DS&A Questions",
+    "section": "30.6 Keyword to Algo",
+    "text": "30.6 Keyword to Algo\nAlgoMonster provides a convenient “Keyword to Algorithm” summary:\n“Top k”\n\nHeap\n\nE.g. K closest points\n\n\n“How many ways..”\n\nDFS\n\nE.g. Decode ways\n\nDP\n\nE.g. Robot paths\n\n\n“Substring”\n\nSliding window\n\nE.g. Longest substring without repeating characters\n\n\n“Palindrome”\n\ntwo pointers: Valid Palindrome\nDFS: Palindrome Partitioning\nDP: Palindrome Partitioning II\n\n“Tree”\n\nshortest, level-order\n\nBFS: Binary Tree Level-Order Traversal\n\nelse: DFS: Max Depth\n\n“Parentheses”\n\nStack: Valid Parentheses\n\n“Subarray”\n\nSliding window: Maximum subarray sum\nPrefix sum: Subarray sum\nHashmap: Continuous subarray sum\n\nMax subarray\n\nGreedy: Kadane’s Algorithm\n\n“X Sum”\n\nTwo pointer: Two sum\n\n“Max/longest sequence”\n\nDynamic programming, DFS: Longest increasing subsequence\nmono deque: Sliding window maximum\n\n“Minimum/Shortest”\n\nDynamic programming, DFS: Minimal path sum\nBFS: Shortest path\n\n“Partition/split … array/string”\n\nDFS: Decode ways\n\n“Subsequence”\n\nDynamic programming, DFS: Longest increasing subsequence\nSliding window: Longest increasing subsequence\n\n“Matrix”\n\nBFS, DFS: Flood fill, Islands\nDynamic programming: Maximal square\n\n“Jump”\n\nGreedy/DP: Jump game\n\n“Game”\n\nDynamic programming: Divisor game, Stone game\n\n“Connected component”, “Cut/remove” “Regions/groups/connections”\n\nUnion Find: Number of connected components, Redundant connections\n\nTransitive relationship\n\nIf the items are related to one another and the relationship is transitive, then chances are we can build a graph and use BFS or Union Find.\n\nstring converting to another, BFS: Word Ladder\nstring converting to another, BFS, Union Find: Sentence Similarity\nnumbers having divisional relationship, BFS, Union Find: Evaluate Division\n\n\n“Interval”\n\nGreedy: sort by start/end time and then go through sorted intervals Interval Pattern",
     "crumbs": [
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Tips on Solving DS&A Questions</span>"
+    ]
+  },
+  {
+    "objectID": "problems.html",
+    "href": "problems.html",
+    "title": "31  Problems & Explanations",
+    "section": "",
+    "text": "31.1 Array",
+    "crumbs": [
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Problems & Explanations</span>"
+    ]
+  },
+  {
+    "objectID": "problems.html#array",
+    "href": "problems.html#array",
+    "title": "31  Problems & Explanations",
+    "section": "",
+    "text": "31.1.1 Two Sum\nDifficulty: Leetcode Easy\n(Blind 75)\nClassic problem\n\nNaive Solution: Brute force approach - O(n^2)\nOptimization: Use hash table\n\nApproach 1: Brute Force\nApproach 2: Hash Table\nHigh-level idea: use the hash table to find whether the number needed to meet the target with the current number is already in the array (that we have iterated through so far).\nExample 1 - Two-pass hash table\nExample 2 - One-pass hash table\n\n\n31.1.2 Contains Duplicate\nDifficulty: Leetcode Easy\n(Blind 75)\nApproaches:\n\nBrute force: compare every pair of numbers in the array\nSort the array, then check for consecutive duplicates\nHashing\n\nBuild hash set\nBuild hash table, find duplicates of the same key\nThe above two methods have same time complexity\n\n\n\n\n31.1.3 Maximum Subarray\nDifficulty: Leetcode Medium\n(Blind 75)\nAt a glance:\n\nNotice that this is an optimization problem: Finding the sum of the maximum subarray\nNotice how this could be split into overlapping subproblems\n\nClarification: Note that a subarray must be a contiguous part of the array, unlike the longest common subsequence problem (where characters can be deleted).\nApproach:\n\nDynamic programming\n\nUse a 1D DP table, at each index store the sum of max subarray up until that index in the array\n\nAt each index, add current number to the sum\n\nIf current sum &gt; max sum so far, update max sum\nIf the current sum becomes negative, then reset to 0 to start a new subarray\nThis is because you always want to start a subarray at a positive number to maximize the sum\n\n\n\n\n\n\n31.1.4 3 Sum\nDifficulty: Leetcode Medium\n(Blind 75)\nConcepts: Array, Two Pointers, Sorting\nApproaches:\n\nNaive approach: Brute force by testing all triplets in the array\nSet + Two Pointer Approach\n\nSort the array\nCreate a set from the array to store unique triplets found that sum to 0\nIterate through the array with index \\(i\\) from 0\n\nInitialize two pointers, one pointer \\(j\\) at \\(i+1\\) and the other \\(k\\) at the end of the array\nWhile\n\ncheck sum of \\(i, j, k\\) is 0. If it is add the triplet to the set, increment \\(j\\) and decrement \\(k\\)\nif the sum is &lt;0, increment \\(j\\). if the sum is &gt;0, decrement \\(k\\)\n*these work because the array is sorted\n\n\nTurn the set to a vector for final output\n\nHash map approach\n\nHash indices of all elements into a hash map",
+    "crumbs": [
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Problems & Explanations</span>"
+    ]
+  },
+  {
+    "objectID": "problems.html#binary-bit-manipulation",
+    "href": "problems.html#binary-bit-manipulation",
+    "title": "31  Problems & Explanations",
+    "section": "31.2 Binary / Bit Manipulation",
+    "text": "31.2 Binary / Bit Manipulation\n\n31.2.1 Sum of Two Integers\n\n\n31.2.2 Number of 1 Bits\n\n\n31.2.3 Counting Bits\n\n\n31.2.4 Missing Number\n\n\n31.2.5 Reverse Bits",
+    "crumbs": [
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Problems & Explanations</span>"
+    ]
+  },
+  {
+    "objectID": "problems.html#dynamic-programming",
+    "href": "problems.html#dynamic-programming",
+    "title": "31  Problems & Explanations",
+    "section": "31.3 Dynamic Programming",
+    "text": "31.3 Dynamic Programming\n\n31.3.1 Coin Change\nDifficulty: Leetcode Medium\n(Blind 75)\nLeetcode\nSolution Reference\nProblem: Given integer array coins (which contain coins of different denominations) and integer amount of money, return the fewest number of coins needed to make up the amount. If the amount cannot be made up, return -1. Assume infinite amount of each kind of coin.\nAt first glance:\n\nNotice that this is an optimization problem: finding the fewest number of coins\nThen, notice how this could be split into subproblems: finding the fewest number of coins needed to make up amount \\(m\\), for an amount \\(\\leq\\) amount (target amount)\nNotice how this is very similar to 0-1 knapsack problem.\nStrategy: Dynamic programming, memoize subproblems. A first solution could use a 2D DP table, then an optimization could make this 1D to save memory\n\nApproach:\n\nSince we want to find the fewest, we know we can initialize the memo with INT_MAX (doesn’t necessarily need to be implemented this way, but easy to think about)\nBuild a 1D memo, where memo[i] indicates the fewest number of coin needed to make up amount \\(i\\)\nKey insight: to build up amount \\(i\\) with minimum number of coin, we can look at \\(memo[i - coin[j]]\\) for each coin \\(j\\)\n\nThis tells us the fewest number of coins needed to build up an amount before we take this coin, and that taking this coin can build up to this amount\nWe take the minimum of \\(memo[i - coin[j]] + 1\\), where +1 is to include taking this current coin denom. Note that we need to prevent out of bounds access for coin[j] incase it is too large\n\n\nExample Walkthrough:\nAssume coins [1, 2, 5] and amount = 6\n\nInitialize memo: {0, INT_MAX, INT_MAX, INT_MAX, INT_MAX, INT_MAX, INT_MAX}\nAt index i=1, we try to build up amount 1 with all the coins we have\n\nTry using coin of val 1 (coin[0]). To build up i-coin[0] (amount 0), we need 0 coins.\nNo other coin values are in bounds, so use coin[0], adding a 1 to this amount\n{0, 1, INT_MAX, INT_MAX, INT_MAX, INT_MAX, INT_MAX}\n\nAt index i=2, build up amount 2 with all the coins we have\n\nTry using coin[0]. To build up amount 2-coin[0] (amount 1), we needed 1 coin. Thus to make up 2 with a value 1 coin, we use this coin and add 1\nTry using coin[1]. To build up amount 2-coin[1] (amount 0), we needed 0 coins. Thus to make up 2 with a value 2 coin, we use this coin and add 1\nWe cannot coin[2].\nMinimum of the coins is to use 1 coin. Thus 1 is the value for this amount\n{0, 1, 1, INT_MAX, INT_MAX, INT_MAX, INT_MAX}\n\nAt index i=3\n\n{0, 1, 1, 2, INT_MAX, INT_MAX, INT_MAX}\n\nAt index i=4\n\n{0, 1, 1, 2, 2, INT_MAX, INT_MAX}\n\n{0, 1, 1, 2, 2, 1, INT_MAX}\n{0, 1, 1, 2, 2, 1, 2}\n\nIf the final cell has INT_MAX, it means it cannot be made up with these coins, and we should instead return -1 per the problem spec.\nC++ Implementation:\nclass Solution {\npublic:\n    int coinChange(vector&lt;int&gt;& coins, int amount) {\n        // Create DP table\n        int memo[amount + 1];\n        memo[0] = 0; // initialize first val to 0 since 0 coins make up amount 0\n\n        // Sort the coins so we can access them from small to large values\n        sort(begin(coins), end(coins));\n\n        // Walk through the DP table, for each amount i\n        for (int i = 1; i &lt; amount + 1; i++) {\n            memo[i] = INT_MAX;  // default value, since we want to find min val, we start with largest possible\n            for (int c : coins) {\n                if (i - c &lt; 0) break;       // if this coin is too large to make up current amount, try next coin\n\n                if (memo[i - c] != INT_MAX) // Only use previously used cell\n                    memo[i] = min(memo[i], 1 + memo[i - c]);\n                    // Choose the minimum between using the current coin c, otherwise keep INT_MAX\n            }\n        }\n\n        // Return -1 if amount cannot be made up\n        return memo[amount] == INT_MAX ? -1 : memo[amount];\n    }\n};\n\n\n31.3.2 Longest Common Subsequence\nDifficulty: Leetcode Medium\n(Blind 75)\nLeetcode\nLeetcode Solution Reference\nSubsequence: a string that can be generated from an original string with some (or no) characters deleted without changing the relative ordering of the remaining characters\nProblem: Given two strings, return the length of the longest common subsequence\nAt first glace:\n\nNotice that this is an optimization problem: finding the longest\nThe problem can be divided into overlapping subproblems -&gt; use dynamic programming\n\nApproach:\n\nDefine the DP table, use a 2D table where each dimension is the length of each string (text1.size() by text2.size()):\n\nAt each cell, store the longest common subsequence up to that position/index of each string\n\ne.g. memo[i][j] represents the longest common subsequence length of subtrings text1[0:i-1] and text2[0:j-1]\n\nFill the table in a bottom-up approach\n\nRecurrence Relation:\n\nif character at [i-1] and [j-1] match, add 1 to the length memo[i][j] = memo[i-1][j-1] + 1\nIf character does not match, use longest length from either substring’s previous char: memo[i][j] = max(memo[i-1][j], memo[i][j-1])\n\n\n\nBottom right cell of the table memo[length1][length2] contains the answer\n\nComplexity: O(length1 \\(\\times\\) length2) in both time and space\nC++ Implementation:\nclass Solution {\npublic:\n    int longestCommonSubsequence(string text1, string text2) {\n        int text1Length = text1.size();\n        int text2Length = text2.size();\n\n        // Create 2D DP table to store lengths of common subsequence at each index\n        int memo[text1Length + 1][text2Length + 1];\n      \n        // Initialize the 2D array with zeros\n        memset(memo, 0, sizeof memo);\n      \n        // Loop through both strings and fill the dp array.\n        for (int i = 1; i &lt;= text1Length; ++i) {\n            for (int j = 1; j &lt;= text2Length; ++j) {\n                // If current characters match, add 1 to the length of the sequence\n                if (text1[i - 1] == text2[j - 1]) {\n                    memo[i][j] = memo[i - 1][j - 1] + 1;\n                } else {\n                    // If current characters do not match, take the max len\n                    // of either skipping the current char of either strings\n                    memo[i][j] = max(memo[i - 1][j], memo[i][j - 1]);\n                }\n            }\n        }\n      \n        // bottom-right cell which contains answer\n        return memo[text1Length][text2Length];\n    }\n};",
+    "crumbs": [
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Problems & Explanations</span>"
+    ]
+  },
+  {
+    "objectID": "problems.html#graph",
+    "href": "problems.html#graph",
+    "title": "31  Problems & Explanations",
+    "section": "31.4 Graph",
+    "text": "31.4 Graph\n\n31.4.1 Course Schedule\nConcepts: DFS, BFS, Graph, Topological Sort\n\n\n31.4.2 Number of Islands\nApproach:\n\nStarting from land, all cells of the island can be found by doing DFS / BFS\n\n\n\n31.4.3 Longest Consecutive Sequence",
+    "crumbs": [
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Problems & Explanations</span>"
+    ]
+  },
+  {
+    "objectID": "problems.html#interval",
+    "href": "problems.html#interval",
+    "title": "31  Problems & Explanations",
+    "section": "31.5 Interval",
+    "text": "31.5 Interval\n\n31.5.1 Merge Intervals",
+    "crumbs": [
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Problems & Explanations</span>"
+    ]
+  },
+  {
+    "objectID": "problems.html#linked-list",
+    "href": "problems.html#linked-list",
+    "title": "31  Problems & Explanations",
+    "section": "31.6 Linked List",
+    "text": "31.6 Linked List\n\n31.6.1 Reverse a linked list\nClassic problem\n\n\n31.6.2 Merge K Sorted Lists",
+    "crumbs": [
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Problems & Explanations</span>"
+    ]
+  },
+  {
+    "objectID": "problems.html#matrix",
+    "href": "problems.html#matrix",
+    "title": "31  Problems & Explanations",
+    "section": "31.7 Matrix",
+    "text": "31.7 Matrix",
+    "crumbs": [
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Problems & Explanations</span>"
+    ]
+  },
+  {
+    "objectID": "problems.html#string",
+    "href": "problems.html#string",
+    "title": "31  Problems & Explanations",
+    "section": "31.8 String",
+    "text": "31.8 String\n\n31.8.1 Longest Substring without Repeating Characters\n\n\n31.8.2 Valid Palindromes\nClassic\n\n\n31.8.3 Valid Parentheses\nClassic",
+    "crumbs": [
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Problems & Explanations</span>"
+    ]
+  },
+  {
+    "objectID": "problems.html#tree",
+    "href": "problems.html#tree",
+    "title": "31  Problems & Explanations",
+    "section": "31.9 Tree",
+    "text": "31.9 Tree",
+    "crumbs": [
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Problems & Explanations</span>"
+    ]
+  },
+  {
+    "objectID": "problems.html#heap",
+    "href": "problems.html#heap",
+    "title": "31  Problems & Explanations",
+    "section": "31.10 Heap",
+    "text": "31.10 Heap\n\n31.10.1 Merge K Sorted Lists\n\n\n31.10.2 Top K Frequent Elements\n\n\n31.10.3 Find Median from Data Stream",
+    "crumbs": [
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Problems & Explanations</span>"
     ]
   }
 ]

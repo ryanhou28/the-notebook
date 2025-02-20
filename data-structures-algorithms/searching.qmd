@@ -1,1 +1,89 @@
 # Searching
+
+## Linear Search
+
+## Binary Search
+
+Searching in a sorted container.
+
+Asymptotic Complexity = O(log n)
+
+### C++ Implementation
+
+Basic Implementation:
+
+```cpp
+int bsearch(double a[], double val, int left, int right) {
+    // n = right - left = size of a[]
+    while (right > left) {                      // loops at most k times
+        int mid = left + (right - left) / 2;    // find midpoint of current range
+        if (val == a[mid]) return mid;          // midpoint is the search val, return it
+
+        if (val < a[mid]) right = mid;          // target val is less than midpoint, update right bound
+        else left = mid + 1;                    // target val is greater than midpoint, update left bound
+    }
+
+    return -1;      // val not found
+}
+
+```
+
+Optimization - 2 comparisons half the time:
+
+```cpp
+int bsearch(double a[], double val, int left, int right) {
+    // n = right - left = size of a[]
+    while (right > left) {                      // loops at most k times
+        int mid = left + (right - left) / 2;    // find midpoint of current range
+
+        if (val > a[mid]) left = mid + 1;
+        else if (val < a[mid]) right = mid;
+        else return mid;
+    }
+
+    return -1;      // val not found
+}
+```
+
+Optimization - always 2 comparisons per loop (requires `val` to be present in `a[]`):
+
+```cpp
+int bsearch(double a[], double val, int left, int right) {
+    // n = right - left = size of a[]
+    while (right > left) {
+        int mid = left + (right - left) / 2;    // find midpoint of current range
+
+        if (val > a[mid]) left = mid + 1;       // target val greater than midpoint, update left bound
+        else right = mid;                       // target val <= midpoint, update right bound
+    }
+
+    return left;
+}
+```
+
+### STL Binary Search
+
+`binary_search()` returns a `bool`
+
+To find locations (iterators):
+
+- `lower_bound()` First item not less than target
+- `upper_bound()` First item greater than target
+- `equal_range()` Pair(lb, ub), all items equal to target
+
+## Tree Search
+
+
+### Depth-First Search (DFS)
+
+
+### Breadth-First Search (BFS)
+
+
+### Dijkstra's Algorithm
+
+### Floyd's Algorithm
+
+### Bellman-Ford
+
+Can handle negative weight edges that Dijkstra's cannot.

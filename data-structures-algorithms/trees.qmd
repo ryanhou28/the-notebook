@@ -9,6 +9,11 @@ A **tree** is
 
 The two definitions above are equivalent.
 
+Types of Trees:
+
+- (Simple) tree
+- Rooted tree
+
 In a **directed tree**, we can identify **child** and **parent** relationships between nodes.
 
 In a **binary tree**, a node has at most two children.
@@ -54,7 +59,7 @@ depth(empty) = 0
 
 depth(node) = depth(parent) + 1
 
-### Complete (Binary) Trees
+## Complete (Binary) Trees
 
 ::: {#nte-complete-bt-def .callout-note}
 ## Definition - Complete Binary Tree
@@ -65,4 +70,80 @@ depth(node) = depth(parent) + 1
 
 A complete binary tree can be stored efficiently in a growable array (vector) by indexing nodes according to level-ordering
 
-<!-- TODO: Add a diagram -->
+- Completeness ensures no gaps in the array, thus easily indexable
+- Index start at 1 (to make math easier)
+  - To achieve 1-based indexing with 0-indexed vector, just add a dummy element at position 0 and ignore it
+
+![Source: EECS 281.](images/trees/complete-bt-vec.png)
+
+
+## Binary Search Trees (BST)
+
+Each node in a BST has at most two children, with the left child containing values less than the parent and the right child containing values greater than the parent.
+
+Allows for efficient searching, insertion, and deletion.
+
+E.g. finding the max/min is as simple as finding the rightmost or leftmost node. E.g., rightmost can be found by keeping on accessing the right child until a node no longer has a right child.
+
+
+
+## Tree Traversals
+
+
+**In-Order** traversal visits:
+
+1. left subtree
+2. current node
+3. right subtree
+
+**Pre-Order** traversal visits:
+
+1. current node
+2. left subtree
+3. right subtree
+
+**Post-Order** traversal visits:
+
+1. left subtree
+2. right subtree
+3. current node
+
+**Level-Order** traversal visits nodes in order of increasing depth in tree. Same as bradth-first traversal.
+
+C++ example:
+
+```cpp
+template <class KEY>
+struct Node {
+    KEY key;
+    Node *left = nullptr;
+    Node *right = nullptr;
+};  // Node{}
+
+void preorder(Node *p) {
+    if (!p) return;
+    visit(p->key);
+    preorder(p->left);
+    preorder(p->right);
+}  // preorder()
+
+void postorder(Node *p) {
+    if (!p) return;
+    postorder(p->left);
+    postorder(p->right);
+    visit(p->key);
+}  // postorder()
+
+void inorder(Node *p) {
+    if (!p) return;
+    inorder(p->left);
+    visit(p->key);
+    inorder(p->right);
+}  // inorder()
+
+```
+
+
+## AVL Tree
+
+

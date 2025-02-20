@@ -1,1 +1,312 @@
 # Problems & Explanations
+
+## Array
+
+### Two Sum
+
+Difficulty: Leetcode Easy
+
+(Blind 75)
+
+Classic problem
+
+- Naive Solution: Brute force approach - O(n^2)
+- Optimization: Use hash table
+  
+Approach 1: Brute Force
+
+Approach 2: Hash Table
+
+High-level idea: use the hash table to find whether the number needed to meet the target with the current number is already in the array (that we have iterated through so far).
+
+Example 1 - Two-pass hash table
+
+Example 2 - One-pass hash table
+
+### Contains Duplicate
+
+Difficulty: Leetcode Easy
+
+(Blind 75)
+
+Approaches:
+
+- Brute force: compare every pair of numbers in the array
+- Sort the array, then check for consecutive duplicates
+- Hashing
+  - Build hash set
+  - Build hash table, find duplicates of the same key
+  - The above two methods have same time complexity
+
+### Maximum Subarray
+
+Difficulty: Leetcode Medium
+
+(Blind 75)
+
+At a glance:
+
+- Notice that this is an optimization problem: Finding the sum of the **maximum** subarray
+- Notice how this could be split into overlapping subproblems
+
+Clarification: Note that a subarray must be a contiguous part of the array, unlike the longest common subsequence problem (where characters can be deleted).
+
+Approach:
+
+- Dynamic programming
+  - Use a 1D DP table, at each index store the sum of max subarray up until that index in the array
+    - At each index, add current number to the sum
+      - If current sum > max sum so far, update max sum
+      - If the current sum becomes negative, then reset to 0 to start a new subarray
+      - This is because you always want to start a subarray at a positive number to maximize the sum
+
+### 3 Sum
+
+Difficulty: Leetcode Medium
+
+(Blind 75)
+
+Concepts: Array, Two Pointers, Sorting
+
+Approaches:
+
+- Naive approach: Brute force by testing all triplets in the array
+- Set + Two Pointer Approach
+  - Sort the array
+  - Create a set from the array to *store* unique triplets found that sum to 0
+  - Iterate through the array with index $i$ from 0
+    - Initialize two pointers, one pointer $j$ at $i+1$ and the other $k$ at the end of the array
+    - While
+      - check sum of $i, j, k$ is 0. If it is add the triplet to the set, increment $j$ and decrement $k$
+      - if the sum is <0, increment $j$. if the sum is >0, decrement $k$
+      - *these work because the array is sorted
+  - Turn the set to a vector for final output
+- Hash map approach
+  - Hash indices of all elements into a hash map
+
+
+## Binary / Bit Manipulation
+
+### Sum of Two Integers
+
+### Number of 1 Bits
+
+
+### Counting Bits
+
+### Missing Number
+
+
+### Reverse Bits
+
+## Dynamic Programming
+
+### Coin Change
+
+Difficulty: Leetcode Medium
+
+(Blind 75)
+
+[Leetcode](https://leetcode.com/problems/coin-change/)
+
+[Solution Reference](https://leetcode.com/problems/coin-change/solutions/778548/c-dp-solution-explained-100-time-100-space/)
+
+Problem: Given integer array `coins` (which contain coins of different denominations) and integer `amount` of money, return the **fewest number of coins needed to make up the amount.** If the amount cannot be made up, return -1. Assume infinite amount of each kind of coin. 
+
+At first glance:
+
+- Notice that this is an optimization problem: finding the **fewest** number of coins
+- Then, notice how this could be split into subproblems: finding the fewest number of coins needed to make up amount $m$, for an amount $\leq$ `amount` (target amount)
+- Notice how this is very similar to 0-1 knapsack problem.
+- Strategy: Dynamic programming, memoize subproblems. A first solution could use a 2D DP table, then an optimization could make this 1D to save memory
+
+Approach:
+
+- Since we want to find the *fewest*, we know we can initialize the memo with `INT_MAX` (doesn't necessarily need to be implemented this way, but easy to think about)
+- Build a 1D memo, where `memo[i]` indicates the fewest number of coin needed to make up amount $i$
+- Key insight: to build up amount $i$ with minimum number of coin, we can look at $memo[i - coin[j]]$ for each coin $j$
+  - This tells us the fewest number of coins needed to build up an amount before we take this coin, and that taking this coin can build up to this amount
+  - We take the minimum of $memo[i - coin[j]] + 1$, where +1 is to include taking this current coin denom. Note that we need to prevent out of bounds access for `coin[j]` incase it is too large
+
+Example Walkthrough:
+
+Assume coins `[1, 2, 5]` and `amount = 6`
+
+1. Initialize memo: `{0, INT_MAX, INT_MAX, INT_MAX, INT_MAX, INT_MAX, INT_MAX}`
+2. At index `i=1`, we try to build up amount 1 with all the coins we have
+   1. Try using coin of val 1 (coin[0]). To build up `i-coin[0]` (amount 0), we need 0 coins.
+   2. No other coin values are in bounds, so use coin[0], adding a 1 to this amount
+   3. `{0, 1, INT_MAX, INT_MAX, INT_MAX, INT_MAX, INT_MAX}`
+3. At index `i=2`, build up amount 2 with all the coins we have
+   1. Try using coin[0]. To build up amount `2-coin[0]` (amount 1), we needed 1 coin. Thus to make up 2 with a value 1 coin, we use this coin and add 1
+   2. Try using coin[1]. To build up amount `2-coin[1]` (amount 0), we needed 0 coins. Thus to make up 2 with a value 2 coin, we use this coin and add 1
+   3. We cannot coin[2].
+   4. Minimum of the coins is to use 1 coin. Thus 1 is the value for this amount
+   5. `{0, 1, 1, INT_MAX, INT_MAX, INT_MAX, INT_MAX}`
+4. At index `i=3`
+   1. `{0, 1, 1, 2, INT_MAX, INT_MAX, INT_MAX}`
+5. At index `i=4`
+   1. `{0, 1, 1, 2, 2, INT_MAX, INT_MAX}`
+6. `{0, 1, 1, 2, 2, 1, INT_MAX}`
+7. `{0, 1, 1, 2, 2, 1, 2}`
+
+If the final cell has `INT_MAX`, it means it cannot be made up with these coins, and we should instead return -1 per the problem spec.
+
+C++ Implementation:
+
+```cpp
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        // Create DP table
+        int memo[amount + 1];
+        memo[0] = 0; // initialize first val to 0 since 0 coins make up amount 0
+
+        // Sort the coins so we can access them from small to large values
+        sort(begin(coins), end(coins));
+
+        // Walk through the DP table, for each amount i
+        for (int i = 1; i < amount + 1; i++) {
+            memo[i] = INT_MAX;  // default value, since we want to find min val, we start with largest possible
+            for (int c : coins) {
+                if (i - c < 0) break;       // if this coin is too large to make up current amount, try next coin
+
+                if (memo[i - c] != INT_MAX) // Only use previously used cell
+                    memo[i] = min(memo[i], 1 + memo[i - c]);
+                    // Choose the minimum between using the current coin c, otherwise keep INT_MAX
+            }
+        }
+
+        // Return -1 if amount cannot be made up
+        return memo[amount] == INT_MAX ? -1 : memo[amount];
+    }
+};
+
+```
+
+### Longest Common Subsequence
+
+Difficulty: Leetcode Medium
+
+(Blind 75)
+
+[Leetcode](https://leetcode.com/problems/longest-common-subsequence/)
+
+[Leetcode Solution Reference](https://leetcode.com/problems/longest-common-subsequence/solutions/4622129/beats-100-dynamic-programming-c-java-python-js-explained-with-video/)
+
+**Subsequence**: a string that can be generated from an original string with some (or no) characters deleted without changing the relative ordering of the remaining characters
+
+Problem: Given two strings, return the length of the **longest common subsequence**
+
+At first glace:
+
+- Notice that this is an optimization problem: finding the **longest**
+- The problem can be divided into overlapping subproblems -> use dynamic programming
+
+Approach:
+
+- Define the DP table, use a 2D table where each dimension is the length of each string (text1.size() by text2.size()):
+  - At each cell, store the longest common subsequence up to that position/index of each string
+    - e.g. `memo[i][j]` represents the longest common subsequence length of subtrings `text1[0:i-1]` and `text2[0:j-1]`
+  - Fill the table in a bottom-up approach
+    - Recurrence Relation:
+      - if character at `[i-1]` and `[j-1]` match, add 1 to the length `memo[i][j] = memo[i-1][j-1] + 1`
+      - If character does not match, use longest length from either substring's previous char: `memo[i][j] = max(memo[i-1][j], memo[i][j-1])`
+- Bottom right cell of the table `memo[length1][length2]` contains the answer
+
+Complexity: O(`length1` $\times$ `length2`) in both time and space
+
+C++ Implementation:
+
+```cpp
+class Solution {
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        int text1Length = text1.size();
+        int text2Length = text2.size();
+
+        // Create 2D DP table to store lengths of common subsequence at each index
+        int memo[text1Length + 1][text2Length + 1];
+      
+        // Initialize the 2D array with zeros
+        memset(memo, 0, sizeof memo);
+      
+        // Loop through both strings and fill the dp array.
+        for (int i = 1; i <= text1Length; ++i) {
+            for (int j = 1; j <= text2Length; ++j) {
+                // If current characters match, add 1 to the length of the sequence
+                if (text1[i - 1] == text2[j - 1]) {
+                    memo[i][j] = memo[i - 1][j - 1] + 1;
+                } else {
+                    // If current characters do not match, take the max len
+                    // of either skipping the current char of either strings
+                    memo[i][j] = max(memo[i - 1][j], memo[i][j - 1]);
+                }
+            }
+        }
+      
+        // bottom-right cell which contains answer
+        return memo[text1Length][text2Length];
+    }
+};
+```
+
+
+## Graph
+
+### Course Schedule
+
+
+
+Concepts: DFS, BFS, Graph, Topological Sort
+
+### Number of Islands
+
+Approach:
+
+- Starting from land, all cells of the island can be found by doing DFS / BFS
+
+### Longest Consecutive Sequence
+
+## Interval
+
+### Merge Intervals
+
+
+
+## Linked List
+
+### Reverse a linked list
+
+Classic problem
+
+### Merge K Sorted Lists
+
+## Matrix
+
+
+## String
+
+### Longest Substring without Repeating Characters
+
+### Valid Palindromes
+
+Classic
+
+### Valid Parentheses
+
+Classic
+
+
+## Tree
+
+
+
+## Heap
+
+### Merge K Sorted Lists
+
+### Top K Frequent Elements
+
+### Find Median from Data Stream
+

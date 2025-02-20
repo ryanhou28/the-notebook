@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>29&nbsp; Problems &amp; Explanations – Data Structures &amp; Algorithms</title>
+<title>31&nbsp; Problems &amp; Explanations – Data Structures &amp; Algorithms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -68,6 +102,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -80,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./problems.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./problems.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -233,56 +296,68 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./sorting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sorting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Sorting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Hash Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dictionary and Hash Maps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./brutegreedy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./divideconquer-dp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bbb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Backtracing, Branch and Bound Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Backtracking &amp; Branch and Bound Algorithms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Trie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tips.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./problems.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></span></a>
   </div>
 </li>
     </ul>
@@ -290,15 +365,69 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#array" id="toc-array" class="nav-link active" data-scroll-target="#array"><span class="header-section-number">31.1</span> Array</a>
+  <ul class="collapse">
+  <li><a href="#two-sum" id="toc-two-sum" class="nav-link" data-scroll-target="#two-sum"><span class="header-section-number">31.1.1</span> Two Sum</a></li>
+  <li><a href="#contains-duplicate" id="toc-contains-duplicate" class="nav-link" data-scroll-target="#contains-duplicate"><span class="header-section-number">31.1.2</span> Contains Duplicate</a></li>
+  <li><a href="#maximum-subarray" id="toc-maximum-subarray" class="nav-link" data-scroll-target="#maximum-subarray"><span class="header-section-number">31.1.3</span> Maximum Subarray</a></li>
+  <li><a href="#sum" id="toc-sum" class="nav-link" data-scroll-target="#sum"><span class="header-section-number">31.1.4</span> 3 Sum</a></li>
+  </ul></li>
+  <li><a href="#binary-bit-manipulation" id="toc-binary-bit-manipulation" class="nav-link" data-scroll-target="#binary-bit-manipulation"><span class="header-section-number">31.2</span> Binary / Bit Manipulation</a>
+  <ul class="collapse">
+  <li><a href="#sum-of-two-integers" id="toc-sum-of-two-integers" class="nav-link" data-scroll-target="#sum-of-two-integers"><span class="header-section-number">31.2.1</span> Sum of Two Integers</a></li>
+  <li><a href="#number-of-1-bits" id="toc-number-of-1-bits" class="nav-link" data-scroll-target="#number-of-1-bits"><span class="header-section-number">31.2.2</span> Number of 1 Bits</a></li>
+  <li><a href="#counting-bits" id="toc-counting-bits" class="nav-link" data-scroll-target="#counting-bits"><span class="header-section-number">31.2.3</span> Counting Bits</a></li>
+  <li><a href="#missing-number" id="toc-missing-number" class="nav-link" data-scroll-target="#missing-number"><span class="header-section-number">31.2.4</span> Missing Number</a></li>
+  <li><a href="#reverse-bits" id="toc-reverse-bits" class="nav-link" data-scroll-target="#reverse-bits"><span class="header-section-number">31.2.5</span> Reverse Bits</a></li>
+  </ul></li>
+  <li><a href="#dynamic-programming" id="toc-dynamic-programming" class="nav-link" data-scroll-target="#dynamic-programming"><span class="header-section-number">31.3</span> Dynamic Programming</a>
+  <ul class="collapse">
+  <li><a href="#coin-change" id="toc-coin-change" class="nav-link" data-scroll-target="#coin-change"><span class="header-section-number">31.3.1</span> Coin Change</a></li>
+  <li><a href="#longest-common-subsequence" id="toc-longest-common-subsequence" class="nav-link" data-scroll-target="#longest-common-subsequence"><span class="header-section-number">31.3.2</span> Longest Common Subsequence</a></li>
+  </ul></li>
+  <li><a href="#graph" id="toc-graph" class="nav-link" data-scroll-target="#graph"><span class="header-section-number">31.4</span> Graph</a>
+  <ul class="collapse">
+  <li><a href="#course-schedule" id="toc-course-schedule" class="nav-link" data-scroll-target="#course-schedule"><span class="header-section-number">31.4.1</span> Course Schedule</a></li>
+  <li><a href="#number-of-islands" id="toc-number-of-islands" class="nav-link" data-scroll-target="#number-of-islands"><span class="header-section-number">31.4.2</span> Number of Islands</a></li>
+  <li><a href="#longest-consecutive-sequence" id="toc-longest-consecutive-sequence" class="nav-link" data-scroll-target="#longest-consecutive-sequence"><span class="header-section-number">31.4.3</span> Longest Consecutive Sequence</a></li>
+  </ul></li>
+  <li><a href="#interval" id="toc-interval" class="nav-link" data-scroll-target="#interval"><span class="header-section-number">31.5</span> Interval</a>
+  <ul class="collapse">
+  <li><a href="#merge-intervals" id="toc-merge-intervals" class="nav-link" data-scroll-target="#merge-intervals"><span class="header-section-number">31.5.1</span> Merge Intervals</a></li>
+  </ul></li>
+  <li><a href="#linked-list" id="toc-linked-list" class="nav-link" data-scroll-target="#linked-list"><span class="header-section-number">31.6</span> Linked List</a>
+  <ul class="collapse">
+  <li><a href="#reverse-a-linked-list" id="toc-reverse-a-linked-list" class="nav-link" data-scroll-target="#reverse-a-linked-list"><span class="header-section-number">31.6.1</span> Reverse a linked list</a></li>
+  <li><a href="#merge-k-sorted-lists" id="toc-merge-k-sorted-lists" class="nav-link" data-scroll-target="#merge-k-sorted-lists"><span class="header-section-number">31.6.2</span> Merge K Sorted Lists</a></li>
+  </ul></li>
+  <li><a href="#matrix" id="toc-matrix" class="nav-link" data-scroll-target="#matrix"><span class="header-section-number">31.7</span> Matrix</a></li>
+  <li><a href="#string" id="toc-string" class="nav-link" data-scroll-target="#string"><span class="header-section-number">31.8</span> String</a>
+  <ul class="collapse">
+  <li><a href="#longest-substring-without-repeating-characters" id="toc-longest-substring-without-repeating-characters" class="nav-link" data-scroll-target="#longest-substring-without-repeating-characters"><span class="header-section-number">31.8.1</span> Longest Substring without Repeating Characters</a></li>
+  <li><a href="#valid-palindromes" id="toc-valid-palindromes" class="nav-link" data-scroll-target="#valid-palindromes"><span class="header-section-number">31.8.2</span> Valid Palindromes</a></li>
+  <li><a href="#valid-parentheses" id="toc-valid-parentheses" class="nav-link" data-scroll-target="#valid-parentheses"><span class="header-section-number">31.8.3</span> Valid Parentheses</a></li>
+  </ul></li>
+  <li><a href="#tree" id="toc-tree" class="nav-link" data-scroll-target="#tree"><span class="header-section-number">31.9</span> Tree</a></li>
+  <li><a href="#heap" id="toc-heap" class="nav-link" data-scroll-target="#heap"><span class="header-section-number">31.10</span> Heap</a>
+  <ul class="collapse">
+  <li><a href="#merge-k-sorted-lists-1" id="toc-merge-k-sorted-lists-1" class="nav-link" data-scroll-target="#merge-k-sorted-lists-1"><span class="header-section-number">31.10.1</span> Merge K Sorted Lists</a></li>
+  <li><a href="#top-k-frequent-elements" id="toc-top-k-frequent-elements" class="nav-link" data-scroll-target="#top-k-frequent-elements"><span class="header-section-number">31.10.2</span> Top K Frequent Elements</a></li>
+  <li><a href="#find-median-from-data-stream" id="toc-find-median-from-data-stream" class="nav-link" data-scroll-target="#find-median-from-data-stream"><span class="header-section-number">31.10.3</span> Find Median from Data Stream</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></h1>
+<h1 class="title"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></h1>
 </div>
 
 
@@ -315,8 +444,331 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="array" class="level2" data-number="31.1">
+<h2 data-number="31.1" class="anchored" data-anchor-id="array"><span class="header-section-number">31.1</span> Array</h2>
+<section id="two-sum" class="level3" data-number="31.1.1">
+<h3 data-number="31.1.1" class="anchored" data-anchor-id="two-sum"><span class="header-section-number">31.1.1</span> Two Sum</h3>
+<p>Difficulty: Leetcode Easy</p>
+<p>(Blind 75)</p>
+<p>Classic problem</p>
+<ul>
+<li>Naive Solution: Brute force approach - O(n^2)</li>
+<li>Optimization: Use hash table</li>
+</ul>
+<p>Approach 1: Brute Force</p>
+<p>Approach 2: Hash Table</p>
+<p>High-level idea: use the hash table to find whether the number needed to meet the target with the current number is already in the array (that we have iterated through so far).</p>
+<p>Example 1 - Two-pass hash table</p>
+<p>Example 2 - One-pass hash table</p>
+</section>
+<section id="contains-duplicate" class="level3" data-number="31.1.2">
+<h3 data-number="31.1.2" class="anchored" data-anchor-id="contains-duplicate"><span class="header-section-number">31.1.2</span> Contains Duplicate</h3>
+<p>Difficulty: Leetcode Easy</p>
+<p>(Blind 75)</p>
+<p>Approaches:</p>
+<ul>
+<li>Brute force: compare every pair of numbers in the array</li>
+<li>Sort the array, then check for consecutive duplicates</li>
+<li>Hashing
+<ul>
+<li>Build hash set</li>
+<li>Build hash table, find duplicates of the same key</li>
+<li>The above two methods have same time complexity</li>
+</ul></li>
+</ul>
+</section>
+<section id="maximum-subarray" class="level3" data-number="31.1.3">
+<h3 data-number="31.1.3" class="anchored" data-anchor-id="maximum-subarray"><span class="header-section-number">31.1.3</span> Maximum Subarray</h3>
+<p>Difficulty: Leetcode Medium</p>
+<p>(Blind 75)</p>
+<p>At a glance:</p>
+<ul>
+<li>Notice that this is an optimization problem: Finding the sum of the <strong>maximum</strong> subarray</li>
+<li>Notice how this could be split into overlapping subproblems</li>
+</ul>
+<p>Clarification: Note that a subarray must be a contiguous part of the array, unlike the longest common subsequence problem (where characters can be deleted).</p>
+<p>Approach:</p>
+<ul>
+<li>Dynamic programming
+<ul>
+<li>Use a 1D DP table, at each index store the sum of max subarray up until that index in the array
+<ul>
+<li>At each index, add current number to the sum
+<ul>
+<li>If current sum &gt; max sum so far, update max sum</li>
+<li>If the current sum becomes negative, then reset to 0 to start a new subarray</li>
+<li>This is because you always want to start a subarray at a positive number to maximize the sum</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="sum" class="level3" data-number="31.1.4">
+<h3 data-number="31.1.4" class="anchored" data-anchor-id="sum"><span class="header-section-number">31.1.4</span> 3 Sum</h3>
+<p>Difficulty: Leetcode Medium</p>
+<p>(Blind 75)</p>
+<p>Concepts: Array, Two Pointers, Sorting</p>
+<p>Approaches:</p>
+<ul>
+<li>Naive approach: Brute force by testing all triplets in the array</li>
+<li>Set + Two Pointer Approach
+<ul>
+<li>Sort the array</li>
+<li>Create a set from the array to <em>store</em> unique triplets found that sum to 0</li>
+<li>Iterate through the array with index <span class="math inline">\(i\)</span> from 0
+<ul>
+<li>Initialize two pointers, one pointer <span class="math inline">\(j\)</span> at <span class="math inline">\(i+1\)</span> and the other <span class="math inline">\(k\)</span> at the end of the array</li>
+<li>While
+<ul>
+<li>check sum of <span class="math inline">\(i, j, k\)</span> is 0. If it is add the triplet to the set, increment <span class="math inline">\(j\)</span> and decrement <span class="math inline">\(k\)</span></li>
+<li>if the sum is &lt;0, increment <span class="math inline">\(j\)</span>. if the sum is &gt;0, decrement <span class="math inline">\(k\)</span></li>
+<li>*these work because the array is sorted</li>
+</ul></li>
+</ul></li>
+<li>Turn the set to a vector for final output</li>
+</ul></li>
+<li>Hash map approach
+<ul>
+<li>Hash indices of all elements into a hash map</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="binary-bit-manipulation" class="level2" data-number="31.2">
+<h2 data-number="31.2" class="anchored" data-anchor-id="binary-bit-manipulation"><span class="header-section-number">31.2</span> Binary / Bit Manipulation</h2>
+<section id="sum-of-two-integers" class="level3" data-number="31.2.1">
+<h3 data-number="31.2.1" class="anchored" data-anchor-id="sum-of-two-integers"><span class="header-section-number">31.2.1</span> Sum of Two Integers</h3>
+</section>
+<section id="number-of-1-bits" class="level3" data-number="31.2.2">
+<h3 data-number="31.2.2" class="anchored" data-anchor-id="number-of-1-bits"><span class="header-section-number">31.2.2</span> Number of 1 Bits</h3>
+</section>
+<section id="counting-bits" class="level3" data-number="31.2.3">
+<h3 data-number="31.2.3" class="anchored" data-anchor-id="counting-bits"><span class="header-section-number">31.2.3</span> Counting Bits</h3>
+</section>
+<section id="missing-number" class="level3" data-number="31.2.4">
+<h3 data-number="31.2.4" class="anchored" data-anchor-id="missing-number"><span class="header-section-number">31.2.4</span> Missing Number</h3>
+</section>
+<section id="reverse-bits" class="level3" data-number="31.2.5">
+<h3 data-number="31.2.5" class="anchored" data-anchor-id="reverse-bits"><span class="header-section-number">31.2.5</span> Reverse Bits</h3>
+</section>
+</section>
+<section id="dynamic-programming" class="level2" data-number="31.3">
+<h2 data-number="31.3" class="anchored" data-anchor-id="dynamic-programming"><span class="header-section-number">31.3</span> Dynamic Programming</h2>
+<section id="coin-change" class="level3" data-number="31.3.1">
+<h3 data-number="31.3.1" class="anchored" data-anchor-id="coin-change"><span class="header-section-number">31.3.1</span> Coin Change</h3>
+<p>Difficulty: Leetcode Medium</p>
+<p>(Blind 75)</p>
+<p><a href="https://leetcode.com/problems/coin-change/">Leetcode</a></p>
+<p><a href="https://leetcode.com/problems/coin-change/solutions/778548/c-dp-solution-explained-100-time-100-space/">Solution Reference</a></p>
+<p>Problem: Given integer array <code>coins</code> (which contain coins of different denominations) and integer <code>amount</code> of money, return the <strong>fewest number of coins needed to make up the amount.</strong> If the amount cannot be made up, return -1. Assume infinite amount of each kind of coin.</p>
+<p>At first glance:</p>
+<ul>
+<li>Notice that this is an optimization problem: finding the <strong>fewest</strong> number of coins</li>
+<li>Then, notice how this could be split into subproblems: finding the fewest number of coins needed to make up amount <span class="math inline">\(m\)</span>, for an amount <span class="math inline">\(\leq\)</span> <code>amount</code> (target amount)</li>
+<li>Notice how this is very similar to 0-1 knapsack problem.</li>
+<li>Strategy: Dynamic programming, memoize subproblems. A first solution could use a 2D DP table, then an optimization could make this 1D to save memory</li>
+</ul>
+<p>Approach:</p>
+<ul>
+<li>Since we want to find the <em>fewest</em>, we know we can initialize the memo with <code>INT_MAX</code> (doesn’t necessarily need to be implemented this way, but easy to think about)</li>
+<li>Build a 1D memo, where <code>memo[i]</code> indicates the fewest number of coin needed to make up amount <span class="math inline">\(i\)</span></li>
+<li>Key insight: to build up amount <span class="math inline">\(i\)</span> with minimum number of coin, we can look at <span class="math inline">\(memo[i - coin[j]]\)</span> for each coin <span class="math inline">\(j\)</span>
+<ul>
+<li>This tells us the fewest number of coins needed to build up an amount before we take this coin, and that taking this coin can build up to this amount</li>
+<li>We take the minimum of <span class="math inline">\(memo[i - coin[j]] + 1\)</span>, where +1 is to include taking this current coin denom. Note that we need to prevent out of bounds access for <code>coin[j]</code> incase it is too large</li>
+</ul></li>
+</ul>
+<p>Example Walkthrough:</p>
+<p>Assume coins <code>[1, 2, 5]</code> and <code>amount = 6</code></p>
+<ol type="1">
+<li>Initialize memo: <code>{0, INT_MAX, INT_MAX, INT_MAX, INT_MAX, INT_MAX, INT_MAX}</code></li>
+<li>At index <code>i=1</code>, we try to build up amount 1 with all the coins we have
+<ol type="1">
+<li>Try using coin of val 1 (coin[0]). To build up <code>i-coin[0]</code> (amount 0), we need 0 coins.</li>
+<li>No other coin values are in bounds, so use coin[0], adding a 1 to this amount</li>
+<li><code>{0, 1, INT_MAX, INT_MAX, INT_MAX, INT_MAX, INT_MAX}</code></li>
+</ol></li>
+<li>At index <code>i=2</code>, build up amount 2 with all the coins we have
+<ol type="1">
+<li>Try using coin[0]. To build up amount <code>2-coin[0]</code> (amount 1), we needed 1 coin. Thus to make up 2 with a value 1 coin, we use this coin and add 1</li>
+<li>Try using coin[1]. To build up amount <code>2-coin[1]</code> (amount 0), we needed 0 coins. Thus to make up 2 with a value 2 coin, we use this coin and add 1</li>
+<li>We cannot coin[2].</li>
+<li>Minimum of the coins is to use 1 coin. Thus 1 is the value for this amount</li>
+<li><code>{0, 1, 1, INT_MAX, INT_MAX, INT_MAX, INT_MAX}</code></li>
+</ol></li>
+<li>At index <code>i=3</code>
+<ol type="1">
+<li><code>{0, 1, 1, 2, INT_MAX, INT_MAX, INT_MAX}</code></li>
+</ol></li>
+<li>At index <code>i=4</code>
+<ol type="1">
+<li><code>{0, 1, 1, 2, 2, INT_MAX, INT_MAX}</code></li>
+</ol></li>
+<li><code>{0, 1, 1, 2, 2, 1, INT_MAX}</code></li>
+<li><code>{0, 1, 1, 2, 2, 1, 2}</code></li>
+</ol>
+<p>If the final cell has <code>INT_MAX</code>, it means it cannot be made up with these coins, and we should instead return -1 per the problem spec.</p>
+<p>C++ Implementation:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> coinChange<span class="op">(</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> coins<span class="op">,</span> <span class="dt">int</span> amount<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Create DP table</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> memo<span class="op">[</span>amount <span class="op">+</span> <span class="dv">1</span><span class="op">];</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        memo<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="co">// initialize first val to 0 since 0 coins make up amount 0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Sort the coins so we can access them from small to large values</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        sort<span class="op">(</span>begin<span class="op">(</span>coins<span class="op">),</span> end<span class="op">(</span>coins<span class="op">));</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Walk through the DP table, for each amount i</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> amount <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            memo<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> INT_MAX<span class="op">;</span>  <span class="co">// default value, since we want to find min val, we start with largest possible</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> c <span class="op">:</span> coins<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>i <span class="op">-</span> c <span class="op">&lt;</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">break</span><span class="op">;</span>       <span class="co">// if this coin is too large to make up current amount, try next coin</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>memo<span class="op">[</span>i <span class="op">-</span> c<span class="op">]</span> <span class="op">!=</span> INT_MAX<span class="op">)</span> <span class="co">// Only use previously used cell</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                    memo<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> min<span class="op">(</span>memo<span class="op">[</span>i<span class="op">],</span> <span class="dv">1</span> <span class="op">+</span> memo<span class="op">[</span>i <span class="op">-</span> c<span class="op">]);</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                    <span class="co">// Choose the minimum between using the current coin c, otherwise keep INT_MAX</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Return -1 if amount cannot be made up</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> memo<span class="op">[</span>amount<span class="op">]</span> <span class="op">==</span> INT_MAX <span class="op">?</span> <span class="op">-</span><span class="dv">1</span> <span class="op">:</span> memo<span class="op">[</span>amount<span class="op">];</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="longest-common-subsequence" class="level3" data-number="31.3.2">
+<h3 data-number="31.3.2" class="anchored" data-anchor-id="longest-common-subsequence"><span class="header-section-number">31.3.2</span> Longest Common Subsequence</h3>
+<p>Difficulty: Leetcode Medium</p>
+<p>(Blind 75)</p>
+<p><a href="https://leetcode.com/problems/longest-common-subsequence/">Leetcode</a></p>
+<p><a href="https://leetcode.com/problems/longest-common-subsequence/solutions/4622129/beats-100-dynamic-programming-c-java-python-js-explained-with-video/">Leetcode Solution Reference</a></p>
+<p><strong>Subsequence</strong>: a string that can be generated from an original string with some (or no) characters deleted without changing the relative ordering of the remaining characters</p>
+<p>Problem: Given two strings, return the length of the <strong>longest common subsequence</strong></p>
+<p>At first glace:</p>
+<ul>
+<li>Notice that this is an optimization problem: finding the <strong>longest</strong></li>
+<li>The problem can be divided into overlapping subproblems -&gt; use dynamic programming</li>
+</ul>
+<p>Approach:</p>
+<ul>
+<li>Define the DP table, use a 2D table where each dimension is the length of each string (text1.size() by text2.size()):
+<ul>
+<li>At each cell, store the longest common subsequence up to that position/index of each string
+<ul>
+<li>e.g.&nbsp;<code>memo[i][j]</code> represents the longest common subsequence length of subtrings <code>text1[0:i-1]</code> and <code>text2[0:j-1]</code></li>
+</ul></li>
+<li>Fill the table in a bottom-up approach
+<ul>
+<li>Recurrence Relation:
+<ul>
+<li>if character at <code>[i-1]</code> and <code>[j-1]</code> match, add 1 to the length <code>memo[i][j] = memo[i-1][j-1] + 1</code></li>
+<li>If character does not match, use longest length from either substring’s previous char: <code>memo[i][j] = max(memo[i-1][j], memo[i][j-1])</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Bottom right cell of the table <code>memo[length1][length2]</code> contains the answer</li>
+</ul>
+<p>Complexity: O(<code>length1</code> <span class="math inline">\(\times\)</span> <code>length2</code>) in both time and space</p>
+<p>C++ Implementation:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> longestCommonSubsequence<span class="op">(</span>string text1<span class="op">,</span> string text2<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> text1Length <span class="op">=</span> text1<span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> text2Length <span class="op">=</span> text2<span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Create 2D DP table to store lengths of common subsequence at each index</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> memo<span class="op">[</span>text1Length <span class="op">+</span> <span class="dv">1</span><span class="op">][</span>text2Length <span class="op">+</span> <span class="dv">1</span><span class="op">];</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Initialize the 2D array with zeros</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        memset<span class="op">(</span>memo<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="kw">sizeof</span> memo<span class="op">);</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Loop through both strings and fill the dp array.</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> text1Length<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;=</span> text2Length<span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                <span class="co">// If current characters match, add 1 to the length of the sequence</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>text1<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">==</span> text2<span class="op">[</span>j <span class="op">-</span> <span class="dv">1</span><span class="op">])</span> <span class="op">{</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                    memo<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">=</span> memo<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">][</span>j <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                    <span class="co">// If current characters do not match, take the max len</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                    <span class="co">// of either skipping the current char of either strings</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                    memo<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">=</span> max<span class="op">(</span>memo<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">][</span>j<span class="op">],</span> memo<span class="op">[</span>i<span class="op">][</span>j <span class="op">-</span> <span class="dv">1</span><span class="op">]);</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">// bottom-right cell which contains answer</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> memo<span class="op">[</span>text1Length<span class="op">][</span>text2Length<span class="op">];</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="graph" class="level2" data-number="31.4">
+<h2 data-number="31.4" class="anchored" data-anchor-id="graph"><span class="header-section-number">31.4</span> Graph</h2>
+<section id="course-schedule" class="level3" data-number="31.4.1">
+<h3 data-number="31.4.1" class="anchored" data-anchor-id="course-schedule"><span class="header-section-number">31.4.1</span> Course Schedule</h3>
+<p>Concepts: DFS, BFS, Graph, Topological Sort</p>
+</section>
+<section id="number-of-islands" class="level3" data-number="31.4.2">
+<h3 data-number="31.4.2" class="anchored" data-anchor-id="number-of-islands"><span class="header-section-number">31.4.2</span> Number of Islands</h3>
+<p>Approach:</p>
+<ul>
+<li>Starting from land, all cells of the island can be found by doing DFS / BFS</li>
+</ul>
+</section>
+<section id="longest-consecutive-sequence" class="level3" data-number="31.4.3">
+<h3 data-number="31.4.3" class="anchored" data-anchor-id="longest-consecutive-sequence"><span class="header-section-number">31.4.3</span> Longest Consecutive Sequence</h3>
+</section>
+</section>
+<section id="interval" class="level2" data-number="31.5">
+<h2 data-number="31.5" class="anchored" data-anchor-id="interval"><span class="header-section-number">31.5</span> Interval</h2>
+<section id="merge-intervals" class="level3" data-number="31.5.1">
+<h3 data-number="31.5.1" class="anchored" data-anchor-id="merge-intervals"><span class="header-section-number">31.5.1</span> Merge Intervals</h3>
+</section>
+</section>
+<section id="linked-list" class="level2" data-number="31.6">
+<h2 data-number="31.6" class="anchored" data-anchor-id="linked-list"><span class="header-section-number">31.6</span> Linked List</h2>
+<section id="reverse-a-linked-list" class="level3" data-number="31.6.1">
+<h3 data-number="31.6.1" class="anchored" data-anchor-id="reverse-a-linked-list"><span class="header-section-number">31.6.1</span> Reverse a linked list</h3>
+<p>Classic problem</p>
+</section>
+<section id="merge-k-sorted-lists" class="level3" data-number="31.6.2">
+<h3 data-number="31.6.2" class="anchored" data-anchor-id="merge-k-sorted-lists"><span class="header-section-number">31.6.2</span> Merge K Sorted Lists</h3>
+</section>
+</section>
+<section id="matrix" class="level2" data-number="31.7">
+<h2 data-number="31.7" class="anchored" data-anchor-id="matrix"><span class="header-section-number">31.7</span> Matrix</h2>
+</section>
+<section id="string" class="level2" data-number="31.8">
+<h2 data-number="31.8" class="anchored" data-anchor-id="string"><span class="header-section-number">31.8</span> String</h2>
+<section id="longest-substring-without-repeating-characters" class="level3" data-number="31.8.1">
+<h3 data-number="31.8.1" class="anchored" data-anchor-id="longest-substring-without-repeating-characters"><span class="header-section-number">31.8.1</span> Longest Substring without Repeating Characters</h3>
+</section>
+<section id="valid-palindromes" class="level3" data-number="31.8.2">
+<h3 data-number="31.8.2" class="anchored" data-anchor-id="valid-palindromes"><span class="header-section-number">31.8.2</span> Valid Palindromes</h3>
+<p>Classic</p>
+</section>
+<section id="valid-parentheses" class="level3" data-number="31.8.3">
+<h3 data-number="31.8.3" class="anchored" data-anchor-id="valid-parentheses"><span class="header-section-number">31.8.3</span> Valid Parentheses</h3>
+<p>Classic</p>
+</section>
+</section>
+<section id="tree" class="level2" data-number="31.9">
+<h2 data-number="31.9" class="anchored" data-anchor-id="tree"><span class="header-section-number">31.9</span> Tree</h2>
+</section>
+<section id="heap" class="level2" data-number="31.10">
+<h2 data-number="31.10" class="anchored" data-anchor-id="heap"><span class="header-section-number">31.10</span> Heap</h2>
+<section id="merge-k-sorted-lists-1" class="level3" data-number="31.10.1">
+<h3 data-number="31.10.1" class="anchored" data-anchor-id="merge-k-sorted-lists-1"><span class="header-section-number">31.10.1</span> Merge K Sorted Lists</h3>
+</section>
+<section id="top-k-frequent-elements" class="level3" data-number="31.10.2">
+<h3 data-number="31.10.2" class="anchored" data-anchor-id="top-k-frequent-elements"><span class="header-section-number">31.10.2</span> Top K Frequent Elements</h3>
+</section>
+<section id="find-median-from-data-stream" class="level3" data-number="31.10.3">
+<h3 data-number="31.10.3" class="anchored" data-anchor-id="find-median-from-data-stream"><span class="header-section-number">31.10.3</span> Find Median from Data Stream</h3>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -739,7 +1191,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./tips.html" class="pagination-link" aria-label="Tips on Solving DS&amp;A Questions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

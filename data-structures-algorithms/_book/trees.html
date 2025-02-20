@@ -268,56 +268,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./sorting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sorting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Sorting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Hash Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dictionary and Hash Maps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./brutegreedy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./divideconquer-dp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bbb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Backtracing, Branch and Bound Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Backtracking &amp; Branch and Bound Algorithms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Trie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tips.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./problems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></span></a>
   </div>
 </li>
     </ul>
@@ -330,7 +342,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#complete-binary-trees" id="toc-complete-binary-trees" class="nav-link active" data-scroll-target="#complete-binary-trees"><span class="header-section-number">18.0.1</span> Complete (Binary) Trees</a></li>
+  <li><a href="#complete-binary-trees" id="toc-complete-binary-trees" class="nav-link active" data-scroll-target="#complete-binary-trees"><span class="header-section-number">18.1</span> Complete (Binary) Trees</a></li>
+  <li><a href="#binary-search-trees-bst" id="toc-binary-search-trees-bst" class="nav-link" data-scroll-target="#binary-search-trees-bst"><span class="header-section-number">18.2</span> Binary Search Trees (BST)</a></li>
+  <li><a href="#tree-traversals" id="toc-tree-traversals" class="nav-link" data-scroll-target="#tree-traversals"><span class="header-section-number">18.3</span> Tree Traversals</a></li>
+  <li><a href="#avl-tree" id="toc-avl-tree" class="nav-link" data-scroll-target="#avl-tree"><span class="header-section-number">18.4</span> AVL Tree</a></li>
   </ul>
 </nav>
     </div>
@@ -363,6 +378,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A graph where any 2 nodes are connected by a unique shortest path</li>
 </ol>
 <p>The two definitions above are equivalent.</p>
+<p>Types of Trees:</p>
+<ul>
+<li>(Simple) tree</li>
+<li>Rooted tree</li>
+</ul>
 <p>In a <strong>directed tree</strong>, we can identify <strong>child</strong> and <strong>parent</strong> relationships between nodes.</p>
 <p>In a <strong>binary tree</strong>, a node has at most two children.</p>
 <p><strong>Terminology:</strong></p>
@@ -391,8 +411,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Depth:</p>
 <p>depth(empty) = 0</p>
 <p>depth(node) = depth(parent) + 1</p>
-<section id="complete-binary-trees" class="level3" data-number="18.0.1">
-<h3 data-number="18.0.1" class="anchored" data-anchor-id="complete-binary-trees"><span class="header-section-number">18.0.1</span> Complete (Binary) Trees</h3>
+<section id="complete-binary-trees" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="complete-binary-trees"><span class="header-section-number">18.1</span> Complete (Binary) Trees</h2>
 <div id="nte-complete-bt-def" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -413,7 +433,78 @@ Note&nbsp;18.1: Definition - Complete Binary Tree
 </figure>
 </div>
 <p>A complete binary tree can be stored efficiently in a growable array (vector) by indexing nodes according to level-ordering</p>
-<!-- TODO: Add a diagram -->
+<ul>
+<li>Completeness ensures no gaps in the array, thus easily indexable</li>
+<li>Index start at 1 (to make math easier)
+<ul>
+<li>To achieve 1-based indexing with 0-indexed vector, just add a dummy element at position 0 and ignore it</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/trees/complete-bt-vec.png" class="img-fluid figure-img"></p>
+<figcaption>Source: EECS 281.</figcaption>
+</figure>
+</div>
+</section>
+<section id="binary-search-trees-bst" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="binary-search-trees-bst"><span class="header-section-number">18.2</span> Binary Search Trees (BST)</h2>
+<p>Each node in a BST has at most two children, with the left child containing values less than the parent and the right child containing values greater than the parent.</p>
+<p>Allows for efficient searching, insertion, and deletion.</p>
+<p>E.g. finding the max/min is as simple as finding the rightmost or leftmost node. E.g., rightmost can be found by keeping on accessing the right child until a node no longer has a right child.</p>
+</section>
+<section id="tree-traversals" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="tree-traversals"><span class="header-section-number">18.3</span> Tree Traversals</h2>
+<p><strong>In-Order</strong> traversal visits:</p>
+<ol type="1">
+<li>left subtree</li>
+<li>current node</li>
+<li>right subtree</li>
+</ol>
+<p><strong>Pre-Order</strong> traversal visits:</p>
+<ol type="1">
+<li>current node</li>
+<li>left subtree</li>
+<li>right subtree</li>
+</ol>
+<p><strong>Post-Order</strong> traversal visits:</p>
+<ol type="1">
+<li>left subtree</li>
+<li>right subtree</li>
+<li>current node</li>
+</ol>
+<p><strong>Level-Order</strong> traversal visits nodes in order of increasing depth in tree. Same as bradth-first traversal.</p>
+<p>C++ example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> KEY<span class="op">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Node <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    KEY key<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    Node <span class="op">*</span>left <span class="op">=</span> <span class="kw">nullptr</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    Node <span class="op">*</span>right <span class="op">=</span> <span class="kw">nullptr</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">};</span>  <span class="co">// Node{}</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> preorder<span class="op">(</span>Node <span class="op">*</span>p<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>p<span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    visit<span class="op">(</span>p<span class="op">-&gt;</span>key<span class="op">);</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    preorder<span class="op">(</span>p<span class="op">-&gt;</span>left<span class="op">);</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    preorder<span class="op">(</span>p<span class="op">-&gt;</span>right<span class="op">);</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>  <span class="co">// preorder()</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> postorder<span class="op">(</span>Node <span class="op">*</span>p<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>p<span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    postorder<span class="op">(</span>p<span class="op">-&gt;</span>left<span class="op">);</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    postorder<span class="op">(</span>p<span class="op">-&gt;</span>right<span class="op">);</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    visit<span class="op">(</span>p<span class="op">-&gt;</span>key<span class="op">);</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>  <span class="co">// postorder()</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> inorder<span class="op">(</span>Node <span class="op">*</span>p<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>p<span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    inorder<span class="op">(</span>p<span class="op">-&gt;</span>left<span class="op">);</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    visit<span class="op">(</span>p<span class="op">-&gt;</span>key<span class="op">);</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    inorder<span class="op">(</span>p<span class="op">-&gt;</span>right<span class="op">);</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>  <span class="co">// inorder()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="avl-tree" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="avl-tree"><span class="header-section-number">18.4</span> AVL Tree</h2>
 
 
 </section>

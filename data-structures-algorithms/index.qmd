@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-This is my notes on Data Structures & Algorithms in C++.
+Notes on Data Structures & Algorithms, illustrated in C++.
 
 # Resources {.unnumbered}
 

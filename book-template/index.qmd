@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-This is my notes on ????.
+My notes on ???.
 
 # Resources {.unnumbered}
 

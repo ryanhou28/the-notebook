@@ -1,2 +1,29 @@
 # Brute-Force & Greedy Algorithms
 
+## Brute-Force
+
+Definition:
+
+
+## Greedy Algorithms
+
+Definition: At every decision step, makes the locally optimal decision.
+
+To guarantee correctness/optimality, must show that locally optimal solutions lead to globally optimal solution
+
+
+## Summary
+
+Brute-force
+
+- Solve problem in simplest way
+- Generate entire solution set, pick best
+- Will give optimal solution with (typically) poor efficiency
+
+Greedy
+
+- Make local, best decision, and don’t look back
+- May give optimal solution with (typically) ‘better’
+efficiency
+- Depends upon ‘greedy-choice property’
+- Global optimum found by series of local optimum choices

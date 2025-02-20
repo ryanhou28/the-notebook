@@ -1,0 +1,13 @@
+# Preface {.unnumbered}
+
+Notes on Python. The notebook will be kept relatively simple, mainly as a cheatsheet for common syntax/operations.
+
+# Resources {.unnumbered}
+
+Some relevant resources:
+
+- [Resource Name](url)
+
+Textbooks:
+
+- [Book 1](url)

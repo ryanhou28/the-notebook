@@ -1,1 +1,165 @@
-# Backtracing, Branch and Bound Algorithms
+# Backtracking & Branch and Bound Algorithms
+
+Can be used to solve the following types of algorithm problems:
+
+- **Constraint satisfaction problems**
+  - Stop when a satisfying solution is found
+    - one solution is sufficient
+  - Can rely on **backtracking algorithms**
+  - E.g. sorting, mazes, spanning tree, puzzles, GRE/analytical
+- **Optimization problems**
+  - Usually cannot stop early (since we need to find a global min/max)
+  - Must develop a set of possible solutions
+    - "feasibility set"
+    - Then pick best solution
+  - Can rely on **branch and bound algorithms**
+  - E.g. giving change, MST
+- 
+
+## Backtracking Algorithms
+
+Consider all possible outcomes of each decision, but prune searches that do not satisfy constraints
+
+This prevents us from having to perform exhaustive search, however the search space is still large.
+
+
+- Branch on every possibility
+- Maintain one or more "partial solutions"
+- Check every partial solution for validity
+  - If a partial solution violates some constraint, prune it since it makes no sense to go further, i.e. backtrack
+
+### General Form
+
+Pseudocode:
+```
+Algorithm checknode(node v)
+    if (promising(v))
+        if (solution(v))
+            write solution*
+        else
+            for each node u adjacent to v
+                checknode(u)
+```
+
+Alternate Form:
+```
+Algorithm checknode(node v)
+    if (solution(v))
+        write solution*
+    else
+        for each node u adjacent to v
+            if (promising(u))
+                checknode(u)
+```
+
+`solution(v)` - checks 'depth' of the solution (constraint satisfaction)
+
+`promising(v)` - checks whether should be pruned. Different for each application
+
+`checknode(v)` - called only if partial solution is both promising and not a solution (i.e. branch to check further)
+
+Often the most difficult part is determining `promising()`
+
+### Example: M-Coloring
+
+Given:
+
+- n (number of nodes)
+- m (number of colors)
+- W[0...n)[0...n) (adjacency matrix), where W[i][j] is true iff i is connected to node j
+
+Find all possible colorings of graph represented by `int vcolor[0...n)`, where `vcolor[i]` is the color associated with node `i`
+
+Pseudocode:
+
+```
+Algorithm m_coloring(index i = 0)
+    if (i == n)
+        print vcolor(0) thru vcolor(n - 1)
+        return
+    for (color = 0; color < m; color++)
+        vcolor[i] = color
+        if (promising(i))
+            m_coloring(i + 1)
+
+bool promising(index i)
+    for (index j = 0; j < i; ++j)
+        if (W[i][j] and vcolor[i] == vcolor[j])
+            return false
+```
+
+promising is essentially where we check partial solution for validity. If it is not promising, we don't go further, i.e. prune this branch.
+
+### Example: n Queens
+
+Can $n$ queens be placed on a $1\times1$ board so that it doesn't threaten another?
+
+
+## Branch and Bound Algorithms
+
+Essentially extends backtracking to optimization problems
+
+Minimizing a function with this property:
+
+- a partial solution is pruned if its cost $\geq$ cost of best known complete solution
+- e.g. length of a path
+
+The property is esentially saying that if the cost of a partial solution is too big, drop this partial solution (because cannot be optimal)
+
+### General Form
+
+Pseudocode:
+```
+Algorithm checknode(Node v, Best currBest)
+    Node u
+    if (promising(v, currBest))
+        if (solution(v)) then
+            update(currBest)
+        else
+            for each child u of v
+                checknode(u, currBest)
+    return currBest
+```
+
+`solution()` - checks 'depth' of solution (constraint satisfaction)
+
+`update()` - if the new solution is better than the current solution, update the known current best solution
+
+`checknode()` - called only if promising and not solution (extend and go further to this branch)
+
+`lowerbound()` - an estimate of the solution based on the cost so far and the underestimate of the remaining cost (bound)
+
+`promising()` - return true when `lowerbound() < currBest`, i.e. it is promising to look into further since it is potentially (by the lowerbound) the optimal solution. Return of false results in pruning
+
+The key idea to B&B is the **bound**, by bounding away (pruning) unpromising partial solutions
+
+Minimizing With B&B:
+
+- Start with an “infinity” bound
+- Find first complete solution – use its cost as an upper bound to prune the rest of the search
+- Measure each partial solution and calculate a lower bound estimate needed to complete the solution
+- Prune partial solutions whose lower bounds exceed the current upper bound
+- If another complete solution yields a lower cost – that will be the new upper bound
+- When search is done, the current upper bound will be a minimal solution
+
+Maximizing With B&B
+
+- Start with a “zero” bound
+- Find first complete solution – use its cost as a lower bound to prune the rest of the search
+- Measure each partial solution and calculate an upper bound estimate needed to complete the solution
+- Prune partial solutions whose upper bounds are less than the current lower bound
+- If another complete solution yields a larger value – that will be the new lower bound
+- When search is done, the current lower bound will be a maximal solution
+
+### Summary
+
+## Traveling Salesperson Problem (TSP)
+
+### Definition
+
+Hamiltonian Cycle - 
+
+TSP is a optimization problem that asks to find the Hamiltonian cycle with least weight
+
+
+We can apply both backtracking and B&B to TSP.

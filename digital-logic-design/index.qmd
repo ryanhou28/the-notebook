@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-This is my notes on digital logic design.
+Notes on digital logic design.
 
 
 # Resources {.unnumbered}

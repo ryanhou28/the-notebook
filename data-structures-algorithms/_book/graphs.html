@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>23&nbsp; Graphs – Data Structures &amp; Algorithms</title>
+<title>24&nbsp; Graphs – Data Structures &amp; Algorithms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graphs.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graphs.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Graphs</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -234,56 +263,68 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./sorting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sorting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Sorting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Hash Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dictionary and Hash Maps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./brutegreedy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./divideconquer-dp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bbb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Backtracing, Branch and Bound Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Backtracking &amp; Branch and Bound Algorithms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Trie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tips.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./problems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></span></a>
   </div>
 </li>
     </ul>
@@ -291,15 +332,29 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#definitions-terminologies" id="toc-definitions-terminologies" class="nav-link active" data-scroll-target="#definitions-terminologies"><span class="header-section-number">24.1</span> Definitions &amp; Terminologies</a></li>
+  <li><a href="#representations" id="toc-representations" class="nav-link" data-scroll-target="#representations"><span class="header-section-number">24.2</span> Representations</a></li>
+  <li><a href="#shortest-path" id="toc-shortest-path" class="nav-link" data-scroll-target="#shortest-path"><span class="header-section-number">24.3</span> Shortest Path</a></li>
+  <li><a href="#traveling-salesman-problem" id="toc-traveling-salesman-problem" class="nav-link" data-scroll-target="#traveling-salesman-problem"><span class="header-section-number">24.4</span> Traveling Salesman Problem</a></li>
+  <li><a href="#minimum-spanning-tree" id="toc-minimum-spanning-tree" class="nav-link" data-scroll-target="#minimum-spanning-tree"><span class="header-section-number">24.5</span> Minimum Spanning Tree</a>
+  <ul class="collapse">
+  <li><a href="#prims-algorithm" id="toc-prims-algorithm" class="nav-link" data-scroll-target="#prims-algorithm"><span class="header-section-number">24.5.1</span> Prim’s Algorithm</a></li>
+  <li><a href="#kruskals-algorithm" id="toc-kruskals-algorithm" class="nav-link" data-scroll-target="#kruskals-algorithm"><span class="header-section-number">24.5.2</span> Kruskal’s Algorithm</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></h1>
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Graphs</span></h1>
 </div>
 
 
@@ -316,8 +371,60 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="definitions-terminologies" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="definitions-terminologies"><span class="header-section-number">24.1</span> Definitions &amp; Terminologies</h2>
+</section>
+<section id="representations" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="representations"><span class="header-section-number">24.2</span> Representations</h2>
+<p>Adjacency Matrix, Distance Matrix, Adjacency List</p>
+</section>
+<section id="shortest-path" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="shortest-path"><span class="header-section-number">24.3</span> Shortest Path</h2>
+<p>Single-source shortest path, can solve with:</p>
+<ul>
+<li>DFS
+<ul>
+<li>Only works on trees</li>
+</ul></li>
+<li>BFS
+<ul>
+<li>Works for unweighted edges (or when all edges have same weight)</li>
+</ul></li>
+<li>Dijkstra’s
+<ul>
+<li>Works for weighted edges</li>
+</ul></li>
+</ul>
+</section>
+<section id="traveling-salesman-problem" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="traveling-salesman-problem"><span class="header-section-number">24.4</span> Traveling Salesman Problem</h2>
+<p>Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?</p>
+<p>I.e. given an undirected weighted graph, find a path that visits every node and returns to the first node with minimum total cost.</p>
+</section>
+<section id="minimum-spanning-tree" class="level2" data-number="24.5">
+<h2 data-number="24.5" class="anchored" data-anchor-id="minimum-spanning-tree"><span class="header-section-number">24.5</span> Minimum Spanning Tree</h2>
+<p>Given: edge-weighted, undirected graph <span class="math inline">\(G=(V,E)\)</span></p>
+<p>Find: subgraph <span class="math inline">\(T=(V,E'), E' \subseteq E\)</span> such that:</p>
+<ul>
+<li>All vertices are pair-wise connected</li>
+<li>The sum of all edge weights in <span class="math inline">\(T\)</span> is minimal</li>
+</ul>
+<p>If there’s a cycle in T, remove edge with highest weight</p>
+<p>Therefore T must be a tree (since it must have no cycles)</p>
+<p>Two algorithms to find MST:</p>
+<ul>
+<li>Prim’s</li>
+<li>Kruskal’s</li>
+</ul>
+<section id="prims-algorithm" class="level3" data-number="24.5.1">
+<h3 data-number="24.5.1" class="anchored" data-anchor-id="prims-algorithm"><span class="header-section-number">24.5.1</span> Prim’s Algorithm</h3>
+</section>
+<section id="kruskals-algorithm" class="level3" data-number="24.5.2">
+<h3 data-number="24.5.2" class="anchored" data-anchor-id="kruskals-algorithm"><span class="header-section-number">24.5.2</span> Kruskal’s Algorithm</h3>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -739,13 +846,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./hash.html" class="pagination-link" aria-label="Hash Maps">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Hash Maps</span></span>
+      <a href="./hash.html" class="pagination-link" aria-label="Dictionary and Hash Maps">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dictionary and Hash Maps</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./brutegreedy.html" class="pagination-link" aria-label="Brute-Force &amp; Greedy Algorithms">
-        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

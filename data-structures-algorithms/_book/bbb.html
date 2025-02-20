@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>26&nbsp; Backtracing, Branch and Bound Algorithms – Data Structures &amp; Algorithms</title>
+<title>27&nbsp; Backtracking &amp; Branch and Bound Algorithms – Data Structures &amp; Algorithms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./trie.html" rel="next">
 <link href="./divideconquer-dp.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bbb.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Backtracing, Branch and Bound Algorithms</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bbb.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Backtracking &amp; Branch and Bound Algorithms</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -234,56 +263,68 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./sorting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sorting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Sorting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Hash Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dictionary and Hash Maps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./brutegreedy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./divideconquer-dp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bbb.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Backtracing, Branch and Bound Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Backtracking &amp; Branch and Bound Algorithms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Trie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tips.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./problems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></span></a>
   </div>
 </li>
     </ul>
@@ -291,15 +332,35 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#backtracking-algorithms" id="toc-backtracking-algorithms" class="nav-link active" data-scroll-target="#backtracking-algorithms"><span class="header-section-number">27.1</span> Backtracking Algorithms</a>
+  <ul class="collapse">
+  <li><a href="#general-form" id="toc-general-form" class="nav-link" data-scroll-target="#general-form"><span class="header-section-number">27.1.1</span> General Form</a></li>
+  <li><a href="#example-m-coloring" id="toc-example-m-coloring" class="nav-link" data-scroll-target="#example-m-coloring"><span class="header-section-number">27.1.2</span> Example: M-Coloring</a></li>
+  <li><a href="#example-n-queens" id="toc-example-n-queens" class="nav-link" data-scroll-target="#example-n-queens"><span class="header-section-number">27.1.3</span> Example: n Queens</a></li>
+  </ul></li>
+  <li><a href="#branch-and-bound-algorithms" id="toc-branch-and-bound-algorithms" class="nav-link" data-scroll-target="#branch-and-bound-algorithms"><span class="header-section-number">27.2</span> Branch and Bound Algorithms</a>
+  <ul class="collapse">
+  <li><a href="#general-form-1" id="toc-general-form-1" class="nav-link" data-scroll-target="#general-form-1"><span class="header-section-number">27.2.1</span> General Form</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">27.2.2</span> Summary</a></li>
+  </ul></li>
+  <li><a href="#traveling-salesperson-problem-tsp" id="toc-traveling-salesperson-problem-tsp" class="nav-link" data-scroll-target="#traveling-salesperson-problem-tsp"><span class="header-section-number">27.3</span> Traveling Salesperson Problem (TSP)</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><span class="header-section-number">27.3.1</span> Definition</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Backtracing, Branch and Bound Algorithms</span></h1>
+<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Backtracking &amp; Branch and Bound Algorithms</span></h1>
 </div>
 
 
@@ -316,8 +377,156 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Can be used to solve the following types of algorithm problems:</p>
+<ul>
+<li><strong>Constraint satisfaction problems</strong>
+<ul>
+<li>Stop when a satisfying solution is found
+<ul>
+<li>one solution is sufficient</li>
+</ul></li>
+<li>Can rely on <strong>backtracking algorithms</strong></li>
+<li>E.g. sorting, mazes, spanning tree, puzzles, GRE/analytical</li>
+</ul></li>
+<li><strong>Optimization problems</strong>
+<ul>
+<li>Usually cannot stop early (since we need to find a global min/max)</li>
+<li>Must develop a set of possible solutions
+<ul>
+<li>“feasibility set”</li>
+<li>Then pick best solution</li>
+</ul></li>
+<li>Can rely on <strong>branch and bound algorithms</strong></li>
+<li>E.g. giving change, MST</li>
+</ul></li>
+<li></li>
+</ul>
+<section id="backtracking-algorithms" class="level2" data-number="27.1">
+<h2 data-number="27.1" class="anchored" data-anchor-id="backtracking-algorithms"><span class="header-section-number">27.1</span> Backtracking Algorithms</h2>
+<p>Consider all possible outcomes of each decision, but prune searches that do not satisfy constraints</p>
+<p>This prevents us from having to perform exhaustive search, however the search space is still large.</p>
+<ul>
+<li>Branch on every possibility</li>
+<li>Maintain one or more “partial solutions”</li>
+<li>Check every partial solution for validity
+<ul>
+<li>If a partial solution violates some constraint, prune it since it makes no sense to go further, i.e.&nbsp;backtrack</li>
+</ul></li>
+</ul>
+<section id="general-form" class="level3" data-number="27.1.1">
+<h3 data-number="27.1.1" class="anchored" data-anchor-id="general-form"><span class="header-section-number">27.1.1</span> General Form</h3>
+<p>Pseudocode:</p>
+<pre><code>Algorithm checknode(node v)
+    if (promising(v))
+        if (solution(v))
+            write solution*
+        else
+            for each node u adjacent to v
+                checknode(u)</code></pre>
+<p>Alternate Form:</p>
+<pre><code>Algorithm checknode(node v)
+    if (solution(v))
+        write solution*
+    else
+        for each node u adjacent to v
+            if (promising(u))
+                checknode(u)</code></pre>
+<p><code>solution(v)</code> - checks ‘depth’ of the solution (constraint satisfaction)</p>
+<p><code>promising(v)</code> - checks whether should be pruned. Different for each application</p>
+<p><code>checknode(v)</code> - called only if partial solution is both promising and not a solution (i.e.&nbsp;branch to check further)</p>
+<p>Often the most difficult part is determining <code>promising()</code></p>
+</section>
+<section id="example-m-coloring" class="level3" data-number="27.1.2">
+<h3 data-number="27.1.2" class="anchored" data-anchor-id="example-m-coloring"><span class="header-section-number">27.1.2</span> Example: M-Coloring</h3>
+<p>Given:</p>
+<ul>
+<li>n (number of nodes)</li>
+<li>m (number of colors)</li>
+<li>W[0…n)[0…n) (adjacency matrix), where W[i][j] is true iff i is connected to node j</li>
+</ul>
+<p>Find all possible colorings of graph represented by <code>int vcolor[0...n)</code>, where <code>vcolor[i]</code> is the color associated with node <code>i</code></p>
+<p>Pseudocode:</p>
+<pre><code>Algorithm m_coloring(index i = 0)
+    if (i == n)
+        print vcolor(0) thru vcolor(n - 1)
+        return
+    for (color = 0; color &lt; m; color++)
+        vcolor[i] = color
+        if (promising(i))
+            m_coloring(i + 1)
+
+bool promising(index i)
+    for (index j = 0; j &lt; i; ++j)
+        if (W[i][j] and vcolor[i] == vcolor[j])
+            return false</code></pre>
+<p>promising is essentially where we check partial solution for validity. If it is not promising, we don’t go further, i.e.&nbsp;prune this branch.</p>
+</section>
+<section id="example-n-queens" class="level3" data-number="27.1.3">
+<h3 data-number="27.1.3" class="anchored" data-anchor-id="example-n-queens"><span class="header-section-number">27.1.3</span> Example: n Queens</h3>
+<p>Can <span class="math inline">\(n\)</span> queens be placed on a <span class="math inline">\(1\times1\)</span> board so that it doesn’t threaten another?</p>
+</section>
+</section>
+<section id="branch-and-bound-algorithms" class="level2" data-number="27.2">
+<h2 data-number="27.2" class="anchored" data-anchor-id="branch-and-bound-algorithms"><span class="header-section-number">27.2</span> Branch and Bound Algorithms</h2>
+<p>Essentially extends backtracking to optimization problems</p>
+<p>Minimizing a function with this property:</p>
+<ul>
+<li>a partial solution is pruned if its cost <span class="math inline">\(\geq\)</span> cost of best known complete solution</li>
+<li>e.g.&nbsp;length of a path</li>
+</ul>
+<p>The property is esentially saying that if the cost of a partial solution is too big, drop this partial solution (because cannot be optimal)</p>
+<section id="general-form-1" class="level3" data-number="27.2.1">
+<h3 data-number="27.2.1" class="anchored" data-anchor-id="general-form-1"><span class="header-section-number">27.2.1</span> General Form</h3>
+<p>Pseudocode:</p>
+<pre><code>Algorithm checknode(Node v, Best currBest)
+    Node u
+    if (promising(v, currBest))
+        if (solution(v)) then
+            update(currBest)
+        else
+            for each child u of v
+                checknode(u, currBest)
+    return currBest</code></pre>
+<p><code>solution()</code> - checks ‘depth’ of solution (constraint satisfaction)</p>
+<p><code>update()</code> - if the new solution is better than the current solution, update the known current best solution</p>
+<p><code>checknode()</code> - called only if promising and not solution (extend and go further to this branch)</p>
+<p><code>lowerbound()</code> - an estimate of the solution based on the cost so far and the underestimate of the remaining cost (bound)</p>
+<p><code>promising()</code> - return true when <code>lowerbound() &lt; currBest</code>, i.e.&nbsp;it is promising to look into further since it is potentially (by the lowerbound) the optimal solution. Return of false results in pruning</p>
+<p>The key idea to B&amp;B is the <strong>bound</strong>, by bounding away (pruning) unpromising partial solutions</p>
+<p>Minimizing With B&amp;B:</p>
+<ul>
+<li>Start with an “infinity” bound</li>
+<li>Find first complete solution – use its cost as an upper bound to prune the rest of the search</li>
+<li>Measure each partial solution and calculate a lower bound estimate needed to complete the solution</li>
+<li>Prune partial solutions whose lower bounds exceed the current upper bound</li>
+<li>If another complete solution yields a lower cost – that will be the new upper bound</li>
+<li>When search is done, the current upper bound will be a minimal solution</li>
+</ul>
+<p>Maximizing With B&amp;B</p>
+<ul>
+<li>Start with a “zero” bound</li>
+<li>Find first complete solution – use its cost as a lower bound to prune the rest of the search</li>
+<li>Measure each partial solution and calculate an upper bound estimate needed to complete the solution</li>
+<li>Prune partial solutions whose upper bounds are less than the current lower bound</li>
+<li>If another complete solution yields a larger value – that will be the new lower bound</li>
+<li>When search is done, the current lower bound will be a maximal solution</li>
+</ul>
+</section>
+<section id="summary" class="level3" data-number="27.2.2">
+<h3 data-number="27.2.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">27.2.2</span> Summary</h3>
+</section>
+</section>
+<section id="traveling-salesperson-problem-tsp" class="level2" data-number="27.3">
+<h2 data-number="27.3" class="anchored" data-anchor-id="traveling-salesperson-problem-tsp"><span class="header-section-number">27.3</span> Traveling Salesperson Problem (TSP)</h2>
+<section id="definition" class="level3" data-number="27.3.1">
+<h3 data-number="27.3.1" class="anchored" data-anchor-id="definition"><span class="header-section-number">27.3.1</span> Definition</h3>
+<p>Hamiltonian Cycle -</p>
+<p>TSP is a optimization problem that asks to find the Hamiltonian cycle with least weight</p>
+<p>We can apply both backtracking and B&amp;B to TSP.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -740,12 +949,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./divideconquer-dp.html" class="pagination-link" aria-label="Divide and Conquer, Dynamic Programming">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./trie.html" class="pagination-link" aria-label="Trie">
+        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Trie</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

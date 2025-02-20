@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-This is my notes on Design Verification. The notes will mainly cover verification concepts, Verilog and SystemVerilog, and UVM. Pre-req: digital logic design fundamentals (see my Digital Logic Design notebook).
+Notes on Design Verification. The notes will mainly cover verification concepts, Verilog and SystemVerilog, and UVM. Pre-req: digital logic design fundamentals (see my Digital Logic Design notebook).
 
 # Resources {.unnumbered}
 

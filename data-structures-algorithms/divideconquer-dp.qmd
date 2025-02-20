@@ -1,1 +1,202 @@
 # Divide and Conquer, Dynamic Programming
+
+
+## Divide and Conquer
+
+Repeatedly divide a problem into smaller *non-overlapping* problems (preferably of equal size)
+
+- Often recursive
+- Often involve log n complexities
+- Top down approach
+- E.g. binary search, quicksort
+
+
+Alternatively, there is also "Combine and Conquer" Algorithms, that are bottom-up: start with smallest subproblem possible, then combine increasingly large subdomains until the given problem size.
+
+- E.g. Merge Sort
+
+## Dynamic Programming
+
+Remembers partial solutions (memoization) of *overlapping* subproblems
+
+Solve small subproblems first and store the results, then use these results when needed.
+
+Can use bottom-up or top-down approach
+
+### Simple Example - Fibonacci
+
+Top-Down DP:
+
+```cpp
+uint64_t fib(uint32_t n) {
+    // Array of known Fibonacci numbers. Start out with 0, 1,
+    // and the rest get automatically initialized to 0.
+    // MAX_FIB + 1 used to account for 0-indexing
+    static uint64_t fibs[MAX_FIB + 1] = { 0, 1 };
+
+    // Doesn't fit in 64 bits, so don't even bother computing
+    if (n > MAX_FIB)
+        return 0;
+
+    // Is already in array, so look it up
+    if (fibs[n] > 0 || n == 0)
+        return fibs[n];
+
+    // Currently unknown, so calculate and store it for later
+    fibs[n] = fib(n - 1) + fib(n - 2);
+    return fibs[n];
+}
+```
+
+Bottom-Up DP:
+
+```cpp
+uint64_t fibBU(uint32_t i) {
+    uint64_t f[MAX_N];
+    i = min(i, MAX_N - 1);
+    f[0] = 0;
+    f[1] = 1;
+    for (size_t k = 2; k <= i; k++)
+        f[k] = f[k - 1] + f[k - 2];
+    return f[i];
+}
+```
+
+### Simple Example - Binomial Coefficient
+
+
+### General Approach
+
+Top-Down:
+
+- Save known values as they are calculated
+- Generally preferred because it can be more naturally transformed from recursive solution, the order of computing the subproblems takes care of itself, and it may not need to compute all subproblems
+
+
+Bottom-Up:
+
+- Precompute values from base case up towards the solution. Note it will compute all subproblems, regardless if it is needed.
+
+### Example - Knight Moves
+
+
+
+### Example - Knapsack Problem
+
+#### Problem Definition
+
+A knapsack has capacity $M$. An item has various weights and values.
+
+**Problem:** Find the maximum value of items that can be packed into the knapsack with $N$ items that does not exceed capacity $M$.
+
+Many variations of the problem exist:
+
+- Each item is unique (the standard formulation), aka 0-1 Knapsack Problem. Must take (1) or leave (0) an item
+- Finite amount of each item
+- Infinite number of copies of each item
+- Fractional amount of item can be taken
+
+#### Bottom-Up Example
+
+Approach:
+
+- For each item:
+  - Can fit AND improves overall value? Take the item
+  - Too large to fit in current capacity (or doesn't improve value)? Leave behind
+
+Subproblem: What is the maximum value of items at this index with this capacity?
+
+Thus, will use two nested loops:
+
+1. Loop through all items
+2. Look through knapsack sizes from 0 to $M$
+
+
+Safe:
+
+|       | 1  | 2  | 3  | 4  | 5  |
+|-------|----|----|----|----|----|
+| **Size**  | 1  | 2  | 5  | 6  | 7  |
+| **Value** | 1  | 6  | 18 | 22 | 28 |
+
+Knapsack:
+
+| Safe Item # \\ Knapsack Size | 0  | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10 | 11 |
+|----------------------------|----|----|----|----|----|----|----|----|----|----|----|----|
+| 0                          | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  |
+| 1                          | 0  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  |
+| 2                          | 0  | 1  | 6  | 7  | 7  | 7  | 7  | 7  | 7  | 7  | 7  | 7  |
+| 3                          | 0  | 1  | 6  | 7  | 7  | 18 | 19 | 24 | 25 | 25 | 25 | 25 |
+| 4                          | 0  | 1  | 6  | 7  | 7  | 18 | 22 | 24 | 28 | 29 | 29 | 40 |
+| 5                          | 0  | 1  | 6  | 7  | 7  | 18 | 22 | 28 | 29 | 34 | 35 | 40 |
+
+
+**C++ implementation:**
+
+```cpp
+uint32_t knapsackDP(const vector<Item> &items, const size_t m) {
+    const size_t n = items.size();  // Get the number of items
+    vector<vector<uint32_t>> memo(n + 1, vector<uint32_t>(m + 1, 0)); // DP table, initialized to 0
+
+    for (size_t i = 0; i < n; ++i) {         // Iterate over items
+        for (size_t j = 0; j < m + 1; ++j) { // Iterate over capacities (0 to m)
+            if (j < items[i].size)           // If item doesn't fit in knapsack
+                memo[i + 1][j] = memo[i][j]; // Inherit value from previous row
+            else                             // If item fits in the knapsack
+                memo[i + 1][j] = max(memo[i][j], 
+                                     memo[i][j - items[i].size] + items[i].value); 
+                                             // Either take it or leave it (maximize value)
+        }
+    }
+
+    return memo[n][m];  // Maximum value obtainable with `n` items and capacity `m`
+}
+```
+
+Time complexity: $O(MN)$
+
+Explanation:
+
+- Table construction:
+  - $i$ represents the number of items that is being considered, i.e. considering all items 0 to index $i$
+  - $j$ represents the current knapsack capacity
+  - Each cell of the DP table stores the max value that can be obtained using the first $i$ items within capacity $j$
+- Algorithm:
+  - Start with no items and an empty knapsack
+  - Go through each item and each capacity (double for loop)
+    - If the item fits and increases overall value: take it
+      - `memo[i][j]` is the value of the previous row, i.e. not taking the item
+      - `memo[i][j - items[i].size()] + items[i].value` is the value of taking this item (value of knapsack with capacity that just reaches current capacity if you take this item + this item's value)
+    - Otherwise, don't take the item: keep value from previous row
+- Subproblem:
+  - `memo[i][j]` stores the best value possible using only the first $i$ items and knapsack of size $j$
+
+
+Reconstructing the solution:
+
+- included items improve a smaller solution, while excluded items don't
+- if a smaller solution + an item is $\geq$ a full solution without the item, it is included. Otherwise, exclude
+- the items taken can be reconstructed from the completed memo by working backwords from $(n, m)$ to $(0, 0)$
+
+C++ implementation of the reconstruction:
+
+```cpp
+vector<bool> knapDPReconstruct(const vector<Item> &items,
+                               const vector<vector<uint32_t>> &memo, 
+                               const size_t m) {
+    const size_t n = items.size();  // Number of items
+    size_t c = m;                   // Current capacity (tracking remaining space)
+    vector<bool> taken(n, false);   // Boolean vector to track selected items
+
+    for (int i = n - 1; i >= 0; --i) {  // Iterate in reverse to reconstruct solution
+        if (items[i].size <= c) {       // If the item fits in the remaining capacity
+            if (memo[i][c - items[i].size] + items[i].value >= memo[i][c]) {
+                taken[i] = true;        // Mark item as taken
+                c -= items[i].size;     // Reduce the remaining capacity
+            }
+        }
+    }
+
+    return taken; // Return boolean array indicating chosen items
+}
+```

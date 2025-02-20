@@ -1,1 +1,54 @@
 # Graphs
+
+
+## Definitions & Terminologies
+
+
+## Representations
+
+Adjacency Matrix, Distance Matrix, Adjacency List
+
+
+## Shortest Path
+
+Single-source shortest path, can solve with:
+
+- DFS
+  - Only works on trees
+- BFS
+  - Works for unweighted edges (or when all edges have same weight)
+- Dijkstra's
+  - Works for weighted edges
+  
+
+## Traveling Salesman Problem
+
+Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?
+
+I.e. given an undirected weighted graph, find a path that visits every node and returns to the first node with minimum total cost.
+
+
+
+
+## Minimum Spanning Tree
+
+Given: edge-weighted, undirected graph $G=(V,E)$
+
+Find: subgraph $T=(V,E'), E' \subseteq E$ such that:
+
+- All vertices are pair-wise connected
+- The sum of all edge weights in $T$ is minimal
+
+If there's a cycle in T, remove edge with highest weight
+
+Therefore T must be a tree (since it must have no cycles)
+
+Two algorithms to find MST:
+
+- Prim's
+- Kruskal's
+
+### Prim's Algorithm
+
+### Kruskal's Algorithm
+

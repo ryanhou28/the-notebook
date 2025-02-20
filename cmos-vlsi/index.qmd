@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-This is my notes on ????.
+Notes on CMOS Integrated Circuits & VLSI.
 
 # Resources {.unnumbered}
 

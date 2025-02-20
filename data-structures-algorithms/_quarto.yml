@@ -27,12 +27,14 @@ book:
     - trees.qmd
     - heaps.qmd
     - searching.qmd
+    - sets.qmd
     - sorting.qmd
     - hash.qmd
     - graphs.qmd
     - brutegreedy.qmd
     - divideconquer-dp.qmd
     - bbb.qmd
+    - trie.qmd
     - summary.qmd
     - tips.qmd
     - problems.qmd

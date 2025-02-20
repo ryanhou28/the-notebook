@@ -10,6 +10,17 @@
 This notebook contains programming basics, data structures, and algorithms. The language of choice is C++, and concepts from C++ STL are also covered. 
 
 
-## Subheading
+## Data Structures
+
+## Algorithm Families
+
+- Brute-Force
+- Greedy
+- Divide and Conquer
+- Dynamic Programming
+- Backtracking
+- Branch and Bound
+
+
 
 <!-- ![Image Caption](images/intro/???.png){#fig-label fig-align="center" width="70%"} -->

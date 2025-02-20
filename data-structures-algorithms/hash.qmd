@@ -1,1 +1,65 @@
-# Hash Maps
+# Dictionary and Hash Maps
+
+aka Hash Tables
+
+## Dictionary Abstract Data Type
+
+A container of items (key/value pairs) that supports two basic operations:
+
+- Insert a new item
+- Search (retrieve) an item with a given key
+
+Operations:
+
+
+
+
+
+
+## Hash Maps / Hash Tables
+
+### Hashing - Definition
+
+### Collision Resolution
+
+
+
+### Hash Maps in C++
+
+C++ hash table containers:
+
+- `unordered_set<>`, `unordered_multiset<>`
+- `unordered_map<>`, `unordered_multimap<>`
+
+Example:
+
+```cpp
+#include <unordered_map> // among other includes...
+unordered_map<string, int> months;
+string month;
+
+months["January"] = 31;
+months["February"] = 28;
+...
+
+// Looking up an item
+month = "March";
+auto it = months.find(month);
+if (it == months.end()) {
+    // month not found
+} else {
+    cout << it->first << " has " << it->second << " days\n";
+}
+
+```
+
+**When NOT to use hash tables:**
+
+- Significant space overhead of nested containers
+- Every access computes hash function
+- O(n) worst-case time (STL implementations)
+- When keys are small ints (use bucket arrays)
+- For static data, set membership, or lookup (consider sorting + binary search)
+- Key-value storage but traversal is needed and not lookup
+
+

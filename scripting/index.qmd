@@ -1,0 +1,13 @@
+# Preface {.unnumbered}
+
+Notes on various scripting languages
+
+# Resources {.unnumbered}
+
+Some relevant resources:
+
+- [Resource Name](url)
+
+Textbooks:
+
+- [Book 1](url)

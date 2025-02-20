@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>25&nbsp; Divide and Conquer, Dynamic Programming – Data Structures &amp; Algorithms</title>
+<title>26&nbsp; Divide and Conquer, Dynamic Programming – Data Structures &amp; Algorithms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -69,6 +103,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./divideconquer-dp.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./divideconquer-dp.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -234,56 +297,68 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./sorting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sorting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Sorting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Hash Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dictionary and Hash Maps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./brutegreedy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./divideconquer-dp.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bbb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Backtracing, Branch and Bound Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Backtracking &amp; Branch and Bound Algorithms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Trie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tips.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./problems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></span></a>
   </div>
 </li>
     </ul>
@@ -291,15 +366,29 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#divide-and-conquer" id="toc-divide-and-conquer" class="nav-link active" data-scroll-target="#divide-and-conquer"><span class="header-section-number">26.1</span> Divide and Conquer</a></li>
+  <li><a href="#dynamic-programming" id="toc-dynamic-programming" class="nav-link" data-scroll-target="#dynamic-programming"><span class="header-section-number">26.2</span> Dynamic Programming</a>
+  <ul class="collapse">
+  <li><a href="#simple-example---fibonacci" id="toc-simple-example---fibonacci" class="nav-link" data-scroll-target="#simple-example---fibonacci"><span class="header-section-number">26.2.1</span> Simple Example - Fibonacci</a></li>
+  <li><a href="#simple-example---binomial-coefficient" id="toc-simple-example---binomial-coefficient" class="nav-link" data-scroll-target="#simple-example---binomial-coefficient"><span class="header-section-number">26.2.2</span> Simple Example - Binomial Coefficient</a></li>
+  <li><a href="#general-approach" id="toc-general-approach" class="nav-link" data-scroll-target="#general-approach"><span class="header-section-number">26.2.3</span> General Approach</a></li>
+  <li><a href="#example---knight-moves" id="toc-example---knight-moves" class="nav-link" data-scroll-target="#example---knight-moves"><span class="header-section-number">26.2.4</span> Example - Knight Moves</a></li>
+  <li><a href="#example---knapsack-problem" id="toc-example---knapsack-problem" class="nav-link" data-scroll-target="#example---knapsack-problem"><span class="header-section-number">26.2.5</span> Example - Knapsack Problem</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></h1>
+<h1 class="title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></h1>
 </div>
 
 
@@ -316,8 +405,338 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="divide-and-conquer" class="level2" data-number="26.1">
+<h2 data-number="26.1" class="anchored" data-anchor-id="divide-and-conquer"><span class="header-section-number">26.1</span> Divide and Conquer</h2>
+<p>Repeatedly divide a problem into smaller <em>non-overlapping</em> problems (preferably of equal size)</p>
+<ul>
+<li>Often recursive</li>
+<li>Often involve log n complexities</li>
+<li>Top down approach</li>
+<li>E.g. binary search, quicksort</li>
+</ul>
+<p>Alternatively, there is also “Combine and Conquer” Algorithms, that are bottom-up: start with smallest subproblem possible, then combine increasingly large subdomains until the given problem size.</p>
+<ul>
+<li>E.g. Merge Sort</li>
+</ul>
+</section>
+<section id="dynamic-programming" class="level2" data-number="26.2">
+<h2 data-number="26.2" class="anchored" data-anchor-id="dynamic-programming"><span class="header-section-number">26.2</span> Dynamic Programming</h2>
+<p>Remembers partial solutions (memoization) of <em>overlapping</em> subproblems</p>
+<p>Solve small subproblems first and store the results, then use these results when needed.</p>
+<p>Can use bottom-up or top-down approach</p>
+<section id="simple-example---fibonacci" class="level3" data-number="26.2.1">
+<h3 data-number="26.2.1" class="anchored" data-anchor-id="simple-example---fibonacci"><span class="header-section-number">26.2.1</span> Simple Example - Fibonacci</h3>
+<p>Top-Down DP:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">uint64_t</span> fib<span class="op">(</span><span class="dt">uint32_t</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Array of known Fibonacci numbers. Start out with 0, 1,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// and the rest get automatically initialized to 0.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// MAX_FIB + 1 used to account for 0-indexing</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">static</span> <span class="dt">uint64_t</span> fibs<span class="op">[</span>MAX_FIB <span class="op">+</span> <span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span> <span class="op">};</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Doesn't fit in 64 bits, so don't even bother computing</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>n <span class="op">&gt;</span> MAX_FIB<span class="op">)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Is already in array, so look it up</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>fibs<span class="op">[</span>n<span class="op">]</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">||</span> n <span class="op">==</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> fibs<span class="op">[</span>n<span class="op">];</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Currently unknown, so calculate and store it for later</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    fibs<span class="op">[</span>n<span class="op">]</span> <span class="op">=</span> fib<span class="op">(</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">+</span> fib<span class="op">(</span>n <span class="op">-</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fibs<span class="op">[</span>n<span class="op">];</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Bottom-Up DP:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">uint64_t</span> fibBU<span class="op">(</span><span class="dt">uint32_t</span> i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">uint64_t</span> f<span class="op">[</span>MAX_N<span class="op">];</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> min<span class="op">(</span>i<span class="op">,</span> MAX_N <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    f<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    f<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> k <span class="op">=</span> <span class="dv">2</span><span class="op">;</span> k <span class="op">&lt;=</span> i<span class="op">;</span> k<span class="op">++)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        f<span class="op">[</span>k<span class="op">]</span> <span class="op">=</span> f<span class="op">[</span>k <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">+</span> f<span class="op">[</span>k <span class="op">-</span> <span class="dv">2</span><span class="op">];</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="simple-example---binomial-coefficient" class="level3" data-number="26.2.2">
+<h3 data-number="26.2.2" class="anchored" data-anchor-id="simple-example---binomial-coefficient"><span class="header-section-number">26.2.2</span> Simple Example - Binomial Coefficient</h3>
+</section>
+<section id="general-approach" class="level3" data-number="26.2.3">
+<h3 data-number="26.2.3" class="anchored" data-anchor-id="general-approach"><span class="header-section-number">26.2.3</span> General Approach</h3>
+<p>Top-Down:</p>
+<ul>
+<li>Save known values as they are calculated</li>
+<li>Generally preferred because it can be more naturally transformed from recursive solution, the order of computing the subproblems takes care of itself, and it may not need to compute all subproblems</li>
+</ul>
+<p>Bottom-Up:</p>
+<ul>
+<li>Precompute values from base case up towards the solution. Note it will compute all subproblems, regardless if it is needed.</li>
+</ul>
+</section>
+<section id="example---knight-moves" class="level3" data-number="26.2.4">
+<h3 data-number="26.2.4" class="anchored" data-anchor-id="example---knight-moves"><span class="header-section-number">26.2.4</span> Example - Knight Moves</h3>
+</section>
+<section id="example---knapsack-problem" class="level3" data-number="26.2.5">
+<h3 data-number="26.2.5" class="anchored" data-anchor-id="example---knapsack-problem"><span class="header-section-number">26.2.5</span> Example - Knapsack Problem</h3>
+<section id="problem-definition" class="level4" data-number="26.2.5.1">
+<h4 data-number="26.2.5.1" class="anchored" data-anchor-id="problem-definition"><span class="header-section-number">26.2.5.1</span> Problem Definition</h4>
+<p>A knapsack has capacity <span class="math inline">\(M\)</span>. An item has various weights and values.</p>
+<p><strong>Problem:</strong> Find the maximum value of items that can be packed into the knapsack with <span class="math inline">\(N\)</span> items that does not exceed capacity <span class="math inline">\(M\)</span>.</p>
+<p>Many variations of the problem exist:</p>
+<ul>
+<li>Each item is unique (the standard formulation), aka 0-1 Knapsack Problem. Must take (1) or leave (0) an item</li>
+<li>Finite amount of each item</li>
+<li>Infinite number of copies of each item</li>
+<li>Fractional amount of item can be taken</li>
+</ul>
+</section>
+<section id="bottom-up-example" class="level4" data-number="26.2.5.2">
+<h4 data-number="26.2.5.2" class="anchored" data-anchor-id="bottom-up-example"><span class="header-section-number">26.2.5.2</span> Bottom-Up Example</h4>
+<p>Approach:</p>
+<ul>
+<li>For each item:
+<ul>
+<li>Can fit AND improves overall value? Take the item</li>
+<li>Too large to fit in current capacity (or doesn’t improve value)? Leave behind</li>
+</ul></li>
+</ul>
+<p>Subproblem: What is the maximum value of items at this index with this capacity?</p>
+<p>Thus, will use two nested loops:</p>
+<ol type="1">
+<li>Loop through all items</li>
+<li>Look through knapsack sizes from 0 to <span class="math inline">\(M\)</span></li>
+</ol>
+<p>Safe:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Size</strong></td>
+<td>1</td>
+<td>2</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td><strong>Value</strong></td>
+<td>1</td>
+<td>6</td>
+<td>18</td>
+<td>22</td>
+<td>28</td>
+</tr>
+</tbody>
+</table>
+<p>Knapsack:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Safe Item # \ Knapsack Size</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>6</td>
+<td>7</td>
+<td>7</td>
+<td>7</td>
+<td>7</td>
+<td>7</td>
+<td>7</td>
+<td>7</td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0</td>
+<td>1</td>
+<td>6</td>
+<td>7</td>
+<td>7</td>
+<td>18</td>
+<td>19</td>
+<td>24</td>
+<td>25</td>
+<td>25</td>
+<td>25</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>0</td>
+<td>1</td>
+<td>6</td>
+<td>7</td>
+<td>7</td>
+<td>18</td>
+<td>22</td>
+<td>24</td>
+<td>28</td>
+<td>29</td>
+<td>29</td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>0</td>
+<td>1</td>
+<td>6</td>
+<td>7</td>
+<td>7</td>
+<td>18</td>
+<td>22</td>
+<td>28</td>
+<td>29</td>
+<td>34</td>
+<td>35</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+<p><strong>C++ implementation:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">uint32_t</span> knapsackDP<span class="op">(</span><span class="at">const</span> vector<span class="op">&lt;</span>Item<span class="op">&gt;</span> <span class="op">&amp;</span>items<span class="op">,</span> <span class="at">const</span> <span class="dt">size_t</span> m<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">size_t</span> n <span class="op">=</span> items<span class="op">.</span>size<span class="op">();</span>  <span class="co">// Get the number of items</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    vector<span class="op">&lt;</span>vector<span class="op">&lt;</span><span class="dt">uint32_t</span><span class="op">&gt;&gt;</span> memo<span class="op">(</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> vector<span class="op">&lt;</span><span class="dt">uint32_t</span><span class="op">&gt;(</span>m <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">));</span> <span class="co">// DP table, initialized to 0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span>         <span class="co">// Iterate over items</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> m <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">{</span> <span class="co">// Iterate over capacities (0 to m)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>j <span class="op">&lt;</span> items<span class="op">[</span>i<span class="op">].</span>size<span class="op">)</span>           <span class="co">// If item doesn't fit in knapsack</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                memo<span class="op">[</span>i <span class="op">+</span> <span class="dv">1</span><span class="op">][</span>j<span class="op">]</span> <span class="op">=</span> memo<span class="op">[</span>i<span class="op">][</span>j<span class="op">];</span> <span class="co">// Inherit value from previous row</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>                             <span class="co">// If item fits in the knapsack</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                memo<span class="op">[</span>i <span class="op">+</span> <span class="dv">1</span><span class="op">][</span>j<span class="op">]</span> <span class="op">=</span> max<span class="op">(</span>memo<span class="op">[</span>i<span class="op">][</span>j<span class="op">],</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                                     memo<span class="op">[</span>i<span class="op">][</span>j <span class="op">-</span> items<span class="op">[</span>i<span class="op">].</span>size<span class="op">]</span> <span class="op">+</span> items<span class="op">[</span>i<span class="op">].</span>value<span class="op">);</span> </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                                             <span class="co">// Either take it or leave it (maximize value)</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> memo<span class="op">[</span>n<span class="op">][</span>m<span class="op">];</span>  <span class="co">// Maximum value obtainable with `n` items and capacity `m`</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Time complexity: <span class="math inline">\(O(MN)\)</span></p>
+<p>Explanation:</p>
+<ul>
+<li>Table construction:
+<ul>
+<li><span class="math inline">\(i\)</span> represents the number of items that is being considered, i.e.&nbsp;considering all items 0 to index <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(j\)</span> represents the current knapsack capacity</li>
+<li>Each cell of the DP table stores the max value that can be obtained using the first <span class="math inline">\(i\)</span> items within capacity <span class="math inline">\(j\)</span></li>
+</ul></li>
+<li>Algorithm:
+<ul>
+<li>Start with no items and an empty knapsack</li>
+<li>Go through each item and each capacity (double for loop)
+<ul>
+<li>If the item fits and increases overall value: take it
+<ul>
+<li><code>memo[i][j]</code> is the value of the previous row, i.e.&nbsp;not taking the item</li>
+<li><code>memo[i][j - items[i].size()] + items[i].value</code> is the value of taking this item (value of knapsack with capacity that just reaches current capacity if you take this item + this item’s value)</li>
+</ul></li>
+<li>Otherwise, don’t take the item: keep value from previous row</li>
+</ul></li>
+</ul></li>
+<li>Subproblem:
+<ul>
+<li><code>memo[i][j]</code> stores the best value possible using only the first <span class="math inline">\(i\)</span> items and knapsack of size <span class="math inline">\(j\)</span></li>
+</ul></li>
+</ul>
+<p>Reconstructing the solution:</p>
+<ul>
+<li>included items improve a smaller solution, while excluded items don’t</li>
+<li>if a smaller solution + an item is <span class="math inline">\(\geq\)</span> a full solution without the item, it is included. Otherwise, exclude</li>
+<li>the items taken can be reconstructed from the completed memo by working backwords from <span class="math inline">\((n, m)\)</span> to <span class="math inline">\((0, 0)\)</span></li>
+</ul>
+<p>C++ implementation of the reconstruction:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>vector<span class="op">&lt;</span><span class="dt">bool</span><span class="op">&gt;</span> knapDPReconstruct<span class="op">(</span><span class="at">const</span> vector<span class="op">&lt;</span>Item<span class="op">&gt;</span> <span class="op">&amp;</span>items<span class="op">,</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">const</span> vector<span class="op">&lt;</span>vector<span class="op">&lt;</span><span class="dt">uint32_t</span><span class="op">&gt;&gt;</span> <span class="op">&amp;</span>memo<span class="op">,</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">const</span> <span class="dt">size_t</span> m<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">size_t</span> n <span class="op">=</span> items<span class="op">.</span>size<span class="op">();</span>  <span class="co">// Number of items</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">size_t</span> c <span class="op">=</span> m<span class="op">;</span>                   <span class="co">// Current capacity (tracking remaining space)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    vector<span class="op">&lt;</span><span class="dt">bool</span><span class="op">&gt;</span> taken<span class="op">(</span>n<span class="op">,</span> <span class="kw">false</span><span class="op">);</span>   <span class="co">// Boolean vector to track selected items</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">;</span> <span class="op">--</span>i<span class="op">)</span> <span class="op">{</span>  <span class="co">// Iterate in reverse to reconstruct solution</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>items<span class="op">[</span>i<span class="op">].</span>size <span class="op">&lt;=</span> c<span class="op">)</span> <span class="op">{</span>       <span class="co">// If the item fits in the remaining capacity</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>memo<span class="op">[</span>i<span class="op">][</span>c <span class="op">-</span> items<span class="op">[</span>i<span class="op">].</span>size<span class="op">]</span> <span class="op">+</span> items<span class="op">[</span>i<span class="op">].</span>value <span class="op">&gt;=</span> memo<span class="op">[</span>i<span class="op">][</span>c<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                taken<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>        <span class="co">// Mark item as taken</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                c <span class="op">-=</span> items<span class="op">[</span>i<span class="op">].</span>size<span class="op">;</span>     <span class="co">// Reduce the remaining capacity</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> taken<span class="op">;</span> <span class="co">// Return boolean array indicating chosen items</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -740,12 +1159,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./brutegreedy.html" class="pagination-link" aria-label="Brute-Force &amp; Greedy Algorithms">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./bbb.html" class="pagination-link" aria-label="Backtracing, Branch and Bound Algorithms">
-        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Backtracing, Branch and Bound Algorithms</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./bbb.html" class="pagination-link" aria-label="Backtracking &amp; Branch and Bound Algorithms">
+        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Backtracking &amp; Branch and Bound Algorithms</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

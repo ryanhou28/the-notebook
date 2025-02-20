@@ -1,1 +1,62 @@
 # Sorting
+
+| **Elementary Sorts**      | **High-Performance Sorts**  |
+|--------------------------|----------------------------|
+| Bubble Sort             | Quicksort                  |
+| Selection Sort          | Merge Sort                 |
+| Insertion Sort         | Heapsort                   |
+| Counting Sort *(int, few different keys)* | Radix Sort *(int, char*, ...)* |
+
+```cpp
+bool operator<(const T&, const T&) const
+```
+
+STL sorting is done with iterators:
+```cpp
+#include <algorithm>
+vector<int> a{4, 2, 5, 1, 3};
+std::sort(begin(a), end(a)); // sorts in ascending order
+```
+
+## Types
+
+**Non-Adaptive Sort**
+
+**Adaptive Sort**
+
+## Bubble Sort
+
+## Selection Sort
+
+## Insertion Sort
+
+## Counting Sort
+
+
+## Quick Sort
+
+High-level idea:
+
+1. Choose a pivot element from the array
+2. Partition array into two subarrays
+   1. One containing elements smaller than the pivot
+   2. One containing elements larger than the pivot
+3. Recursively apply quick sort to each subarray until the entire array is sorted
+
+Average time complexity: O(n log n)
+Worst-case time complexity: O(n^2)
+
+Worst case comes when the pivot element is selected as the max/min element of the entire array, thus the pivot doesn't do much. Can avoid by picking a good pivot, such as by using the median or a random element.
+
+Quick sort is an ***in-place*** algorithm, requiring no additional memory beyond the original array.
+
+## Merge Sort
+
+
+## Heapsort
+
+Refer to heaps notes.
+
+## Radix Sort
+
+

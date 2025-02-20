@@ -297,56 +297,68 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./sorting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sorting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Sorting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Hash Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dictionary and Hash Maps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./brutegreedy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Brute-Force &amp; Greedy Algorithms</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./divideconquer-dp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Divide and Conquer, Dynamic Programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bbb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Backtracing, Branch and Bound Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Backtracking &amp; Branch and Bound Algorithms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Trie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tips.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tips on Solving DS&amp;A Questions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./problems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Problems &amp; Explanations</span></span></a>
   </div>
 </li>
     </ul>
@@ -361,7 +373,28 @@ window.Quarto = {
   <ul>
   <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references"><span class="header-section-number">19.1</span> References</a></li>
   <li><a href="#heap-priority-queue" id="toc-heap-priority-queue" class="nav-link" data-scroll-target="#heap-priority-queue"><span class="header-section-number">19.2</span> Heap? Priority Queue?</a></li>
-  <li><a href="#heap-in-c" id="toc-heap-in-c" class="nav-link" data-scroll-target="#heap-in-c"><span class="header-section-number">19.3</span> Heap in C++</a></li>
+  <li><a href="#heap---definitions-properties" id="toc-heap---definitions-properties" class="nav-link" data-scroll-target="#heap---definitions-properties"><span class="header-section-number">19.3</span> Heap - Definitions &amp; Properties</a></li>
+  <li><a href="#modifying-heaps" id="toc-modifying-heaps" class="nav-link" data-scroll-target="#modifying-heaps"><span class="header-section-number">19.4</span> Modifying Heaps</a>
+  <ul class="collapse">
+  <li><a href="#increasing-node-priority" id="toc-increasing-node-priority" class="nav-link" data-scroll-target="#increasing-node-priority"><span class="header-section-number">19.4.1</span> Increasing Node Priority</a></li>
+  <li><a href="#decreasing-node-priority" id="toc-decreasing-node-priority" class="nav-link" data-scroll-target="#decreasing-node-priority"><span class="header-section-number">19.4.2</span> Decreasing Node Priority</a></li>
+  </ul></li>
+  <li><a href="#heap-in-c" id="toc-heap-in-c" class="nav-link" data-scroll-target="#heap-in-c"><span class="header-section-number">19.5</span> Heap in C++</a>
+  <ul class="collapse">
+  <li><a href="#make_heap" id="toc-make_heap" class="nav-link" data-scroll-target="#make_heap"><span class="header-section-number">19.5.1</span> make_heap()</a></li>
+  <li><a href="#push_heap" id="toc-push_heap" class="nav-link" data-scroll-target="#push_heap"><span class="header-section-number">19.5.2</span> push_heap()</a></li>
+  <li><a href="#pop_head" id="toc-pop_head" class="nav-link" data-scroll-target="#pop_head"><span class="header-section-number">19.5.3</span> pop_head()</a></li>
+  <li><a href="#sort_heap" id="toc-sort_heap" class="nav-link" data-scroll-target="#sort_heap"><span class="header-section-number">19.5.4</span> sort_heap()</a></li>
+  <li><a href="#is_heap" id="toc-is_heap" class="nav-link" data-scroll-target="#is_heap"><span class="header-section-number">19.5.5</span> is_heap()</a></li>
+  <li><a href="#is_heap_until" id="toc-is_heap_until" class="nav-link" data-scroll-target="#is_heap_until"><span class="header-section-number">19.5.6</span> is_heap_until()</a></li>
+  </ul></li>
+  <li><a href="#priority-queue---heap-implementation" id="toc-priority-queue---heap-implementation" class="nav-link" data-scroll-target="#priority-queue---heap-implementation"><span class="header-section-number">19.6</span> Priority Queue - Heap Implementation</a>
+  <ul class="collapse">
+  <li><a href="#insertion-deletion" id="toc-insertion-deletion" class="nav-link" data-scroll-target="#insertion-deletion"><span class="header-section-number">19.6.1</span> Insertion &amp; Deletion</a></li>
+  <li><a href="#priority-queue---summary" id="toc-priority-queue---summary" class="nav-link" data-scroll-target="#priority-queue---summary"><span class="header-section-number">19.6.2</span> Priority Queue - Summary</a></li>
+  </ul></li>
+  <li><a href="#heapify" id="toc-heapify" class="nav-link" data-scroll-target="#heapify"><span class="header-section-number">19.7</span> Heapify</a></li>
+  <li><a href="#heapsort" id="toc-heapsort" class="nav-link" data-scroll-target="#heapsort"><span class="header-section-number">19.8</span> Heapsort</a></li>
   </ul>
 </nav>
     </div>
@@ -397,9 +430,12 @@ window.Quarto = {
 <section id="heap-priority-queue" class="level2" data-number="19.2">
 <h2 data-number="19.2" class="anchored" data-anchor-id="heap-priority-queue"><span class="header-section-number">19.2</span> Heap? Priority Queue?</h2>
 <p>Priority Queue is an <strong>Abstract Data Type</strong>, and Heap is the concrete data structure we use to implement a priority queue. <a href="https://algo.monster/problems/heap_intro">Source</a></p>
-<p>Definition: A tree is (max) heap-ordered if each node’s priority is not greater than the priority of the node’s parent</p>
-<p>Definition: A heap is a set of nodes with keys arranged in a complete heap-ordered tree, represented as an array</p>
-<p>Property: No node in a heap has a key larger than the root’s key</p>
+</section>
+<section id="heap---definitions-properties" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="heap---definitions-properties"><span class="header-section-number">19.3</span> Heap - Definitions &amp; Properties</h2>
+<p>Definition: A tree is <strong>(max) heap-ordered</strong> if each node’s priority is not greater than the priority of the node’s parent</p>
+<p>Definition: A <strong>heap</strong> is a set of nodes with keys (priorities) arranged in a complete heap-ordered tree, represented as an array</p>
+<p>Property: No node in a heap has a key (priority) larger than the root’s key</p>
 <p>A heap has two crucial properties (representation invariants):</p>
 <ol type="1">
 <li>Completeness</li>
@@ -407,10 +443,10 @@ window.Quarto = {
 </ol>
 <p>These two properties can be leveraged to create an efficient priority queue and an efficient sorting algorithm using a heap!</p>
 <p>Loose definition: data structure that gives easy access to the most extreme element, e.g., maximum or minimum</p>
-<p>“Max Heap”: heap with largest element being the “most extreme”</p>
-<p>“Min Heap”: heap with smallest element being the “most extreme”</p>
-<p>Heaps use complete (binary) trees* as the underlying structure, but are often implemented using arrays</p>
-<p>Note: Not to be confused with binary <em>search</em> trees.</p>
+<p><strong>“Max Heap”:</strong> heap with largest element being the “most extreme”</p>
+<p><strong>“Min Heap”:</strong> heap with smallest element being the “most extreme”</p>
+<p>Heaps use complete (binary) trees* as the underlying structure, but are often implemented with arrays</p>
+<p><em>Note: Not to be confused with binary </em>search* trees.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/heaps/heap-high-level.png" class="img-fluid figure-img"></p>
@@ -418,33 +454,141 @@ window.Quarto = {
 </figure>
 </div>
 </section>
-<section id="heap-in-c" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="heap-in-c"><span class="header-section-number">19.3</span> Heap in C++</h2>
+<section id="modifying-heaps" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="modifying-heaps"><span class="header-section-number">19.4</span> Modifying Heaps</h2>
+<section id="increasing-node-priority" class="level3" data-number="19.4.1">
+<h3 data-number="19.4.1" class="anchored" data-anchor-id="increasing-node-priority"><span class="header-section-number">19.4.1</span> Increasing Node Priority</h3>
+<p>If the priority of a node in the heap is increased, we need to fix <strong>bottom-up</strong>:</p>
+<ol type="1">
+<li>Pass index k of array element with increased priority</li>
+<li>Swap the node’s key with the parent’s key until:
+<ul>
+<li><ol type="a">
+<li>the node has no parent (it is the root), or</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>the node’s parent has a higher (or equal) priority key</li>
+</ol></li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Code goes here</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="decreasing-node-priority" class="level3" data-number="19.4.2">
+<h3 data-number="19.4.2" class="anchored" data-anchor-id="decreasing-node-priority"><span class="header-section-number">19.4.2</span> Decreasing Node Priority</h3>
+<p>fix <strong>top-down</strong></p>
+</section>
+</section>
+<section id="heap-in-c" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="heap-in-c"><span class="header-section-number">19.5</span> Heap in C++</h2>
+<section id="make_heap" class="level3" data-number="19.5.1">
+<h3 data-number="19.5.1" class="anchored" data-anchor-id="make_heap"><span class="header-section-number">19.5.1</span> make_heap()</h3>
 <p><code>std::make_heap()</code> is used to convert the given range in a container to a heap. Max heap by default. Use a custom comparator to change it to a min heap.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Initializing a vector</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> v1 <span class="op">=</span> <span class="op">{</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">40</span><span class="op">,</span> <span class="dv">25</span><span class="op">,</span> <span class="dv">15</span> <span class="op">};</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Converting vector into a heap</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>make_heap<span class="op">(</span>v1<span class="op">.</span>begin<span class="op">(),</span> v1<span class="op">.</span>end<span class="op">());</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> v1<span class="op">.</span>front<span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span> <span class="co">// Displays max element of heap</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>std::push_heap(begin_iterator, end_iterator)</code> sorts the heap after insertion. Can you <code>push_back()</code> of vector class to insert.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> vc<span class="op">{</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">40</span><span class="op">,</span> <span class="dv">10</span> <span class="op">};</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>make_heap<span class="op">(</span>vc<span class="op">.</span>begin<span class="op">(),</span> vc<span class="op">.</span>end<span class="op">());</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Initializing a vector</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> v1 <span class="op">=</span> <span class="op">{</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">40</span><span class="op">,</span> <span class="dv">25</span><span class="op">,</span> <span class="dv">15</span> <span class="op">};</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>vc<span class="op">.</span>push_back<span class="op">(</span><span class="dv">50</span><span class="op">);</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>push_heap<span class="op">(</span>vc<span class="op">.</span>begin<span class="op">(),</span> vc<span class="op">.</span>end<span class="op">());</span> <span class="co">// now the heap is sorted</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Converting vector into a heap</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>make_heap<span class="op">(</span>v1<span class="op">.</span>begin<span class="op">(),</span> v1<span class="op">.</span>end<span class="op">());</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> v1<span class="op">.</span>front<span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span> <span class="co">// Displays max element of heap</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="push_heap" class="level3" data-number="19.5.2">
+<h3 data-number="19.5.2" class="anchored" data-anchor-id="push_heap"><span class="header-section-number">19.5.2</span> push_heap()</h3>
+<p><code>std::push_heap(begin_iterator, end_iterator)</code> sorts the heap after insertion. Can you <code>push_back()</code> of vector class to insert.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> vc<span class="op">{</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">40</span><span class="op">,</span> <span class="dv">10</span> <span class="op">};</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>make_heap<span class="op">(</span>vc<span class="op">.</span>begin<span class="op">(),</span> vc<span class="op">.</span>end<span class="op">());</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>vc<span class="op">.</span>push_back<span class="op">(</span><span class="dv">50</span><span class="op">);</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>push_heap<span class="op">(</span>vc<span class="op">.</span>begin<span class="op">(),</span> vc<span class="op">.</span>end<span class="op">());</span> <span class="co">// now the heap is sorted</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Time Complexity: <span class="math inline">\(O(log N)\)</span></p>
-<p>Note: The push_heap() function should only be used after the insertion of a single element at the back. Undefined for random insertion or for building a heap.</p>
+<p>Note: The <code>push_heap()</code> function should only be used after the insertion of a single element at the back. Undefined for random insertion or for building a heap.</p>
+</section>
+<section id="pop_head" class="level3" data-number="19.5.3">
+<h3 data-number="19.5.3" class="anchored" data-anchor-id="pop_head"><span class="header-section-number">19.5.3</span> pop_head()</h3>
 <p><code>pop_heap()</code> is used to move largest element of the heap to the end of the heap, so then a <code>pop_back()</code> can be used to remove the element</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pop_heap<span class="op">(</span>vc<span class="op">.</span>begin<span class="op">(),</span> vc<span class="op">.</span>end<span class="op">());</span> <span class="co">// moves largest element to the end</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>vc<span class="op">.</span>pop_back<span class="op">();</span> <span class="co">// removes element at the end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pop_heap<span class="op">(</span>vc<span class="op">.</span>begin<span class="op">(),</span> vc<span class="op">.</span>end<span class="op">());</span> <span class="co">// moves largest element to the end</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>vc<span class="op">.</span>pop_back<span class="op">();</span> <span class="co">// removes element at the end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Time Complexity: <span class="math inline">\(O(logN)\)</span></p>
+</section>
+<section id="sort_heap" class="level3" data-number="19.5.4">
+<h3 data-number="19.5.4" class="anchored" data-anchor-id="sort_heap"><span class="header-section-number">19.5.4</span> sort_heap()</h3>
 <p><code>sort_heap()</code> is used to sort the heap in ascending order using heapsort.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sort_heap<span class="op">(</span>v1<span class="op">.</span>begin<span class="op">(),</span> v1<span class="op">.</span>end<span class="op">());</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sort_heap<span class="op">(</span>v1<span class="op">.</span>begin<span class="op">(),</span> v1<span class="op">.</span>end<span class="op">());</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Time Complexity: <span class="math inline">\(O(NlogN)\)</span></p>
+</section>
+<section id="is_heap" class="level3" data-number="19.5.5">
+<h3 data-number="19.5.5" class="anchored" data-anchor-id="is_heap"><span class="header-section-number">19.5.5</span> is_heap()</h3>
 <p><code>is_heap()</code> can be used to check whether a given range of the container is a heap. Default checks for max heap.</p>
-<p>is_heap_until()</p>
+</section>
+<section id="is_heap_until" class="level3" data-number="19.5.6">
+<h3 data-number="19.5.6" class="anchored" data-anchor-id="is_heap_until"><span class="header-section-number">19.5.6</span> is_heap_until()</h3>
+<p><code>is_heap_until()</code></p>
+</section>
+</section>
+<section id="priority-queue---heap-implementation" class="level2" data-number="19.6">
+<h2 data-number="19.6" class="anchored" data-anchor-id="priority-queue---heap-implementation"><span class="header-section-number">19.6</span> Priority Queue - Heap Implementation</h2>
+<p><strong>Definition:</strong> A <strong>priority queue</strong> is a data structure that supports the following three basic operations:</p>
+<ul>
+<li>push(): <strong>insertion</strong> of a new node</li>
+<li>top(): <strong>inspection</strong> of highest priority node</li>
+<li>pop(): <strong>removal</strong> of highest priority node</li>
+</ul>
+<p>Priority queue is useful for many algorithms: e.g., Dijkstra’s, heapsort, sorting in reverse order</p>
+<p>Priority queues are often implemented using heaps because the same time complexity of insertion/removal.</p>
+<section id="insertion-deletion" class="level3" data-number="19.6.1">
+<h3 data-number="19.6.1" class="anchored" data-anchor-id="insertion-deletion"><span class="header-section-number">19.6.1</span> Insertion &amp; Deletion</h3>
+<p>TODO</p>
+</section>
+<section id="priority-queue---summary" class="level3" data-number="19.6.2">
+<h3 data-number="19.6.2" class="anchored" data-anchor-id="priority-queue---summary"><span class="header-section-number">19.6.2</span> Priority Queue - Summary</h3>
+<p>Another summary can be found in the Stacks, Queues, Priority Queues page.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Priority Queue Type</th>
+<th>Insertion Complexity</th>
+<th>Inspection Complexity</th>
+<th>Removal Complexity</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Unordered Array PQ</strong></td>
+<td>O(1)</td>
+<td>O(n)</td>
+<td>O(n), or O(1)</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td><strong>Sorted Array PQ</strong></td>
+<td>O(n)</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td><strong>Heap</strong></td>
+<td>O(log n) using <code>fixUp()</code></td>
+<td>O(1)</td>
+<td>O(log n) using <code>fixDown()</code></td>
+<td>Must maintain heap property</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="heapify" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="heapify"><span class="header-section-number">19.7</span> Heapify</h2>
+</section>
+<section id="heapsort" class="level2" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="heapsort"><span class="header-section-number">19.8</span> Heapsort</h2>
 
 
 </section>

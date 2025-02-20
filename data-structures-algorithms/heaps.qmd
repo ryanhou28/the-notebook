@@ -9,13 +9,13 @@
 
 Priority Queue is an **Abstract Data Type**, and Heap is the concrete data structure we use to implement a priority queue. [Source](https://algo.monster/problems/heap_intro)
 
+## Heap - Definitions & Properties
 
+Definition: A tree is **(max) heap-ordered** if each node’s priority is not greater than the priority of the node’s parent
 
-Definition: A tree is (max) heap-ordered if each node’s priority is not greater than the priority of the node’s parent
+Definition: A **heap** is a set of nodes with keys (priorities) arranged in a complete heap-ordered tree, represented as an array
 
-Definition: A heap is a set of nodes with keys arranged in a complete heap-ordered tree, represented as an array
-
-Property: No node in a heap has a key larger than the root’s key
+Property: No node in a heap has a key (priority) larger than the root’s key
 
 A heap has two crucial properties (representation invariants):
 
@@ -26,17 +26,39 @@ These two properties can be leveraged to create an efficient priority queue and 
 
 Loose definition: data structure that gives easy access to the most extreme element, e.g., maximum or minimum
 
-“Max Heap”: heap with largest element being the “most extreme”
+**“Max Heap”:** heap with largest element being the “most extreme”
 
-“Min Heap”: heap with smallest element being the “most extreme”
+**“Min Heap”:** heap with smallest element being the “most extreme”
 
-Heaps use complete (binary) trees* as the underlying structure, but are often implemented using arrays
+Heaps use complete (binary) trees* as the underlying structure, but are often implemented with arrays
 
-Note: Not to be confused with binary *search* trees.
+*Note: Not to be confused with binary *search* trees.
 
 ![Source: EECS 281](images/heaps/heap-high-level.png)
 
+## Modifying Heaps
+
+### Increasing Node Priority
+
+If the priority of a node in the heap is increased, we need to fix **bottom-up**:
+
+1. Pass index k of array element with increased priority
+2. Swap the node’s key with the parent’s key until:
+   - a. the node has no parent (it is the root), or
+   - b. the node’s parent has a higher (or equal) priority key
+
+```cpp
+Code goes here
+```
+
+### Decreasing Node Priority
+
+fix **top-down**
+
+
 ## Heap in C++
+
+### make_heap()
 
 `std::make_heap()` is used to convert the given range in a container to a heap. Max heap by default. Use a custom comparator to change it to a min heap.
 
@@ -50,6 +72,8 @@ std::make_heap(v1.begin(), v1.end());
 std::cout << v1.front() << '\n'; // Displays max element of heap
 ```
 
+### push_heap()
+
 `std::push_heap(begin_iterator, end_iterator)` sorts the heap after insertion. Can you `push_back()` of vector class to insert.
 
 ```cpp
@@ -62,7 +86,9 @@ push_heap(vc.begin(), vc.end()); // now the heap is sorted
 
 Time Complexity: $O(log N)$
 
-Note: The push_heap() function should only be used after the insertion of a single element at the back. Undefined for random insertion or for building a heap.
+Note: The `push_heap()` function should only be used after the insertion of a single element at the back. Undefined for random insertion or for building a heap.
+
+### pop_head()
 
 `pop_heap()` is used to move largest element of the heap to the end of the heap, so then a `pop_back()` can be used to remove the element
 
@@ -73,6 +99,8 @@ vc.pop_back(); // removes element at the end
 
 Time Complexity: $O(logN)$
 
+### sort_heap()
+
 `sort_heap()` is used to sort the heap in ascending order using heapsort.
 
 ```cpp
@@ -81,8 +109,44 @@ sort_heap(v1.begin(), v1.end());
 
 Time Complexity: $O(NlogN)$
 
+### is_heap()
 
 `is_heap()` can be used to check whether a given range of the container is a heap. Default checks for max heap.
 
+### is_heap_until()
 
-is_heap_until()
+`is_heap_until()`
+
+
+## Priority Queue - Heap Implementation
+
+**Definition:** A **priority queue** is a data structure that supports the following three basic operations:
+
+- push(): **insertion** of a new node
+- top(): **inspection** of highest priority node
+- pop(): **removal** of highest priority node
+
+Priority queue is useful for many algorithms: e.g., Dijkstra's, heapsort, sorting in reverse order
+
+Priority queues are often implemented using heaps because the same time complexity of insertion/removal.
+
+### Insertion & Deletion
+
+TODO
+
+### Priority Queue - Summary
+
+Another summary can be found in the Stacks, Queues, Priority Queues page.
+
+| Priority Queue Type  | Insertion Complexity | Inspection Complexity | Removal Complexity | Notes |
+|----------------------|----------------------|----------------------|----------------------|-------|
+| **Unordered Array PQ** | O(1) | O(n) | O(n), or O(1) | - |
+| **Sorted Array PQ** | O(n) | O(1) | O(1) | - |
+| **Heap** | O(log n) using `fixUp()` | O(1) | O(log n) using `fixDown()` | Must maintain heap property |
+
+
+## Heapify
+
+
+
+## Heapsort

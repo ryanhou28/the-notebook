@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-This is my notes on ????.
+Notes on computer architecture.
 
 # Resources {.unnumbered}
 

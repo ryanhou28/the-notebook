@@ -1,0 +1,5 @@
+# Trie
+
+A.k.a. Prefix Tree, Radix Tree, or Digital Tree
+
+

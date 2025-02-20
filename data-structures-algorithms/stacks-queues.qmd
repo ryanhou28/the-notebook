@@ -95,7 +95,9 @@ Doubly-linked list
 
 Each datum in the priority queue is paired with a priority value (usually numbers, should be comparable). Supports **insertion**, **inspection** of data, and **removal** of datum with highest priority.
 
-![Example Priority Queue. Source: EECS 281. Lower numbers here indicate higher priority. Top element would be red node.](images/stacks-queues/priority-queue.png)
+For elements of the same priority, they are served according to their order in the queue (following FIFO order).
+
+![Example Priority Queue. Source: EECS 281. Lower numbers here indicate higher priority. Top element would be red node. At priority 2, orange node would be served before purple.](images/stacks-queues/priority-queue.png)
 
 ### ADT - Interface
 

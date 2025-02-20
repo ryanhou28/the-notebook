@@ -1,0 +1,49 @@
+# Sets
+
+## Set Operations
+
+- Union ($\cup$): in one set or the other (OR)
+- Intersection ($\cap$): in both sets (AND)
+- Set Difference ($\setminus$): in one and not the other (AND-NOT)
+- Symmetric Difference ($\div$): in only one (XOR)
+- addElement ($+$)
+- isElement ($\in$)
+- isEmpty
+
+### set_union()
+
+| Method             | Asymptotic Complexity         |
+|--------------------|----------------------------|
+| `initialize()`    | O(1) or O(n log n)         |
+| `clear()`        | O(1) or O(n)               |
+| `isMember()`     | O(log n)                   |
+| `copy()`         | O(n)                        |
+| `set_union()`    | O(n)                        |
+| `set_intersection()` | O(n)                   |
+
+## Set in C++
+
+### References
+
+[Geeks for Geeks - C++ STL Set](https://www.geeksforgeeks.org/set-in-cpp-stl/)
+
+```cpp
+std::set<data_type> set_name;
+
+set<int> my_set;
+set<int> my_set = {1, 4, 5, 12};
+
+my_set.insert(10);
+
+for (auto& num : my_set) {
+    std::cout << num << ' ';
+}
+
+set<int>::iterator it;
+
+my_set.erase(12);
+
+// returns an iterator to the element, otherwise returns my_set.end()
+my_set.find(5);
+```
+## Union-Find
