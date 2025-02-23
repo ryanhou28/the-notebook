@@ -303,6 +303,19 @@ Note&nbsp;2.1: Equation - Max Unsigned Decimal Value with n Digits
 <li>Base-8: <strong>Octal</strong></li>
 <li>Base-2: <strong>Binary</strong></li>
 </ul>
+<div id="nte-eqn-num-bits-for-n" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;2.2: Equation - Number of Bits to Represent x Different Numbers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[n = ceil(log_2(x))\]</span></p>
+</div>
+</div>
 <p>The number of bits <span class="math inline">\(n\)</span> needed to represent an unsigned decimal number <span class="math inline">\(x\)</span> is given below:</p>
 <div id="nte-eqn-num-bits-rep" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -310,7 +323,7 @@ Note&nbsp;2.1: Equation - Max Unsigned Decimal Value with n Digits
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note&nbsp;2.2: Equation - Number of Bits to Represent Unsigned Decimal Number
+Note&nbsp;2.3: Equation - Number of Bits to Represent Unsigned Decimal Number
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -318,6 +331,7 @@ Note&nbsp;2.2: Equation - Number of Bits to Represent Unsigned Decimal Number
 <p>where the ceil() function is a ceiling function that rounds up to the nearest integer.</p>
 </div>
 </div>
+<p>Note that the difference in the +1 between the above two formulas in that the number of bits to represent unsigned decimal <span class="math inline">\(x\)</span> must also be able to represent 0, so you’re essentially finding the number of bits to represent <span class="math inline">\(x+1\)</span> different numbers.</p>
 <section id="conversions" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="conversions"><span class="header-section-number">2.3.1</span> Conversions</h3>
 <section id="decimal---binary" class="level4" data-number="2.3.1.1">

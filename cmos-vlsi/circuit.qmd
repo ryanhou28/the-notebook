@@ -56,10 +56,27 @@ $$P = I^2R \text{ (resistive loss)}$$
 $$P = CV^2f \text{ (dynamic CMOS)}$$
 $$P_{avg} = \frac{1}{T}\int_0^T p(t)dt \text{ (average)}$$
 
-## Capacitance, Inductance
+## Resistance, Capacitance, Inductance
+
+### Resistance (R)
+
+Resistance is the property of a material that opposes the flow of electric current, resulting in the conversion of electrical energy to thermal energy.
+
+Key equations:
+
+$$V = IR \text{ (Ohm's Law)}$$
+$$P = I^2R \text{ (power dissipation)}$$
+$$R = \rho\frac{L}{A} \text{ (bulk resistance)}$$
+
+where:
+
+- $\rho$ is resistivity
+- $L$ is length
+- $A$ is cross-sectional area
 
 ### Capacitance (C)
-Capacitance is measured in Farads (F). Key equations:
+
+Capacitance (measured in Farads F) is the ability of a component to store electric charge, measured as the ratio of stored charge to the applied voltage. Key equations:
 
 $$Q = CV \text{ (charge stored)}$$
 $$I_C = C\frac{dV}{dt} \text{ (capacitor current)}$$
@@ -75,11 +92,22 @@ where:
 - $\epsilon_r$ is relative permittivity
 
 ### Inductance (L)
-Inductance is measured in Henries (H):
+Inductance (measured in Henries H) is the property of a circuit element to oppose changes in current flow by storing energy in a magnetic field:
 
 $$V_L = L\frac{dI}{dt}$$
 $$\tau_L = \frac{L}{R} \text{ (inductive time constant)}$$
 $$E = \frac{1}{2}LI^2 \text{ (stored energy)}$$
+
+## Electric Fields
+
+An electric field is a region of space surrounding a charged particle where another charged particle would experience a force, essentially acting like an invisible "push" or "pull" depending on the charges involved. It is the **force per unit charge** experienced by a small positive test charge placed at that point. Units: $V/m$ or $N/C$
+
+$$E = \frac{F}{q}$$
+
+- 
+- electric field is the rate of change of voltage w.r.t. position
+- strong electric field -> rapid change in voltage over short distance
+- In circuits, voltage sources create electric fields that drive current flow
 
 ## KVL & KCL
 
@@ -93,6 +121,38 @@ The sum of currents entering a node equals the sum of currents leaving it:
 
 $$\sum I_{in} = \sum I_{out}$$
 $$\sum_{k=1}^n I_k = 0 \text{ (node equation)}$$
+
+## Basic Circuit Configurations
+
+### Series Connections
+
+In series connections, components share the same current:
+$$I_{total} = I_1 = I_2 = ... = I_n$$
+For components in series:
+
+- Resistors: $R_{total} = R_1 + R_2 + ... + R_n$
+- Capacitors: $\frac{1}{C_{total}} = \frac{1}{C_1} + \frac{1}{C_2} + ... + \frac{1}{C_n}$
+- Inductors: $L_{total} = L_1 + L_2 + ... + L_n$
+- Voltage Division: $V_i = V_{total}\frac{R_i}{R_{total}}$
+
+### Parallel Connections
+
+In parallel connections, components share the same voltage:
+$$V_{total} = V_1 = V_2 = ... = V_n$$
+
+For components in parallel:
+
+- Resistors: $\frac{1}{R_{total}} = \frac{1}{R_1} + \frac{1}{R_2} + ... + \frac{1}{R_n}$
+- Capacitors: $C_{total} = C_1 + C_2 + ... + C_n$
+- Inductors: $\frac{1}{L_{total}} = \frac{1}{L_1} + \frac{1}{L_2} + ... + \frac{1}{L_n}$
+- Current Division: $I_i = I_{total}\frac{R_{total}}{R_i}$
+
+## Capacitor
+
+A capacitor stores eletrical energy in an electric field created between two conductive plates separated by an insulator (dialectric)
+
+- When a voltage is applied, electrons build up on one plate (creating negative charge), and the other plate loses electrons (resulting in positive charge)
+- 
 
 ## Additional Topics Relevant to CMOS/VLSI
 

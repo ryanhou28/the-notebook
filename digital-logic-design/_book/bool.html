@@ -229,6 +229,18 @@ window.Quarto = {
   <li><a href="#minterms-maxterms" id="toc-minterms-maxterms" class="nav-link" data-scroll-target="#minterms-maxterms"><span class="header-section-number">3.10</span> Minterms &amp; Maxterms</a></li>
   <li><a href="#canonical-form" id="toc-canonical-form" class="nav-link" data-scroll-target="#canonical-form"><span class="header-section-number">3.11</span> Canonical Form</a></li>
   <li><a href="#shannons-expansion-theorem" id="toc-shannons-expansion-theorem" class="nav-link" data-scroll-target="#shannons-expansion-theorem"><span class="header-section-number">3.12</span> Shannon’s Expansion Theorem</a></li>
+  <li><a href="#logic-minimization" id="toc-logic-minimization" class="nav-link" data-scroll-target="#logic-minimization"><span class="header-section-number">3.13</span> Logic Minimization</a>
+  <ul class="collapse">
+  <li><a href="#strategies" id="toc-strategies" class="nav-link" data-scroll-target="#strategies"><span class="header-section-number">3.13.1</span> Strategies</a></li>
+  </ul></li>
+  <li><a href="#karnaugh-maps-k-maps" id="toc-karnaugh-maps-k-maps" class="nav-link" data-scroll-target="#karnaugh-maps-k-maps"><span class="header-section-number">3.14</span> Karnaugh Maps (K-Maps)</a>
+  <ul class="collapse">
+  <li><a href="#side-note-gray-codes" id="toc-side-note-gray-codes" class="nav-link" data-scroll-target="#side-note-gray-codes"><span class="header-section-number">3.14.1</span> Side Note: Gray Codes</a></li>
+  <li><a href="#k-map-usage" id="toc-k-map-usage" class="nav-link" data-scroll-target="#k-map-usage"><span class="header-section-number">3.14.2</span> K-Map Usage</a></li>
+  <li><a href="#definitions" id="toc-definitions" class="nav-link" data-scroll-target="#definitions"><span class="header-section-number">3.14.3</span> Definitions</a></li>
+  </ul></li>
+  <li><a href="#gates-from-gates" id="toc-gates-from-gates" class="nav-link" data-scroll-target="#gates-from-gates"><span class="header-section-number">3.15</span> Gates from Gates</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">3.16</span> Examples</a></li>
   </ul>
 </nav>
     </div>
@@ -517,6 +529,260 @@ Note&nbsp;3.12: Theorem - Shannon’s Expansion Theorem
 <p>This can help us with MUX-based logic function implementations:</p>
 <p><img src="images/bool/mux-1.png" class="img-fluid"></p>
 <p><img src="images/bool/mux-2.png" class="img-fluid"></p>
+</section>
+<section id="logic-minimization" class="level2" data-number="3.13">
+<h2 data-number="3.13" class="anchored" data-anchor-id="logic-minimization"><span class="header-section-number">3.13</span> Logic Minimization</h2>
+<ul>
+<li>Reducing a logical expression to a simpler equivalent representation</li>
+</ul>
+<section id="strategies" class="level3" data-number="3.13.1">
+<h3 data-number="3.13.1" class="anchored" data-anchor-id="strategies"><span class="header-section-number">3.13.1</span> Strategies</h3>
+<p>Can minimize via algebraic manipulations:</p>
+<ol type="1">
+<li>Construct truth table</li>
+<li>Construct on sets and construct SOP</li>
+<li>Use Boolean Algebra axioms and theorems to simplify</li>
+</ol>
+<p>Another way is through K-Maps, touched below:</p>
+</section>
+</section>
+<section id="karnaugh-maps-k-maps" class="level2" data-number="3.14">
+<h2 data-number="3.14" class="anchored" data-anchor-id="karnaugh-maps-k-maps"><span class="header-section-number">3.14</span> Karnaugh Maps (K-Maps)</h2>
+<p>Method of representing a truth table that helps visualize adjacencies</p>
+<p>Construction:</p>
+<ol type="1">
+<li>Split inputs into 2 evenly-sized groups
+<ol type="1">
+<li>One group will have an extra variable if given an odd number of inputs</li>
+</ol></li>
+<li>Write all combinations, with successive combinations changing only 1 input (i.e.&nbsp;Gray Code)</li>
+</ol>
+<p><img src="images/bool/2-3-kmap.png" class="img-fluid"></p>
+<p><img src="images/bool/4-kmap.png" class="img-fluid"></p>
+<section id="side-note-gray-codes" class="level3" data-number="3.14.1">
+<h3 data-number="3.14.1" class="anchored" data-anchor-id="side-note-gray-codes"><span class="header-section-number">3.14.1</span> Side Note: Gray Codes</h3>
+<p>aka reflected binary code (RBC), reflected binary (RB)</p>
+<p><strong>Gray Code</strong>: An ordering of the binary numeral system such that two successive values differ in only 1 bit.</p>
+<p>Uses of gray codes:</p>
+<ul>
+<li>K-Maps (to help visualize adjacencies, since consecutive gray codes only differ by 1 bit, thus logically “adjacent” when mapped)</li>
+<li>Help simplify switching in counting, again, since consecutive numbers differ by 1</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lucal code</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gray code</td>
+<td></td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="k-map-usage" class="level3" data-number="3.14.2">
+<h3 data-number="3.14.2" class="anchored" data-anchor-id="k-map-usage"><span class="header-section-number">3.14.2</span> K-Map Usage</h3>
+<ol type="1">
+<li>Fill out the table based on the logic expression</li>
+<li>Identify groups of adjacent cells
+<ol type="1">
+<li>Only create groups in powers of 2 (single cells okay since 1 is a power of 2)</li>
+<li>Groups can wrap around in all directions (across the borders of the table)</li>
+<li>Each group becomes a product term in the output</li>
+<li>Larger groups become smaller terms (thus a simplification)</li>
+<li>Don’t Cares can be treated as 1/0s if it is <em>advantageous</em> to do so</li>
+</ol></li>
+<li>Simplify</li>
+</ol>
+<p>Don’t care minterms are represented with a ‘d’. Implicants can include don’t care cells, but no implicant should include ONLY don’t care cells (must have at least a 1).</p>
+</section>
+<section id="definitions" class="level3" data-number="3.14.3">
+<h3 data-number="3.14.3" class="anchored" data-anchor-id="definitions"><span class="header-section-number">3.14.3</span> Definitions</h3>
+<p><strong>Minterm</strong>: a product term that includes each function input or its complement</p>
+<p><strong>Implicant</strong>: A product term that has non-empty intersection with a function On sets and does not intersect with its Off sets.</p>
+<p><strong>Prime implicant</strong>: An implicant that cannot be completely covered by a more general implicant.</p>
+<p><strong>Essential prime implicant</strong>: A prime implicant that covers an output of the function that no combination of other prime implicants is able to cover.</p>
+<p>Example. Prime Implicants vs Essential Prime Implicants</p>
+<p><img src="images/bool/pi.png" class="img-fluid"></p>
+<p><img src="images/bool/epi.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="gates-from-gates" class="level2" data-number="3.15">
+<h2 data-number="3.15" class="anchored" data-anchor-id="gates-from-gates"><span class="header-section-number">3.15</span> Gates from Gates</h2>
+<p>Useful to know</p>
+<p><img src="images/bool/nandnor-inv-null.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/bool/nand-to-gates.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://electronics.stackexchange.com/questions/588189/i-am-trying-to-implement-a-function-using-only-nand-gates">Source</a></figcaption>
+</figure>
+</div>
+<p>NAND is the most common building block (due to circuit reasons, to sum, it is more compact and faster than other gates, primarily from its parallel PMOS pull-up network)</p>
+</section>
+<section id="examples" class="level2" data-number="3.16">
+<h2 data-number="3.16" class="anchored" data-anchor-id="examples"><span class="header-section-number">3.16</span> Examples</h2>
+<p><strong>SOP to POS Question:</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/bool/sop-pos-ex1.png" class="img-fluid figure-img"></p>
+<figcaption>Source: EECS 270</figcaption>
+</figure>
+</div>
+<p><strong>Shannon’s Expansion - Maxterms:</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/bool/maxterms-ex.png" class="img-fluid figure-img"></p>
+<figcaption>Source: EECS 270</figcaption>
+</figure>
+</div>
+<p><strong>SOP &amp; POS from Truth Table:</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/bool/sop-pos-ex2.png" class="img-fluid figure-img"></p>
+<figcaption>Source: EECS 270</figcaption>
+</figure>
+</div>
+<p><strong>Logic Minimization with K-Map:</strong></p>
+<p><img src="images/bool/kmap-ex.png" class="img-fluid"></p>
 
 
 </section>

@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Digital Logic Design",
     "section": "",
-    "text": "Preface\nThis is my notes on digital logic design.\n\n\nResources\nSome relevant resources:\n\nEECS 270 - Logic Design (University of Michigan)\nDigital Design and Computer Architecture (ETH Zurich)\n\nTextbooks:\n\nJ. F. Wakerly, Digital Design: Principles and Practices, 4th ed., Prentice-Hall.\nJ. P. Hayes, Introduction to Digital Logic Design, Addison-Wesley.\nC. H. Roth, Jr., Fundamentals of Logic Design.\nR. H. Katz, Contemporary Logic Design, Prentice-Hall.\nD. Thomas, P. Moorby, The Verilog Hardware Description Language.",
+    "text": "Preface\nNotes on digital logic design.\n\n\nResources\nSome relevant resources:\n\nEECS 270 - Logic Design (University of Michigan)\nDigital Design and Computer Architecture (ETH Zurich)\n\nTextbooks:\n\nJ. F. Wakerly, Digital Design: Principles and Practices, 4th ed., Prentice-Hall.\nJ. P. Hayes, Introduction to Digital Logic Design, Addison-Wesley.\nC. H. Roth, Jr., Fundamentals of Logic Design.\nR. H. Katz, Contemporary Logic Design, Prentice-Hall.\nD. Thomas, P. Moorby, The Verilog Hardware Description Language.",
     "crumbs": [
       "Preface"
     ]
@@ -74,7 +74,7 @@
     "href": "binary.html#data-encoding",
     "title": "2  Binary Basics",
     "section": "2.3 Data Encoding",
-    "text": "2.3 Data Encoding\nNumbers are encoded in a system using digits and powers of a base number. In simpler terms, each position of a number represents a quantity. And the digit in each position indicates how many of that quantity there are in the number.\n\n\n\n\n\n\nFigure 2.1: Data encoding in base 10, 8, and 2. Figure from EECS270-W24\n\n\n\nA bit is a binary digit. The total number of integers that can be represented with \\(n\\) bits is \\(2^n\\).\nThe maximum (unsigned) decimal number that can be represented with \\(n\\) bits is \\(\\text{Max Value} = 2^n - 1\\). This range can be generalized to other bases:\n\n\n\n\n\n\nNote 2.1: Equation - Max Unsigned Decimal Value with n Digits\n\n\n\n\\[\\text{Max Value} = base^n - 1\\]\n\n\nCommon number systems:\n\nBase-16: Hexadecimal\nBase-10: Decimal\nBase-8: Octal\nBase-2: Binary\n\nThe number of bits \\(n\\) needed to represent an unsigned decimal number \\(x\\) is given below:\n\n\n\n\n\n\nNote 2.2: Equation - Number of Bits to Represent Unsigned Decimal Number\n\n\n\n\\[n = ceil(log_2(x + 1))\\]\nwhere the ceil() function is a ceiling function that rounds up to the nearest integer.\n\n\n\n2.3.1 Conversions\n\n2.3.1.1 Decimal - Binary\nTo convert from decimal to binary:\n\nStep 1: Divide the given number repeatedly by 2 until you get 0 as the quotient.\nStep 2: Write the remainders in reverse order.\n\n\n\n\n\n\n\nFigure 2.2: Example decimal to binary conversion. Figure source: EECS 270\n\n\n\n\n\n\n2.3.2 Hex - Octal - Binary\nHexadecimal and octal have bases that are powers of 2, which makes conversion much simpler. Since hex is base 16, which is \\(2^4\\), we can split each hex digit into 4 bits when converting to binary, conversely group every 4 bits into 1 hex digit. Similarly, an octal digit corresponds to 3 bits.\n\n\n\n\n\n\nFigure 2.3: Hexadecimal Conversion Chart. Source\n\n\n\n\n\n2.3.3 ASCII\nText can also be encoded by numbers. ASCII is a common character encoding standard that represents a character in 8 bits.\nAn ASCII conversion chart can be found here.",
+    "text": "2.3 Data Encoding\nNumbers are encoded in a system using digits and powers of a base number. In simpler terms, each position of a number represents a quantity. And the digit in each position indicates how many of that quantity there are in the number.\n\n\n\n\n\n\nFigure 2.1: Data encoding in base 10, 8, and 2. Figure from EECS270-W24\n\n\n\nA bit is a binary digit. The total number of integers that can be represented with \\(n\\) bits is \\(2^n\\).\nThe maximum (unsigned) decimal number that can be represented with \\(n\\) bits is \\(\\text{Max Value} = 2^n - 1\\). This range can be generalized to other bases:\n\n\n\n\n\n\nNote 2.1: Equation - Max Unsigned Decimal Value with n Digits\n\n\n\n\\[\\text{Max Value} = base^n - 1\\]\n\n\nCommon number systems:\n\nBase-16: Hexadecimal\nBase-10: Decimal\nBase-8: Octal\nBase-2: Binary\n\n\n\n\n\n\n\nNote 2.2: Equation - Number of Bits to Represent x Different Numbers\n\n\n\n\\[n = ceil(log_2(x))\\]\n\n\nThe number of bits \\(n\\) needed to represent an unsigned decimal number \\(x\\) is given below:\n\n\n\n\n\n\nNote 2.3: Equation - Number of Bits to Represent Unsigned Decimal Number\n\n\n\n\\[n = ceil(log_2(x + 1))\\]\nwhere the ceil() function is a ceiling function that rounds up to the nearest integer.\n\n\nNote that the difference in the +1 between the above two formulas in that the number of bits to represent unsigned decimal \\(x\\) must also be able to represent 0, so you’re essentially finding the number of bits to represent \\(x+1\\) different numbers.\n\n2.3.1 Conversions\n\n2.3.1.1 Decimal - Binary\nTo convert from decimal to binary:\n\nStep 1: Divide the given number repeatedly by 2 until you get 0 as the quotient.\nStep 2: Write the remainders in reverse order.\n\n\n\n\n\n\n\nFigure 2.2: Example decimal to binary conversion. Figure source: EECS 270\n\n\n\n\n\n\n2.3.2 Hex - Octal - Binary\nHexadecimal and octal have bases that are powers of 2, which makes conversion much simpler. Since hex is base 16, which is \\(2^4\\), we can split each hex digit into 4 bits when converting to binary, conversely group every 4 bits into 1 hex digit. Similarly, an octal digit corresponds to 3 bits.\n\n\n\n\n\n\nFigure 2.3: Hexadecimal Conversion Chart. Source\n\n\n\n\n\n2.3.3 ASCII\nText can also be encoded by numbers. ASCII is a common character encoding standard that represents a character in 8 bits.\nAn ASCII conversion chart can be found here.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Binary Basics</span>"
     ]
@@ -210,11 +210,51 @@
     ]
   },
   {
+    "objectID": "bool.html#logic-minimization",
+    "href": "bool.html#logic-minimization",
+    "title": "3  Boolean Algebra",
+    "section": "3.13 Logic Minimization",
+    "text": "3.13 Logic Minimization\n\nReducing a logical expression to a simpler equivalent representation\n\n\n3.13.1 Strategies\nCan minimize via algebraic manipulations:\n\nConstruct truth table\nConstruct on sets and construct SOP\nUse Boolean Algebra axioms and theorems to simplify\n\nAnother way is through K-Maps, touched below:",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#karnaugh-maps-k-maps",
+    "href": "bool.html#karnaugh-maps-k-maps",
+    "title": "3  Boolean Algebra",
+    "section": "3.14 Karnaugh Maps (K-Maps)",
+    "text": "3.14 Karnaugh Maps (K-Maps)\nMethod of representing a truth table that helps visualize adjacencies\nConstruction:\n\nSplit inputs into 2 evenly-sized groups\n\nOne group will have an extra variable if given an odd number of inputs\n\nWrite all combinations, with successive combinations changing only 1 input (i.e. Gray Code)\n\n\n\n\n3.14.1 Side Note: Gray Codes\naka reflected binary code (RBC), reflected binary (RB)\nGray Code: An ordering of the binary numeral system such that two successive values differ in only 1 bit.\nUses of gray codes:\n\nK-Maps (to help visualize adjacencies, since consecutive gray codes only differ by 1 bit, thus logically “adjacent” when mapped)\nHelp simplify switching in counting, again, since consecutive numbers differ by 1\n\n\n\n\nLucal code\n5\n4\n3\n2\n1\n\n\n\n\nGray code\n\n4\n3\n2\n1\n\n\n0\n0\n0\n0\n0\n0\n\n\n1\n0\n0\n0\n0\n1\n\n\n2\n0\n0\n0\n1\n1\n\n\n3\n0\n0\n0\n1\n0\n\n\n4\n0\n0\n1\n1\n0\n\n\n5\n0\n0\n1\n1\n1\n\n\n6\n0\n0\n1\n0\n1\n\n\n7\n0\n0\n1\n0\n0\n\n\n8\n0\n1\n1\n0\n0\n\n\n9\n0\n1\n1\n0\n1\n\n\n10\n0\n1\n1\n1\n1\n\n\n11\n0\n1\n1\n1\n0\n\n\n12\n0\n1\n0\n1\n0\n\n\n13\n0\n1\n0\n1\n1\n\n\n14\n0\n1\n0\n0\n1\n\n\n15\n0\n1\n0\n0\n0\n\n\n\n\n\n3.14.2 K-Map Usage\n\nFill out the table based on the logic expression\nIdentify groups of adjacent cells\n\nOnly create groups in powers of 2 (single cells okay since 1 is a power of 2)\nGroups can wrap around in all directions (across the borders of the table)\nEach group becomes a product term in the output\nLarger groups become smaller terms (thus a simplification)\nDon’t Cares can be treated as 1/0s if it is advantageous to do so\n\nSimplify\n\nDon’t care minterms are represented with a ‘d’. Implicants can include don’t care cells, but no implicant should include ONLY don’t care cells (must have at least a 1).\n\n\n3.14.3 Definitions\nMinterm: a product term that includes each function input or its complement\nImplicant: A product term that has non-empty intersection with a function On sets and does not intersect with its Off sets.\nPrime implicant: An implicant that cannot be completely covered by a more general implicant.\nEssential prime implicant: A prime implicant that covers an output of the function that no combination of other prime implicants is able to cover.\nExample. Prime Implicants vs Essential Prime Implicants",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#gates-from-gates",
+    "href": "bool.html#gates-from-gates",
+    "title": "3  Boolean Algebra",
+    "section": "3.15 Gates from Gates",
+    "text": "3.15 Gates from Gates\nUseful to know\n\n\n\n\nSource\n\n\nNAND is the most common building block (due to circuit reasons, to sum, it is more compact and faster than other gates, primarily from its parallel PMOS pull-up network)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "bool.html#examples",
+    "href": "bool.html#examples",
+    "title": "3  Boolean Algebra",
+    "section": "3.16 Examples",
+    "text": "3.16 Examples\nSOP to POS Question:\n\n\n\nSource: EECS 270\n\n\nShannon’s Expansion - Maxterms:\n\n\n\nSource: EECS 270\n\n\nSOP & POS from Truth Table:\n\n\n\nSource: EECS 270\n\n\nLogic Minimization with K-Map:",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Boolean Algebra</span>"
+    ]
+  },
+  {
     "objectID": "comb.html",
     "href": "comb.html",
     "title": "4  Combinational Logic",
     "section": "",
-    "text": "4.1",
+    "text": "4.1 Transistors\nLogic gates are built from switches that consist of three parts: input, output, and control.\nComplementary Metal-Oxide Semiconductor (CMOS) is the predominant technology used as today’s switches. CMOS switches consist of NMOS and PMOS transistors. The gate terminal serves as the control, and carriers (electrons or holes) flow from the source to the drain. For more detailed notes, please see the CMOS & VLSI notebook.\nWhy does CMOS use both NMOS and PMOS? - Transistors are not ideal switches - NMOS is good at propagating 0s (pull-down) - PMOS is good at propagating 1s (pull-up)\nAsides from propagating 1s and 0s, transistors could also be in illegal states:\nThe symbol X indicates that the circuit node has an unknown or illegal value. This commonly happens if it is being driven to both 0 and 1 at the same time.\nThe symbol Z indicates that a node is being driven neither HIGH nor LOW. The node is said to be floating, high impedance, or high Z. A floating node does not always mean there is an error in the circuit, as long as some other circuit element does drive the node to a valid logic level when the value of the node is relevant to circuit operation.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
     ]
@@ -223,8 +263,8 @@
     "objectID": "comb.html#transistors",
     "href": "comb.html#transistors",
     "title": "4  Combinational Logic",
-    "section": "4.2 Transistors",
-    "text": "4.2 Transistors\nLogic gates are built from switches that consist of three parts: input, output, and control.\n\n\n\nOperation of NMOS and PMOS transistors. Source: EECS270-W24\n\n\nComplementary Metal-Oxide Semiconductor (CMOS) is the predominant technology used as today’s switches. CMOS switches consist of NMOS and PMOS transistors. The gate terminal serves as the control, and carriers (electrons or holes) flow from the source to the drain. For more detailed notes, please see the CMOS & VLSI notebook.\n\n\n\nPull-up and Pull-Down of Transistors, and illegal states. Source: EECS270-W24\n\n\nWhy does CMOS use both NMOS and PMOS? - Transistors are not ideal switches - NMOS is good at propagating 0s (pull-down) - PMOS is good at propagating 1s (pull-up)\nAsides from propagating 1s and 0s, transistors could also be in illegal states:\nThe symbol X indicates that the circuit node has an unknown or illegal value. This commonly happens if it is being driven to both 0 and 1 at the same time.\nThe symbol Z indicates that a node is being driven neither HIGH nor LOW. The node is said to be floating, high impedance, or high Z. A floating node does not always mean there is an error in the circuit, as long as some other circuit element does drive the node to a valid logic level when the value of the node is relevant to circuit operation.\n\n\n\nCMOS uses pull-up and pull-down as “complement”. Source: EECS270-W24",
+    "section": "",
+    "text": "Operation of NMOS and PMOS transistors. Source: EECS270-W24\n\n\n\n\n\n\nPull-up and Pull-Down of Transistors, and illegal states. Source: EECS270-W24\n\n\n\n\n\n\n\n\n\nCMOS uses pull-up and pull-down as “complement”. Source: EECS270-W24",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
     ]
@@ -233,8 +273,28 @@
     "objectID": "comb.html#transistor-scaling",
     "href": "comb.html#transistor-scaling",
     "title": "4  Combinational Logic",
-    "section": "4.3 Transistor Scaling",
-    "text": "4.3 Transistor Scaling\nMoore’s law: The number of transistors in a dense integrated circuit (IC) doubles about every 18-24 months.\nDennard scaling: As the dimensions of a device go down, so does power consumption.",
+    "section": "4.2 Transistor Scaling",
+    "text": "4.2 Transistor Scaling\nMoore’s law: The number of transistors in a dense integrated circuit (IC) doubles about every 18-24 months.\nDennard scaling: As the dimensions of a device go down, so does power consumption.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
+    ]
+  },
+  {
+    "objectID": "comb.html#basic-comb-logic-building-blocks",
+    "href": "comb.html#basic-comb-logic-building-blocks",
+    "title": "4  Combinational Logic",
+    "section": "4.3 Basic Comb Logic Building Blocks",
+    "text": "4.3 Basic Comb Logic Building Blocks\n\n4.3.1 Half-Adder\n\n\n\nSource\n\n\n\n\n4.3.2 Full-Adder\n\n\n\n\nSource\n\n\n\n\n4.3.3 Multiplexer (MUX)\n\n\n\nSource: EECS 270\n\n\n\n\n\nSource\n\n\n\\[q = s'b + sa\\]\n\nIs a 2:1 MUX functionally complete? Yes:\n\n\n\nSource: EECS 270\n\n\n\n\n\n\n\n\nNote 4.2: Equation - Number of 2:1 MUXes to build 2^n:1 MUX\n\n\n\n\\(2^n-1\\) MUXes (2:1 MUX) are needed to construct a \\(2^n\\):1 MUX\n\nnumber of nodes in a perfect binary tree\n\n\n\nImplementing arbitrary functions with MUXes - strategies:\n\nUse Shannon’s expansion theorem\nor inspect truth table and start “dividing” chunks of logic to split it with the select bits\n\nImplementing functions with MUXes:\n\n\nBuilding larger MUXes from smaller ones:\n\n\n\nSource\n\n\n\n\n4.3.4 Demultiplexers\n“Inverse” of a MUX - select signal routes the input to corresponding output\n\nThe output of a DEMUX (when input data signal is 1) is in one-hot encoding, where only one bit of the output is high (hot). The position of the hot bit indicates the value.\n\n\n4.3.5 One-hot Encoding\n\n\\(2^n\\) bits are needed to represent an \\(n\\)-bit number in one-hot encoding\n\n\n4.3.6 Decoders\nConvert binary code to one-hot code\n\n\n\n\n4.3.7 Encoders\nOpposite of decoder - converts one-hot to binary code\n\n\n\n4.3.8 Comparators\nBuild equality/difference (comparators) with XOR(diff)/XNOR(equal)\n\n1-bit magnitude comparator:\n\n\n\n4.3.9 Priority Encoders",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
+    ]
+  },
+  {
+    "objectID": "comb.html#examples",
+    "href": "comb.html#examples",
+    "title": "4  Combinational Logic",
+    "section": "4.4 Examples",
+    "text": "4.4 Examples",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Combinational Logic</span>"
     ]
@@ -244,7 +304,67 @@
     "href": "timing.html",
     "title": "5  Timing",
     "section": "",
-    "text": "5.1",
+    "text": "5.1 Delays\nThis chapter first introduces the notion delays. Sequential elements will also be introduced in the sequential chapter, which will be needed to understand further timing analysis in this chapter.\nTransistors have delays, thus ON/OFF switching does not happen instantly\nPropagation Delay (\\(t_p\\)) is the delay between the 50% transition point of the input and the 50% transition point of the output\n![](images/timing/delay-hl-lh.png\nDelays are primarily caused by:\nFor simplicity, this notebook assumes 0 wire delay. Read the CMOS VLSI notebook for more on wire delays.\nRing Oscillator can be built with a chain of odd number inverters",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Timing</span>"
+    ]
+  },
+  {
+    "objectID": "timing.html#delays",
+    "href": "timing.html#delays",
+    "title": "5  Timing",
+    "section": "",
+    "text": "\\(t_{p, LH}\\) - is the delay when the output transitions from LOW to HIGH\n\\(t_{p, HL}\\) - is the delay when the output transitions from HIGH to LOW\n\n\n\n\nCapacitance\nResistance\nTopology\nFinite speed of light\n\n\n\n\n\n\n\nSource",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Timing</span>"
+    ]
+  },
+  {
+    "objectID": "timing.html#delays-of-sequential-elements",
+    "href": "timing.html#delays-of-sequential-elements",
+    "title": "5  Timing",
+    "section": "5.2 Delays of Sequential Elements",
+    "text": "5.2 Delays of Sequential Elements\nSequential elements are built on timing delays\nFor a D latch:\n\nFor a D Flip Flop:",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Timing</span>"
+    ]
+  },
+  {
+    "objectID": "timing.html#sequential-timing",
+    "href": "timing.html#sequential-timing",
+    "title": "5  Timing",
+    "section": "5.3 Sequential Timing",
+    "text": "5.3 Sequential Timing\n\nWhen there are setup and hold time violations, the FF enters a state where its output is unpredictable, known as metastable state.\nSide notes on metastability: In metastability, the FF struggles to resolve to a stable logic level with internal nodes of the latch receiving conflicting signals leading to an unstable equillibrium. The resolution time of the FF depends on the internals of the circuit. The internal feedback mechanism tries to stabilize it, but this may take long. Theoretically the resolution time is unbounded. However in practice, with no other input changes, eventually metastability resolves to a stable 0 or a 1 (exponentially decreasing probability), but the resolution time is unpredictable. Synchronizers are used to mitigate the effects. In practice, metastability can’t be completely eliminated (real systems will deal with asynchronous inputs, clock domain crossings, etc).\nPossible causes of metastability or wrong value capture:\n\nFF input changes too soon before a clock edge\nFF input changes too soon after a clock edge\nPropagation delay exceeds clock period\nClock pulse that is too narrow\n\nAvoid these by meeting setup time, hold time, clock period, and minimum clock pulse width specifications\nTiming Analysis involves analyzing the time delays between all FF pairs within a circuit\nKey goals:\n\nDetermine max clock frequency and ensure setup time requirement is met\n\ni.e. clock can’t be too fast\n\nEnsure hold times are met\n\nMinimum propagation delay of comb logic can’t be too small\nHold time is independent of clock cycle time\n\n\n\n5.3.1 Hold Time Constraint\n\n\n\n\n\n\n\nNote 5.1: Equation - Hold Time Constraint\n\n\n\n\\[t_{cq(min)}+t_{comb(min)} = t_{cq} \\geq t_{hold}\\]\n\n\n\n\n5.3.2 Max Clock Frequency & Hold Time\nEvery circuit path between every pair of FFs must satisfy the following equation to run the circuit at a frequency of \\(f=\\frac{1}{T_{clk}}\\)\n\n\n\n\n\n\nNote 5.2: Equation - Maximum Clock Frequency & Hold Time\n\n\n\n\\[t_{cq(max)}+t_{comb(max)}+t_{setup} \\leq T_{clk}\\]\n\n\n\n\n5.3.3 Clock Skew\nClock skew: time difference between two clock edges\n\nWays to fix clock skew mostly involve more circuit level design (see CMOS VLSI notes)\n\n5.3.3.1 Clock Skew - Setup Time\n\n\n\n5.3.3.2 Clock Skew - Hold Time",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Timing</span>"
+    ]
+  },
+  {
+    "objectID": "timing.html#glitches",
+    "href": "timing.html#glitches",
+    "title": "5  Timing",
+    "section": "5.4 Glitches",
+    "text": "5.4 Glitches\nGlitch: one input transition causes multiple output transitions\nGlitches are primarily caused when different inputs paths have varying propagation delays, leading to momentary incorrect (intermediate) output values\nWhy are glitches a problem?\n\nCreates additional unwanted switching activity - increasing dynamic power consumption\nPotentially dangerious - if glitch propagates to a latch or if it affects timing-critical signal\nNoise and crosstalk - additional unwanted switching could add noise to nearby circuits\n\n\n\nGlitches are visible in K-maps when moving between prime implicants\n\n\n5.4.1 Fixing Glitches\nA glitch can be fixed by adding in a consensus term. Observe that in the K-map, we can add the consensus such that there is no “gap” when moving between prime implicants.\n\nAdditional methods:\n\nAdding buffers (delay matching)\n\nSince glitches are caused by different paths having different delays, if we pad the paths with buffers or delay elements to align timing this could fix glitches\n\nPath balancing by adjusting gate sizes to equalize delays across different paths\nRestructuring logic - reorder the gates to minimize path differences to balance delays between paths",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Timing</span>"
+    ]
+  },
+  {
+    "objectID": "timing.html#synchronizers",
+    "href": "timing.html#synchronizers",
+    "title": "5  Timing",
+    "section": "5.5 Synchronizers",
+    "text": "5.5 Synchronizers\nSynchronizer: A device that produces a synchronous output Q from an asynchronous input D within a bounded amount of time.\n\nVery useful for dealing with asynchronous input signals, clock domain crossing, mitigating effects of metastability",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Timing</span>"
+    ]
+  },
+  {
+    "objectID": "timing.html#examples",
+    "href": "timing.html#examples",
+    "title": "5  Timing",
+    "section": "5.6 Examples",
+    "text": "5.6 Examples\n\n5.6.1 Basic Timing Examples\n\n\n\n\n\n\n5.6.2 Basic Setup & Hold Time Examples",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Timing</span>"
     ]
@@ -254,7 +374,107 @@
     "href": "sequential.html",
     "title": "6  Sequential Logic",
     "section": "",
-    "text": "6.1",
+    "text": "6.1 Bistable Element\nSequential designs introduces the notion of state\nBistable means that something has two stable states\nA bistable element is built with two inverters connected together",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
+    "objectID": "sequential.html#set-reset-sr-latch",
+    "href": "sequential.html#set-reset-sr-latch",
+    "title": "6  Sequential Logic",
+    "section": "6.2 Set-Reset (SR) Latch",
+    "text": "6.2 Set-Reset (SR) Latch\n\n\n\nA NOR-based SR Latch.\n\n\nA SR Latch could also be built from NANDs, but notice where the inputs/outputs are now:\n\n\n\nSource\n\n\n\n\n\nS\nR\nQ⁺\n\n\n\n\n0\n0\nQ (hold)\n\n\n0\n1\n0 (reset)\n\n\n1\n0\n1 (set)\n\n\n1\n1\nForbidden\n\n\n\nTo solve the problematic state, the D Latch is built.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
+    "objectID": "sequential.html#d-latch",
+    "href": "sequential.html#d-latch",
+    "title": "6  Sequential Logic",
+    "section": "6.3 D Latch",
+    "text": "6.3 D Latch\nAdd a synchronization mechanism on top of the SR latch to guarantee S and R cannot be high at the same time\n\n\nWhen CLK is disabled, Q retains previous state\nWhen CLK is enabled, Q follows D input\n\nEssentially the latch passes through the input when clock is high\n\n\n\n\n\nCLK\nD\nR\nS\n( Q^+ )\n\n\n\n\n0\n0\n0\n0\nQ\n\n\n0\n1\n0\n0\nQ\n\n\n1\n0\n1\n0\n0\n\n\n1\n1\n0\n1\n1\n\n\n\n\nD latch is level sensitive\n\ni.e. it captures the input when the clock is on a high logic level\notherwise on a low logic level it holds state\nbehavior is sensitive to the logic level of the clock",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
+    "objectID": "sequential.html#level-vs-edge-triggering",
+    "href": "sequential.html#level-vs-edge-triggering",
+    "title": "6  Sequential Logic",
+    "section": "6.4 Level vs Edge Triggering",
+    "text": "6.4 Level vs Edge Triggering\n\nTriggering: Situation that makes a circuit active. Making a circuit active means allowing the circuit to take input and give output. \nLevel Triggering: The circuit becomes active when the clock signal is on a particular level.\nEdge Triggering: The circuit becomes active at the negative or positive edge of the clock signal.\n\n\nWhy edge triggering?\n\nIn sequential designs, level triggering may cause inconsistencies because the circuit remains active for long enough to allow output signals to feed back to the inputs within the same period.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
+    "objectID": "sequential.html#d-flip-flop",
+    "href": "sequential.html#d-flip-flop",
+    "title": "6  Sequential Logic",
+    "section": "6.5 D Flip-Flop",
+    "text": "6.5 D Flip-Flop\n\nA (posedge) DFF captures and holds the value of D on the positive edge of the clock. It is thus edge-triggered\nThe edge triggering is enabled by the back to back latches. We know for there to be a positive edge, the clock must first be at 0. The first negative latch holds the input data when at level 0, while the positive latch holds the previous cycle’s data as it remains unchanged. Then when the posedge happens, the neg latch’s value becomes held and passed through the positive latch.\nDFF delays will be explained in the timing chapter.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
+    "objectID": "sequential.html#registers",
+    "href": "sequential.html#registers",
+    "title": "6  Sequential Logic",
+    "section": "6.6 Registers",
+    "text": "6.6 Registers\nA register is a set of parallel DFFs",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
+    "objectID": "sequential.html#other-types-of-latches-and-flip-flops",
+    "href": "sequential.html#other-types-of-latches-and-flip-flops",
+    "title": "6  Sequential Logic",
+    "section": "6.7 Other Types of Latches and Flip Flops",
+    "text": "6.7 Other Types of Latches and Flip Flops",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
+    "objectID": "sequential.html#synchronous-circuits",
+    "href": "sequential.html#synchronous-circuits",
+    "title": "6  Sequential Logic",
+    "section": "6.8 Synchronous Circuits",
+    "text": "6.8 Synchronous Circuits\n\n\n6.8.1 JK Latch\n\n\n6.8.2 T Flip FLop",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
+    "objectID": "sequential.html#synchronizers",
+    "href": "sequential.html#synchronizers",
+    "title": "6  Sequential Logic",
+    "section": "6.9 Synchronizers",
+    "text": "6.9 Synchronizers\nSynchronizers are covered in the timing chapter.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
+    "objectID": "sequential.html#clock-domain-crossing",
+    "href": "sequential.html#clock-domain-crossing",
+    "title": "6  Sequential Logic",
+    "section": "6.10 Clock Domain Crossing",
+    "text": "6.10 Clock Domain Crossing\n```",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
+    "objectID": "sequential.html#examples",
+    "href": "sequential.html#examples",
+    "title": "6  Sequential Logic",
+    "section": "6.11 Examples",
+    "text": "6.11 Examples",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
     ]
@@ -274,7 +494,87 @@
     "href": "arithmetic.html",
     "title": "8  Binary Arithmetic",
     "section": "",
-    "text": "8.1",
+    "text": "8.1 Representations",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
+    ]
+  },
+  {
+    "objectID": "arithmetic.html#representations",
+    "href": "arithmetic.html#representations",
+    "title": "8  Binary Arithmetic",
+    "section": "",
+    "text": "8.1.1 Unsigned Binary\n\\(n\\) bits represent numbers 0 to \\(2^n-1\\)\n\n\n8.1.2 Signed Magnitude\n\n\n\n\n\n\n\nNote 8.1: Equation - Range of Signed Magnitude Representation\n\n\n\n\\(n\\)-bits represent range \\([-(2^{n-1}-1), 2^{n-1}-1]\\)\n\nWith signed magnitude, there are two representations for 0 (-0 and +0). Since 1 bit is used to represent sign, for each range (pos, neg) you can represent $2^{n-1} different numbers (excluding 0 that is repeated).\n\n\n\n\n\n8.1.3 Two’s Complement\n\n\n\n\n\n\n\nNote 8.2: Equation - Range of Two’s Complement Representation\n\n\n\n\\(n\\)-bits represent range \\([-(2^{n-1}), 2^{n-1}-1]\\)\n\n0 is now represented with MSB 0, giving the negative representations (MSB is 1) one more number\n\n\n\nFlipping a two’s complement number’s sign:\n\nFirst invert each digit\nAdd 1 to the number\n\nSign-Extension (important!)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
+    ]
+  },
+  {
+    "objectID": "arithmetic.html#addition",
+    "href": "arithmetic.html#addition",
+    "title": "8  Binary Arithmetic",
+    "section": "8.2 Addition",
+    "text": "8.2 Addition\n\n8.2.1 Unsigned Binary Addition\n\n\n\n8.2.2 Two’s Complement Addition\nAddition in two’s complement is the same as unsigned regardless of the signs!\n\n8.2.2.1 Overflow\n\nOverflow occurs if:\n\nSign of both operands are the same, AND\nSign of the sum is different",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
+    ]
+  },
+  {
+    "objectID": "arithmetic.html#subtraction",
+    "href": "arithmetic.html#subtraction",
+    "title": "8  Binary Arithmetic",
+    "section": "8.3 Subtraction",
+    "text": "8.3 Subtraction\nSubtraction in two’s complement just becomes an addition with an ‘inverted’ two’s complement number (recall how to invert a two’s comp. number from previous):",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
+    ]
+  },
+  {
+    "objectID": "arithmetic.html#adder-design",
+    "href": "arithmetic.html#adder-design",
+    "title": "8  Binary Arithmetic",
+    "section": "8.4 Adder Design",
+    "text": "8.4 Adder Design\n\n8.4.1 Ripple-Carry Adder (RCA)\n\n\n8.4.2 Carry-Lookahead Adder (CLA)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
+    ]
+  },
+  {
+    "objectID": "arithmetic.html#multiplication",
+    "href": "arithmetic.html#multiplication",
+    "title": "8  Binary Arithmetic",
+    "section": "8.5 Multiplication",
+    "text": "8.5 Multiplication",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
+    ]
+  },
+  {
+    "objectID": "arithmetic.html#multiplier-design",
+    "href": "arithmetic.html#multiplier-design",
+    "title": "8  Binary Arithmetic",
+    "section": "8.6 Multiplier Design",
+    "text": "8.6 Multiplier Design",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
+    ]
+  },
+  {
+    "objectID": "arithmetic.html#division",
+    "href": "arithmetic.html#division",
+    "title": "8  Binary Arithmetic",
+    "section": "8.7 Division",
+    "text": "8.7 Division",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
+    ]
+  },
+  {
+    "objectID": "arithmetic.html#divider-design",
+    "href": "arithmetic.html#divider-design",
+    "title": "8  Binary Arithmetic",
+    "section": "8.8 Divider Design",
+    "text": "8.8 Divider Design",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
     ]

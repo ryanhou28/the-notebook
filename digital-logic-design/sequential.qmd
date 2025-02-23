@@ -1,6 +1,113 @@
 # Sequential Logic
 
 
+![](images/sequential/comb-vs-seq.png)
+
+Sequential designs introduces the notion of **state**
+
+## Bistable Element
+
+**Bistable** means that something has two stable states
+
+A **bistable element** is built with two inverters connected together
+
+![](images/sequential/bistable.png)
+
+## Set-Reset (SR) Latch
+
+![A NOR-based SR Latch. ](images/sequential/sr-latch.png)
+
+A SR Latch could also be built from NANDs, but notice where the inputs/outputs are now:
+
+![[Source](https://electronics.stackexchange.com/questions/163164/sr-flip-flop-nor-or-nand)](images/sequential/sr-latch-nand.png)
+
+| S | R | Q⁺       |
+|---|---|----------|
+| 0 | 0 | Q (hold) |
+| 0 | 1 | 0 (reset) |
+| 1 | 0 | 1 (set)  |
+| 1 | 1 | Forbidden |
+
+To solve the problematic state, the D Latch is built.
 
 
-## 
+## D Latch
+
+Add a synchronization mechanism on top of the SR latch to guarantee S and R cannot be high at the same time
+
+![](images/sequential/d-latch.png)
+
+- When CLK is disabled, Q retains previous state
+- When CLK is enabled, Q follows D input
+  - Essentially the latch passes through the input when clock is high
+
+| CLK | D | **R** | **S** | \( Q^+ \) |
+|----|----|----|----|----|
+| 0  | 0  | 0  | 0  | Q  |
+| 0  | 1  | 0  | 0  | Q  |
+| 1  | 0  | 1  | 0  | 0  |
+| 1  | 1  | 0  | 1  | 1  |
+
+![](images/sequential/d-latch-waveform.png)
+
+D latch is **level sensitive**
+
+- i.e. it captures the input when the clock is on a high logic level
+- otherwise on a low logic level it holds state
+- behavior is sensitive to the logic level of the clock
+
+## Level vs Edge Triggering
+
+- Triggering: Situation that makes a circuit active. Making a circuit active means allowing the circuit to take input and give output. 
+- Level Triggering: The circuit becomes active when the clock signal is on a particular level.
+- Edge Triggering: The circuit becomes active at the negative or positive edge of the clock signal.
+
+![](images/sequential/level-edge.png)
+
+Why edge triggering?
+
+- In sequential designs, level triggering may cause inconsistencies because the circuit remains active for long enough to allow output signals to feed back to the inputs within the same period.
+
+## D Flip-Flop
+
+![](images/sequential/dff.png)
+
+A (posedge) DFF captures and holds the value of D on the positive edge of the clock. It is thus edge-triggered
+
+The edge triggering is enabled by the back to back latches. We know for there to be a positive edge, the clock must first be at 0. The first negative latch holds the input data when at level 0, while the positive latch holds the previous cycle's data as it remains unchanged. Then when the posedge happens, the neg latch's value becomes held and passed through the positive latch.
+
+DFF delays will be explained in the timing chapter.
+
+## Registers
+
+A **register** is a set of parallel DFFs
+
+![](images/sequential/registers.png)
+
+
+
+## Other Types of Latches and Flip Flops
+
+
+## Synchronous Circuits
+
+![](images/sequential/synchronous.png)
+
+
+
+### JK Latch
+
+
+### T Flip FLop
+
+## Synchronizers
+
+Synchronizers are covered in the timing chapter.
+
+## Clock Domain Crossing
+
+```
+
+## Examples
+
+![](images/sequential/dlatch-ex1.png)

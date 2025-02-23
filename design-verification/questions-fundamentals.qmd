@@ -1,0 +1,51 @@
+# Questions - Fundamentals of Verification
+
+Key concepts:
+
+- How does verification fit in the product devlopment stack/timeline?
+- What teams do verification engineers work with and in what way?
+- Come up with a verification plan given a module and their specs/info
+- Writing constraints
+
+## Verification Concepts
+
+**Q: What is the way to start verifying a design after finishing designing?**
+
+**Q: What are the steps to verify a design?**
+
+**Q: What conversations would you have while working with the designer?**
+
+**Q: After functional simulation and no more bugs, will there be more bugs that will be caught in the emulation / gate level simulation stages?**
+
+**Q: How would you verify an asynchronous design?**
+
+**Q: CDC Question: What is the way to get a data input from an asynchronous signal?**
+
+**Q: Imagine a case where your coverage events are not correct. Top bins are not being hit. Why might this be the case? Brainstorm possible reasons why top bins are being hit?**
+
+**A: ** Possible reasons include driver issue, constraint being wrong
+
+**Q: Who do DV teams interact with?**
+
+**Q: What are differences between SoC level verification vs IP/Component level verification?**
+
+**Q: Design sign-off: when and how?**
+
+**Q: There are always logical bugs found post-silicon. What to do about those?**
+
+**Q: Coverage - FSM, toggle, branch, code, functional**
+
+## Test Plans
+
+**Q: Given a DUT block diagram and timing diagram, try to come up with a verification plan to verify it**
+
+**Q: Come up with a verification plan for priority arbiter with ack. What test cases would you run? What is your test plan? How would you structure your testbench?**
+
+**Q: Given a round robin arbiter, where each input to the round robin arbiter is a FIFO, how would you verify this module?**
+
+**Q: Verification plan - table of contents**
+
+## Constraints
+
+**Q: You have 4 animal types: Dog, Cat, Sheep, Horse. Each dog can eat exactly 4 apples, each cat can eat exactly 3 apples, each sheep can eat exactly 1 apple, and each horse can eat exactly 10 apples. There are a total of 1024 apples. Write a constraint such that all animal types in total will eat more than 16 apples.**
+

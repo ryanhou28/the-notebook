@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -188,9 +217,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">4.1</span> </a></li>
-  <li><a href="#transistors" id="toc-transistors" class="nav-link" data-scroll-target="#transistors"><span class="header-section-number">4.2</span> Transistors</a></li>
-  <li><a href="#transistor-scaling" id="toc-transistor-scaling" class="nav-link" data-scroll-target="#transistor-scaling"><span class="header-section-number">4.3</span> Transistor Scaling</a></li>
+  <li><a href="#transistors" id="toc-transistors" class="nav-link active" data-scroll-target="#transistors"><span class="header-section-number">4.1</span> Transistors</a></li>
+  <li><a href="#transistor-scaling" id="toc-transistor-scaling" class="nav-link" data-scroll-target="#transistor-scaling"><span class="header-section-number">4.2</span> Transistor Scaling</a></li>
+  <li><a href="#basic-comb-logic-building-blocks" id="toc-basic-comb-logic-building-blocks" class="nav-link" data-scroll-target="#basic-comb-logic-building-blocks"><span class="header-section-number">4.3</span> Basic Comb Logic Building Blocks</a>
+  <ul class="collapse">
+  <li><a href="#half-adder" id="toc-half-adder" class="nav-link" data-scroll-target="#half-adder"><span class="header-section-number">4.3.1</span> Half-Adder</a></li>
+  <li><a href="#full-adder" id="toc-full-adder" class="nav-link" data-scroll-target="#full-adder"><span class="header-section-number">4.3.2</span> Full-Adder</a></li>
+  <li><a href="#multiplexer-mux" id="toc-multiplexer-mux" class="nav-link" data-scroll-target="#multiplexer-mux"><span class="header-section-number">4.3.3</span> Multiplexer (MUX)</a></li>
+  <li><a href="#demultiplexers" id="toc-demultiplexers" class="nav-link" data-scroll-target="#demultiplexers"><span class="header-section-number">4.3.4</span> Demultiplexers</a></li>
+  <li><a href="#one-hot-encoding" id="toc-one-hot-encoding" class="nav-link" data-scroll-target="#one-hot-encoding"><span class="header-section-number">4.3.5</span> One-hot Encoding</a></li>
+  <li><a href="#decoders" id="toc-decoders" class="nav-link" data-scroll-target="#decoders"><span class="header-section-number">4.3.6</span> Decoders</a></li>
+  <li><a href="#encoders" id="toc-encoders" class="nav-link" data-scroll-target="#encoders"><span class="header-section-number">4.3.7</span> Encoders</a></li>
+  <li><a href="#comparators" id="toc-comparators" class="nav-link" data-scroll-target="#comparators"><span class="header-section-number">4.3.8</span> Comparators</a></li>
+  <li><a href="#priority-encoders" id="toc-priority-encoders" class="nav-link" data-scroll-target="#priority-encoders"><span class="header-section-number">4.3.9</span> Priority Encoders</a></li>
+  </ul></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">4.4</span> Examples</a></li>
   </ul>
 </nav>
     </div>
@@ -229,11 +270,8 @@ Note&nbsp;4.1: Definition - Combinational Logic
 <p><strong>Combinational Logic</strong>: output is a pure function of the present input only.</p>
 </div>
 </div>
-<section id="section" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="section"><span class="header-section-number">4.1</span> </h2>
-</section>
-<section id="transistors" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="transistors"><span class="header-section-number">4.2</span> Transistors</h2>
+<section id="transistors" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="transistors"><span class="header-section-number">4.1</span> Transistors</h2>
 <p>Logic gates are built from switches that consist of three parts: input, output, and control.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -259,10 +297,124 @@ Note&nbsp;4.1: Definition - Combinational Logic
 </figure>
 </div>
 </section>
-<section id="transistor-scaling" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="transistor-scaling"><span class="header-section-number">4.3</span> Transistor Scaling</h2>
+<section id="transistor-scaling" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="transistor-scaling"><span class="header-section-number">4.2</span> Transistor Scaling</h2>
 <p>Moore’s law: The number of transistors in a dense integrated circuit (IC) doubles about every 18-24 months.</p>
 <p>Dennard scaling: As the dimensions of a device go down, so does power consumption.</p>
+</section>
+<section id="basic-comb-logic-building-blocks" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="basic-comb-logic-building-blocks"><span class="header-section-number">4.3</span> Basic Comb Logic Building Blocks</h2>
+<section id="half-adder" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="half-adder"><span class="header-section-number">4.3.1</span> Half-Adder</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/comb/half-adder.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://www.geeksforgeeks.org/implementation-of-full-adder-using-half-adders/">Source</a></figcaption>
+</figure>
+</div>
+</section>
+<section id="full-adder" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="full-adder"><span class="header-section-number">4.3.2</span> Full-Adder</h3>
+<p><img src="images/comb/full-adder.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/comb/full-adder2.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://www.geeksforgeeks.org/implementation-of-full-adder-using-half-adders/">Source</a></figcaption>
+</figure>
+</div>
+</section>
+<section id="multiplexer-mux" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="multiplexer-mux"><span class="header-section-number">4.3.3</span> Multiplexer (MUX)</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/comb/mux.png" class="img-fluid figure-img"></p>
+<figcaption>Source: EECS 270</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/comb/mux-circ.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://vlsiuniverse.blogspot.com/">Source</a></figcaption>
+</figure>
+</div>
+<p><span class="math display">\[q = s'b + sa\]</span></p>
+<!-- TODO: Insert MUX truth table, make above image smaller -->
+<p>Is a 2:1 MUX functionally complete? Yes:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/comb/mux-fc.png" class="img-fluid figure-img"></p>
+<figcaption>Source: EECS 270</figcaption>
+</figure>
+</div>
+<div id="nte-eqn-mux-tree" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;4.2: Equation - Number of 2:1 MUXes to build 2^n:1 MUX
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(2^n-1\)</span> MUXes (2:1 MUX) are needed to construct a <span class="math inline">\(2^n\)</span>:1 MUX</p>
+<ul>
+<li>number of nodes in a perfect binary tree</li>
+</ul>
+</div>
+</div>
+<p>Implementing arbitrary functions with MUXes - strategies:</p>
+<ul>
+<li>Use Shannon’s expansion theorem</li>
+<li>or inspect truth table and start “dividing” chunks of logic to split it with the select bits</li>
+</ul>
+<p><strong>Implementing functions with MUXes:</strong></p>
+<p><img src="images/comb/mux-ex1.png" class="img-fluid"></p>
+<p><img src="images/comb/mux-arb.png" class="img-fluid"></p>
+<p><strong>Building larger MUXes from smaller ones:</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/comb/8-1mux.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://vlsiuniverse.blogspot.com/">Source</a></figcaption>
+</figure>
+</div>
+</section>
+<section id="demultiplexers" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="demultiplexers"><span class="header-section-number">4.3.4</span> Demultiplexers</h3>
+<p><em>“Inverse”</em> of a MUX - select signal routes the input to corresponding output</p>
+<p><img src="images/comb/demux.png" class="img-fluid"></p>
+<p>The output of a DEMUX (when input data signal is 1) is in <strong>one-hot encoding</strong>, where only one bit of the output is high (hot). The position of the hot bit indicates the value.</p>
+</section>
+<section id="one-hot-encoding" class="level3" data-number="4.3.5">
+<h3 data-number="4.3.5" class="anchored" data-anchor-id="one-hot-encoding"><span class="header-section-number">4.3.5</span> One-hot Encoding</h3>
+<p><img src="images/comb/onehot.png" class="img-fluid"></p>
+<p><span class="math inline">\(2^n\)</span> bits are needed to represent an <span class="math inline">\(n\)</span>-bit number in one-hot encoding</p>
+</section>
+<section id="decoders" class="level3" data-number="4.3.6">
+<h3 data-number="4.3.6" class="anchored" data-anchor-id="decoders"><span class="header-section-number">4.3.6</span> Decoders</h3>
+<p>Convert binary code to one-hot code</p>
+<p><img src="images/comb/decod.png" class="img-fluid"></p>
+<p><img src="images/comb/decod-stack.png" class="img-fluid"></p>
+</section>
+<section id="encoders" class="level3" data-number="4.3.7">
+<h3 data-number="4.3.7" class="anchored" data-anchor-id="encoders"><span class="header-section-number">4.3.7</span> Encoders</h3>
+<p>Opposite of decoder - converts one-hot to binary code</p>
+<p><img src="images/comb/encoder.png" class="img-fluid"></p>
+</section>
+<section id="comparators" class="level3" data-number="4.3.8">
+<h3 data-number="4.3.8" class="anchored" data-anchor-id="comparators"><span class="header-section-number">4.3.8</span> Comparators</h3>
+<p>Build equality/difference (comparators) with XOR(diff)/XNOR(equal)</p>
+<p><img src="images/comb/comparator.png" class="img-fluid"></p>
+<p><strong>1-bit magnitude comparator:</strong></p>
+<p><img src="images/comb/1b-mag-comp.png" class="img-fluid"></p>
+</section>
+<section id="priority-encoders" class="level3" data-number="4.3.9">
+<h3 data-number="4.3.9" class="anchored" data-anchor-id="priority-encoders"><span class="header-section-number">4.3.9</span> Priority Encoders</h3>
+</section>
+</section>
+<section id="examples" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="examples"><span class="header-section-number">4.4</span> Examples</h2>
+<p><img src="images/comb/comp-exercise.png" class="img-fluid"></p>
+<p><img src="images/comb/mux-exercise1.png" class="img-fluid"></p>
 
 
 </section>

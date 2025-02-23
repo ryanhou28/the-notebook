@@ -1,6 +1,96 @@
 # Binary Arithmetic
 
+## Representations
+
+### Unsigned Binary
+
+$n$ bits represent numbers 0 to $2^n-1$ 
+
+### Signed Magnitude
+
+![](images/arithmetic/signed-mag.png)
+
+
+::: {#nte-eqn-range-signed-mag .callout-note}
+## Equation - Range of Signed Magnitude Representation
+$n$-bits represent range $[-(2^{n-1}-1), 2^{n-1}-1]$
+
+- With signed magnitude, there are two representations for 0 (-0 and +0). Since 1 bit is used to represent sign, for each range (pos, neg) you can represent $2^{n-1} different numbers (excluding 0 that is repeated).
+:::
+
+### Two's Complement
+
+![](images/arithmetic/twos-comp.png)
+
+
+::: {#nte-eqn-range-twos-comp .callout-note}
+## Equation - Range of Two's Complement Representation
+$n$-bits represent range $[-(2^{n-1}), 2^{n-1}-1]$
+
+- 0 is now represented with MSB 0, giving the negative representations (MSB is 1) one more number
+:::
+
+**Flipping a two's complement number's sign:**
+
+1. First invert each digit
+2. Add 1 to the number
+
+**Sign-Extension** (important!)
+
+![](images/arithmetic/sign-ext.png)
+
+
+## Addition
+
+
+### Unsigned Binary Addition
+
+![](images/arithmetic/uns-add.png)
+
+
+### Two's Complement Addition
+
+Addition in two's complement is the same as unsigned regardless of the signs!
+
+
+#### Overflow
+
+![](images/arithmetic/ovf-1.png)
+
+Overflow occurs if:
+
+- Sign of both operands are the same, AND
+- Sign of the sum is different
+
+![](images/arithmetic/ovf-exp.png)
+
+## Subtraction
+
+Subtraction in two's complement just becomes an addition with an 'inverted' two's complement number (recall how to invert a two's comp. number from previous):
+
+![](images/arithmetic/twos-sub.png)
+
+## Adder Design
+
+
+### Ripple-Carry Adder (RCA)
 
 
 
-## 
+### Carry-Lookahead Adder (CLA)
+
+
+## Multiplication
+
+
+
+## Multiplier Design
+
+
+
+
+## Division
+
+
+
+## Divider Design

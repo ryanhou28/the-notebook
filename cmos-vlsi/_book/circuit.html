@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b6b4e5ca75ba39a1f986e6d06a1c53b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -292,32 +292,40 @@ window.Quarto = {
   <li><a href="#current-i" id="toc-current-i" class="nav-link" data-scroll-target="#current-i"><span class="header-section-number">2.3.3</span> Current (I)</a></li>
   <li><a href="#power-p" id="toc-power-p" class="nav-link" data-scroll-target="#power-p"><span class="header-section-number">2.3.4</span> Power (P)</a></li>
   </ul></li>
-  <li><a href="#capacitance-inductance" id="toc-capacitance-inductance" class="nav-link" data-scroll-target="#capacitance-inductance"><span class="header-section-number">2.4</span> Capacitance, Inductance</a>
+  <li><a href="#resistance-capacitance-inductance" id="toc-resistance-capacitance-inductance" class="nav-link" data-scroll-target="#resistance-capacitance-inductance"><span class="header-section-number">2.4</span> Resistance, Capacitance, Inductance</a>
   <ul class="collapse">
-  <li><a href="#capacitance-c" id="toc-capacitance-c" class="nav-link" data-scroll-target="#capacitance-c"><span class="header-section-number">2.4.1</span> Capacitance (C)</a></li>
-  <li><a href="#inductance-l" id="toc-inductance-l" class="nav-link" data-scroll-target="#inductance-l"><span class="header-section-number">2.4.2</span> Inductance (L)</a></li>
+  <li><a href="#resistance-r" id="toc-resistance-r" class="nav-link" data-scroll-target="#resistance-r"><span class="header-section-number">2.4.1</span> Resistance (R)</a></li>
+  <li><a href="#capacitance-c" id="toc-capacitance-c" class="nav-link" data-scroll-target="#capacitance-c"><span class="header-section-number">2.4.2</span> Capacitance (C)</a></li>
+  <li><a href="#inductance-l" id="toc-inductance-l" class="nav-link" data-scroll-target="#inductance-l"><span class="header-section-number">2.4.3</span> Inductance (L)</a></li>
   </ul></li>
-  <li><a href="#kvl-kcl" id="toc-kvl-kcl" class="nav-link" data-scroll-target="#kvl-kcl"><span class="header-section-number">2.5</span> KVL &amp; KCL</a>
+  <li><a href="#electric-fields" id="toc-electric-fields" class="nav-link" data-scroll-target="#electric-fields"><span class="header-section-number">2.5</span> Electric Fields</a></li>
+  <li><a href="#kvl-kcl" id="toc-kvl-kcl" class="nav-link" data-scroll-target="#kvl-kcl"><span class="header-section-number">2.6</span> KVL &amp; KCL</a>
   <ul class="collapse">
-  <li><a href="#kirchhoffs-voltage-law-kvl" id="toc-kirchhoffs-voltage-law-kvl" class="nav-link" data-scroll-target="#kirchhoffs-voltage-law-kvl"><span class="header-section-number">2.5.1</span> Kirchhoff’s Voltage Law (KVL)</a></li>
-  <li><a href="#kirchhoffs-current-law-kcl" id="toc-kirchhoffs-current-law-kcl" class="nav-link" data-scroll-target="#kirchhoffs-current-law-kcl"><span class="header-section-number">2.5.2</span> Kirchhoff’s Current Law (KCL)</a></li>
+  <li><a href="#kirchhoffs-voltage-law-kvl" id="toc-kirchhoffs-voltage-law-kvl" class="nav-link" data-scroll-target="#kirchhoffs-voltage-law-kvl"><span class="header-section-number">2.6.1</span> Kirchhoff’s Voltage Law (KVL)</a></li>
+  <li><a href="#kirchhoffs-current-law-kcl" id="toc-kirchhoffs-current-law-kcl" class="nav-link" data-scroll-target="#kirchhoffs-current-law-kcl"><span class="header-section-number">2.6.2</span> Kirchhoff’s Current Law (KCL)</a></li>
   </ul></li>
-  <li><a href="#additional-topics-relevant-to-cmosvlsi" id="toc-additional-topics-relevant-to-cmosvlsi" class="nav-link" data-scroll-target="#additional-topics-relevant-to-cmosvlsi"><span class="header-section-number">2.6</span> Additional Topics Relevant to CMOS/VLSI</a>
+  <li><a href="#basic-circuit-configurations" id="toc-basic-circuit-configurations" class="nav-link" data-scroll-target="#basic-circuit-configurations"><span class="header-section-number">2.7</span> Basic Circuit Configurations</a>
   <ul class="collapse">
-  <li><a href="#small-signal-analysis" id="toc-small-signal-analysis" class="nav-link" data-scroll-target="#small-signal-analysis"><span class="header-section-number">2.6.1</span> Small Signal Analysis</a></li>
-  <li><a href="#rc-networks" id="toc-rc-networks" class="nav-link" data-scroll-target="#rc-networks"><span class="header-section-number">2.6.2</span> RC Networks</a></li>
-  <li><a href="#noise-and-signal-integrity" id="toc-noise-and-signal-integrity" class="nav-link" data-scroll-target="#noise-and-signal-integrity"><span class="header-section-number">2.6.3</span> Noise and Signal Integrity</a></li>
-  <li><a href="#semiconductor-physics-basics" id="toc-semiconductor-physics-basics" class="nav-link" data-scroll-target="#semiconductor-physics-basics"><span class="header-section-number">2.6.4</span> Semiconductor Physics Basics</a></li>
+  <li><a href="#series-connections" id="toc-series-connections" class="nav-link" data-scroll-target="#series-connections"><span class="header-section-number">2.7.1</span> Series Connections</a></li>
+  <li><a href="#parallel-connections" id="toc-parallel-connections" class="nav-link" data-scroll-target="#parallel-connections"><span class="header-section-number">2.7.2</span> Parallel Connections</a></li>
   </ul></li>
-  <li><a href="#pn-junctions" id="toc-pn-junctions" class="nav-link" data-scroll-target="#pn-junctions"><span class="header-section-number">2.7</span> PN Junctions</a>
+  <li><a href="#capacitor" id="toc-capacitor" class="nav-link" data-scroll-target="#capacitor"><span class="header-section-number">2.8</span> Capacitor</a></li>
+  <li><a href="#additional-topics-relevant-to-cmosvlsi" id="toc-additional-topics-relevant-to-cmosvlsi" class="nav-link" data-scroll-target="#additional-topics-relevant-to-cmosvlsi"><span class="header-section-number">2.9</span> Additional Topics Relevant to CMOS/VLSI</a>
   <ul class="collapse">
-  <li><a href="#built-in-potential" id="toc-built-in-potential" class="nav-link" data-scroll-target="#built-in-potential"><span class="header-section-number">2.7.1</span> Built-in Potential</a></li>
-  <li><a href="#depletion-region" id="toc-depletion-region" class="nav-link" data-scroll-target="#depletion-region"><span class="header-section-number">2.7.2</span> Depletion Region</a></li>
-  <li><a href="#current-voltage-relationship" id="toc-current-voltage-relationship" class="nav-link" data-scroll-target="#current-voltage-relationship"><span class="header-section-number">2.7.3</span> Current-Voltage Relationship</a></li>
-  <li><a href="#junction-capacitance" id="toc-junction-capacitance" class="nav-link" data-scroll-target="#junction-capacitance"><span class="header-section-number">2.7.4</span> Junction Capacitance</a></li>
-  <li><a href="#temperature-effects" id="toc-temperature-effects" class="nav-link" data-scroll-target="#temperature-effects"><span class="header-section-number">2.7.5</span> Temperature Effects</a></li>
+  <li><a href="#small-signal-analysis" id="toc-small-signal-analysis" class="nav-link" data-scroll-target="#small-signal-analysis"><span class="header-section-number">2.9.1</span> Small Signal Analysis</a></li>
+  <li><a href="#rc-networks" id="toc-rc-networks" class="nav-link" data-scroll-target="#rc-networks"><span class="header-section-number">2.9.2</span> RC Networks</a></li>
+  <li><a href="#noise-and-signal-integrity" id="toc-noise-and-signal-integrity" class="nav-link" data-scroll-target="#noise-and-signal-integrity"><span class="header-section-number">2.9.3</span> Noise and Signal Integrity</a></li>
+  <li><a href="#semiconductor-physics-basics" id="toc-semiconductor-physics-basics" class="nav-link" data-scroll-target="#semiconductor-physics-basics"><span class="header-section-number">2.9.4</span> Semiconductor Physics Basics</a></li>
   </ul></li>
-  <li><a href="#note" id="toc-note" class="nav-link" data-scroll-target="#note"><span class="header-section-number">2.8</span> Note</a></li>
+  <li><a href="#pn-junctions" id="toc-pn-junctions" class="nav-link" data-scroll-target="#pn-junctions"><span class="header-section-number">2.10</span> PN Junctions</a>
+  <ul class="collapse">
+  <li><a href="#built-in-potential" id="toc-built-in-potential" class="nav-link" data-scroll-target="#built-in-potential"><span class="header-section-number">2.10.1</span> Built-in Potential</a></li>
+  <li><a href="#depletion-region" id="toc-depletion-region" class="nav-link" data-scroll-target="#depletion-region"><span class="header-section-number">2.10.2</span> Depletion Region</a></li>
+  <li><a href="#current-voltage-relationship" id="toc-current-voltage-relationship" class="nav-link" data-scroll-target="#current-voltage-relationship"><span class="header-section-number">2.10.3</span> Current-Voltage Relationship</a></li>
+  <li><a href="#junction-capacitance" id="toc-junction-capacitance" class="nav-link" data-scroll-target="#junction-capacitance"><span class="header-section-number">2.10.4</span> Junction Capacitance</a></li>
+  <li><a href="#temperature-effects" id="toc-temperature-effects" class="nav-link" data-scroll-target="#temperature-effects"><span class="header-section-number">2.10.5</span> Temperature Effects</a></li>
+  </ul></li>
+  <li><a href="#note" id="toc-note" class="nav-link" data-scroll-target="#note"><span class="header-section-number">2.11</span> Note</a></li>
   </ul>
 </nav>
     </div>
@@ -473,54 +481,109 @@ window.Quarto = {
 <p><span class="math display">\[P = VI \text{ (instantaneous)}\]</span> <span class="math display">\[P = I^2R \text{ (resistive loss)}\]</span> <span class="math display">\[P = CV^2f \text{ (dynamic CMOS)}\]</span> <span class="math display">\[P_{avg} = \frac{1}{T}\int_0^T p(t)dt \text{ (average)}\]</span></p>
 </section>
 </section>
-<section id="capacitance-inductance" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="capacitance-inductance"><span class="header-section-number">2.4</span> Capacitance, Inductance</h2>
-<section id="capacitance-c" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="capacitance-c"><span class="header-section-number">2.4.1</span> Capacitance (C)</h3>
-<p>Capacitance is measured in Farads (F). Key equations:</p>
+<section id="resistance-capacitance-inductance" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="resistance-capacitance-inductance"><span class="header-section-number">2.4</span> Resistance, Capacitance, Inductance</h2>
+<section id="resistance-r" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="resistance-r"><span class="header-section-number">2.4.1</span> Resistance (R)</h3>
+<p>Resistance is the property of a material that opposes the flow of electric current, resulting in the conversion of electrical energy to thermal energy.</p>
+<p>Key equations:</p>
+<p><span class="math display">\[V = IR \text{ (Ohm's Law)}\]</span> <span class="math display">\[P = I^2R \text{ (power dissipation)}\]</span> <span class="math display">\[R = \rho\frac{L}{A} \text{ (bulk resistance)}\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\rho\)</span> is resistivity</li>
+<li><span class="math inline">\(L\)</span> is length</li>
+<li><span class="math inline">\(A\)</span> is cross-sectional area</li>
+</ul>
+</section>
+<section id="capacitance-c" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="capacitance-c"><span class="header-section-number">2.4.2</span> Capacitance (C)</h3>
+<p>Capacitance (measured in Farads F) is the ability of a component to store electric charge, measured as the ratio of stored charge to the applied voltage. Key equations:</p>
 <p><span class="math display">\[Q = CV \text{ (charge stored)}\]</span> <span class="math display">\[I_C = C\frac{dV}{dt} \text{ (capacitor current)}\]</span> <span class="math display">\[\tau = RC \text{ (time constant)}\]</span></p>
 <p>For parallel plate capacitors: <span class="math display">\[C = \frac{\epsilon_0\epsilon_r A}{d}\]</span></p>
 <p>where: - <span class="math inline">\(A\)</span> is plate area - <span class="math inline">\(d\)</span> is plate separation - <span class="math inline">\(\epsilon_0\)</span> is permittivity of free space - <span class="math inline">\(\epsilon_r\)</span> is relative permittivity</p>
 </section>
-<section id="inductance-l" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="inductance-l"><span class="header-section-number">2.4.2</span> Inductance (L)</h3>
-<p>Inductance is measured in Henries (H):</p>
+<section id="inductance-l" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="inductance-l"><span class="header-section-number">2.4.3</span> Inductance (L)</h3>
+<p>Inductance (measured in Henries H) is the property of a circuit element to oppose changes in current flow by storing energy in a magnetic field:</p>
 <p><span class="math display">\[V_L = L\frac{dI}{dt}\]</span> <span class="math display">\[\tau_L = \frac{L}{R} \text{ (inductive time constant)}\]</span> <span class="math display">\[E = \frac{1}{2}LI^2 \text{ (stored energy)}\]</span></p>
 </section>
 </section>
-<section id="kvl-kcl" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="kvl-kcl"><span class="header-section-number">2.5</span> KVL &amp; KCL</h2>
-<section id="kirchhoffs-voltage-law-kvl" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="kirchhoffs-voltage-law-kvl"><span class="header-section-number">2.5.1</span> Kirchhoff’s Voltage Law (KVL)</h3>
+<section id="electric-fields" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="electric-fields"><span class="header-section-number">2.5</span> Electric Fields</h2>
+<p>An electric field is a region of space surrounding a charged particle where another charged particle would experience a force, essentially acting like an invisible “push” or “pull” depending on the charges involved. It is the <strong>force per unit charge</strong> experienced by a small positive test charge placed at that point. Units: <span class="math inline">\(V/m\)</span> or <span class="math inline">\(N/C\)</span></p>
+<p><span class="math display">\[E = \frac{F}{q}\]</span></p>
+<ul>
+<li></li>
+<li>electric field is the rate of change of voltage w.r.t. position</li>
+<li>strong electric field -&gt; rapid change in voltage over short distance</li>
+<li>In circuits, voltage sources create electric fields that drive current flow</li>
+</ul>
+</section>
+<section id="kvl-kcl" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="kvl-kcl"><span class="header-section-number">2.6</span> KVL &amp; KCL</h2>
+<section id="kirchhoffs-voltage-law-kvl" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="kirchhoffs-voltage-law-kvl"><span class="header-section-number">2.6.1</span> Kirchhoff’s Voltage Law (KVL)</h3>
 <p>The sum of voltages around any closed loop equals zero:</p>
 <p><span class="math display">\[\sum_{k=1}^n V_k = 0\]</span></p>
 </section>
-<section id="kirchhoffs-current-law-kcl" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="kirchhoffs-current-law-kcl"><span class="header-section-number">2.5.2</span> Kirchhoff’s Current Law (KCL)</h3>
+<section id="kirchhoffs-current-law-kcl" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="kirchhoffs-current-law-kcl"><span class="header-section-number">2.6.2</span> Kirchhoff’s Current Law (KCL)</h3>
 <p>The sum of currents entering a node equals the sum of currents leaving it:</p>
 <p><span class="math display">\[\sum I_{in} = \sum I_{out}\]</span> <span class="math display">\[\sum_{k=1}^n I_k = 0 \text{ (node equation)}\]</span></p>
 </section>
 </section>
-<section id="additional-topics-relevant-to-cmosvlsi" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="additional-topics-relevant-to-cmosvlsi"><span class="header-section-number">2.6</span> Additional Topics Relevant to CMOS/VLSI</h2>
-<section id="small-signal-analysis" class="level3" data-number="2.6.1">
-<h3 data-number="2.6.1" class="anchored" data-anchor-id="small-signal-analysis"><span class="header-section-number">2.6.1</span> Small Signal Analysis</h3>
+<section id="basic-circuit-configurations" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="basic-circuit-configurations"><span class="header-section-number">2.7</span> Basic Circuit Configurations</h2>
+<section id="series-connections" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="series-connections"><span class="header-section-number">2.7.1</span> Series Connections</h3>
+<p>In series connections, components share the same current: <span class="math display">\[I_{total} = I_1 = I_2 = ... = I_n\]</span> For components in series:</p>
+<ul>
+<li>Resistors: <span class="math inline">\(R_{total} = R_1 + R_2 + ... + R_n\)</span></li>
+<li>Capacitors: <span class="math inline">\(\frac{1}{C_{total}} = \frac{1}{C_1} + \frac{1}{C_2} + ... + \frac{1}{C_n}\)</span></li>
+<li>Inductors: <span class="math inline">\(L_{total} = L_1 + L_2 + ... + L_n\)</span></li>
+<li>Voltage Division: <span class="math inline">\(V_i = V_{total}\frac{R_i}{R_{total}}\)</span></li>
+</ul>
+</section>
+<section id="parallel-connections" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="parallel-connections"><span class="header-section-number">2.7.2</span> Parallel Connections</h3>
+<p>In parallel connections, components share the same voltage: <span class="math display">\[V_{total} = V_1 = V_2 = ... = V_n\]</span></p>
+<p>For components in parallel:</p>
+<ul>
+<li>Resistors: <span class="math inline">\(\frac{1}{R_{total}} = \frac{1}{R_1} + \frac{1}{R_2} + ... + \frac{1}{R_n}\)</span></li>
+<li>Capacitors: <span class="math inline">\(C_{total} = C_1 + C_2 + ... + C_n\)</span></li>
+<li>Inductors: <span class="math inline">\(\frac{1}{L_{total}} = \frac{1}{L_1} + \frac{1}{L_2} + ... + \frac{1}{L_n}\)</span></li>
+<li>Current Division: <span class="math inline">\(I_i = I_{total}\frac{R_{total}}{R_i}\)</span></li>
+</ul>
+</section>
+</section>
+<section id="capacitor" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="capacitor"><span class="header-section-number">2.8</span> Capacitor</h2>
+<p>A capacitor stores eletrical energy in an electric field created between two conductive plates separated by an insulator (dialectric)</p>
+<ul>
+<li>When a voltage is applied, electrons build up on one plate (creating negative charge), and the other plate loses electrons (resulting in positive charge)</li>
+<li></li>
+</ul>
+</section>
+<section id="additional-topics-relevant-to-cmosvlsi" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="additional-topics-relevant-to-cmosvlsi"><span class="header-section-number">2.9</span> Additional Topics Relevant to CMOS/VLSI</h2>
+<section id="small-signal-analysis" class="level3" data-number="2.9.1">
+<h3 data-number="2.9.1" class="anchored" data-anchor-id="small-signal-analysis"><span class="header-section-number">2.9.1</span> Small Signal Analysis</h3>
 <p>Key parameters and equations:</p>
 <p><span class="math display">\[g_m = \frac{\partial I_D}{\partial V_{GS}} \text{ (transconductance)}\]</span> <span class="math display">\[r_o = \frac{\partial V_{DS}}{\partial I_D} \text{ (output resistance)}\]</span> <span class="math display">\[A_v = -g_m r_o \text{ (small-signal gain)}\]</span></p>
 </section>
-<section id="rc-networks" class="level3" data-number="2.6.2">
-<h3 data-number="2.6.2" class="anchored" data-anchor-id="rc-networks"><span class="header-section-number">2.6.2</span> RC Networks</h3>
+<section id="rc-networks" class="level3" data-number="2.9.2">
+<h3 data-number="2.9.2" class="anchored" data-anchor-id="rc-networks"><span class="header-section-number">2.9.2</span> RC Networks</h3>
 <p>Time domain analysis:</p>
 <p><span class="math display">\[v(t) = V(1-e^{-t/RC}) \text{ (charging)}\]</span> <span class="math display">\[v(t) = Ve^{-t/RC} \text{ (discharging)}\]</span> <span class="math display">\[t_p \approx 0.69RC \text{ (propagation delay)}\]</span></p>
 </section>
-<section id="noise-and-signal-integrity" class="level3" data-number="2.6.3">
-<h3 data-number="2.6.3" class="anchored" data-anchor-id="noise-and-signal-integrity"><span class="header-section-number">2.6.3</span> Noise and Signal Integrity</h3>
+<section id="noise-and-signal-integrity" class="level3" data-number="2.9.3">
+<h3 data-number="2.9.3" class="anchored" data-anchor-id="noise-and-signal-integrity"><span class="header-section-number">2.9.3</span> Noise and Signal Integrity</h3>
 <p>Thermal noise power spectral density: <span class="math display">\[S_v(f) = 4k_BTR \text{ (V²/Hz)}\]</span></p>
 <p>Shot noise current spectral density: <span class="math display">\[S_i(f) = 2qI_D \text{ (A²/Hz)}\]</span></p>
 <p>Signal-to-Noise Ratio: <span class="math display">\[SNR = \frac{P_{signal}}{P_{noise}} = \frac{V_{signal,rms}^2}{V_{noise,rms}^2}\]</span></p>
 </section>
-<section id="semiconductor-physics-basics" class="level3" data-number="2.6.4">
-<h3 data-number="2.6.4" class="anchored" data-anchor-id="semiconductor-physics-basics"><span class="header-section-number">2.6.4</span> Semiconductor Physics Basics</h3>
+<section id="semiconductor-physics-basics" class="level3" data-number="2.9.4">
+<h3 data-number="2.9.4" class="anchored" data-anchor-id="semiconductor-physics-basics"><span class="header-section-number">2.9.4</span> Semiconductor Physics Basics</h3>
 <p>Carrier concentration: <span class="math display">\[n_i^2 = N_C N_V e^{-E_g/k_BT}\]</span></p>
 <p>Built-in potential: <span class="math display">\[V_{bi} = V_T \ln(\frac{N_A N_D}{n_i^2})\]</span></p>
 <p>MOSFET threshold voltage: <span class="math display">\[V_{th} = V_{FB} + 2\phi_F + \frac{\sqrt{2\epsilon_s q N_A (2\phi_F)}}{C_{ox}}\]</span></p>
@@ -533,11 +596,11 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="pn-junctions" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="pn-junctions"><span class="header-section-number">2.7</span> PN Junctions</h2>
+<section id="pn-junctions" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="pn-junctions"><span class="header-section-number">2.10</span> PN Junctions</h2>
 <p>The PN junction is fundamental to semiconductor devices and CMOS operation. Key concepts and equations:</p>
-<section id="built-in-potential" class="level3" data-number="2.7.1">
-<h3 data-number="2.7.1" class="anchored" data-anchor-id="built-in-potential"><span class="header-section-number">2.7.1</span> Built-in Potential</h3>
+<section id="built-in-potential" class="level3" data-number="2.10.1">
+<h3 data-number="2.10.1" class="anchored" data-anchor-id="built-in-potential"><span class="header-section-number">2.10.1</span> Built-in Potential</h3>
 <p>The built-in potential (<span class="math inline">\(V_{bi}\)</span>) across the junction at equilibrium:</p>
 <p><span class="math inline">\(V_{bi} = V_T \ln(\frac{N_A N_D}{n_i^2})\)</span></p>
 <p>where:</p>
@@ -548,8 +611,8 @@ window.Quarto = {
 <li><span class="math inline">\(V_T\)</span> is thermal voltage (<span class="math inline">\(k_BT/q\)</span>)</li>
 </ul>
 </section>
-<section id="depletion-region" class="level3" data-number="2.7.2">
-<h3 data-number="2.7.2" class="anchored" data-anchor-id="depletion-region"><span class="header-section-number">2.7.2</span> Depletion Region</h3>
+<section id="depletion-region" class="level3" data-number="2.10.2">
+<h3 data-number="2.10.2" class="anchored" data-anchor-id="depletion-region"><span class="header-section-number">2.10.2</span> Depletion Region</h3>
 <p>The depletion width (<span class="math inline">\(W\)</span>) under bias:</p>
 <p><span class="math inline">\(W = \sqrt{\frac{2\epsilon_s}{q}(\frac{N_A + N_D}{N_A N_D})(V_{bi} - V_A)}\)</span></p>
 <p>where:</p>
@@ -559,8 +622,8 @@ window.Quarto = {
 <li><span class="math inline">\(q\)</span> is elementary charge</li>
 </ul>
 </section>
-<section id="current-voltage-relationship" class="level3" data-number="2.7.3">
-<h3 data-number="2.7.3" class="anchored" data-anchor-id="current-voltage-relationship"><span class="header-section-number">2.7.3</span> Current-Voltage Relationship</h3>
+<section id="current-voltage-relationship" class="level3" data-number="2.10.3">
+<h3 data-number="2.10.3" class="anchored" data-anchor-id="current-voltage-relationship"><span class="header-section-number">2.10.3</span> Current-Voltage Relationship</h3>
 <p>The ideal diode equation:</p>
 <p><span class="math inline">\(I_D = I_S(e^{V_D/V_T} - 1)\)</span></p>
 <p>where:</p>
@@ -578,8 +641,8 @@ window.Quarto = {
 <li><span class="math inline">\(A\)</span> is junction area</li>
 </ul>
 </section>
-<section id="junction-capacitance" class="level3" data-number="2.7.4">
-<h3 data-number="2.7.4" class="anchored" data-anchor-id="junction-capacitance"><span class="header-section-number">2.7.4</span> Junction Capacitance</h3>
+<section id="junction-capacitance" class="level3" data-number="2.10.4">
+<h3 data-number="2.10.4" class="anchored" data-anchor-id="junction-capacitance"><span class="header-section-number">2.10.4</span> Junction Capacitance</h3>
 <p>The junction capacitance has two components:</p>
 <p><strong>Depletion capacitance:</strong></p>
 <p><span class="math inline">\(C_j = \frac{C_{j0}}{\sqrt{1 - V_D/V_{bi}}}\)</span></p>
@@ -591,16 +654,16 @@ window.Quarto = {
 <li><span class="math inline">\(\tau_T\)</span> is transit time</li>
 </ul>
 </section>
-<section id="temperature-effects" class="level3" data-number="2.7.5">
-<h3 data-number="2.7.5" class="anchored" data-anchor-id="temperature-effects"><span class="header-section-number">2.7.5</span> Temperature Effects</h3>
+<section id="temperature-effects" class="level3" data-number="2.10.5">
+<h3 data-number="2.10.5" class="anchored" data-anchor-id="temperature-effects"><span class="header-section-number">2.10.5</span> Temperature Effects</h3>
 <p>Temperature dependence of key parameters:</p>
 <p><span class="math inline">\(I_S(T) \propto T^3e^{-E_g/k_BT}\)</span></p>
 <p><span class="math inline">\(V_{bi}(T) = V_{bi}(T_0) - \beta(T-T_0)\)</span></p>
 <p>where <span class="math inline">\(\beta\)</span> is the temperature coefficient.</p>
 </section>
 </section>
-<section id="note" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="note"><span class="header-section-number">2.8</span> Note</h2>
+<section id="note" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="note"><span class="header-section-number">2.11</span> Note</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

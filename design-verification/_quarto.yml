@@ -8,28 +8,30 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
-    - verif-basic.qmd
-    - verif-testbench.qmd
-    - verif-coverage.qmd
-    - verilog-data-types.qmd
-    - verilog-constructs.qmd
-    - verilog-behav.qmd
-    - verilog-gate.qmd
-    - verilog-examples
-    - sv-data-types.qmd
-    - sv-class.qmd
-    - sv-interface.qmd
-    - sv-constraint.qmd
-    - sv-tb.qmd
-    - uvm-sequences.qmd
-    - uvm-tb-comp.qmd
-    - uvm-tlm.qmd
-    - uvm-reg-model.qmd
-    - uvm-tb.qmd
+    # - verif-basic.qmd
+    # - verif-testbench.qmd
+    # - verif-coverage.qmd
+    # - verilog-data-types.qmd
+    # - verilog-constructs.qmd
+    # - verilog-behav.qmd
+    # - verilog-gate.qmd
+    # - verilog-examples
+    # - sv-data-types.qmd
+    # - sv-class.qmd
+    # - sv-interface.qmd
+    # - sv-constraint.qmd
+    # - sv-tb.qmd
+    # - uvm-sequences.qmd
+    # - uvm-tb-comp.qmd
+    # - uvm-tlm.qmd
+    # - uvm-reg-model.qmd
+    # - uvm-tb.qmd
     - summary.qmd
     - questions-fundamentals.qmd
+    - questions-logic.qmd
+    - questions-arch.qmd
+    - questions-coding.qmd
     - questions-verilog.qmd
-    - questions-sv.qmd
     - questions-uvm.qmd
     - references.qmd
 

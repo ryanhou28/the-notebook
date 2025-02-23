@@ -85,6 +85,17 @@ Approaches:
   - Hash indices of all elements into a hash map
 
 
+### Two Sum II
+
+Difficulty: Leetcode Medium
+
+Concepts: Array, Two Pointers, Binary Search
+
+[Leetcode Problem](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)
+
+
+
+
 ## Binary / Bit Manipulation
 
 ### Sum of Two Integers
@@ -261,6 +272,13 @@ Note:
 
 - Ordering of the combination matters!
 
+### Maximum Square Farmland
+
+- [Google Interview Tutorial](https://www.youtube.com/watch?v=Ti5vfu9arXQ&ab_channel=LifeatGoogle)
+
+A farmer wants to farm their land with the maximum area where good land is present. The "land" is represented as a matrix with 1s and 0s, where 1s mean good land and 0s mean bad land. The farmer only want to farm in a square of good land with the maximum area. Please help the farmer to find the maximum area of the land they can farm in good land.
+
+Concepts: Recursion, Dynamic Programming
 
 
 ## Graph
@@ -391,6 +409,10 @@ Classic problem
 
 
 ## String
+
+### Fizz Buzz
+
+Easy
 
 ### Longest Substring without Repeating Characters
 

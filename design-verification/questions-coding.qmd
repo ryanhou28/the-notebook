@@ -1,0 +1,72 @@
+# Questions - Coding (Non-HDL)
+
+Common "software" coding questions, concepts, and ideas asked in a design verification interview:
+
+- Bit manipulation
+- String parsing/manipulation
+- Basic recursive algorithms and their iterative counterparts
+- Object-oriented design (polymorphism, inheretence, encapsulation, abstraction)
+- Various algorithmic concepts (DFS, BFS, TSP)
+- Parallelism - multi-threading (fork, join), writing parallelised algorithms
+- Basic data structures and their implementation
+- Basic array leetcode problems
+- Mostly in C++ or Python (or another choice of scripting language)
+
+
+## Bit Manipulation
+
+**Q: Bit manipulation leetcode questions**
+
+## Strings
+
+**Q: String matching regex**
+
+**Q: Parse a string in Python: Given a .txt file, parse the file and print the frequency of each word, printed by ordering of most frequent first.**
+
+## Data Structures
+
+**Q: Code up a class for a stack, including functions for push and pop**
+
+**Q: Write C++ code to move value to the front of an array**
+
+**Q: Write C++ code to find the second minimum of an array**
+
+**Q: Two ints are represented as a linked list. Create a new linked list that is the sum of these two integers**
+
+**Q: How do you build a queue from a stack? How do you build a stack from a queue?**
+
+## Recursion/Iteration
+
+**Q: Write a function to calculate the factorial of a given number. Recursively and iteratively**
+
+**Q: Write a function to output the fibonacci sequence recursively. How about iteratively? What are the differences (especially in terms of complexity)?**
+
+**Q: Deleting objects at the end after execution (freeing up dynamic memory): use linked list, vector, or a counter**
+
+## Object-Oriented Design
+
+**Q: What is polymorphism? What is inheritance?**
+
+- [LinkedIn Post - Polymorphism in DV Interview](https://www.linkedin.com/feed/update/urn:li:activity:7280173238419124224/)
+
+## Others
+
+**Q: Write the pseudocode for how you would go about solving the traveling salesman problem**
+
+**Q: Write code for a card game in C++: Black jack - shuffle, deal, and check the sum is equal to a value. If greater then lose. If rounds are complete, then highest wins**
+
+**Q: Write code to perform matrix multiplication in C++**
+
+**Q: Write C++ code to implement LRU. What is the time complexity?**
+
+**Q: Loop interchange - to improve cache hit rate**
+
+**Q: Compilers - register renaming**
+
+**Q: How would you code Fibonacci in assembly?**
+
+
+## Scripting
+
+**Q: In Python, parse a file line-by-line and finding the minimum time for a particular bucket id given this file structure: TASK_ID | STATUS | COMMAND_LINE | BUCKET_ID | TIME (HH:MM:SS)**
+

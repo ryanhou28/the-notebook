@@ -1,0 +1,13 @@
+# Preface {.unnumbered}
+
+My notes on ???.
+
+# Resources {.unnumbered}
+
+Some relevant resources:
+
+- [Resource Name](url)
+
+Textbooks:
+
+- [Book 1](url)

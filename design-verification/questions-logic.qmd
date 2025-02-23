@@ -1,0 +1,63 @@
+# Questions - Logic Design & Basics of Digital Systems
+
+Key concepts:
+
+- Basics of logic design
+- Basics of digital systems (bits/bytes, hex/bin/dec, throughput/latency, metrics, conversions, etc)
+- FIFOs (synchronous and asynchronous)
+- Arbiters
+- Static timing analysis
+- FSMs
+- FPGA related roles will ask FPGA-specific optimizations/concepts as well
+
+## Digital System Basics
+
+**Q: Calculation of gigabits and speed**
+
+**Q: How do you tell if your system is little endian or big endian?**
+
+**Q: Constraint question: You have a total memory size of 4096 bytes. Each page can be 32, 64, 128 bytes. Each page must be aligned. Write a constraint / function that generates a random range that satisfy this constraint**
+
+## FIFOs
+
+**Q: Asynchronous FIFO qustion (with dual port RAM): gray code? FIFO depth is 10, read/write pointers is 4 bits wide. What should the initial value of the read/write pointers be?**
+
+**Q: How would you implement this: An asynchronous FIFO, with 8bit read port and 16 bit write port, and the pointers are encoded in gray code**
+
+
+
+## Static Timing Analysis
+
+**Q: Static timing analysis - given a logic circuit and some delay values, what will the setup and hold time be? How about the maximum clock frequency (given some constraints, circuit, etc)?**
+
+**Q: (not really STA but timing): How do you delay a signal by N cycles?**
+
+## Sequential Logic Design
+
+**Entries inserted into a buffer. You have to choose the oldest request among those that are ready. Optimize for power**
+
+**Q: Regarray vs Flops. Indirect branches**
+
+## Logic Design - General
+
+**Q: Design a circuit to divide the clock frequency by 4 (f/4) - in sychronous way and asynchronous way**
+
+**Q: Design a circuit to divide the clock frequency by 3 - 50 % duty cycle**
+
+**Q: How do you build a larger priority encoder from smaller priority encoders (16:4 from 4:1)?**
+
+**Q: How do you design an edge detector? How about an edge detector that also detects glitched edges? (normal edge detector circuit does not detect if the transition is from x->x'->x)**
+
+**Q: How are latches different from flip-flops?**
+
+**Q: What are the different types of latches? What about flip-flops?**
+
+## FPGAs 
+
+**Q: How do FPGAs work? How are they programmable?**
+
+**Q: How to fix setup and hold time in an FPGA?**
+
+**Q: What are some data structures used in an FPGA?**
+
+**Q: How is coding Verilog on FPGA different from ASIC?**

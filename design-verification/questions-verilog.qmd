@@ -1,0 +1,58 @@
+# Questions - Verilog
+
+Key concepts
+
+- Blocking vs Non-blocking
+- How will given code synthesize
+- Coding up FIFOs, arbiters, FSMs
+
+**Q: Given some Verilog code (blocking vs non-blocking assignment), what will these synthesize to?**
+
+**Q: Code fizz buzz in Verilog**
+
+**Q: How does polymorphism work in SystemVerilog?**
+
+**Q: How do virtual interface work in SystemVerilog?**
+
+
+**Q: What do clocking blocks do in SystemVerilog? What are they?**
+
+**Q: Differences between Verilog and SystemVerilog?**
+
+**Q: Code a sequence (pattern) detector state machine. How would you verify this state machine?**
+
+**Q: SV data structures: queues, maps, associative array, dynamic array**
+
+**Q: Write the code for a FIFO in SystemVerilog**
+
+**Q: SystemVerilog Fork, Join(). Given some example code with these, what would happen to a task (e.g. a given task could take forever)? What could you do to fix it (e.g. by writing a task to print ERROR if a task doesn't return by TIMEOUT seconds)?**
+
+**Q: Traffic light signaling problem in Verilog (state machine). Use counter and output color depending on range using assign statements**
+
+
+**Q: Given an FSM state diagram, code it in SystemVerilog**
+
+**Q: Logic vs wire vs bit in Verilog/SystemVerilog**
+
+**Q: Write the RTL to generate a signal that is clock for 3 cycles then 0 for 3 cycles**
+
+**Q: Given 3 enums, constrain 32 bits to be within these 3 enums. Then constrain their distribution**
+
+
+**Q: SystemVerilog Assertions. Write assertions for Req and Ack with the given spec:**
+
+- Ack should assert within 5-10 cycles after Req asserts
+- Ack should deassert within 5-10 cycles after Req desserts
+- No Ack should assert before Req
+- No Ack should deassert before Req deasserts
+
+**Q: CAM & TCAM in SystemVerilog. Modeling with 2D/3D array vs associative array (key as data, addr as value), and pros and cons of these approaches**
+
+
+**Q: Write a module to convert binary to gray code (how about vice versa)?**
+
+
+
+## Online References
+
+- [Blind Post - Design Verification Interview](https://www.teamblind.com/post/Design-Verification-Interview-aaATLRVa/4807423)

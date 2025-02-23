@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -188,7 +217,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">8.1</span> </a></li>
+  <li><a href="#representations" id="toc-representations" class="nav-link active" data-scroll-target="#representations"><span class="header-section-number">8.1</span> Representations</a>
+  <ul class="collapse">
+  <li><a href="#unsigned-binary" id="toc-unsigned-binary" class="nav-link" data-scroll-target="#unsigned-binary"><span class="header-section-number">8.1.1</span> Unsigned Binary</a></li>
+  <li><a href="#signed-magnitude" id="toc-signed-magnitude" class="nav-link" data-scroll-target="#signed-magnitude"><span class="header-section-number">8.1.2</span> Signed Magnitude</a></li>
+  <li><a href="#twos-complement" id="toc-twos-complement" class="nav-link" data-scroll-target="#twos-complement"><span class="header-section-number">8.1.3</span> Two’s Complement</a></li>
+  </ul></li>
+  <li><a href="#addition" id="toc-addition" class="nav-link" data-scroll-target="#addition"><span class="header-section-number">8.2</span> Addition</a>
+  <ul class="collapse">
+  <li><a href="#unsigned-binary-addition" id="toc-unsigned-binary-addition" class="nav-link" data-scroll-target="#unsigned-binary-addition"><span class="header-section-number">8.2.1</span> Unsigned Binary Addition</a></li>
+  <li><a href="#twos-complement-addition" id="toc-twos-complement-addition" class="nav-link" data-scroll-target="#twos-complement-addition"><span class="header-section-number">8.2.2</span> Two’s Complement Addition</a></li>
+  </ul></li>
+  <li><a href="#subtraction" id="toc-subtraction" class="nav-link" data-scroll-target="#subtraction"><span class="header-section-number">8.3</span> Subtraction</a></li>
+  <li><a href="#adder-design" id="toc-adder-design" class="nav-link" data-scroll-target="#adder-design"><span class="header-section-number">8.4</span> Adder Design</a>
+  <ul class="collapse">
+  <li><a href="#ripple-carry-adder-rca" id="toc-ripple-carry-adder-rca" class="nav-link" data-scroll-target="#ripple-carry-adder-rca"><span class="header-section-number">8.4.1</span> Ripple-Carry Adder (RCA)</a></li>
+  <li><a href="#carry-lookahead-adder-cla" id="toc-carry-lookahead-adder-cla" class="nav-link" data-scroll-target="#carry-lookahead-adder-cla"><span class="header-section-number">8.4.2</span> Carry-Lookahead Adder (CLA)</a></li>
+  </ul></li>
+  <li><a href="#multiplication" id="toc-multiplication" class="nav-link" data-scroll-target="#multiplication"><span class="header-section-number">8.5</span> Multiplication</a></li>
+  <li><a href="#multiplier-design" id="toc-multiplier-design" class="nav-link" data-scroll-target="#multiplier-design"><span class="header-section-number">8.6</span> Multiplier Design</a></li>
+  <li><a href="#division" id="toc-division" class="nav-link" data-scroll-target="#division"><span class="header-section-number">8.7</span> Division</a></li>
+  <li><a href="#divider-design" id="toc-divider-design" class="nav-link" data-scroll-target="#divider-design"><span class="header-section-number">8.8</span> Divider Design</a></li>
   </ul>
 </nav>
     </div>
@@ -214,8 +263,106 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="section" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="section"><span class="header-section-number">8.1</span> </h2>
+<section id="representations" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="representations"><span class="header-section-number">8.1</span> Representations</h2>
+<section id="unsigned-binary" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="unsigned-binary"><span class="header-section-number">8.1.1</span> Unsigned Binary</h3>
+<p><span class="math inline">\(n\)</span> bits represent numbers 0 to <span class="math inline">\(2^n-1\)</span></p>
+</section>
+<section id="signed-magnitude" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="signed-magnitude"><span class="header-section-number">8.1.2</span> Signed Magnitude</h3>
+<p><img src="images/arithmetic/signed-mag.png" class="img-fluid"></p>
+<div id="nte-eqn-range-signed-mag" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;8.1: Equation - Range of Signed Magnitude Representation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(n\)</span>-bits represent range <span class="math inline">\([-(2^{n-1}-1), 2^{n-1}-1]\)</span></p>
+<ul>
+<li>With signed magnitude, there are two representations for 0 (-0 and +0). Since 1 bit is used to represent sign, for each range (pos, neg) you can represent $2^{n-1} different numbers (excluding 0 that is repeated).</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="twos-complement" class="level3" data-number="8.1.3">
+<h3 data-number="8.1.3" class="anchored" data-anchor-id="twos-complement"><span class="header-section-number">8.1.3</span> Two’s Complement</h3>
+<p><img src="images/arithmetic/twos-comp.png" class="img-fluid"></p>
+<div id="nte-eqn-range-twos-comp" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;8.2: Equation - Range of Two’s Complement Representation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(n\)</span>-bits represent range <span class="math inline">\([-(2^{n-1}), 2^{n-1}-1]\)</span></p>
+<ul>
+<li>0 is now represented with MSB 0, giving the negative representations (MSB is 1) one more number</li>
+</ul>
+</div>
+</div>
+<p><strong>Flipping a two’s complement number’s sign:</strong></p>
+<ol type="1">
+<li>First invert each digit</li>
+<li>Add 1 to the number</li>
+</ol>
+<p><strong>Sign-Extension</strong> (important!)</p>
+<p><img src="images/arithmetic/sign-ext.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="addition" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="addition"><span class="header-section-number">8.2</span> Addition</h2>
+<section id="unsigned-binary-addition" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="unsigned-binary-addition"><span class="header-section-number">8.2.1</span> Unsigned Binary Addition</h3>
+<p><img src="images/arithmetic/uns-add.png" class="img-fluid"></p>
+</section>
+<section id="twos-complement-addition" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="twos-complement-addition"><span class="header-section-number">8.2.2</span> Two’s Complement Addition</h3>
+<p>Addition in two’s complement is the same as unsigned regardless of the signs!</p>
+<section id="overflow" class="level4" data-number="8.2.2.1">
+<h4 data-number="8.2.2.1" class="anchored" data-anchor-id="overflow"><span class="header-section-number">8.2.2.1</span> Overflow</h4>
+<p><img src="images/arithmetic/ovf-1.png" class="img-fluid"></p>
+<p>Overflow occurs if:</p>
+<ul>
+<li>Sign of both operands are the same, AND</li>
+<li>Sign of the sum is different</li>
+</ul>
+<p><img src="images/arithmetic/ovf-exp.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="subtraction" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="subtraction"><span class="header-section-number">8.3</span> Subtraction</h2>
+<p>Subtraction in two’s complement just becomes an addition with an ‘inverted’ two’s complement number (recall how to invert a two’s comp. number from previous):</p>
+<p><img src="images/arithmetic/twos-sub.png" class="img-fluid"></p>
+</section>
+<section id="adder-design" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="adder-design"><span class="header-section-number">8.4</span> Adder Design</h2>
+<section id="ripple-carry-adder-rca" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="ripple-carry-adder-rca"><span class="header-section-number">8.4.1</span> Ripple-Carry Adder (RCA)</h3>
+</section>
+<section id="carry-lookahead-adder-cla" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="carry-lookahead-adder-cla"><span class="header-section-number">8.4.2</span> Carry-Lookahead Adder (CLA)</h3>
+</section>
+</section>
+<section id="multiplication" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="multiplication"><span class="header-section-number">8.5</span> Multiplication</h2>
+</section>
+<section id="multiplier-design" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="multiplier-design"><span class="header-section-number">8.6</span> Multiplier Design</h2>
+</section>
+<section id="division" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="division"><span class="header-section-number">8.7</span> Division</h2>
+</section>
+<section id="divider-design" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="divider-design"><span class="header-section-number">8.8</span> Divider Design</h2>
 
 
 </section>

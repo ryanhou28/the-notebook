@@ -1,0 +1,102 @@
+# Questions - Computer Architecture
+
+Key concepts:
+
+- In-order 5 stage pipeline design
+- Out-of-order CPU design
+- Memory hierarchy - caches
+- Memory coherence (MSI, MESI, MOESI, etc)
+- Memory consistency ()
+
+## ISA
+
+**Q: ISA has a set of compressed instructions. Should find the instruction using LSB. Each inst can take one or two lines based on the type. The section selected can start from an inst or an half inst of an uncompressed.**
+
+
+## In-Order CPU
+
+**Q: Explain how a 5-stage pipeline works**
+
+**Q: Why don't we make in-order pipelines deep? Why not make pipelines of anything in general deep (general tradeoffs)?**
+
+**Q: What are the hazards in an in-order pipeline? How are they detected? What causes them? How does moving towards OoO help with each?**
+
+## OoO CPU Design
+
+**Q: LSQ. How does it work**
+
+**Q: (in your project), how did you decoder work?**
+
+**Q: (in your project), how did you try to optimize your design?**
+
+**Q: (in your project), what are the sizes of your reservation station, reorder buffer, store queue, other buffers, etc? How did you find that it is the best size?**
+
+**Q: (in your project) Explain the register path of your project, from the free list to back**
+
+**Q: What are the differences/tradeoffs between a distributed reservation station and a centralized reservation state?**
+
+**Q: Explain Tomasulo**
+
+**Q: What are the different types of hazards in an OoO design? How are they detected and dealt with?**
+
+## Memory Architecture, Caches
+
+**Q: How would you determine if the requested data is available in the cache?**
+
+**Q: What LRU policy do you use? (in project setting or for specific scenario)**
+
+**Q: Assume a scenario where a cache line gets evicted and immediately the CPU Wants the same cache line. What should you do?**
+
+**Q: What type of cache did you use? (for project setting or specific scenario)**
+
+**Q: NUMA vs UMA. Differences and tradeoffs?**
+
+**Q: Virtual memory, and TLBs. How do they work, what are they for?**
+
+**Q: Aliasing of memory addresses in a cache. How to solve aliasing and conflict misses?**
+
+**Q: What are the different types of cache misses?**
+
+**Q: What are the different types of cache writeback policies and eviction policies?**
+
+**Q: You have a 16-way cache. How would you speed it up?**
+
+**Q: In cache design, explain the differences/tradeoffs between DM vs FA vs SA. What situations would you use them in?**
+
+**Q: True LRU vs Pseudo LRU**
+
+**Q: True LRU: How many bits to implement?**
+
+**Q: Given an age vector for a LRU cache and a valid/invalid vector, how would you choose which way to evict?**
+
+**Q: Prefetcher and I-cache logics**
+
+**Q: (for your project) implementation details on your Load Store Queue**
+
+**Q: Come up with cache access patterns in which FA would perform better than DM. In general: come up with a cache access pattern that performs better for each of DM, FA, SA**
+
+**Q: Write back vs Write through, MRU vs LRU. (and what did you do in your project and how you went about choosing this?)**
+
+**Q: Non-blocking D-cache and how you implement it?**
+
+**Q: Virtual memory, VIPT. Explain**
+
+## Branch Prediction
+
+**Q: Perceptron, what is it? Equation? How do you implement it in hardware?**
+
+## Memory Coherency
+
+**Q: What is memory coherence and why is it needed?**
+
+**Q: MSI protocol. What is it, how does it work?**
+
+**Q: MSI, MESI, MOESI: why was each extra state added?**
+
+**Q: Draw the state diagram for MESI**
+
+## Memory Consistency
+
+**Q: Consistency basics, what is memory consistency and why is it needed?**
+
+**Q: Given a sequence of instructions on 2 cores, which values are possible/not possible - how would you check if a barrier is working?**

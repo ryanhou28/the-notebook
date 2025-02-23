@@ -38,6 +38,11 @@ Common number systems:
 - Base-8: **Octal**
 - Base-2: **Binary**
 
+::: {#nte-eqn-num-bits-for-n .callout-note}
+## Equation - Number of Bits to Represent x Different Numbers
+$$n = ceil(log_2(x))$$
+:::
+
 The number of bits $n$ needed to represent an unsigned decimal number $x$ is given below:
 
 ::: {#nte-eqn-num-bits-rep .callout-note}
@@ -46,6 +51,8 @@ $$n = ceil(log_2(x + 1))$$
 
 where the ceil() function is a ceiling function that rounds up to the nearest integer.
 :::
+
+Note that the difference in the +1 between the above two formulas in that the number of bits to represent unsigned decimal $x$ must also be able to represent 0, so you're essentially finding the number of bits to represent $x+1$ different numbers.
 
 ### Conversions
 

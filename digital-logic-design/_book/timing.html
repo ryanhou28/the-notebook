@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -188,7 +217,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">5.1</span> </a></li>
+  <li><a href="#delays" id="toc-delays" class="nav-link active" data-scroll-target="#delays"><span class="header-section-number">5.1</span> Delays</a></li>
+  <li><a href="#delays-of-sequential-elements" id="toc-delays-of-sequential-elements" class="nav-link" data-scroll-target="#delays-of-sequential-elements"><span class="header-section-number">5.2</span> Delays of Sequential Elements</a></li>
+  <li><a href="#sequential-timing" id="toc-sequential-timing" class="nav-link" data-scroll-target="#sequential-timing"><span class="header-section-number">5.3</span> Sequential Timing</a>
+  <ul class="collapse">
+  <li><a href="#hold-time-constraint" id="toc-hold-time-constraint" class="nav-link" data-scroll-target="#hold-time-constraint"><span class="header-section-number">5.3.1</span> Hold Time Constraint</a></li>
+  <li><a href="#max-clock-frequency-hold-time" id="toc-max-clock-frequency-hold-time" class="nav-link" data-scroll-target="#max-clock-frequency-hold-time"><span class="header-section-number">5.3.2</span> Max Clock Frequency &amp; Hold Time</a></li>
+  <li><a href="#clock-skew" id="toc-clock-skew" class="nav-link" data-scroll-target="#clock-skew"><span class="header-section-number">5.3.3</span> Clock Skew</a></li>
+  </ul></li>
+  <li><a href="#glitches" id="toc-glitches" class="nav-link" data-scroll-target="#glitches"><span class="header-section-number">5.4</span> Glitches</a>
+  <ul class="collapse">
+  <li><a href="#fixing-glitches" id="toc-fixing-glitches" class="nav-link" data-scroll-target="#fixing-glitches"><span class="header-section-number">5.4.1</span> Fixing Glitches</a></li>
+  </ul></li>
+  <li><a href="#synchronizers" id="toc-synchronizers" class="nav-link" data-scroll-target="#synchronizers"><span class="header-section-number">5.5</span> Synchronizers</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">5.6</span> Examples</a>
+  <ul class="collapse">
+  <li><a href="#basic-timing-examples" id="toc-basic-timing-examples" class="nav-link" data-scroll-target="#basic-timing-examples"><span class="header-section-number">5.6.1</span> Basic Timing Examples</a></li>
+  <li><a href="#basic-setup-hold-time-examples" id="toc-basic-setup-hold-time-examples" class="nav-link" data-scroll-target="#basic-setup-hold-time-examples"><span class="header-section-number">5.6.2</span> Basic Setup &amp; Hold Time Examples</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -214,10 +260,172 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="section" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="section"><span class="header-section-number">5.1</span> </h2>
+<p>This chapter first introduces the notion delays. Sequential elements will also be introduced in the sequential chapter, which will be needed to understand further timing analysis in this chapter.</p>
+<section id="delays" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="delays"><span class="header-section-number">5.1</span> Delays</h2>
+<p>Transistors have delays, thus ON/OFF switching does not happen instantly</p>
+<p><img src="images/timing/delay.png" class="img-fluid"></p>
+<p><strong>Propagation Delay (<span class="math inline">\(t_p\)</span>)</strong> is the delay between the 50% transition point of the input and the 50% transition point of the output</p>
+<ul>
+<li><span class="math inline">\(t_{p, LH}\)</span> - is the delay when the <strong>output</strong> transitions from LOW to HIGH</li>
+<li><span class="math inline">\(t_{p, HL}\)</span> - is the delay when the <strong>output</strong> transitions from HIGH to LOW</li>
+</ul>
+<p>![](images/timing/delay-hl-lh.png</p>
+<p>Delays are primarily caused by:</p>
+<ul>
+<li>Capacitance</li>
+<li>Resistance</li>
+<li>Topology</li>
+<li>Finite speed of light</li>
+</ul>
+<p>For simplicity, this notebook assumes 0 wire delay. Read the CMOS VLSI notebook for more on wire delays.</p>
+<p><img src="images/timing/delay-ex1.png" class="img-fluid"></p>
+<p><strong>Ring Oscillator</strong> can be built with a chain of odd number inverters</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/timing/ring-osc.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://moodle.insa-toulouse.fr/file.php/60/content/rfc_oscillators.html">Source</a></figcaption>
+</figure>
+</div>
+</section>
+<section id="delays-of-sequential-elements" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="delays-of-sequential-elements"><span class="header-section-number">5.2</span> Delays of Sequential Elements</h2>
+<p>Sequential elements are built on timing delays</p>
+<p>For a D latch:</p>
+<p><img src="images/timing/dlatch-delay.png" class="img-fluid"></p>
+<p>For a D Flip Flop:</p>
+<p><img src="images/timing/dff-timing.png" class="img-fluid"></p>
+</section>
+<section id="sequential-timing" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sequential-timing"><span class="header-section-number">5.3</span> Sequential Timing</h2>
+<p><img src="images/timing/timing-params.png" class="img-fluid"></p>
+<p>When there are setup and hold time violations, the FF enters a state where its output is unpredictable, known as <strong>metastable</strong> state.</p>
+<p>Side notes on metastability: In metastability, the FF struggles to resolve to a stable logic level with internal nodes of the latch receiving conflicting signals leading to an unstable equillibrium. The resolution time of the FF depends on the internals of the circuit. The internal feedback mechanism tries to stabilize it, but this may take long. Theoretically the resolution time is unbounded. However in practice, with no other input changes, eventually metastability resolves to a stable 0 or a 1 (exponentially decreasing probability), but the resolution time is unpredictable. Synchronizers are used to mitigate the effects. In practice, metastability can’t be completely eliminated (real systems will deal with asynchronous inputs, clock domain crossings, etc).</p>
+<p><strong>Possible causes of metastability or wrong value capture</strong>:</p>
+<ul>
+<li>FF input changes too soon before a clock edge</li>
+<li>FF input changes too soon after a clock edge</li>
+<li>Propagation delay exceeds clock period</li>
+<li>Clock pulse that is too narrow</li>
+</ul>
+<p>Avoid these by meeting setup time, hold time, clock period, and minimum clock pulse width specifications</p>
+<p><strong>Timing Analysis</strong> involves analyzing the time delays between all FF pairs within a circuit</p>
+<p>Key goals:</p>
+<ul>
+<li>Determine max clock frequency and ensure setup time requirement is met
+<ul>
+<li>i.e.&nbsp;clock can’t be too fast</li>
+</ul></li>
+<li>Ensure hold times are met
+<ul>
+<li>Minimum propagation delay of comb logic can’t be too small</li>
+<li>Hold time is <strong>independent</strong> of clock cycle time</li>
+</ul></li>
+</ul>
+<section id="hold-time-constraint" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="hold-time-constraint"><span class="header-section-number">5.3.1</span> Hold Time Constraint</h3>
+<p><img src="images/timing/holdtime.png" class="img-fluid"></p>
+<div id="nte-eqn-hold-time" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;5.1: Equation - Hold Time Constraint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[t_{cq(min)}+t_{comb(min)} = t_{cq} \geq t_{hold}\]</span></p>
+</div>
+</div>
+</section>
+<section id="max-clock-frequency-hold-time" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="max-clock-frequency-hold-time"><span class="header-section-number">5.3.2</span> Max Clock Frequency &amp; Hold Time</h3>
+<p>Every circuit path between every pair of FFs must satisfy the following equation to run the circuit at a frequency of <span class="math inline">\(f=\frac{1}{T_{clk}}\)</span></p>
+<div id="nte-eqn-max-freq" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;5.2: Equation - Maximum Clock Frequency &amp; Hold Time
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[t_{cq(max)}+t_{comb(max)}+t_{setup} \leq T_{clk}\]</span></p>
+</div>
+</div>
+</section>
+<section id="clock-skew" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="clock-skew"><span class="header-section-number">5.3.3</span> Clock Skew</h3>
+<p><strong>Clock skew</strong>: time difference between two clock edges</p>
+<p><img src="images/timing/clock-skeq.png" class="img-fluid"></p>
+<p>Ways to fix clock skew mostly involve more circuit level design (see CMOS VLSI notes)</p>
+<section id="clock-skew---setup-time" class="level4" data-number="5.3.3.1">
+<h4 data-number="5.3.3.1" class="anchored" data-anchor-id="clock-skew---setup-time"><span class="header-section-number">5.3.3.1</span> Clock Skew - Setup Time</h4>
+<p><img src="images/timing/skew-setup.png" class="img-fluid"></p>
+</section>
+<section id="clock-skew---hold-time" class="level4" data-number="5.3.3.2">
+<h4 data-number="5.3.3.2" class="anchored" data-anchor-id="clock-skew---hold-time"><span class="header-section-number">5.3.3.2</span> Clock Skew - Hold Time</h4>
+<p><img src="images/timing/skew-hold.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="glitches" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="glitches"><span class="header-section-number">5.4</span> Glitches</h2>
+<p><strong>Glitch</strong>: one input transition causes <strong>multiple</strong> output transitions</p>
+<p>Glitches are primarily caused when different inputs paths have varying propagation delays, leading to momentary incorrect (intermediate) output values</p>
+<p>Why are glitches a problem?</p>
+<ul>
+<li>Creates additional unwanted switching activity - increasing dynamic power consumption</li>
+<li>Potentially dangerious - if glitch propagates to a latch or if it affects timing-critical signal</li>
+<li>Noise and crosstalk - additional unwanted switching could add noise to nearby circuits</li>
+</ul>
+<p><img src="images/timing/glitch.png" class="img-fluid"></p>
+<p><img src="images/timing/glitch1.png" class="img-fluid"></p>
+<p>Glitches are visible in K-maps when moving between prime implicants</p>
+<p><img src="images/timing/glitch-kmap1.png" class="img-fluid"></p>
+<section id="fixing-glitches" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="fixing-glitches"><span class="header-section-number">5.4.1</span> Fixing Glitches</h3>
+<p>A glitch can be fixed by adding in a consensus term. Observe that in the K-map, we can add the consensus such that there is no “gap” when moving between prime implicants.</p>
+<p><img src="images/timing/glitches-fix.png" class="img-fluid"></p>
+<p>Additional methods:</p>
+<ul>
+<li>Adding buffers (delay matching)
+<ul>
+<li>Since glitches are caused by different paths having different delays, if we pad the paths with buffers or delay elements to align timing this could fix glitches</li>
+</ul></li>
+<li>Path balancing by adjusting gate sizes to equalize delays across different paths</li>
+<li>Restructuring logic - reorder the gates to minimize path differences to balance delays between paths</li>
+</ul>
+</section>
+</section>
+<section id="synchronizers" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="synchronizers"><span class="header-section-number">5.5</span> Synchronizers</h2>
+<p><strong>Synchronizer</strong>: A device that produces a synchronous output Q from an asynchronous input D within a bounded amount of time.</p>
+<ul>
+<li>Very useful for dealing with asynchronous input signals, clock domain crossing, mitigating effects of metastability</li>
+</ul>
+<p><img src="images/timing/synchronizer.png" class="img-fluid"></p>
+</section>
+<section id="examples" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="examples"><span class="header-section-number">5.6</span> Examples</h2>
+<section id="basic-timing-examples" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="basic-timing-examples"><span class="header-section-number">5.6.1</span> Basic Timing Examples</h3>
+<p><img src="images/timing/basic-timing-ex1.png" class="img-fluid"></p>
+<p><img src="images/timing/basic-timing-ex2.png" class="img-fluid"></p>
+<p><img src="images/timing/basic-timing-ex3.png" class="img-fluid"></p>
+<p><img src="images/timing/ring-osc-ex1.png" class="img-fluid"></p>
+</section>
+<section id="basic-setup-hold-time-examples" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="basic-setup-hold-time-examples"><span class="header-section-number">5.6.2</span> Basic Setup &amp; Hold Time Examples</h3>
+<p><img src="images/timing/hold-time-ex1.png" class="img-fluid"></p>
+<p><img src="images/timing/max-freq-ex1.png" class="img-fluid"></p>
+<p><img src="images/timing/setup-hold-ex1.png" class="img-fluid"></p>
+<p><img src="images/timing/skewed-setup-hold-ex1.png" class="img-fluid"></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

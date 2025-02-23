@@ -7,9 +7,6 @@
 **Combinational Logic**: output is a pure function of the present input only.
 :::
 
-## 
-
-
 
 ## Transistors
 
@@ -39,3 +36,103 @@ The symbol Z indicates that a node is being driven neither HIGH nor LOW. The nod
 Moore’s law: The number of transistors in a dense integrated circuit (IC) doubles about every 18-24 months.
 
 Dennard scaling: As the dimensions of a device go down, so does power consumption.
+
+
+## Basic Comb Logic Building Blocks
+
+### Half-Adder
+
+![[Source](https://www.geeksforgeeks.org/implementation-of-full-adder-using-half-adders/)](images/comb/half-adder.png)
+
+### Full-Adder
+
+![](images/comb/full-adder.png)
+
+![[Source](https://www.geeksforgeeks.org/implementation-of-full-adder-using-half-adders/)](images/comb/full-adder2.png)
+
+### Multiplexer (MUX)
+
+![Source: EECS 270](images/comb/mux.png)
+
+![[Source](https://vlsiuniverse.blogspot.com/)](images/comb/mux-circ.png)
+
+$$q = s'b + sa$$
+
+<!-- TODO: Insert MUX truth table, make above image smaller -->
+
+Is a 2:1 MUX functionally complete? Yes:
+
+![Source: EECS 270](images/comb/mux-fc.png)
+
+
+::: {#nte-eqn-mux-tree .callout-note}
+## Equation - Number of 2:1 MUXes to build 2^n:1 MUX
+
+$2^n-1$ MUXes (2:1 MUX) are needed to construct a $2^n$:1 MUX
+
+- number of nodes in a perfect binary tree
+
+:::
+
+Implementing arbitrary functions with MUXes - strategies:
+
+- Use Shannon's expansion theorem
+- or inspect truth table and start "dividing" chunks of logic to split it with the select bits
+
+**Implementing functions with MUXes:**
+
+![](images/comb/mux-ex1.png)
+
+![](images/comb/mux-arb.png)
+
+**Building larger MUXes from smaller ones:**
+
+![[Source](https://vlsiuniverse.blogspot.com/)](images/comb/8-1mux.png)
+
+### Demultiplexers
+
+*"Inverse"* of a MUX - select signal routes the input to corresponding output
+
+![](images/comb/demux.png)
+
+The output of a DEMUX (when input data signal is 1) is in **one-hot encoding**, where only one bit of the output is high (hot). The position of the hot bit indicates the value.
+
+### One-hot Encoding
+
+![](images/comb/onehot.png)
+
+$2^n$ bits are needed to represent an $n$-bit number in one-hot encoding
+
+### Decoders
+
+Convert binary code to one-hot code
+
+![](images/comb/decod.png)
+
+![](images/comb/decod-stack.png)
+
+### Encoders
+
+Opposite of decoder - converts one-hot to binary code
+
+![](images/comb/encoder.png)
+
+### Comparators
+
+Build equality/difference (comparators) with XOR(diff)/XNOR(equal)
+
+![](images/comb/comparator.png)
+
+**1-bit magnitude comparator:**
+
+![](images/comb/1b-mag-comp.png)
+
+### Priority Encoders
+
+
+
+## Examples
+
+![](images/comb/comp-exercise.png)
+
+![](images/comb/mux-exercise1.png)

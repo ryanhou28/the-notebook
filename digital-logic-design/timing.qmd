@@ -1,6 +1,180 @@
 # Timing
 
+This chapter first introduces the notion delays. Sequential elements will also be introduced in the sequential chapter, which will be needed to understand further timing analysis in this chapter.
 
 
+## Delays
 
-## 
+Transistors have delays, thus ON/OFF switching does not happen instantly
+
+![](images/timing/delay.png)
+
+**Propagation Delay ($t_p$)** is the delay between the 50% transition point of the input and the 50% transition point of the output
+
+- $t_{p, LH}$ - is the delay when the **output** transitions from LOW to HIGH
+- $t_{p, HL}$ - is the delay when the **output** transitions from HIGH to LOW
+
+![](images/timing/delay-hl-lh.png
+
+
+Delays are primarily caused by:
+
+- Capacitance
+- Resistance
+- Topology
+- Finite speed of light
+
+For simplicity, this notebook assumes 0 wire delay. Read the CMOS VLSI notebook for more on wire delays.
+
+![](images/timing/delay-ex1.png)
+
+
+**Ring Oscillator** can be built with a chain of odd number inverters
+
+![[Source](https://moodle.insa-toulouse.fr/file.php/60/content/rfc_oscillators.html)](images/timing/ring-osc.png)
+
+
+## Delays of Sequential Elements
+
+Sequential elements are built on timing delays
+
+For a D latch:
+
+![](images/timing/dlatch-delay.png)
+
+
+For a D Flip Flop:
+
+![](images/timing/dff-timing.png)
+
+## Sequential Timing
+
+![](images/timing/timing-params.png)
+
+When there are setup and hold time violations, the FF enters a state where its output is unpredictable, known as **metastable** state.
+
+Side notes on metastability: In metastability, the FF struggles to resolve to a stable logic level with internal nodes of the latch receiving conflicting signals leading to an unstable equillibrium. The resolution time of the FF depends on the internals of the circuit. The internal feedback mechanism tries to stabilize it, but this may take long. Theoretically the resolution time is unbounded. However in practice, with no other input changes, eventually metastability resolves to a stable 0 or a 1 (exponentially decreasing probability), but the resolution time is unpredictable. Synchronizers are used to mitigate the effects. In practice, metastability can't be completely eliminated (real systems will deal with asynchronous inputs, clock domain crossings, etc).
+
+**Possible causes of metastability or wrong value capture**:
+
+- FF input changes too soon before a clock edge
+- FF input changes too soon after a clock edge
+- Propagation delay exceeds clock period
+- Clock pulse that is too narrow
+
+Avoid these by meeting setup time, hold time, clock period, and minimum clock pulse width specifications
+
+**Timing Analysis** involves analyzing the time delays between all FF pairs within a circuit
+
+Key goals:
+
+- Determine max clock frequency and ensure setup time requirement is met
+  - i.e. clock can't be too fast
+- Ensure hold times are met
+  - Minimum propagation delay of comb logic can't be too small
+  - Hold time is **independent** of clock cycle time
+
+### Hold Time Constraint
+
+![](images/timing/holdtime.png)
+
+
+::: {#nte-eqn-hold-time .callout-note}
+## Equation - Hold Time Constraint
+$$t_{cq(min)}+t_{comb(min)} = t_{cq} \geq t_{hold}$$
+:::
+
+### Max Clock Frequency & Hold Time
+
+Every circuit path between every pair of FFs must satisfy the following equation to run the circuit at a frequency of $f=\frac{1}{T_{clk}}$
+
+::: {#nte-eqn-max-freq .callout-note}
+## Equation - Maximum Clock Frequency & Hold Time
+$$t_{cq(max)}+t_{comb(max)}+t_{setup} \leq T_{clk}$$
+:::
+
+### Clock Skew
+
+**Clock skew**: time difference between two clock edges
+
+![](images/timing/clock-skeq.png)
+
+Ways to fix clock skew mostly involve more circuit level design (see CMOS VLSI notes)
+
+#### Clock Skew - Setup Time
+
+![](images/timing/skew-setup.png)
+
+#### Clock Skew - Hold Time
+
+![](images/timing/skew-hold.png)
+
+
+## Glitches
+
+**Glitch**: one input transition causes **multiple** output transitions
+
+Glitches are primarily caused when different inputs paths have varying propagation delays, leading to momentary incorrect (intermediate) output values
+
+Why are glitches a problem?
+
+- Creates additional unwanted switching activity - increasing dynamic power consumption
+- Potentially dangerious - if glitch propagates to a latch or if it affects timing-critical signal
+- Noise and crosstalk - additional unwanted switching could add noise to nearby circuits
+
+![](images/timing/glitch.png)
+
+![](images/timing/glitch1.png)
+
+Glitches are visible in K-maps when moving between prime implicants
+
+![](images/timing/glitch-kmap1.png)
+
+
+### Fixing Glitches
+
+A glitch can be fixed by adding in a consensus term. Observe that in the K-map, we can add the consensus such that there is no "gap" when moving between prime implicants.
+
+![](images/timing/glitches-fix.png)
+
+Additional methods:
+
+- Adding buffers (delay matching)
+  - Since glitches are caused by different paths having different delays, if we pad the paths with buffers or delay elements to align timing this could fix glitches
+- Path balancing by adjusting gate sizes to equalize delays across different paths
+- Restructuring logic - reorder the gates to minimize path differences to balance delays between paths
+
+
+## Synchronizers
+
+**Synchronizer**: A device that produces a synchronous output Q from an asynchronous input D within a bounded amount of time.
+
+- Very useful for dealing with asynchronous input signals, clock domain crossing, mitigating effects of metastability
+
+![](images/timing/synchronizer.png)
+
+## Examples
+
+
+### Basic Timing Examples
+
+![](images/timing/basic-timing-ex1.png)
+
+
+![](images/timing/basic-timing-ex2.png)
+
+![](images/timing/basic-timing-ex3.png)
+
+![](images/timing/ring-osc-ex1.png)
+
+
+### Basic Setup & Hold Time Examples
+
+![](images/timing/hold-time-ex1.png)
+
+![](images/timing/max-freq-ex1.png)
+
+![](images/timing/setup-hold-ex1.png)
+
+
+![](images/timing/skewed-setup-hold-ex1.png)
