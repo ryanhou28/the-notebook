@@ -1,6 +1,119 @@
-# Finite State Machines
+# Finite State Machines (FSMs)
+
+**FSM** is a discrete-time model of a stateful system.
+
+![](images/fsm/fsm-basic.png)
+
+Consists of:
+
+- Next state logic - logic to determine what the next state will be
+- State register - stores the current state and loads next state at clock edge
+- Output logic - logic that generates the output
+
+Key Elements of FSMs:
+
+- A finite number of states 
+- A finite number of external inputs
+- A finite number of external outputs
+- An explicit specification of all state transitions
+- An explicit specification of what determines each external output value
+
+## Moore Machine
+
+A **Moore Machine** is an FSM whose next state is determined by the current state and the inputs, and **outputs depend only on the current state**
+
+![A Moore Machine. Notice how the output is only based on the current state, and not connected to the inputs. Source: EECS 270](images/fsm/moore.png)
+
+
+![Example of a Moore FSM. Source: EECS 270](images/fsm/moore-fsm-diagram.png)
+
+
+## Mealy Machine
+
+A **Mealy Machine** is an FSM whose next state is determined by the current state and the inputs, and the **outputs depend both on the current state and the inputs**
+
+![](images/fsm/mealy.png)
+
+
+## FSM Factoring
+
+FSM Factoring is to break down complex FSMs into multiple smaller FSMs in order to simplify. We do so since we know that the output of an FSM can serve as an input to other FSMs
+
+### Example
+
+![](images/fsm/factoring-ex1.png)
+
+![](images/fsm/factoring-ex2.png)
+
+![](images/fsm/factoring-ex3.png)
+
+**What if we had one FSM to control transitions between regular mode (S0 – S3) and parade mode (S4 – S7) and another FSM to control the lights?**
+
+![](images/fsm/factoring-ex4.png)
+
+## State Reduction / Minimization
+
+State reduction is reducing the number of states in an FSM without changing its function. Reducing staes allows us to minimize size of state registers and complexity of next state and output logic.
+
+If two states in an FSM are found to be equivalent, one state can be removed, and all transitions to that state can point to the other state.
+
+Two states are equivalent if:
+
+- Both states assign the same values to outputs
+- For all possible inputs, the output/next state will be the same starting from either state
+
+For large FSMs, inspection may not be efficient way to do state reduction. Alternative is to use **implication chart** method (aka state merger table)
+
+To fill out the implication chart:
+
+- Entry $X_{ij}$ - Row is $S_i$, Column $S_j$
+- $X_{ij}$ contains next states of $S_i$ and $S_j$
+- $S_i$ is equivalent to $S_j$ if outputs are the same and next states are equivalent
+- **If $S_i$, $S_j$ have different output behavior, then cross out $X_{ij}$**
+
+![](images/fsm/imp-chart-cell.png)
+
+### Example
+
+![](images/fsm/imp-chart-ex1.png)
+
+![](images/fsm/imp-chart-ex2.png)
+
+![](images/fsm/imp-chart-ex3.png)
+
+![](images/fsm/imp-chart-ex4.png)
+
+![](images/fsm/imp-chart-ex5.png)
+
+## Moore to Mealy and Mealy to Moore
 
 
 
+## Schematic to FSM
 
-## 
+Steps to go from a schematic to an FSM:
+
+1. Find inputs, outputs, and state bits
+2. Write next state and output equations
+3. Write and reduce next state and output tables
+4. Create state labels
+5. Rewrite next state and output tables with state names
+6. Draw state transition diagram
+
+### Example
+
+![](images/fsm/sch-to-fsm-ex1.png)
+
+![](images/fsm/sch-to-fsm-ex2.png)
+
+![](images/fsm/sch-to-fsm-ex3.png)
+
+![](images/fsm/sch-to-fsm-ex4.png)
+
+![](images/fsm/sch-to-fsm-ex5.png)
+
+![](images/fsm/sch-to-fsm-ex6.png)
+
+![](images/fsm/sch-to-fxm-ex7.png)
+
+![](images/fsm/sch-to-fsm-ex8.png)

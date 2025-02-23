@@ -72,22 +72,91 @@ Subtraction in two's complement just becomes an addition with an 'inverted' two'
 
 ## Adder Design
 
+Different adder implementations exist, offering different speed and circuit complexities
+
+Carry propagation makes RCA slow. Common techniques to speed it up:
+
+- Carry lookahead (CLA)
+- Carry select
+- Carry save
 
 ### Ripple-Carry Adder (RCA)
 
+**Ripple-Carry Adder/Subtractor with Overflow Detection**
 
+![](images/arithmetic/rca-critical.png)
+
+Carry has to propagate from LSB to MSB forming a long critical path
 
 ### Carry-Lookahead Adder (CLA)
+
+Calculates the carry signals in advance based on the input signals to solve carry delay problem
+
+Key insight: A carry signal will be generated in two cases:
+
+1. When both $A_i$ and $B_i$ are 1, OR
+2. When one of the $A_i$ and $B_i$ is 1 and the carry-in is 1
+
+![](images/arithmetic/carry1.png)
+
+![](images/arithmetic/carry2.png)
+
+![](images/arithmetic/carry3.png)
+
+![](images/arithmetic/carry4.png)
+
+![](images/arithmetic/carry5.png)
+
+
+![](images/arithmetic/32bcla.png)
+
+![](images/arithmetic/carry6.png)
+
 
 
 ## Multiplication
 
+![](images/arithmetic/bin-mult.png)
 
+![](images/arithmetic/bin-mult-comb.png)
+
+A combinational multiplier is very inefficient and long...
 
 ## Multiplier Design
 
+Sequential multiplier
 
+![](images/sequential/seq-mult.png)
 
+![](images/sequential/seq-mult-int.png)
+
+### Two's Complement Multiplication
+
+![](images/arithmetic/twos-mult.png)
+
+Problems with the basic sequential multiplier:
+
+- 2n-bit adder is overkill since least significant bits of product don’t change after they are initially formed (they are added to zeros!)
+  - n-bit adder is sufficient
+- Left shifting the multiplicand causes half the space in the 2n-bit Q and P registers to be unutilized
+  - Use an n-bit register for Q (no shifting)
+  - Use a combined (2n+1)-bit {C, P, M} right-shift register
+
+### Booth's Multiplier
+
+Main Idea: Reduce some addition steps by decomposing consecutive ones
+
+![](images/arithmetic/booth-1.png)
+
+![](images/arithmetic/booth-2.png)
+
+![](images/arithmetic/booth-3.png)
+
+![](images/arithmetic/booth-4.png)
+
+![](images/arithmetic/booth-5.png)
+
+![](images/arithmetic/booth-6.png)
 
 ## Division
 

@@ -304,7 +304,7 @@
     "href": "timing.html",
     "title": "5  Timing",
     "section": "",
-    "text": "5.1 Delays\nThis chapter first introduces the notion delays. Sequential elements will also be introduced in the sequential chapter, which will be needed to understand further timing analysis in this chapter.\nTransistors have delays, thus ON/OFF switching does not happen instantly\nPropagation Delay (\\(t_p\\)) is the delay between the 50% transition point of the input and the 50% transition point of the output\n![](images/timing/delay-hl-lh.png\nDelays are primarily caused by:\nFor simplicity, this notebook assumes 0 wire delay. Read the CMOS VLSI notebook for more on wire delays.\nRing Oscillator can be built with a chain of odd number inverters",
+    "text": "5.1 Delays\nThis chapter first introduces the notion delays. Sequential elements will also be introduced in the sequential chapter, which will be needed to understand further timing analysis in this chapter.\nTransistors have delays, thus ON/OFF switching does not happen instantly\nPropagation Delay (\\(t_p\\)) is the delay between the 50% transition point of the input and the 50% transition point of the output\nDelays are primarily caused by:\nFor simplicity, this notebook assumes 0 wire delay. Read the CMOS VLSI notebook for more on wire delays.\nRing Oscillator can be built with a chain of odd number inverters",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Timing</span>"
     ]
@@ -334,7 +334,7 @@
     "href": "timing.html#sequential-timing",
     "title": "5  Timing",
     "section": "5.3 Sequential Timing",
-    "text": "5.3 Sequential Timing\n\nWhen there are setup and hold time violations, the FF enters a state where its output is unpredictable, known as metastable state.\nSide notes on metastability: In metastability, the FF struggles to resolve to a stable logic level with internal nodes of the latch receiving conflicting signals leading to an unstable equillibrium. The resolution time of the FF depends on the internals of the circuit. The internal feedback mechanism tries to stabilize it, but this may take long. Theoretically the resolution time is unbounded. However in practice, with no other input changes, eventually metastability resolves to a stable 0 or a 1 (exponentially decreasing probability), but the resolution time is unpredictable. Synchronizers are used to mitigate the effects. In practice, metastability can’t be completely eliminated (real systems will deal with asynchronous inputs, clock domain crossings, etc).\nPossible causes of metastability or wrong value capture:\n\nFF input changes too soon before a clock edge\nFF input changes too soon after a clock edge\nPropagation delay exceeds clock period\nClock pulse that is too narrow\n\nAvoid these by meeting setup time, hold time, clock period, and minimum clock pulse width specifications\nTiming Analysis involves analyzing the time delays between all FF pairs within a circuit\nKey goals:\n\nDetermine max clock frequency and ensure setup time requirement is met\n\ni.e. clock can’t be too fast\n\nEnsure hold times are met\n\nMinimum propagation delay of comb logic can’t be too small\nHold time is independent of clock cycle time\n\n\n\n5.3.1 Hold Time Constraint\n\n\n\n\n\n\n\nNote 5.1: Equation - Hold Time Constraint\n\n\n\n\\[t_{cq(min)}+t_{comb(min)} = t_{cq} \\geq t_{hold}\\]\n\n\n\n\n5.3.2 Max Clock Frequency & Hold Time\nEvery circuit path between every pair of FFs must satisfy the following equation to run the circuit at a frequency of \\(f=\\frac{1}{T_{clk}}\\)\n\n\n\n\n\n\nNote 5.2: Equation - Maximum Clock Frequency & Hold Time\n\n\n\n\\[t_{cq(max)}+t_{comb(max)}+t_{setup} \\leq T_{clk}\\]\n\n\n\n\n5.3.3 Clock Skew\nClock skew: time difference between two clock edges\n\nWays to fix clock skew mostly involve more circuit level design (see CMOS VLSI notes)\n\n5.3.3.1 Clock Skew - Setup Time\n\n\n\n5.3.3.2 Clock Skew - Hold Time",
+    "text": "5.3 Sequential Timing\n\nWhen there are setup and hold time violations, the FF enters a state where its output is unpredictable, known as metastable state.\nSide notes on metastability: In metastability, the FF struggles to resolve to a stable logic level with internal nodes of the latch receiving conflicting signals leading to an unstable equillibrium. The resolution time of the FF depends on the internals of the circuit. The internal feedback mechanism tries to stabilize it, but this may take long. Theoretically the resolution time is unbounded. However in practice, with no other input changes, eventually metastability resolves to a stable 0 or a 1 (exponentially decreasing probability), but the resolution time is unpredictable. Synchronizers are used to mitigate the effects. In practice, metastability can’t be completely eliminated (real systems will deal with asynchronous inputs, clock domain crossings, etc).\nPossible causes of metastability or wrong value capture:\n\nFF input changes too soon before a clock edge\nFF input changes too soon after a clock edge\nPropagation delay exceeds clock period\nClock pulse that is too narrow\n\nAvoid these by meeting setup time, hold time, clock period, and minimum clock pulse width specifications\nTiming Analysis involves analyzing the time delays between all FF pairs within a circuit\nKey goals:\n\nDetermine max clock frequency and ensure setup time requirement is met\n\ni.e. clock can’t be too fast\n\nEnsure hold times are met\n\nMinimum propagation delay of comb logic can’t be too small\nHold time is independent of clock cycle time\n\n\n\n5.3.1 Hold Time Constraint\n\n\n\n\n\n\n\nNote 5.1: Equation - Hold Time Constraint\n\n\n\n\\[t_{cq(min)}+t_{comb(min)} = t_{cq} \\geq t_{hold}\\]\n\n\nMethods to fix hold time violation:\n\nIncrease minimum data path delay\n\nInsert buffers or delay cells on minimum delay path\nIncrease wire length or modify gate sizing\n\nReduce clock skew\n\nincrease clock delay at destination register, reduce clock delay at source register\nRemember that hold time is independent of the clock cycle’s time (clock period)\n\n\n\n\n5.3.2 Max Clock Frequency & Setup Time\nEvery circuit path between every pair of FFs must satisfy the following equation to run the circuit at a frequency of \\(f=\\frac{1}{T_{clk}}\\)\n\n\n\n\n\n\nNote 5.2: Equation - Maximum Clock Frequency & Setup Time\n\n\n\n\\[t_{cq(max)}+t_{comb(max)}+t_{setup} \\leq T_{clk}\\]\n\n\nMethods to fix setup time violation:\n\nReduce data path delay\n\nlogic optimizations (reduce logic depth)\npipelining - break longer comb logic to smaller comb logics\ngate sizing (reduce gate delay by modifying gate size)\n\nClock timing\n\nReduce clock frequency (longer clock period)\nReduce clock skew\n\n\n\n\n5.3.3 Clock Skew\nClock skew: time difference between two clock edges\n\nWays to fix clock skew mostly involve more circuit level design (see CMOS VLSI notes)\n\n5.3.3.1 Clock Skew - Setup Time\n\n\n\n5.3.3.2 Clock Skew - Hold Time",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Timing</span>"
     ]
@@ -434,7 +434,7 @@
     "href": "sequential.html#other-types-of-latches-and-flip-flops",
     "title": "6  Sequential Logic",
     "section": "6.7 Other Types of Latches and Flip Flops",
-    "text": "6.7 Other Types of Latches and Flip Flops",
+    "text": "6.7 Other Types of Latches and Flip Flops\n\n6.7.1 JK Latch\n\n\n6.7.2 JK Flip Flop\n\n\n\n6.7.3 T Flip FLop",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
     ]
@@ -444,7 +444,7 @@
     "href": "sequential.html#synchronous-circuits",
     "title": "6  Sequential Logic",
     "section": "6.8 Synchronous Circuits",
-    "text": "6.8 Synchronous Circuits\n\n\n6.8.1 JK Latch\n\n\n6.8.2 T Flip FLop",
+    "text": "6.8 Synchronous Circuits\n\nSynchronous reset: reset is sampled with respect to clock. In other words, when reset is enabled, it will not be effective till the next active clock edge -&gt; potential issues w/ timing and clock gating.\nAsynchronous reset: reset is sampled asynchronously (resets whenever the reset signal is triggered). sensitive to glitches and may lead to metastability. On the other hand, it is fast and works even without a clock.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
     ]
@@ -460,11 +460,31 @@
     ]
   },
   {
+    "objectID": "sequential.html#counters",
+    "href": "sequential.html#counters",
+    "title": "6  Sequential Logic",
+    "section": "6.10 Counters",
+    "text": "6.10 Counters\n\n6.10.1 Ripple Counter\n\n\n\n6.10.2 Parallel Counter\n\nParallel Counter with enable, load, reset\n\n\n\n6.10.3 Gray-Code Counters",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
+    "objectID": "sequential.html#shift-register",
+    "href": "sequential.html#shift-register",
+    "title": "6  Sequential Logic",
+    "section": "6.11 Shift Register",
+    "text": "6.11 Shift Register\nA shift register allows for the shifting of its bit by one position on every clock edge\n\n\n6.11.1 Logical Shift\nWhen performing logical shift, the MSB/LSB is replaced with 0.\n\n\n\n6.11.2 Arithmetic Shift\n\nNotice how shifting by 1 in binary is the same as integer multiplication/division.\nArithmetic shift sign extends the original MSB to preserve two’s complement signedness when performing shifts.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
+    ]
+  },
+  {
     "objectID": "sequential.html#clock-domain-crossing",
     "href": "sequential.html#clock-domain-crossing",
     "title": "6  Sequential Logic",
-    "section": "6.10 Clock Domain Crossing",
-    "text": "6.10 Clock Domain Crossing\n```",
+    "section": "6.12 Clock Domain Crossing",
+    "text": "6.12 Clock Domain Crossing",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
     ]
@@ -473,8 +493,8 @@
     "objectID": "sequential.html#examples",
     "href": "sequential.html#examples",
     "title": "6  Sequential Logic",
-    "section": "6.11 Examples",
-    "text": "6.11 Examples",
+    "section": "6.13 Examples",
+    "text": "6.13 Examples",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Sequential Logic</span>"
     ]
@@ -482,11 +502,71 @@
   {
     "objectID": "fsm.html",
     "href": "fsm.html",
-    "title": "7  Finite State Machines",
+    "title": "7  Finite State Machines (FSMs)",
     "section": "",
-    "text": "7.1",
+    "text": "7.1 Moore Machine\nFSM is a discrete-time model of a stateful system.\nConsists of:\nKey Elements of FSMs:\nA Moore Machine is an FSM whose next state is determined by the current state and the inputs, and outputs depend only on the current state",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Finite State Machines</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Finite State Machines (FSMs)</span>"
+    ]
+  },
+  {
+    "objectID": "fsm.html#moore-machine",
+    "href": "fsm.html#moore-machine",
+    "title": "7  Finite State Machines (FSMs)",
+    "section": "",
+    "text": "A Moore Machine. Notice how the output is only based on the current state, and not connected to the inputs. Source: EECS 270\n\n\n\n\n\nExample of a Moore FSM. Source: EECS 270",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Finite State Machines (FSMs)</span>"
+    ]
+  },
+  {
+    "objectID": "fsm.html#mealy-machine",
+    "href": "fsm.html#mealy-machine",
+    "title": "7  Finite State Machines (FSMs)",
+    "section": "7.2 Mealy Machine",
+    "text": "7.2 Mealy Machine\nA Mealy Machine is an FSM whose next state is determined by the current state and the inputs, and the outputs depend both on the current state and the inputs",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Finite State Machines (FSMs)</span>"
+    ]
+  },
+  {
+    "objectID": "fsm.html#fsm-factoring",
+    "href": "fsm.html#fsm-factoring",
+    "title": "7  Finite State Machines (FSMs)",
+    "section": "7.3 FSM Factoring",
+    "text": "7.3 FSM Factoring\nFSM Factoring is to break down complex FSMs into multiple smaller FSMs in order to simplify. We do so since we know that the output of an FSM can serve as an input to other FSMs\n\n7.3.1 Example\n\n\n\nWhat if we had one FSM to control transitions between regular mode (S0 – S3) and parade mode (S4 – S7) and another FSM to control the lights?",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Finite State Machines (FSMs)</span>"
+    ]
+  },
+  {
+    "objectID": "fsm.html#state-reduction-minimization",
+    "href": "fsm.html#state-reduction-minimization",
+    "title": "7  Finite State Machines (FSMs)",
+    "section": "7.4 State Reduction / Minimization",
+    "text": "7.4 State Reduction / Minimization\nState reduction is reducing the number of states in an FSM without changing its function. Reducing staes allows us to minimize size of state registers and complexity of next state and output logic.\nIf two states in an FSM are found to be equivalent, one state can be removed, and all transitions to that state can point to the other state.\nTwo states are equivalent if:\n\nBoth states assign the same values to outputs\nFor all possible inputs, the output/next state will be the same starting from either state\n\nFor large FSMs, inspection may not be efficient way to do state reduction. Alternative is to use implication chart method (aka state merger table)\nTo fill out the implication chart:\n\nEntry \\(X_{ij}\\) - Row is \\(S_i\\), Column \\(S_j\\)\n\\(X_{ij}\\) contains next states of \\(S_i\\) and \\(S_j\\)\n\\(S_i\\) is equivalent to \\(S_j\\) if outputs are the same and next states are equivalent\nIf \\(S_i\\), \\(S_j\\) have different output behavior, then cross out \\(X_{ij}\\)\n\n\n\n7.4.1 Example",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Finite State Machines (FSMs)</span>"
+    ]
+  },
+  {
+    "objectID": "fsm.html#moore-to-mealy-and-mealy-to-moore",
+    "href": "fsm.html#moore-to-mealy-and-mealy-to-moore",
+    "title": "7  Finite State Machines (FSMs)",
+    "section": "7.5 Moore to Mealy and Mealy to Moore",
+    "text": "7.5 Moore to Mealy and Mealy to Moore",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Finite State Machines (FSMs)</span>"
+    ]
+  },
+  {
+    "objectID": "fsm.html#schematic-to-fsm",
+    "href": "fsm.html#schematic-to-fsm",
+    "title": "7  Finite State Machines (FSMs)",
+    "section": "7.6 Schematic to FSM",
+    "text": "7.6 Schematic to FSM\nSteps to go from a schematic to an FSM:\n\nFind inputs, outputs, and state bits\nWrite next state and output equations\nWrite and reduce next state and output tables\nCreate state labels\nRewrite next state and output tables with state names\nDraw state transition diagram\n\n\n7.6.1 Example",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Finite State Machines (FSMs)</span>"
     ]
   },
   {
@@ -534,7 +614,7 @@
     "href": "arithmetic.html#adder-design",
     "title": "8  Binary Arithmetic",
     "section": "8.4 Adder Design",
-    "text": "8.4 Adder Design\n\n8.4.1 Ripple-Carry Adder (RCA)\n\n\n8.4.2 Carry-Lookahead Adder (CLA)",
+    "text": "8.4 Adder Design\nDifferent adder implementations exist, offering different speed and circuit complexities\nCarry propagation makes RCA slow. Common techniques to speed it up:\n\nCarry lookahead (CLA)\nCarry select\nCarry save\n\n\n8.4.1 Ripple-Carry Adder (RCA)\nRipple-Carry Adder/Subtractor with Overflow Detection\n\nCarry has to propagate from LSB to MSB forming a long critical path\n\n\n8.4.2 Carry-Lookahead Adder (CLA)\nCalculates the carry signals in advance based on the input signals to solve carry delay problem\nKey insight: A carry signal will be generated in two cases:\n\nWhen both \\(A_i\\) and \\(B_i\\) are 1, OR\nWhen one of the \\(A_i\\) and \\(B_i\\) is 1 and the carry-in is 1",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
     ]
@@ -544,7 +624,7 @@
     "href": "arithmetic.html#multiplication",
     "title": "8  Binary Arithmetic",
     "section": "8.5 Multiplication",
-    "text": "8.5 Multiplication",
+    "text": "8.5 Multiplication\n\n\nA combinational multiplier is very inefficient and long…",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
     ]
@@ -554,7 +634,7 @@
     "href": "arithmetic.html#multiplier-design",
     "title": "8  Binary Arithmetic",
     "section": "8.6 Multiplier Design",
-    "text": "8.6 Multiplier Design",
+    "text": "8.6 Multiplier Design\nSequential multiplier\n\n\n\n8.6.1 Two’s Complement Multiplication\n\nProblems with the basic sequential multiplier:\n\n2n-bit adder is overkill since least significant bits of product don’t change after they are initially formed (they are added to zeros!)\n\nn-bit adder is sufficient\n\nLeft shifting the multiplicand causes half the space in the 2n-bit Q and P registers to be unutilized\n\nUse an n-bit register for Q (no shifting)\nUse a combined (2n+1)-bit {C, P, M} right-shift register\n\n\n\n\n8.6.2 Booth’s Multiplier\nMain Idea: Reduce some addition steps by decomposing consecutive ones",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Binary Arithmetic</span>"
     ]
@@ -580,11 +660,101 @@
     ]
   },
   {
+    "objectID": "memories.html",
+    "href": "memories.html",
+    "title": "9  Memories",
+    "section": "",
+    "text": "9.1 Register File\nBasic memory elements such as latches and flip flops are covered in the Sequential chapter.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Memories</span>"
+    ]
+  },
+  {
     "objectID": "summary.html",
     "href": "summary.html",
     "title": "10  Summary",
     "section": "",
-    "text": "In summary…",
+    "text": "10.1 Binary Basics\nThe maximum (unsigned) decimal number that can be represented with \\(n\\) bits is \\(\\text{Max Value} = 2^n - 1\\). This range can be generalized to other bases:\nTo convert from decimal to binary:",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#binary-basics",
+    "href": "summary.html#binary-basics",
+    "title": "10  Summary",
+    "section": "",
+    "text": "Note 10.1: Equation - Max Unsigned Decimal Value with n Digits\n\n\n\n\\[\\text{Max Value} = base^n - 1\\]\n\n\n\n\n\n\n\n\nNote 10.2: Equation - Number of Bits to Represent x Different Numbers\n\n\n\n\\[n = ceil(log_2(x))\\]\n\n\n\n\n\n\n\n\nNote 10.3: Equation - Number of Bits to Represent Unsigned Decimal Number\n\n\n\n\\[n = ceil(log_2(x + 1))\\]\n\n\n\n\nStep 1: Divide the given number repeatedly by 2 until you get 0 as the quotient.\nStep 2: Write the remainders in reverse order.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#boolean-algebra",
+    "href": "summary.html#boolean-algebra",
+    "title": "10  Summary",
+    "section": "10.2 Boolean Algebra",
+    "text": "10.2 Boolean Algebra",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#combinational-logic",
+    "href": "summary.html#combinational-logic",
+    "title": "10  Summary",
+    "section": "10.3 Combinational Logic",
+    "text": "10.3 Combinational Logic",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#timing",
+    "href": "summary.html#timing",
+    "title": "10  Summary",
+    "section": "10.4 Timing",
+    "text": "10.4 Timing\n\n\n\n\n\n\n\nNote 10.4: Equation - Hold Time Constraint\n\n\n\n\\[t_{cq(min)}+t_{comb(min)} = t_{cq} \\geq t_{hold}\\]\n\n\n\n\n\n\n\n\nNote 10.5: Equation - Maximum Clock Frequency & Hold Time\n\n\n\n\\[t_{cq(max)}+t_{comb(max)}+t_{setup} \\leq T_{clk}\\]\n\n\n\n\nMethods to fix setup time violation:\n\nReduce data path delay\n\nlogic optimizations (reduce logic depth)\npipelining - break longer comb logic to smaller comb logics\ngate sizing (reduce gate delay by modifying gate size)\n\nClock timing\n\nReduce clock frequency (longer clock period)\nReduce clock skew\n\n\nMethods to fix hold time violation:\n\nIncrease minimum data path delay\n\nInsert buffers or delay cells on minimum delay path\nIncrease wire length or modify gate sizing\n\nReduce clock skew\n\nincrease clock delay at destination register, reduce clock delay at source register\nRemember that hold time is independent of the clock cycle’s time (clock period)\n\n\nSynchronizer: A device that produces a synchronous output Q from an asynchronous input D within a bounded amount of time.\n\nVery useful for dealing with asynchronous input signals, clock domain crossing, mitigating effects of metastability",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#sequential-logic",
+    "href": "summary.html#sequential-logic",
+    "title": "10  Summary",
+    "section": "10.5 Sequential Logic",
+    "text": "10.5 Sequential Logic\nSynchronous reset: reset is sampled with respect to clock. In other words, when reset is enabled, it will not be effective till the next active clock edge -&gt; potential issues w/ timing and clock gating.\nAsynchronous reset: reset is sampled asynchronously (resets whenever the reset signal is triggered). sensitive to glitches and may lead to metastability. On the other hand, it is fast and works even without a clock.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#fsms",
+    "href": "summary.html#fsms",
+    "title": "10  Summary",
+    "section": "10.6 FSMs",
+    "text": "10.6 FSMs\nA Moore Machine is an FSM whose next state is determined by the current state and the inputs, and outputs depend only on the current state\nA Mealy Machine is an FSM whose next state is determined by the current state and the inputs, and the outputs depend both on the current state and the inputs",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#arithmetic",
+    "href": "summary.html#arithmetic",
+    "title": "10  Summary",
+    "section": "10.7 Arithmetic",
+    "text": "10.7 Arithmetic\n\n\n\n\n\n\nNote 10.6: Equation - Range of Signed Magnitude Representation\n\n\n\n\\(n\\)-bits represent range \\([-(2^{n-1}-1), 2^{n-1}-1]\\)\n\n\n\n\n\n\n\n\nNote 10.7: Equation - Range of Two’s Complement Representation\n\n\n\n\\(n\\)-bits represent range \\([-(2^{n-1}), 2^{n-1}-1]\\)\n\n\nFlipping a two’s complement number’s sign:\n\nFirst invert each digit\nAdd 1 to the number\n\nOverflow (two’s complement addition) occurs if:\n\nSign of both operands are the same, AND\nSign of the sum is different\n\nCarry propagation makes RCA slow. Common techniques to speed it up:\n\nCarry lookahead (CLA)\nCarry select\nCarry save\n\nProp, Gen equations",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#memories",
+    "href": "summary.html#memories",
+    "title": "10  Summary",
+    "section": "10.8 Memories",
+    "text": "10.8 Memories\nRegister File",
     "crumbs": [
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
     ]

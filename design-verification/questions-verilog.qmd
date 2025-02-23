@@ -51,7 +51,7 @@ Key concepts
 
 **Q: Write a module to convert binary to gray code (how about vice versa)?**
 
-
+**Q: Write a pattern detector that detects input sequence of 101 from a binary stream. (Pattern 1101 is also a common question)**
 
 ## Online References
 

@@ -1,1 +1,13 @@
 # Memories
+
+Basic memory elements such as latches and flip flops are covered in the Sequential chapter.
+
+## Register File
+
+
+![](images/memories/regfile.png)
+
+![](images/memories/regfile-rp.png)
+
+![](images/memories/regfile-wp.png)
+

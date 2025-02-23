@@ -1,3 +1,135 @@
 # Summary
 
-In summary...
+
+
+## Binary Basics
+
+
+The maximum (unsigned) decimal number that can be represented with $n$ bits is $\text{Max Value} = 2^n - 1$. This range can be generalized to other bases:
+
+::: {#nte-eqn-max-us-dec .callout-note}
+## Equation - Max Unsigned Decimal Value with n Digits
+$$\text{Max Value} = base^n - 1$$
+:::
+
+
+::: {#nte-eqn-num-bits-for-n .callout-note}
+## Equation - Number of Bits to Represent x Different Numbers
+$$n = ceil(log_2(x))$$
+:::
+
+::: {#nte-eqn-num-bits-rep .callout-note}
+## Equation - Number of Bits to Represent Unsigned Decimal Number
+$$n = ceil(log_2(x + 1))$$
+:::
+
+To convert from decimal to binary:
+
+- Step 1: Divide the given number repeatedly by 2 until you get 0 as the quotient.
+- Step 2: Write the remainders in reverse order.
+
+## Boolean Algebra
+
+![](images/bool/demorgan.png)
+
+## Combinational Logic
+
+
+## Timing
+
+
+![](images/timing/timing-params.png)
+
+
+::: {#nte-eqn-hold-time .callout-note}
+## Equation - Hold Time Constraint
+$$t_{cq(min)}+t_{comb(min)} = t_{cq} \geq t_{hold}$$
+:::
+
+
+::: {#nte-eqn-max-freq .callout-note}
+## Equation - Maximum Clock Frequency & Hold Time
+$$t_{cq(max)}+t_{comb(max)}+t_{setup} \leq T_{clk}$$
+:::
+
+![](images/timing/skew-setup.png)
+
+![](images/timing/skew-hold.png)
+
+
+**Methods to fix setup time violation:**
+
+- Reduce data path delay
+  - logic optimizations (reduce logic depth)
+  - pipelining - break longer comb logic to smaller comb logics
+  - gate sizing (reduce gate delay by modifying gate size)
+- Clock timing
+  - Reduce clock frequency (longer clock period)
+  - Reduce clock skew
+
+
+**Methods to fix hold time violation:**
+
+- Increase minimum data path delay
+  - Insert buffers or delay cells on minimum delay path
+  - Increase wire length or modify gate sizing
+- Reduce clock skew
+  - increase clock delay at destination register, reduce clock delay at source register
+  - Remember that hold time is **independent** of the clock cycle's time (clock period)
+
+
+**Synchronizer**: A device that produces a synchronous output Q from an asynchronous input D within a bounded amount of time.
+
+- Very useful for dealing with asynchronous input signals, clock domain crossing, mitigating effects of metastability
+
+
+## Sequential Logic
+
+
+**Synchronous reset**: reset is sampled with respect to clock. In other words, when reset is enabled, it will not be effective till the next active clock edge -> potential issues w/ timing and clock gating.
+
+**Asynchronous reset**: reset is sampled asynchronously (resets whenever the reset signal is triggered). sensitive to glitches and may lead to metastability. On the other hand, it is fast and works even without a clock.
+
+## FSMs
+
+A **Moore Machine** is an FSM whose next state is determined by the current state and the inputs, and **outputs depend only on the current state**
+
+A **Mealy Machine** is an FSM whose next state is determined by the current state and the inputs, and the **outputs depend both on the current state and the inputs**
+
+## Arithmetic
+
+::: {#nte-eqn-range-signed-mag .callout-note}
+## Equation - Range of Signed Magnitude Representation
+$n$-bits represent range $[-(2^{n-1}-1), 2^{n-1}-1]$
+:::
+
+
+::: {#nte-eqn-range-twos-comp .callout-note}
+## Equation - Range of Two's Complement Representation
+$n$-bits represent range $[-(2^{n-1}), 2^{n-1}-1]$
+:::
+
+**Flipping a two's complement number's sign:**
+
+1. First invert each digit
+2. Add 1 to the number
+
+
+Overflow (two's complement addition) occurs if:
+
+- Sign of both operands are the same, AND
+- Sign of the sum is different
+
+
+
+Carry propagation makes RCA slow. Common techniques to speed it up:
+
+- Carry lookahead (CLA)
+- Carry select
+- Carry save
+
+Prop, Gen equations
+
+## Memories
+
+Register File

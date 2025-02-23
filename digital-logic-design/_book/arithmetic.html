@@ -180,7 +180,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fsm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines (FSMs)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -235,7 +235,11 @@ window.Quarto = {
   <li><a href="#carry-lookahead-adder-cla" id="toc-carry-lookahead-adder-cla" class="nav-link" data-scroll-target="#carry-lookahead-adder-cla"><span class="header-section-number">8.4.2</span> Carry-Lookahead Adder (CLA)</a></li>
   </ul></li>
   <li><a href="#multiplication" id="toc-multiplication" class="nav-link" data-scroll-target="#multiplication"><span class="header-section-number">8.5</span> Multiplication</a></li>
-  <li><a href="#multiplier-design" id="toc-multiplier-design" class="nav-link" data-scroll-target="#multiplier-design"><span class="header-section-number">8.6</span> Multiplier Design</a></li>
+  <li><a href="#multiplier-design" id="toc-multiplier-design" class="nav-link" data-scroll-target="#multiplier-design"><span class="header-section-number">8.6</span> Multiplier Design</a>
+  <ul class="collapse">
+  <li><a href="#twos-complement-multiplication" id="toc-twos-complement-multiplication" class="nav-link" data-scroll-target="#twos-complement-multiplication"><span class="header-section-number">8.6.1</span> Two’s Complement Multiplication</a></li>
+  <li><a href="#booths-multiplier" id="toc-booths-multiplier" class="nav-link" data-scroll-target="#booths-multiplier"><span class="header-section-number">8.6.2</span> Booth’s Multiplier</a></li>
+  </ul></li>
   <li><a href="#division" id="toc-division" class="nav-link" data-scroll-target="#division"><span class="header-section-number">8.7</span> Division</a></li>
   <li><a href="#divider-design" id="toc-divider-design" class="nav-link" data-scroll-target="#divider-design"><span class="header-section-number">8.8</span> Divider Design</a></li>
   </ul>
@@ -345,18 +349,73 @@ Note&nbsp;8.2: Equation - Range of Two’s Complement Representation
 </section>
 <section id="adder-design" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="adder-design"><span class="header-section-number">8.4</span> Adder Design</h2>
+<p>Different adder implementations exist, offering different speed and circuit complexities</p>
+<p>Carry propagation makes RCA slow. Common techniques to speed it up:</p>
+<ul>
+<li>Carry lookahead (CLA)</li>
+<li>Carry select</li>
+<li>Carry save</li>
+</ul>
 <section id="ripple-carry-adder-rca" class="level3" data-number="8.4.1">
 <h3 data-number="8.4.1" class="anchored" data-anchor-id="ripple-carry-adder-rca"><span class="header-section-number">8.4.1</span> Ripple-Carry Adder (RCA)</h3>
+<p><strong>Ripple-Carry Adder/Subtractor with Overflow Detection</strong></p>
+<p><img src="images/arithmetic/rca-critical.png" class="img-fluid"></p>
+<p>Carry has to propagate from LSB to MSB forming a long critical path</p>
 </section>
 <section id="carry-lookahead-adder-cla" class="level3" data-number="8.4.2">
 <h3 data-number="8.4.2" class="anchored" data-anchor-id="carry-lookahead-adder-cla"><span class="header-section-number">8.4.2</span> Carry-Lookahead Adder (CLA)</h3>
+<p>Calculates the carry signals in advance based on the input signals to solve carry delay problem</p>
+<p>Key insight: A carry signal will be generated in two cases:</p>
+<ol type="1">
+<li>When both <span class="math inline">\(A_i\)</span> and <span class="math inline">\(B_i\)</span> are 1, OR</li>
+<li>When one of the <span class="math inline">\(A_i\)</span> and <span class="math inline">\(B_i\)</span> is 1 and the carry-in is 1</li>
+</ol>
+<p><img src="images/arithmetic/carry1.png" class="img-fluid"></p>
+<p><img src="images/arithmetic/carry2.png" class="img-fluid"></p>
+<p><img src="images/arithmetic/carry3.png" class="img-fluid"></p>
+<p><img src="images/arithmetic/carry4.png" class="img-fluid"></p>
+<p><img src="images/arithmetic/carry5.png" class="img-fluid"></p>
+<p><img src="images/arithmetic/32bcla.png" class="img-fluid"></p>
+<p><img src="images/arithmetic/carry6.png" class="img-fluid"></p>
 </section>
 </section>
 <section id="multiplication" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="multiplication"><span class="header-section-number">8.5</span> Multiplication</h2>
+<p><img src="images/arithmetic/bin-mult.png" class="img-fluid"></p>
+<p><img src="images/arithmetic/bin-mult-comb.png" class="img-fluid"></p>
+<p>A combinational multiplier is very inefficient and long…</p>
 </section>
 <section id="multiplier-design" class="level2" data-number="8.6">
 <h2 data-number="8.6" class="anchored" data-anchor-id="multiplier-design"><span class="header-section-number">8.6</span> Multiplier Design</h2>
+<p>Sequential multiplier</p>
+<p><img src="images/sequential/seq-mult.png" class="img-fluid"></p>
+<p><img src="images/sequential/seq-mult-int.png" class="img-fluid"></p>
+<section id="twos-complement-multiplication" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="twos-complement-multiplication"><span class="header-section-number">8.6.1</span> Two’s Complement Multiplication</h3>
+<p><img src="images/arithmetic/twos-mult.png" class="img-fluid"></p>
+<p>Problems with the basic sequential multiplier:</p>
+<ul>
+<li>2n-bit adder is overkill since least significant bits of product don’t change after they are initially formed (they are added to zeros!)
+<ul>
+<li>n-bit adder is sufficient</li>
+</ul></li>
+<li>Left shifting the multiplicand causes half the space in the 2n-bit Q and P registers to be unutilized
+<ul>
+<li>Use an n-bit register for Q (no shifting)</li>
+<li>Use a combined (2n+1)-bit {C, P, M} right-shift register</li>
+</ul></li>
+</ul>
+</section>
+<section id="booths-multiplier" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="booths-multiplier"><span class="header-section-number">8.6.2</span> Booth’s Multiplier</h3>
+<p>Main Idea: Reduce some addition steps by decomposing consecutive ones</p>
+<p><img src="images/arithmetic/booth-1.png" class="img-fluid"></p>
+<p><img src="images/arithmetic/booth-2.png" class="img-fluid"></p>
+<p><img src="images/arithmetic/booth-3.png" class="img-fluid"></p>
+<p><img src="images/arithmetic/booth-4.png" class="img-fluid"></p>
+<p><img src="images/arithmetic/booth-5.png" class="img-fluid"></p>
+<p><img src="images/arithmetic/booth-6.png" class="img-fluid"></p>
+</section>
 </section>
 <section id="division" class="level2" data-number="8.7">
 <h2 data-number="8.7" class="anchored" data-anchor-id="division"><span class="header-section-number">8.7</span> Division</h2>
@@ -787,8 +846,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./fsm.html" class="pagination-link" aria-label="Finite State Machines">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines</span></span>
+      <a href="./fsm.html" class="pagination-link" aria-label="Finite State Machines (FSMs)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines (FSMs)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -180,7 +180,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fsm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines (FSMs)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -222,7 +222,7 @@ window.Quarto = {
   <li><a href="#sequential-timing" id="toc-sequential-timing" class="nav-link" data-scroll-target="#sequential-timing"><span class="header-section-number">5.3</span> Sequential Timing</a>
   <ul class="collapse">
   <li><a href="#hold-time-constraint" id="toc-hold-time-constraint" class="nav-link" data-scroll-target="#hold-time-constraint"><span class="header-section-number">5.3.1</span> Hold Time Constraint</a></li>
-  <li><a href="#max-clock-frequency-hold-time" id="toc-max-clock-frequency-hold-time" class="nav-link" data-scroll-target="#max-clock-frequency-hold-time"><span class="header-section-number">5.3.2</span> Max Clock Frequency &amp; Hold Time</a></li>
+  <li><a href="#max-clock-frequency-setup-time" id="toc-max-clock-frequency-setup-time" class="nav-link" data-scroll-target="#max-clock-frequency-setup-time"><span class="header-section-number">5.3.2</span> Max Clock Frequency &amp; Setup Time</a></li>
   <li><a href="#clock-skew" id="toc-clock-skew" class="nav-link" data-scroll-target="#clock-skew"><span class="header-section-number">5.3.3</span> Clock Skew</a></li>
   </ul></li>
   <li><a href="#glitches" id="toc-glitches" class="nav-link" data-scroll-target="#glitches"><span class="header-section-number">5.4</span> Glitches</a>
@@ -270,7 +270,7 @@ window.Quarto = {
 <li><span class="math inline">\(t_{p, LH}\)</span> - is the delay when the <strong>output</strong> transitions from LOW to HIGH</li>
 <li><span class="math inline">\(t_{p, HL}\)</span> - is the delay when the <strong>output</strong> transitions from HIGH to LOW</li>
 </ul>
-<p>![](images/timing/delay-hl-lh.png</p>
+<p><img src="images/timing/delay-hl-lh.png" class="img-fluid"></p>
 <p>Delays are primarily caused by:</p>
 <ul>
 <li>Capacitance</li>
@@ -338,9 +338,22 @@ Note&nbsp;5.1: Equation - Hold Time Constraint
 <p><span class="math display">\[t_{cq(min)}+t_{comb(min)} = t_{cq} \geq t_{hold}\]</span></p>
 </div>
 </div>
+<p><strong>Methods to fix hold time violation:</strong></p>
+<ul>
+<li>Increase minimum data path delay
+<ul>
+<li>Insert buffers or delay cells on minimum delay path</li>
+<li>Increase wire length or modify gate sizing</li>
+</ul></li>
+<li>Reduce clock skew
+<ul>
+<li>increase clock delay at destination register, reduce clock delay at source register</li>
+<li>Remember that hold time is <strong>independent</strong> of the clock cycle’s time (clock period)</li>
+</ul></li>
+</ul>
 </section>
-<section id="max-clock-frequency-hold-time" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="max-clock-frequency-hold-time"><span class="header-section-number">5.3.2</span> Max Clock Frequency &amp; Hold Time</h3>
+<section id="max-clock-frequency-setup-time" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="max-clock-frequency-setup-time"><span class="header-section-number">5.3.2</span> Max Clock Frequency &amp; Setup Time</h3>
 <p>Every circuit path between every pair of FFs must satisfy the following equation to run the circuit at a frequency of <span class="math inline">\(f=\frac{1}{T_{clk}}\)</span></p>
 <div id="nte-eqn-max-freq" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -348,13 +361,27 @@ Note&nbsp;5.1: Equation - Hold Time Constraint
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note&nbsp;5.2: Equation - Maximum Clock Frequency &amp; Hold Time
+Note&nbsp;5.2: Equation - Maximum Clock Frequency &amp; Setup Time
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[t_{cq(max)}+t_{comb(max)}+t_{setup} \leq T_{clk}\]</span></p>
 </div>
 </div>
+<p><strong>Methods to fix setup time violation:</strong></p>
+<ul>
+<li>Reduce data path delay
+<ul>
+<li>logic optimizations (reduce logic depth)</li>
+<li>pipelining - break longer comb logic to smaller comb logics</li>
+<li>gate sizing (reduce gate delay by modifying gate size)</li>
+</ul></li>
+<li>Clock timing
+<ul>
+<li>Reduce clock frequency (longer clock period)</li>
+<li>Reduce clock skew</li>
+</ul></li>
+</ul>
 </section>
 <section id="clock-skew" class="level3" data-number="5.3.3">
 <h3 data-number="5.3.3" class="anchored" data-anchor-id="clock-skew"><span class="header-section-number">5.3.3</span> Clock Skew</h3>

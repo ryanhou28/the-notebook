@@ -85,28 +85,73 @@ A **register** is a set of parallel DFFs
 ![](images/sequential/registers.png)
 
 
-
 ## Other Types of Latches and Flip Flops
 
+
+### JK Latch
+
+### JK Flip Flop
+
+![](images/sequential/jkff.png)
+
+### T Flip FLop
 
 ## Synchronous Circuits
 
 ![](images/sequential/synchronous.png)
 
+**Synchronous reset**: reset is sampled with respect to clock. In other words, when reset is enabled, it will not be effective till the next active clock edge -> potential issues w/ timing and clock gating.
 
-
-### JK Latch
-
-
-### T Flip FLop
+**Asynchronous reset**: reset is sampled asynchronously (resets whenever the reset signal is triggered). sensitive to glitches and may lead to metastability. On the other hand, it is fast and works even without a clock.
 
 ## Synchronizers
 
 Synchronizers are covered in the timing chapter.
 
+## Counters
+
+### Ripple Counter
+
+![](images/sequential/ripple-counter.png)
+
+### Parallel Counter
+
+![](images/sequential/par-counter.png)
+
+**Parallel Counter with enable, load, reset**
+
+![](images/sequential/para-counter-en-l-rst.png)
+
+### Gray-Code Counters
+
+
+
+## Shift Register
+
+A **shift register** allows for the shifting of its bit by one position on every clock edge
+
+![](images/sequential/shift-reg.png)
+
+### Logical Shift
+
+When performing logical shift, the MSB/LSB is replaced with 0.
+
+![](images/sequential/logicshift.png)
+
+### Arithmetic Shift
+
+![](images/sequential/arithshift.png)
+
+Notice how shifting by 1 in binary is the same as integer multiplication/division.
+
+Arithmetic shift sign extends the original MSB to preserve two's complement signedness when performing shifts.
+
+![](images/sequential/shiftingsummary.png)
+
+
+
 ## Clock Domain Crossing
 
-```
 
 ## Examples
 

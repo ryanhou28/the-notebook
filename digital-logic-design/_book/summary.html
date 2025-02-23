@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -151,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fsm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines (FSMs)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -183,8 +212,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#binary-basics" id="toc-binary-basics" class="nav-link active" data-scroll-target="#binary-basics"><span class="header-section-number">10.1</span> Binary Basics</a></li>
+  <li><a href="#boolean-algebra" id="toc-boolean-algebra" class="nav-link" data-scroll-target="#boolean-algebra"><span class="header-section-number">10.2</span> Boolean Algebra</a></li>
+  <li><a href="#combinational-logic" id="toc-combinational-logic" class="nav-link" data-scroll-target="#combinational-logic"><span class="header-section-number">10.3</span> Combinational Logic</a></li>
+  <li><a href="#timing" id="toc-timing" class="nav-link" data-scroll-target="#timing"><span class="header-section-number">10.4</span> Timing</a></li>
+  <li><a href="#sequential-logic" id="toc-sequential-logic" class="nav-link" data-scroll-target="#sequential-logic"><span class="header-section-number">10.5</span> Sequential Logic</a></li>
+  <li><a href="#fsms" id="toc-fsms" class="nav-link" data-scroll-target="#fsms"><span class="header-section-number">10.6</span> FSMs</a></li>
+  <li><a href="#arithmetic" id="toc-arithmetic" class="nav-link" data-scroll-target="#arithmetic"><span class="header-section-number">10.7</span> Arithmetic</a></li>
+  <li><a href="#memories" id="toc-memories" class="nav-link" data-scroll-target="#memories"><span class="header-section-number">10.8</span> Memories</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -208,9 +250,186 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In summary…</p>
+<section id="binary-basics" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="binary-basics"><span class="header-section-number">10.1</span> Binary Basics</h2>
+<p>The maximum (unsigned) decimal number that can be represented with <span class="math inline">\(n\)</span> bits is <span class="math inline">\(\text{Max Value} = 2^n - 1\)</span>. This range can be generalized to other bases:</p>
+<div id="nte-eqn-max-us-dec" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;10.1: Equation - Max Unsigned Decimal Value with n Digits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\text{Max Value} = base^n - 1\]</span></p>
+</div>
+</div>
+<div id="nte-eqn-num-bits-for-n" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;10.2: Equation - Number of Bits to Represent x Different Numbers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[n = ceil(log_2(x))\]</span></p>
+</div>
+</div>
+<div id="nte-eqn-num-bits-rep" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;10.3: Equation - Number of Bits to Represent Unsigned Decimal Number
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[n = ceil(log_2(x + 1))\]</span></p>
+</div>
+</div>
+<p>To convert from decimal to binary:</p>
+<ul>
+<li>Step 1: Divide the given number repeatedly by 2 until you get 0 as the quotient.</li>
+<li>Step 2: Write the remainders in reverse order.</li>
+</ul>
+</section>
+<section id="boolean-algebra" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="boolean-algebra"><span class="header-section-number">10.2</span> Boolean Algebra</h2>
+<p><img src="images/bool/demorgan.png" class="img-fluid"></p>
+</section>
+<section id="combinational-logic" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="combinational-logic"><span class="header-section-number">10.3</span> Combinational Logic</h2>
+</section>
+<section id="timing" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="timing"><span class="header-section-number">10.4</span> Timing</h2>
+<p><img src="images/timing/timing-params.png" class="img-fluid"></p>
+<div id="nte-eqn-hold-time" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;10.4: Equation - Hold Time Constraint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[t_{cq(min)}+t_{comb(min)} = t_{cq} \geq t_{hold}\]</span></p>
+</div>
+</div>
+<div id="nte-eqn-max-freq" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;10.5: Equation - Maximum Clock Frequency &amp; Hold Time
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[t_{cq(max)}+t_{comb(max)}+t_{setup} \leq T_{clk}\]</span></p>
+</div>
+</div>
+<p><img src="images/timing/skew-setup.png" class="img-fluid"></p>
+<p><img src="images/timing/skew-hold.png" class="img-fluid"></p>
+<p><strong>Methods to fix setup time violation:</strong></p>
+<ul>
+<li>Reduce data path delay
+<ul>
+<li>logic optimizations (reduce logic depth)</li>
+<li>pipelining - break longer comb logic to smaller comb logics</li>
+<li>gate sizing (reduce gate delay by modifying gate size)</li>
+</ul></li>
+<li>Clock timing
+<ul>
+<li>Reduce clock frequency (longer clock period)</li>
+<li>Reduce clock skew</li>
+</ul></li>
+</ul>
+<p><strong>Methods to fix hold time violation:</strong></p>
+<ul>
+<li>Increase minimum data path delay
+<ul>
+<li>Insert buffers or delay cells on minimum delay path</li>
+<li>Increase wire length or modify gate sizing</li>
+</ul></li>
+<li>Reduce clock skew
+<ul>
+<li>increase clock delay at destination register, reduce clock delay at source register</li>
+<li>Remember that hold time is <strong>independent</strong> of the clock cycle’s time (clock period)</li>
+</ul></li>
+</ul>
+<p><strong>Synchronizer</strong>: A device that produces a synchronous output Q from an asynchronous input D within a bounded amount of time.</p>
+<ul>
+<li>Very useful for dealing with asynchronous input signals, clock domain crossing, mitigating effects of metastability</li>
+</ul>
+</section>
+<section id="sequential-logic" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="sequential-logic"><span class="header-section-number">10.5</span> Sequential Logic</h2>
+<p><strong>Synchronous reset</strong>: reset is sampled with respect to clock. In other words, when reset is enabled, it will not be effective till the next active clock edge -&gt; potential issues w/ timing and clock gating.</p>
+<p><strong>Asynchronous reset</strong>: reset is sampled asynchronously (resets whenever the reset signal is triggered). sensitive to glitches and may lead to metastability. On the other hand, it is fast and works even without a clock.</p>
+</section>
+<section id="fsms" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="fsms"><span class="header-section-number">10.6</span> FSMs</h2>
+<p>A <strong>Moore Machine</strong> is an FSM whose next state is determined by the current state and the inputs, and <strong>outputs depend only on the current state</strong></p>
+<p>A <strong>Mealy Machine</strong> is an FSM whose next state is determined by the current state and the inputs, and the <strong>outputs depend both on the current state and the inputs</strong></p>
+</section>
+<section id="arithmetic" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="arithmetic"><span class="header-section-number">10.7</span> Arithmetic</h2>
+<div id="nte-eqn-range-signed-mag" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;10.6: Equation - Range of Signed Magnitude Representation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(n\)</span>-bits represent range <span class="math inline">\([-(2^{n-1}-1), 2^{n-1}-1]\)</span></p>
+</div>
+</div>
+<div id="nte-eqn-range-twos-comp" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;10.7: Equation - Range of Two’s Complement Representation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(n\)</span>-bits represent range <span class="math inline">\([-(2^{n-1}), 2^{n-1}-1]\)</span></p>
+</div>
+</div>
+<p><strong>Flipping a two’s complement number’s sign:</strong></p>
+<ol type="1">
+<li>First invert each digit</li>
+<li>Add 1 to the number</li>
+</ol>
+<p>Overflow (two’s complement addition) occurs if:</p>
+<ul>
+<li>Sign of both operands are the same, AND</li>
+<li>Sign of the sum is different</li>
+</ul>
+<p>Carry propagation makes RCA slow. Common techniques to speed it up:</p>
+<ul>
+<li>Carry lookahead (CLA)</li>
+<li>Carry select</li>
+<li>Carry save</li>
+</ul>
+<p>Prop, Gen equations</p>
+</section>
+<section id="memories" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="memories"><span class="header-section-number">10.8</span> Memories</h2>
+<p>Register File</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

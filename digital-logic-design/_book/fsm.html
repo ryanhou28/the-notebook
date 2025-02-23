@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Finite State Machines – Digital Logic Design</title>
+<title>7&nbsp; Finite State Machines (FSMs) – Digital Logic Design</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./fsm.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./fsm.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines (FSMs)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fsm.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines (FSMs)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -188,7 +217,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">7.1</span> </a></li>
+  <li><a href="#moore-machine" id="toc-moore-machine" class="nav-link active" data-scroll-target="#moore-machine"><span class="header-section-number">7.1</span> Moore Machine</a></li>
+  <li><a href="#mealy-machine" id="toc-mealy-machine" class="nav-link" data-scroll-target="#mealy-machine"><span class="header-section-number">7.2</span> Mealy Machine</a></li>
+  <li><a href="#fsm-factoring" id="toc-fsm-factoring" class="nav-link" data-scroll-target="#fsm-factoring"><span class="header-section-number">7.3</span> FSM Factoring</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">7.3.1</span> Example</a></li>
+  </ul></li>
+  <li><a href="#state-reduction-minimization" id="toc-state-reduction-minimization" class="nav-link" data-scroll-target="#state-reduction-minimization"><span class="header-section-number">7.4</span> State Reduction / Minimization</a>
+  <ul class="collapse">
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1"><span class="header-section-number">7.4.1</span> Example</a></li>
+  </ul></li>
+  <li><a href="#moore-to-mealy-and-mealy-to-moore" id="toc-moore-to-mealy-and-mealy-to-moore" class="nav-link" data-scroll-target="#moore-to-mealy-and-mealy-to-moore"><span class="header-section-number">7.5</span> Moore to Mealy and Mealy to Moore</a></li>
+  <li><a href="#schematic-to-fsm" id="toc-schematic-to-fsm" class="nav-link" data-scroll-target="#schematic-to-fsm"><span class="header-section-number">7.6</span> Schematic to FSM</a>
+  <ul class="collapse">
+  <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2"><span class="header-section-number">7.6.1</span> Example</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -197,7 +240,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines (FSMs)</span></h1>
 </div>
 
 
@@ -214,10 +257,109 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="section" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="section"><span class="header-section-number">7.1</span> </h2>
+<p><strong>FSM</strong> is a discrete-time model of a stateful system.</p>
+<p><img src="images/fsm/fsm-basic.png" class="img-fluid"></p>
+<p>Consists of:</p>
+<ul>
+<li>Next state logic - logic to determine what the next state will be</li>
+<li>State register - stores the current state and loads next state at clock edge</li>
+<li>Output logic - logic that generates the output</li>
+</ul>
+<p>Key Elements of FSMs:</p>
+<ul>
+<li>A finite number of states</li>
+<li>A finite number of external inputs</li>
+<li>A finite number of external outputs</li>
+<li>An explicit specification of all state transitions</li>
+<li>An explicit specification of what determines each external output value</li>
+</ul>
+<section id="moore-machine" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="moore-machine"><span class="header-section-number">7.1</span> Moore Machine</h2>
+<p>A <strong>Moore Machine</strong> is an FSM whose next state is determined by the current state and the inputs, and <strong>outputs depend only on the current state</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fsm/moore.png" class="img-fluid figure-img"></p>
+<figcaption>A Moore Machine. Notice how the output is only based on the current state, and not connected to the inputs. Source: EECS 270</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fsm/moore-fsm-diagram.png" class="img-fluid figure-img"></p>
+<figcaption>Example of a Moore FSM. Source: EECS 270</figcaption>
+</figure>
+</div>
+</section>
+<section id="mealy-machine" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="mealy-machine"><span class="header-section-number">7.2</span> Mealy Machine</h2>
+<p>A <strong>Mealy Machine</strong> is an FSM whose next state is determined by the current state and the inputs, and the <strong>outputs depend both on the current state and the inputs</strong></p>
+<p><img src="images/fsm/mealy.png" class="img-fluid"></p>
+</section>
+<section id="fsm-factoring" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="fsm-factoring"><span class="header-section-number">7.3</span> FSM Factoring</h2>
+<p>FSM Factoring is to break down complex FSMs into multiple smaller FSMs in order to simplify. We do so since we know that the output of an FSM can serve as an input to other FSMs</p>
+<section id="example" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="example"><span class="header-section-number">7.3.1</span> Example</h3>
+<p><img src="images/fsm/factoring-ex1.png" class="img-fluid"></p>
+<p><img src="images/fsm/factoring-ex2.png" class="img-fluid"></p>
+<p><img src="images/fsm/factoring-ex3.png" class="img-fluid"></p>
+<p><strong>What if we had one FSM to control transitions between regular mode (S0 – S3) and parade mode (S4 – S7) and another FSM to control the lights?</strong></p>
+<p><img src="images/fsm/factoring-ex4.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="state-reduction-minimization" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="state-reduction-minimization"><span class="header-section-number">7.4</span> State Reduction / Minimization</h2>
+<p>State reduction is reducing the number of states in an FSM without changing its function. Reducing staes allows us to minimize size of state registers and complexity of next state and output logic.</p>
+<p>If two states in an FSM are found to be equivalent, one state can be removed, and all transitions to that state can point to the other state.</p>
+<p>Two states are equivalent if:</p>
+<ul>
+<li>Both states assign the same values to outputs</li>
+<li>For all possible inputs, the output/next state will be the same starting from either state</li>
+</ul>
+<p>For large FSMs, inspection may not be efficient way to do state reduction. Alternative is to use <strong>implication chart</strong> method (aka state merger table)</p>
+<p>To fill out the implication chart:</p>
+<ul>
+<li>Entry <span class="math inline">\(X_{ij}\)</span> - Row is <span class="math inline">\(S_i\)</span>, Column <span class="math inline">\(S_j\)</span></li>
+<li><span class="math inline">\(X_{ij}\)</span> contains next states of <span class="math inline">\(S_i\)</span> and <span class="math inline">\(S_j\)</span></li>
+<li><span class="math inline">\(S_i\)</span> is equivalent to <span class="math inline">\(S_j\)</span> if outputs are the same and next states are equivalent</li>
+<li><strong>If <span class="math inline">\(S_i\)</span>, <span class="math inline">\(S_j\)</span> have different output behavior, then cross out <span class="math inline">\(X_{ij}\)</span></strong></li>
+</ul>
+<p><img src="images/fsm/imp-chart-cell.png" class="img-fluid"></p>
+<section id="example-1" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="example-1"><span class="header-section-number">7.4.1</span> Example</h3>
+<p><img src="images/fsm/imp-chart-ex1.png" class="img-fluid"></p>
+<p><img src="images/fsm/imp-chart-ex2.png" class="img-fluid"></p>
+<p><img src="images/fsm/imp-chart-ex3.png" class="img-fluid"></p>
+<p><img src="images/fsm/imp-chart-ex4.png" class="img-fluid"></p>
+<p><img src="images/fsm/imp-chart-ex5.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="moore-to-mealy-and-mealy-to-moore" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="moore-to-mealy-and-mealy-to-moore"><span class="header-section-number">7.5</span> Moore to Mealy and Mealy to Moore</h2>
+</section>
+<section id="schematic-to-fsm" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="schematic-to-fsm"><span class="header-section-number">7.6</span> Schematic to FSM</h2>
+<p>Steps to go from a schematic to an FSM:</p>
+<ol type="1">
+<li>Find inputs, outputs, and state bits</li>
+<li>Write next state and output equations</li>
+<li>Write and reduce next state and output tables</li>
+<li>Create state labels</li>
+<li>Rewrite next state and output tables with state names</li>
+<li>Draw state transition diagram</li>
+</ol>
+<section id="example-2" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="example-2"><span class="header-section-number">7.6.1</span> Example</h3>
+<p><img src="images/fsm/sch-to-fsm-ex1.png" class="img-fluid"></p>
+<p><img src="images/fsm/sch-to-fsm-ex2.png" class="img-fluid"></p>
+<p><img src="images/fsm/sch-to-fsm-ex3.png" class="img-fluid"></p>
+<p><img src="images/fsm/sch-to-fsm-ex4.png" class="img-fluid"></p>
+<p><img src="images/fsm/sch-to-fsm-ex5.png" class="img-fluid"></p>
+<p><img src="images/fsm/sch-to-fsm-ex6.png" class="img-fluid"></p>
+<p><img src="images/fsm/sch-to-fxm-ex7.png" class="img-fluid"></p>
+<p><img src="images/fsm/sch-to-fsm-ex8.png" class="img-fluid"></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

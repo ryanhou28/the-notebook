@@ -151,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fsm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines (FSMs)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -194,15 +194,27 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#level-vs-edge-triggering" id="toc-level-vs-edge-triggering" class="nav-link" data-scroll-target="#level-vs-edge-triggering"><span class="header-section-number">6.4</span> Level vs Edge Triggering</a></li>
   <li><a href="#d-flip-flop" id="toc-d-flip-flop" class="nav-link" data-scroll-target="#d-flip-flop"><span class="header-section-number">6.5</span> D Flip-Flop</a></li>
   <li><a href="#registers" id="toc-registers" class="nav-link" data-scroll-target="#registers"><span class="header-section-number">6.6</span> Registers</a></li>
-  <li><a href="#other-types-of-latches-and-flip-flops" id="toc-other-types-of-latches-and-flip-flops" class="nav-link" data-scroll-target="#other-types-of-latches-and-flip-flops"><span class="header-section-number">6.7</span> Other Types of Latches and Flip Flops</a></li>
-  <li><a href="#synchronous-circuits" id="toc-synchronous-circuits" class="nav-link" data-scroll-target="#synchronous-circuits"><span class="header-section-number">6.8</span> Synchronous Circuits</a>
+  <li><a href="#other-types-of-latches-and-flip-flops" id="toc-other-types-of-latches-and-flip-flops" class="nav-link" data-scroll-target="#other-types-of-latches-and-flip-flops"><span class="header-section-number">6.7</span> Other Types of Latches and Flip Flops</a>
   <ul class="collapse">
-  <li><a href="#jk-latch" id="toc-jk-latch" class="nav-link" data-scroll-target="#jk-latch"><span class="header-section-number">6.8.1</span> JK Latch</a></li>
-  <li><a href="#t-flip-flop" id="toc-t-flip-flop" class="nav-link" data-scroll-target="#t-flip-flop"><span class="header-section-number">6.8.2</span> T Flip FLop</a></li>
+  <li><a href="#jk-latch" id="toc-jk-latch" class="nav-link" data-scroll-target="#jk-latch"><span class="header-section-number">6.7.1</span> JK Latch</a></li>
+  <li><a href="#jk-flip-flop" id="toc-jk-flip-flop" class="nav-link" data-scroll-target="#jk-flip-flop"><span class="header-section-number">6.7.2</span> JK Flip Flop</a></li>
+  <li><a href="#t-flip-flop" id="toc-t-flip-flop" class="nav-link" data-scroll-target="#t-flip-flop"><span class="header-section-number">6.7.3</span> T Flip FLop</a></li>
   </ul></li>
+  <li><a href="#synchronous-circuits" id="toc-synchronous-circuits" class="nav-link" data-scroll-target="#synchronous-circuits"><span class="header-section-number">6.8</span> Synchronous Circuits</a></li>
   <li><a href="#synchronizers" id="toc-synchronizers" class="nav-link" data-scroll-target="#synchronizers"><span class="header-section-number">6.9</span> Synchronizers</a></li>
-  <li><a href="#clock-domain-crossing" id="toc-clock-domain-crossing" class="nav-link" data-scroll-target="#clock-domain-crossing"><span class="header-section-number">6.10</span> Clock Domain Crossing</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">6.11</span> Examples</a></li>
+  <li><a href="#counters" id="toc-counters" class="nav-link" data-scroll-target="#counters"><span class="header-section-number">6.10</span> Counters</a>
+  <ul class="collapse">
+  <li><a href="#ripple-counter" id="toc-ripple-counter" class="nav-link" data-scroll-target="#ripple-counter"><span class="header-section-number">6.10.1</span> Ripple Counter</a></li>
+  <li><a href="#parallel-counter" id="toc-parallel-counter" class="nav-link" data-scroll-target="#parallel-counter"><span class="header-section-number">6.10.2</span> Parallel Counter</a></li>
+  <li><a href="#gray-code-counters" id="toc-gray-code-counters" class="nav-link" data-scroll-target="#gray-code-counters"><span class="header-section-number">6.10.3</span> Gray-Code Counters</a></li>
+  </ul></li>
+  <li><a href="#shift-register" id="toc-shift-register" class="nav-link" data-scroll-target="#shift-register"><span class="header-section-number">6.11</span> Shift Register</a>
+  <ul class="collapse">
+  <li><a href="#logical-shift" id="toc-logical-shift" class="nav-link" data-scroll-target="#logical-shift"><span class="header-section-number">6.11.1</span> Logical Shift</a></li>
+  <li><a href="#arithmetic-shift" id="toc-arithmetic-shift" class="nav-link" data-scroll-target="#arithmetic-shift"><span class="header-section-number">6.11.2</span> Arithmetic Shift</a></li>
+  </ul></li>
+  <li><a href="#clock-domain-crossing" id="toc-clock-domain-crossing" class="nav-link" data-scroll-target="#clock-domain-crossing"><span class="header-section-number">6.12</span> Clock Domain Crossing</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">6.13</span> Examples</a></li>
   </ul>
 </nav>
     </div>
@@ -371,27 +383,65 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="other-types-of-latches-and-flip-flops" class="level2" data-number="6.7">
 <h2 data-number="6.7" class="anchored" data-anchor-id="other-types-of-latches-and-flip-flops"><span class="header-section-number">6.7</span> Other Types of Latches and Flip Flops</h2>
+<section id="jk-latch" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="jk-latch"><span class="header-section-number">6.7.1</span> JK Latch</h3>
+</section>
+<section id="jk-flip-flop" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="jk-flip-flop"><span class="header-section-number">6.7.2</span> JK Flip Flop</h3>
+<p><img src="images/sequential/jkff.png" class="img-fluid"></p>
+</section>
+<section id="t-flip-flop" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="t-flip-flop"><span class="header-section-number">6.7.3</span> T Flip FLop</h3>
+</section>
 </section>
 <section id="synchronous-circuits" class="level2" data-number="6.8">
 <h2 data-number="6.8" class="anchored" data-anchor-id="synchronous-circuits"><span class="header-section-number">6.8</span> Synchronous Circuits</h2>
 <p><img src="images/sequential/synchronous.png" class="img-fluid"></p>
-<section id="jk-latch" class="level3" data-number="6.8.1">
-<h3 data-number="6.8.1" class="anchored" data-anchor-id="jk-latch"><span class="header-section-number">6.8.1</span> JK Latch</h3>
-</section>
-<section id="t-flip-flop" class="level3" data-number="6.8.2">
-<h3 data-number="6.8.2" class="anchored" data-anchor-id="t-flip-flop"><span class="header-section-number">6.8.2</span> T Flip FLop</h3>
-</section>
+<p><strong>Synchronous reset</strong>: reset is sampled with respect to clock. In other words, when reset is enabled, it will not be effective till the next active clock edge -&gt; potential issues w/ timing and clock gating.</p>
+<p><strong>Asynchronous reset</strong>: reset is sampled asynchronously (resets whenever the reset signal is triggered). sensitive to glitches and may lead to metastability. On the other hand, it is fast and works even without a clock.</p>
 </section>
 <section id="synchronizers" class="level2" data-number="6.9">
 <h2 data-number="6.9" class="anchored" data-anchor-id="synchronizers"><span class="header-section-number">6.9</span> Synchronizers</h2>
 <p>Synchronizers are covered in the timing chapter.</p>
 </section>
-<section id="clock-domain-crossing" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="clock-domain-crossing"><span class="header-section-number">6.10</span> Clock Domain Crossing</h2>
-<p>```</p>
+<section id="counters" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="counters"><span class="header-section-number">6.10</span> Counters</h2>
+<section id="ripple-counter" class="level3" data-number="6.10.1">
+<h3 data-number="6.10.1" class="anchored" data-anchor-id="ripple-counter"><span class="header-section-number">6.10.1</span> Ripple Counter</h3>
+<p><img src="images/sequential/ripple-counter.png" class="img-fluid"></p>
 </section>
-<section id="examples" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="examples"><span class="header-section-number">6.11</span> Examples</h2>
+<section id="parallel-counter" class="level3" data-number="6.10.2">
+<h3 data-number="6.10.2" class="anchored" data-anchor-id="parallel-counter"><span class="header-section-number">6.10.2</span> Parallel Counter</h3>
+<p><img src="images/sequential/par-counter.png" class="img-fluid"></p>
+<p><strong>Parallel Counter with enable, load, reset</strong></p>
+<p><img src="images/sequential/para-counter-en-l-rst.png" class="img-fluid"></p>
+</section>
+<section id="gray-code-counters" class="level3" data-number="6.10.3">
+<h3 data-number="6.10.3" class="anchored" data-anchor-id="gray-code-counters"><span class="header-section-number">6.10.3</span> Gray-Code Counters</h3>
+</section>
+</section>
+<section id="shift-register" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="shift-register"><span class="header-section-number">6.11</span> Shift Register</h2>
+<p>A <strong>shift register</strong> allows for the shifting of its bit by one position on every clock edge</p>
+<p><img src="images/sequential/shift-reg.png" class="img-fluid"></p>
+<section id="logical-shift" class="level3" data-number="6.11.1">
+<h3 data-number="6.11.1" class="anchored" data-anchor-id="logical-shift"><span class="header-section-number">6.11.1</span> Logical Shift</h3>
+<p>When performing logical shift, the MSB/LSB is replaced with 0.</p>
+<p><img src="images/sequential/logicshift.png" class="img-fluid"></p>
+</section>
+<section id="arithmetic-shift" class="level3" data-number="6.11.2">
+<h3 data-number="6.11.2" class="anchored" data-anchor-id="arithmetic-shift"><span class="header-section-number">6.11.2</span> Arithmetic Shift</h3>
+<p><img src="images/sequential/arithshift.png" class="img-fluid"></p>
+<p>Notice how shifting by 1 in binary is the same as integer multiplication/division.</p>
+<p>Arithmetic shift sign extends the original MSB to preserve two’s complement signedness when performing shifts.</p>
+<p><img src="images/sequential/shiftingsummary.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="clock-domain-crossing" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="clock-domain-crossing"><span class="header-section-number">6.12</span> Clock Domain Crossing</h2>
+</section>
+<section id="examples" class="level2" data-number="6.13">
+<h2 data-number="6.13" class="anchored" data-anchor-id="examples"><span class="header-section-number">6.13</span> Examples</h2>
 <p><img src="images/sequential/dlatch-ex1.png" class="img-fluid"></p>
 
 
@@ -822,8 +872,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./fsm.html" class="pagination-link" aria-label="Finite State Machines">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./fsm.html" class="pagination-link" aria-label="Finite State Machines (FSMs)">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Finite State Machines (FSMs)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

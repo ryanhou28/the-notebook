@@ -14,7 +14,7 @@ Transistors have delays, thus ON/OFF switching does not happen instantly
 - $t_{p, LH}$ - is the delay when the **output** transitions from LOW to HIGH
 - $t_{p, HL}$ - is the delay when the **output** transitions from HIGH to LOW
 
-![](images/timing/delay-hl-lh.png
+![](images/timing/delay-hl-lh.png)
 
 
 Delays are primarily caused by:
@@ -84,14 +84,34 @@ Key goals:
 $$t_{cq(min)}+t_{comb(min)} = t_{cq} \geq t_{hold}$$
 :::
 
-### Max Clock Frequency & Hold Time
+
+**Methods to fix hold time violation:**
+
+- Increase minimum data path delay
+  - Insert buffers or delay cells on minimum delay path
+  - Increase wire length or modify gate sizing
+- Reduce clock skew
+  - increase clock delay at destination register, reduce clock delay at source register
+  - Remember that hold time is **independent** of the clock cycle's time (clock period)
+
+### Max Clock Frequency & Setup Time
 
 Every circuit path between every pair of FFs must satisfy the following equation to run the circuit at a frequency of $f=\frac{1}{T_{clk}}$
 
 ::: {#nte-eqn-max-freq .callout-note}
-## Equation - Maximum Clock Frequency & Hold Time
+## Equation - Maximum Clock Frequency & Setup Time
 $$t_{cq(max)}+t_{comb(max)}+t_{setup} \leq T_{clk}$$
 :::
+
+**Methods to fix setup time violation:**
+
+- Reduce data path delay
+  - logic optimizations (reduce logic depth)
+  - pipelining - break longer comb logic to smaller comb logics
+  - gate sizing (reduce gate delay by modifying gate size)
+- Clock timing
+  - Reduce clock frequency (longer clock period)
+  - Reduce clock skew
 
 ### Clock Skew
 
