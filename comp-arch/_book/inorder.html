@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>14&nbsp; Summary – Empty Book Template</title>
+<title>3&nbsp; In-Order CPU, Pipelining – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./dlp.html" rel="prev">
+<link href="./ooo-basics.html" rel="next">
+<link href="./metrics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./inorder.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-Order CPU, Pipelining</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -126,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inorder.html" class="sidebar-item-text sidebar-link">
+  <a href="./inorder.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-Order CPU, Pipelining</span></span></a>
   </div>
 </li>
@@ -192,7 +221,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link active">
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
@@ -207,15 +236,34 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#fetch" id="toc-fetch" class="nav-link active" data-scroll-target="#fetch"><span class="header-section-number">3.1</span> Fetch</a></li>
+  <li><a href="#decode" id="toc-decode" class="nav-link" data-scroll-target="#decode"><span class="header-section-number">3.2</span> Decode</a></li>
+  <li><a href="#execute" id="toc-execute" class="nav-link" data-scroll-target="#execute"><span class="header-section-number">3.3</span> Execute</a></li>
+  <li><a href="#memory-operation" id="toc-memory-operation" class="nav-link" data-scroll-target="#memory-operation"><span class="header-section-number">3.4</span> Memory Operation</a></li>
+  <li><a href="#writeback" id="toc-writeback" class="nav-link" data-scroll-target="#writeback"><span class="header-section-number">3.5</span> Writeback</a></li>
+  <li><a href="#timing" id="toc-timing" class="nav-link" data-scroll-target="#timing"><span class="header-section-number">3.6</span> Timing</a></li>
+  <li><a href="#dependencies-hazards" id="toc-dependencies-hazards" class="nav-link" data-scroll-target="#dependencies-hazards"><span class="header-section-number">3.7</span> Dependencies, Hazards</a>
+  <ul class="collapse">
+  <li><a href="#structural-hazards" id="toc-structural-hazards" class="nav-link" data-scroll-target="#structural-hazards"><span class="header-section-number">3.7.1</span> Structural Hazards</a></li>
+  <li><a href="#data-hazards" id="toc-data-hazards" class="nav-link" data-scroll-target="#data-hazards"><span class="header-section-number">3.7.2</span> Data Hazards</a></li>
+  <li><a href="#control-hazards" id="toc-control-hazards" class="nav-link" data-scroll-target="#control-hazards"><span class="header-section-number">3.7.3</span> Control Hazards</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.8</span> Summary</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3.9</span> References</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-Order CPU, Pipelining</span></h1>
 </div>
 
 
@@ -232,9 +280,318 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In summary…</p>
+<!-- TODO: Add slides/content on "before there was pipelining" -->
+<p>Pipelining</p>
+<ul>
+<li>Improves throughput at the expense of latency
+<ul>
+<li>Why latency goes up?
+<ul>
+<li>More HW added to each stage (eg pipeline reg)</li>
+<li>Clocked at speed of slowest stage</li>
+</ul></li>
+</ul></li>
+<li>Higher throughput as instructions finish at faster rate, and more instructions are executed in parallel</li>
+</ul>
+<p>We now discuss an in-order 5-stage pipeline CPU architecture. The 5 stages are:</p>
+<ol type="1">
+<li>Fetch</li>
+<li>Decode</li>
+<li>Execute</li>
+<li>Memory</li>
+<li>Writeback</li>
+</ol>
+<p>In the diagrams, red wires represent control signals</p>
+<section id="fetch" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="fetch"><span class="header-section-number">3.1</span> Fetch</h2>
+<ul>
+<li>Fetch an instruction from memory every cycle
+<ul>
+<li>Use PC to index into memory
+<ul>
+<li>PC + 1 or PC + N (for N byte words)</li>
+</ul></li>
+<li>Increment PC after fetching (assume no branches for now)</li>
+</ul></li>
+<li>Write the results to the pipeline register IF/ID</li>
+</ul>
+<p><img src="images/inorder/fetch-diagram.png" class="img-fluid"></p>
+</section>
+<section id="decode" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="decode"><span class="header-section-number">3.2</span> Decode</h2>
+<ul>
+<li>Decodes the opcodes to know what operation it is</li>
+<li>Read input operands from the Register File
+<ul>
+<li>Operands specified by regA and regB of instruction</li>
+</ul></li>
+<li>Write state to the pipeline register ID/EX
+<ul>
+<li>Opcode</li>
+<li>Register contents</li>
+<li>Offset &amp; destination fields</li>
+<li>PC + 1 (or PC + 4)</li>
+</ul></li>
+</ul>
+<p><img src="images/inorder/decode-diagram.png" class="img-fluid"></p>
+</section>
+<section id="execute" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="execute"><span class="header-section-number">3.3</span> Execute</h2>
+<ul>
+<li>Perform ALU Operation
+<ul>
+<li>Inputs can be regA or regB or offset fields on the instruction</li>
+<li>Or for branch instructions calculate the PC+1+offset</li>
+</ul></li>
+<li>Write state to pipeline register EX/MEM
+<ul>
+<li>ALU results, contents of RegB and PC+1+offset</li>
+<li>Instruction bits for opcode and destReg specifiers</li>
+</ul></li>
+</ul>
+<p><img src="images/inorder/execute-diagram.png" class="img-fluid"></p>
+</section>
+<section id="memory-operation" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="memory-operation"><span class="header-section-number">3.4</span> Memory Operation</h2>
+<ul>
+<li>Perform data cache access for memory operatoins (load/store)
+<ul>
+<li>ALU already gave us results for the address of load/store</li>
+<li>Opcode bits control the read/write and enable signals to memory</li>
+</ul></li>
+<li>Write state to pipeline register MEM/WB
+<ul>
+<li>ALU Result and MemData</li>
+<li>Instruction Bits for opcode and destReg specifiers</li>
+</ul></li>
+<li>Massively Simplifying assumption: mem operations take 1 cycle</li>
+</ul>
+<p><img src="images/inorder/mem-diagram.png" class="img-fluid"></p>
+</section>
+<section id="writeback" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="writeback"><span class="header-section-number">3.5</span> Writeback</h2>
+<ul>
+<li>Write the results to register file (if needed by this instruction)
+<ul>
+<li>Write MemData to destReg for a load</li>
+<li>Write ALU result to destReg for arithmetic operations</li>
+<li>Opcode bits control the register write enable signals</li>
+</ul></li>
+</ul>
+<p><img src="images/inorder/writeback-diagram.png" class="img-fluid"></p>
+</section>
+<section id="timing" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="timing"><span class="header-section-number">3.6</span> Timing</h2>
+<p><img src="images/inorder-time-graph-1.png" class="img-fluid"></p>
+</section>
+<section id="dependencies-hazards" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="dependencies-hazards"><span class="header-section-number">3.7</span> Dependencies, Hazards</h2>
+<p>Why don’t we have arbitrarily deep pipelines?</p>
+<ul>
+<li>Instruction pipelines are not ideal - i.e.&nbsp;instructions have dependencies between each other, too deep of a pipeline will cause a lot of stalls to resolve dependencies</li>
+<li>When pipelines are flushed, deep pipelines incur great cost since it takes many more cycles to fill back up</li>
+</ul>
+<p><strong>Hazards</strong> - situations that prevent the next instruction in the stream from executing in its designated clock cycle. Three classes of hazards:</p>
+<ol type="1">
+<li><strong>Structural Hazards</strong> - resource conflicts in hardware</li>
+<li><strong>Data hazards</strong> - instruction depends on result of another instruction</li>
+<li><strong>Control hazards</strong> - comes from the pipelining of branches and other control flow</li>
+</ol>
+<p><img src="images/inorder/raw.png" class="img-fluid"></p>
+<p>RAW - Read After Write - a later instruction’s input(s) relies on a previous instruction’s result</p>
+<p>Data dependency <span class="math inline">\(\neq\)</span> hazards - they often lead to hazards but not necessarily</p>
+<p><strong>Pipeline Hazards</strong>:</p>
+<ul>
+<li><p>Potential violations of program dependencies</p></li>
+<li><p>Hazard resolution:</p>
+<ul>
+<li>Static method: resolve at compile time in software (by compiler or programmer)</li>
+<li>Dynamic method: resolve in hardware at run time</li>
+</ul></li>
+<li><p>Pipeline interlock:</p>
+<ul>
+<li>Hardware mechanisms for dynamic hazard resolution</li>
+<li>Must detect and enforce dependences at run time</li>
+</ul></li>
+</ul>
+<section id="structural-hazards" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="structural-hazards"><span class="header-section-number">3.7.1</span> Structural Hazards</h3>
+<p>In an in-order pipeline processor, structures such as the cache/memory can have limited ports to read/write from/to, thus overlapping usage of the memory can result in hazards</p>
+<p><img src="images/inorder/structhaz.png" class="img-fluid"></p>
+</section>
+<section id="data-hazards" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="data-hazards"><span class="header-section-number">3.7.2</span> Data Hazards</h3>
+<p><!-- TODO: Add in more detail --></p>
+<p>Techniques to handle data hazards:</p>
+<ul>
+<li>Avoidance (static)</li>
+<li>Detect and Stall (dynamic)</li>
+<li>Detect and Forward (dynamic)</li>
+</ul>
+<section id="avoidance" class="level4" data-number="3.7.2.1">
+<h4 data-number="3.7.2.1" class="anchored" data-anchor-id="avoidance"><span class="header-section-number">3.7.2.1</span> Avoidance</h4>
+<!-- TODO: Add details on avoidance -->
+</section>
+<section id="detecting-data-hazard-in-order-pipeline" class="level4" data-number="3.7.2.2">
+<h4 data-number="3.7.2.2" class="anchored" data-anchor-id="detecting-data-hazard-in-order-pipeline"><span class="header-section-number">3.7.2.2</span> Detecting Data Hazard (In-Order Pipeline)</h4>
+<p>A RAW hazard can be detected by:</p>
+<ul>
+<li>Checking if regA &amp; regB are the same as the destReg of the two instructions immediately before it
+<ul>
+<li>Why two instructions? See examples below</li>
+</ul></li>
+</ul>
+<p><img src="images/inorder/hazdet1.png" class="img-fluid"></p>
+<p><img src="images/inorder/hazdet2.png" class="img-fluid"></p>
+<p>Consider the following example:</p>
+<p><img src="images/inorder/rawex1.png" class="img-fluid"></p>
+<ul>
+<li>All instructions after DADD reads from DADD’s destReg (R1)</li>
+<li>DSUB will read the wrong R1</li>
+<li>AND will read the wrong R1</li>
+<li>OR will read the correct R1
+<ul>
+<li>Assuming ID reads from RF in the second half of the cycle:</li>
+<li>DADD will write to RF in the first half of cycle and OR will perform RF read on second half. No forwarding needed</li>
+</ul></li>
+<li>XOR will read the correct R1
+<ul>
+<li>Register read occurs the cycle AFTER DADD writesback</li>
+</ul></li>
+</ul>
+<p><img src="images/inorder/datahaz-ph-1.png" class="img-fluid"></p>
+</section>
+<section id="detect-stall" class="level4" data-number="3.7.2.3">
+<h4 data-number="3.7.2.3" class="anchored" data-anchor-id="detect-stall"><span class="header-section-number">3.7.2.3</span> Detect &amp; Stall</h4>
+<p>Every time a hazard is detected, we stall:</p>
+<ul>
+<li>Disable PC and do not advance pipeline register for IF/ID</li>
+<li>Clear ID/EX register</li>
+<li>Pass NOOP to Execute stage</li>
+</ul>
+<p>Problems:</p>
+<ul>
+<li>CPI increases on every hazard!</li>
+<li>Unnecessary stalling (not “true” dependence)</li>
+</ul>
+</section>
+<section id="detect-forward" class="level4" data-number="3.7.2.4">
+<h4 data-number="3.7.2.4" class="anchored" data-anchor-id="detect-forward"><span class="header-section-number">3.7.2.4</span> Detect &amp; Forward</h4>
+<p>After detecting hazard, forward the register’s result</p>
+<ul>
+<li>Add data paths for all possible sources</li>
+<li>Add MUX in front of ALU to select source (based on detection)</li>
+</ul>
+<p>Forwarding eliminates data hazards involving arithmetic instructions</p>
+<p>More specifically, forwarding between arithmetic instructions works as follows:</p>
+<ol type="1">
+<li>ALU results from BOTH the EX/MEM and MEM/WB pipeline registers are fed back to the ALU inputs</li>
+<li>If data hazard is detected that the previous ALU instructions’ destReg is a sourceReg of the current ALU instruction, MUX selects forwarded result
+<ol type="1">
+<li>Note that if the instruction DSUB is stalled, forwarding will not be activated</li>
+</ol></li>
+</ol>
+<p><img src="images/inorder/forwarding-ph1.png" class="img-fluid"></p>
+<p>In general, we can forward results directly to a functional unit that needs it</p>
+<p>Example Instruction Sequence:</p>
+<pre><code>DADD R1,R2,R3
+LD   R4,0(R1)
+SD   R4,12(R1)</code></pre>
+<p><img src="images/inorder/forwarding-mem-ph1.png" class="img-fluid"></p>
+<p>In the above example, the forwarding path added ontop of the previously mentioned paths is from WB/MEM register to input of MEM</p>
+<p>Problems:</p>
+<ul>
+<li>Each possible hazard requires different forwarding paths</li>
+<li>“bypassing logic” is often a critical path in wide-issue machines
+<ul>
+<li>i.e.&nbsp;superscalar machines</li>
+<li>number of forwarding paths grow quadratically with machine width</li>
+</ul></li>
+</ul>
+</section>
+<section id="data-hazards-requiring-stalls" class="level4" data-number="3.7.2.5">
+<h4 data-number="3.7.2.5" class="anchored" data-anchor-id="data-hazards-requiring-stalls"><span class="header-section-number">3.7.2.5</span> Data Hazards Requiring Stalls</h4>
+<p>Not all data hazards can be handled by forwarding/bypassing. Consider the following:</p>
+<pre><code>LD      R1,0(R2)
+DSUB    R4,R1,R5
+AND     R6,R1,R7
+OR      R8,R1,R9</code></pre>
+<p><img src="images/inorder/forwardstall-ph1.png" class="img-fluid"></p>
+<p>Need to stall when an instruction is immediately after the load and the sourceReg is the load’s destReg</p>
+<p>To solve this, a <strong>pipeline interlock</strong> must be added to stall the dependent instruction by a cycle.</p>
+</section>
+</section>
+<section id="control-hazards" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="control-hazards"><span class="header-section-number">3.7.3</span> Control Hazards</h3>
+<p>Techniques to handle control hazards</p>
+<ul>
+<li>Avoidance (static)</li>
+<li>Detect and Stall (dynamic)</li>
+<li>Speculate and Squash (dynamic)</li>
+</ul>
+<section id="avoidance-1" class="level4" data-number="3.7.3.1">
+<h4 data-number="3.7.3.1" class="anchored" data-anchor-id="avoidance-1"><span class="header-section-number">3.7.3.1</span> Avoidance</h4>
+<!-- Add details on avoidance -->
+</section>
+<section id="detect-and-stall" class="level4" data-number="3.7.3.2">
+<h4 data-number="3.7.3.2" class="anchored" data-anchor-id="detect-and-stall"><span class="header-section-number">3.7.3.2</span> Detect and Stall</h4>
+<p>Detect when an opcode is a branch/jump. Then stall by inserting noops into the execute stage until the branch target is resolved.</p>
+<ul>
+<li>Branches result in a 1-2 cycle stall, depending on the ISA (if branch target is always known after ID, then 1 cycle stall; if branch target is known after EX, then 2 cycles stall)</li>
+</ul>
+</section>
+<section id="speculate-and-squash" class="level4" data-number="3.7.3.3">
+<h4 data-number="3.7.3.3" class="anchored" data-anchor-id="speculate-and-squash"><span class="header-section-number">3.7.3.3</span> Speculate and Squash</h4>
+<p>Speculate that a branch is Not Taken (i.e.&nbsp;PC + 1). If we see that we didn’t speculate correctly, then we squash:</p>
+<ul>
+<li>Overwrite opcodes in fetch, decode, execute with NOOP (squash whatever is already in the pipeline)</li>
+<li>Pass correct target to fetch</li>
+</ul>
+<p><img src="images/inorder/spec-squash.png" class="img-fluid"></p>
+<p><img src="images/inorder/spec-sq-ph1.png" class="img-fluid"></p>
+<p>No penalties if the branches are always not taken.</p>
+</section>
+</section>
+</section>
+<section id="summary" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.8</span> Summary</h2>
+<ul>
+<li>Hazards in in-order pipeline:
+<ul>
+<li>Structural Hazard - Memory port contention</li>
+<li>Data Hazard - RAW Dependency</li>
+<li>Control Hazard</li>
+</ul></li>
+</ul>
+<p>Data Hazards - Can Forward:</p>
+<ul>
+<li>RAW dependence within 2 instructions:</li>
+<li>Load to RegA then immediately after storing from RegA to mem</li>
+</ul>
+<p>Data Hazard - Forwarding Paths:</p>
+<ul>
+<li>For immediate RAW dependence: EX/MEM pipeline reg -&gt; ALU input</li>
+<li>For 2 instruction RAW dependence: MEM/WB pipeline reg -&gt; ALU input</li>
+<li>For immediate RAW (load-store) dependence: MEM/WB pipeline reg -&gt; MEM input</li>
+</ul>
+<p>Data Hazards - Need to stall:</p>
+<ul>
+<li>RAW dependence on a LOAD immediately before it. Stall for 1 cycle</li>
+</ul>
+<p>Control Hazard - Detect and Stall:</p>
+<ul>
+<li>Branches result in a 1-2 cycle stall, depending on the ISA (if branch target is always known after ID, then 1 cycle stall; if branch target is known after EX, then 2 cycles stall)</li>
+</ul>
+</section>
+<section id="references" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="references"><span class="header-section-number">3.9</span> References</h2>
+<ul>
+<li>Patterson &amp; Hennesy - Appendix C</li>
+<li><a href="https://www.cs.ucc.ie/~jvaughan/cs4617/slides/lecture9.pdf">CS4617 - L9</a></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -656,13 +1013,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./dlp.html" class="pagination-link" aria-label="dlp.html">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">dlp.html</span></span>
+      <a href="./metrics.html" class="pagination-link" aria-label="Performance, Power, ISA">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Performance, Power, ISA</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ooo-basics.html" class="pagination-link" aria-label="ooo-basics.html">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ooo-basics.html</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

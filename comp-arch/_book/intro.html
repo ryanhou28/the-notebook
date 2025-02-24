@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./metrics.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,8 +120,80 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./metrics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Performance, Power, ISA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inorder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-Order CPU, Pipelining</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ooo-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ooo-basics.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p6r10k.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">p6r10k.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ooo-memory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ooo-memory.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./branch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">branch.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cache.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">cache.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prefetch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">prefetch.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vmem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">vmem.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiproc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">multiproc.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./smt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">smt.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dlp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">dlp.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -142,6 +214,8 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#perspective" id="toc-perspective" class="nav-link active" data-scroll-target="#perspective"><span class="header-section-number">1.1</span> Perspective</a></li>
   <li><a href="#high-level-ideas" id="toc-high-level-ideas" class="nav-link" data-scroll-target="#high-level-ideas"><span class="header-section-number">1.2</span> High Level Ideas</a></li>
+  <li><a href="#understanding-the-execution-core" id="toc-understanding-the-execution-core" class="nav-link" data-scroll-target="#understanding-the-execution-core"><span class="header-section-number">1.3</span> Understanding the Execution Core</a></li>
+  <li><a href="#classes-of-parallelism-parallel-architectures" id="toc-classes-of-parallelism-parallel-architectures" class="nav-link" data-scroll-target="#classes-of-parallelism-parallel-architectures"><span class="header-section-number">1.4</span> Classes of Parallelism &amp; Parallel Architectures</a></li>
   </ul>
 </nav>
     </div>
@@ -187,6 +261,60 @@ Note&nbsp;1.1: Definition - Some definition
 <section id="high-level-ideas" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="high-level-ideas"><span class="header-section-number">1.2</span> High Level Ideas</h2>
 <!-- ![Some image caption](images/xyz.png){#fig-label fig-align="center" width="70%"} -->
+</section>
+<section id="understanding-the-execution-core" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="understanding-the-execution-core"><span class="header-section-number">1.3</span> Understanding the Execution Core</h2>
+<ol type="1">
+<li>In-order chapter introduces traditional pipelined design in a 5-stage pipelin</li>
+<li>Dynamic Scheduling: Scoreboard (OoO Basics Chapter)</li>
+<li>Register Renaming: Tomasulo’s Algorithm (OoO Basics Chapter)</li>
+<li>Precise Interrupts with Reorder Buffer: P6 &amp; MIPS R10K -style examples (P6 R10K Chapter)</li>
+</ol>
+</section>
+<section id="classes-of-parallelism-parallel-architectures" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="classes-of-parallelism-parallel-architectures"><span class="header-section-number">1.4</span> Classes of Parallelism &amp; Parallel Architectures</h2>
+<p>Reference: Patterson &amp; Hennessy Chp. 1.2</p>
+<p><strong>Two Kinds of Parallelisms in Applications</strong>:</p>
+<ol type="1">
+<li>Data-Level Parallelism
+<ol type="1">
+<li>Multiple data items can be operated on at the same time</li>
+</ol></li>
+<li>Task-Level Parallelism
+<ol type="1">
+<li>Multiple tasks can be processed independently at the same time</li>
+</ol></li>
+</ol>
+<p><strong>Hardware can exploit these application parallelisms in four ways:</strong></p>
+<ol type="1">
+<li>Instruction-Level Parallelism</li>
+<li>Vector Architectures</li>
+<li>Thread-Level Parallelism</li>
+<li>Request-Level Parallelism</li>
+</ol>
+<p><strong>Four Categories of Computing Architectures:</strong></p>
+<ol type="1">
+<li>Single Instruction stream, Single Data stream (SISD)
+<ol type="1">
+<li>A uniprocessor - can exploit ILP such as superscalar and speculative execution</li>
+</ol></li>
+<li>Single Instruction stream, Multiple Data stream (SIMD)
+<ol type="1">
+<li>Same instruction executed by many processors on different data streams</li>
+<li>Exploits DLP</li>
+<li>Each processor has its own data memory, but have a single instruction memory and control processor</li>
+<li>NVIDIA: “SIMT”</li>
+</ol></li>
+<li>Multiple Instruction streams, Single Data stream (MISD)
+<ol type="1">
+<li>Doesn’t really exist in commercial use</li>
+</ol></li>
+<li>Multiple Instruction streams, Multiple Data stream (MIMD)
+<ol type="1">
+<li>Each processor has its own instruction stream and data stream</li>
+<li>More flexible than SIMD but due to overheads this parallelism is expensive (limits degree of parallelism achievable)</li>
+</ol></li>
+</ol>
 
 
 </section>
@@ -616,8 +744,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./metrics.html" class="pagination-link" aria-label="Performance, Power, ISA">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Performance, Power, ISA</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

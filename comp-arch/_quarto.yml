@@ -8,6 +8,18 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
+    - metrics.qmd
+    - inorder.qmd
+    - ooo-basics.qmd
+    - p6r10k.qmd
+    - ooo-memory.qmd
+    - branch.qmd
+    - cache.qmd
+    - prefetch.qmd
+    - vmem.qmd
+    - multiproc.qmd
+    - smt.qmd
+    - dlp.qmd
     - summary.qmd
     - references.qmd
 

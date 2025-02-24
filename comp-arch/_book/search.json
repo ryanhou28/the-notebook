@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Empty Book Template",
     "section": "",
-    "text": "Preface\nThis is my notes on ????.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
+    "text": "Preface\nNotes on computer architecture.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
     "crumbs": [
       "Preface"
     ]
@@ -40,13 +40,203 @@
     ]
   },
   {
+    "objectID": "intro.html#understanding-the-execution-core",
+    "href": "intro.html#understanding-the-execution-core",
+    "title": "1  Introduction",
+    "section": "1.3 Understanding the Execution Core",
+    "text": "1.3 Understanding the Execution Core\n\nIn-order chapter introduces traditional pipelined design in a 5-stage pipelin\nDynamic Scheduling: Scoreboard (OoO Basics Chapter)\nRegister Renaming: Tomasulo’s Algorithm (OoO Basics Chapter)\nPrecise Interrupts with Reorder Buffer: P6 & MIPS R10K -style examples (P6 R10K Chapter)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#classes-of-parallelism-parallel-architectures",
+    "href": "intro.html#classes-of-parallelism-parallel-architectures",
+    "title": "1  Introduction",
+    "section": "1.4 Classes of Parallelism & Parallel Architectures",
+    "text": "1.4 Classes of Parallelism & Parallel Architectures\nReference: Patterson & Hennessy Chp. 1.2\nTwo Kinds of Parallelisms in Applications:\n\nData-Level Parallelism\n\nMultiple data items can be operated on at the same time\n\nTask-Level Parallelism\n\nMultiple tasks can be processed independently at the same time\n\n\nHardware can exploit these application parallelisms in four ways:\n\nInstruction-Level Parallelism\nVector Architectures\nThread-Level Parallelism\nRequest-Level Parallelism\n\nFour Categories of Computing Architectures:\n\nSingle Instruction stream, Single Data stream (SISD)\n\nA uniprocessor - can exploit ILP such as superscalar and speculative execution\n\nSingle Instruction stream, Multiple Data stream (SIMD)\n\nSame instruction executed by many processors on different data streams\nExploits DLP\nEach processor has its own data memory, but have a single instruction memory and control processor\nNVIDIA: “SIMT”\n\nMultiple Instruction streams, Single Data stream (MISD)\n\nDoesn’t really exist in commercial use\n\nMultiple Instruction streams, Multiple Data stream (MIMD)\n\nEach processor has its own instruction stream and data stream\nMore flexible than SIMD but due to overheads this parallelism is expensive (limits degree of parallelism achievable)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "metrics.html",
+    "href": "metrics.html",
+    "title": "2  Performance, Power, ISA",
+    "section": "",
+    "text": "2.1 Parallelism\nHow do we speed up tasks? Three options",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Performance, Power, ISA</span>"
+    ]
+  },
+  {
+    "objectID": "metrics.html#parallelism",
+    "href": "metrics.html#parallelism",
+    "title": "2  Performance, Power, ISA",
+    "section": "",
+    "text": "2.1.1 Amdahl’s Law\nSuppose an enhancement speeds up a fraction \\(f\\) of a task by a factor of \\(S\\):\n\\[time_{new} = time_{orig} \\cdot ((1 - f) + \\frac{f}{s})\\]\nAmdahl’s Law:\n\\[S_{overall} = \\frac{1}{(1-f)+\\frac{f}{s}}\\]",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Performance, Power, ISA</span>"
+    ]
+  },
+  {
+    "objectID": "metrics.html#performance",
+    "href": "metrics.html#performance",
+    "title": "2  Performance, Power, ISA",
+    "section": "2.2 Performance",
+    "text": "2.2 Performance\nTwo key performance metrics:\n\nLatency (execution time): time to finish a fixed task\nThroughput (bandwidth): number of tasks finished in fixed time\n\n\n\n2.2.1 Averaging Metrics\nLatency can be added, but not throughput!\n\nLatency(A+B) = Latency(A) + Latency(B)\nThroughput(A+B) \\(\\neq\\) Throughput(A) + Throughput(B)\n\nAdding throughput:\n\\[Throughput(A+B) = \\frac{1}{\\frac{1}{Throughput(A)} + \\frac{1}{Throughput(B)}}\\]\nAveraging Techniques:\n\n\n\n2.2.2 Iron Law of Processor Performance\n\nAnother way of looking at it:\n\nseconds / instruction = (cycles / instructions) * (seconds / cycle)\n\n\n\n2.2.3 Performance - Summary",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Performance, Power, ISA</span>"
+    ]
+  },
+  {
+    "objectID": "metrics.html#instruction-set-architectures",
+    "href": "metrics.html#instruction-set-architectures",
+    "title": "2  Performance, Power, ISA",
+    "section": "2.3 Instruction Set Architectures",
+    "text": "2.3 Instruction Set Architectures\nISA is the “contract” between software and hardware:\n\nFunctional definition of operations, modes, and storage locations supported by hardware\nPrecise description of how to invoke and access them\n\n\n\n2.3.1 RISC vs CISC\n\nBack in the day it was important to minimize number of instructions due to limited memory. This has become much less of a concern nowadays.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Performance, Power, ISA</span>"
+    ]
+  },
+  {
+    "objectID": "metrics.html#power",
+    "href": "metrics.html#power",
+    "title": "2  Performance, Power, ISA",
+    "section": "2.4 Power",
+    "text": "2.4 Power\n\nDynamic Power: Switching power\n\nCapacitive and short-circuit\nCapacitive power: charging/discharging transistrs from 0 to 1 and 1 to 0\nShort-circuit power: power due to brief short-circuit current during the transitions\nData dependent - a function of switching activity\n\nStatic Power: leakage power\n\nSteady, per-cycle energy cost\n\nDynamic power dominates but static power increasing in importance (due to large transistor count and increasing leakage in tech scaling and )\n\n\n\nPower (Watts)\n\nDetermines battery life in hours\nSets packaging limits (due to thermals, etc)\n\nEnergy (Joules)\n\nRate at which energy is consumed over time\nEnergy = Power \\(\\times\\) Delay\n\nJoules = Watts \\(\\times\\) Seconds",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Performance, Power, ISA</span>"
+    ]
+  },
+  {
+    "objectID": "metrics.html#voltage-scaling",
+    "href": "metrics.html#voltage-scaling",
+    "title": "2  Performance, Power, ISA",
+    "section": "2.5 Voltage Scaling",
+    "text": "2.5 Voltage Scaling\n\nPower has a cubic relationship with voltage! Why? Voltage linearly correlated to frequency (higher VDD enables faster switching)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Performance, Power, ISA</span>"
+    ]
+  },
+  {
+    "objectID": "metrics.html#cpi-ipc",
+    "href": "metrics.html#cpi-ipc",
+    "title": "2  Performance, Power, ISA",
+    "section": "2.6 CPI, IPC",
+    "text": "2.6 CPI, IPC\nCycles Per Instruction\n\nLower the better\nIPC is its inverse\nSummary for different arch:\n\nIdeal in-order pipeline (no stalling): 1 (ignoring cycles to load up and clear the pipeline)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Performance, Power, ISA</span>"
+    ]
+  },
+  {
+    "objectID": "inorder.html",
+    "href": "inorder.html",
+    "title": "3  In-Order CPU, Pipelining",
+    "section": "",
+    "text": "3.1 Fetch\nPipelining\nWe now discuss an in-order 5-stage pipeline CPU architecture. The 5 stages are:\nIn the diagrams, red wires represent control signals",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>In-Order CPU, Pipelining</span>"
+    ]
+  },
+  {
+    "objectID": "inorder.html#fetch",
+    "href": "inorder.html#fetch",
+    "title": "3  In-Order CPU, Pipelining",
+    "section": "",
+    "text": "Fetch an instruction from memory every cycle\n\nUse PC to index into memory\n\nPC + 1 or PC + N (for N byte words)\n\nIncrement PC after fetching (assume no branches for now)\n\nWrite the results to the pipeline register IF/ID",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>In-Order CPU, Pipelining</span>"
+    ]
+  },
+  {
+    "objectID": "inorder.html#decode",
+    "href": "inorder.html#decode",
+    "title": "3  In-Order CPU, Pipelining",
+    "section": "3.2 Decode",
+    "text": "3.2 Decode\n\nDecodes the opcodes to know what operation it is\nRead input operands from the Register File\n\nOperands specified by regA and regB of instruction\n\nWrite state to the pipeline register ID/EX\n\nOpcode\nRegister contents\nOffset & destination fields\nPC + 1 (or PC + 4)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>In-Order CPU, Pipelining</span>"
+    ]
+  },
+  {
+    "objectID": "inorder.html#execute",
+    "href": "inorder.html#execute",
+    "title": "3  In-Order CPU, Pipelining",
+    "section": "3.3 Execute",
+    "text": "3.3 Execute\n\nPerform ALU Operation\n\nInputs can be regA or regB or offset fields on the instruction\nOr for branch instructions calculate the PC+1+offset\n\nWrite state to pipeline register EX/MEM\n\nALU results, contents of RegB and PC+1+offset\nInstruction bits for opcode and destReg specifiers",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>In-Order CPU, Pipelining</span>"
+    ]
+  },
+  {
+    "objectID": "inorder.html#memory-operation",
+    "href": "inorder.html#memory-operation",
+    "title": "3  In-Order CPU, Pipelining",
+    "section": "3.4 Memory Operation",
+    "text": "3.4 Memory Operation\n\nPerform data cache access for memory operatoins (load/store)\n\nALU already gave us results for the address of load/store\nOpcode bits control the read/write and enable signals to memory\n\nWrite state to pipeline register MEM/WB\n\nALU Result and MemData\nInstruction Bits for opcode and destReg specifiers\n\nMassively Simplifying assumption: mem operations take 1 cycle",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>In-Order CPU, Pipelining</span>"
+    ]
+  },
+  {
+    "objectID": "inorder.html#writeback",
+    "href": "inorder.html#writeback",
+    "title": "3  In-Order CPU, Pipelining",
+    "section": "3.5 Writeback",
+    "text": "3.5 Writeback\n\nWrite the results to register file (if needed by this instruction)\n\nWrite MemData to destReg for a load\nWrite ALU result to destReg for arithmetic operations\nOpcode bits control the register write enable signals",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>In-Order CPU, Pipelining</span>"
+    ]
+  },
+  {
+    "objectID": "inorder.html#timing",
+    "href": "inorder.html#timing",
+    "title": "3  In-Order CPU, Pipelining",
+    "section": "3.6 Timing",
+    "text": "3.6 Timing",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>In-Order CPU, Pipelining</span>"
+    ]
+  },
+  {
+    "objectID": "inorder.html#dependencies-hazards",
+    "href": "inorder.html#dependencies-hazards",
+    "title": "3  In-Order CPU, Pipelining",
+    "section": "3.7 Dependencies, Hazards",
+    "text": "3.7 Dependencies, Hazards\nWhy don’t we have arbitrarily deep pipelines?\n\nInstruction pipelines are not ideal - i.e. instructions have dependencies between each other, too deep of a pipeline will cause a lot of stalls to resolve dependencies\nWhen pipelines are flushed, deep pipelines incur great cost since it takes many more cycles to fill back up\n\nHazards - situations that prevent the next instruction in the stream from executing in its designated clock cycle. Three classes of hazards:\n\nStructural Hazards - resource conflicts in hardware\nData hazards - instruction depends on result of another instruction\nControl hazards - comes from the pipelining of branches and other control flow\n\n\nRAW - Read After Write - a later instruction’s input(s) relies on a previous instruction’s result\nData dependency \\(\\neq\\) hazards - they often lead to hazards but not necessarily\nPipeline Hazards:\n\nPotential violations of program dependencies\nHazard resolution:\n\nStatic method: resolve at compile time in software (by compiler or programmer)\nDynamic method: resolve in hardware at run time\n\nPipeline interlock:\n\nHardware mechanisms for dynamic hazard resolution\nMust detect and enforce dependences at run time\n\n\n\n3.7.1 Structural Hazards\nIn an in-order pipeline processor, structures such as the cache/memory can have limited ports to read/write from/to, thus overlapping usage of the memory can result in hazards\n\n\n\n3.7.2 Data Hazards\n\nTechniques to handle data hazards:\n\nAvoidance (static)\nDetect and Stall (dynamic)\nDetect and Forward (dynamic)\n\n\n3.7.2.1 Avoidance\n\n\n\n3.7.2.2 Detecting Data Hazard (In-Order Pipeline)\nA RAW hazard can be detected by:\n\nChecking if regA & regB are the same as the destReg of the two instructions immediately before it\n\nWhy two instructions? See examples below\n\n\n\n\nConsider the following example:\n\n\nAll instructions after DADD reads from DADD’s destReg (R1)\nDSUB will read the wrong R1\nAND will read the wrong R1\nOR will read the correct R1\n\nAssuming ID reads from RF in the second half of the cycle:\nDADD will write to RF in the first half of cycle and OR will perform RF read on second half. No forwarding needed\n\nXOR will read the correct R1\n\nRegister read occurs the cycle AFTER DADD writesback\n\n\n\n\n\n3.7.2.3 Detect & Stall\nEvery time a hazard is detected, we stall:\n\nDisable PC and do not advance pipeline register for IF/ID\nClear ID/EX register\nPass NOOP to Execute stage\n\nProblems:\n\nCPI increases on every hazard!\nUnnecessary stalling (not “true” dependence)\n\n\n\n3.7.2.4 Detect & Forward\nAfter detecting hazard, forward the register’s result\n\nAdd data paths for all possible sources\nAdd MUX in front of ALU to select source (based on detection)\n\nForwarding eliminates data hazards involving arithmetic instructions\nMore specifically, forwarding between arithmetic instructions works as follows:\n\nALU results from BOTH the EX/MEM and MEM/WB pipeline registers are fed back to the ALU inputs\nIf data hazard is detected that the previous ALU instructions’ destReg is a sourceReg of the current ALU instruction, MUX selects forwarded result\n\nNote that if the instruction DSUB is stalled, forwarding will not be activated\n\n\n\nIn general, we can forward results directly to a functional unit that needs it\nExample Instruction Sequence:\nDADD R1,R2,R3\nLD   R4,0(R1)\nSD   R4,12(R1)\n\nIn the above example, the forwarding path added ontop of the previously mentioned paths is from WB/MEM register to input of MEM\nProblems:\n\nEach possible hazard requires different forwarding paths\n“bypassing logic” is often a critical path in wide-issue machines\n\ni.e. superscalar machines\nnumber of forwarding paths grow quadratically with machine width\n\n\n\n\n3.7.2.5 Data Hazards Requiring Stalls\nNot all data hazards can be handled by forwarding/bypassing. Consider the following:\nLD      R1,0(R2)\nDSUB    R4,R1,R5\nAND     R6,R1,R7\nOR      R8,R1,R9\n\nNeed to stall when an instruction is immediately after the load and the sourceReg is the load’s destReg\nTo solve this, a pipeline interlock must be added to stall the dependent instruction by a cycle.\n\n\n\n3.7.3 Control Hazards\nTechniques to handle control hazards\n\nAvoidance (static)\nDetect and Stall (dynamic)\nSpeculate and Squash (dynamic)\n\n\n3.7.3.1 Avoidance\n\n\n\n3.7.3.2 Detect and Stall\nDetect when an opcode is a branch/jump. Then stall by inserting noops into the execute stage until the branch target is resolved.\n\nBranches result in a 1-2 cycle stall, depending on the ISA (if branch target is always known after ID, then 1 cycle stall; if branch target is known after EX, then 2 cycles stall)\n\n\n\n3.7.3.3 Speculate and Squash\nSpeculate that a branch is Not Taken (i.e. PC + 1). If we see that we didn’t speculate correctly, then we squash:\n\nOverwrite opcodes in fetch, decode, execute with NOOP (squash whatever is already in the pipeline)\nPass correct target to fetch\n\n\n\nNo penalties if the branches are always not taken.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>In-Order CPU, Pipelining</span>"
+    ]
+  },
+  {
+    "objectID": "inorder.html#summary",
+    "href": "inorder.html#summary",
+    "title": "3  In-Order CPU, Pipelining",
+    "section": "3.8 Summary",
+    "text": "3.8 Summary\n\nHazards in in-order pipeline:\n\nStructural Hazard - Memory port contention\nData Hazard - RAW Dependency\nControl Hazard\n\n\nData Hazards - Can Forward:\n\nRAW dependence within 2 instructions:\nLoad to RegA then immediately after storing from RegA to mem\n\nData Hazard - Forwarding Paths:\n\nFor immediate RAW dependence: EX/MEM pipeline reg -&gt; ALU input\nFor 2 instruction RAW dependence: MEM/WB pipeline reg -&gt; ALU input\nFor immediate RAW (load-store) dependence: MEM/WB pipeline reg -&gt; MEM input\n\nData Hazards - Need to stall:\n\nRAW dependence on a LOAD immediately before it. Stall for 1 cycle\n\nControl Hazard - Detect and Stall:\n\nBranches result in a 1-2 cycle stall, depending on the ISA (if branch target is always known after ID, then 1 cycle stall; if branch target is known after EX, then 2 cycles stall)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>In-Order CPU, Pipelining</span>"
+    ]
+  },
+  {
+    "objectID": "inorder.html#references",
+    "href": "inorder.html#references",
+    "title": "3  In-Order CPU, Pipelining",
+    "section": "3.9 References",
+    "text": "3.9 References\n\nPatterson & Hennesy - Appendix C\nCS4617 - L9",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>In-Order CPU, Pipelining</span>"
+    ]
+  },
+  {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "2  Summary",
+    "title": "14  Summary",
     "section": "",
     "text": "In summary…",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Summary</span>"
     ]
   }
 ]

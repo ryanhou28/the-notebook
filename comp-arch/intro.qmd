@@ -13,3 +13,44 @@ This note does ...
 ## High Level Ideas
 
 <!-- ![Some image caption](images/xyz.png){#fig-label fig-align="center" width="70%"} -->
+
+
+## Understanding the Execution Core
+
+1. In-order chapter introduces traditional pipelined design in a 5-stage pipelin
+2. Dynamic Scheduling: Scoreboard (OoO Basics Chapter)
+3. Register Renaming: Tomasulo's Algorithm (OoO Basics Chapter)
+4. Precise Interrupts with Reorder Buffer: P6 & MIPS R10K -style examples (P6 R10K Chapter)
+
+## Classes of Parallelism & Parallel Architectures
+
+Reference: Patterson & Hennessy Chp. 1.2
+
+**Two Kinds of Parallelisms in Applications**:
+
+1. Data-Level Parallelism
+   1. Multiple data items can be operated on at the same time
+2. Task-Level Parallelism
+   1. Multiple tasks can be processed independently at the same time
+
+**Hardware can exploit these application parallelisms in four ways:**
+
+1. Instruction-Level Parallelism
+2. Vector Architectures
+3. Thread-Level Parallelism
+4. Request-Level Parallelism
+
+**Four Categories of Computing Architectures:**
+
+1. Single Instruction stream, Single Data stream (SISD)
+   1. A uniprocessor - can exploit ILP such as superscalar and speculative execution
+2. Single Instruction stream, Multiple Data stream (SIMD)
+   1. Same instruction executed by many processors on different data streams
+   2. Exploits DLP
+   3. Each processor has its own data memory, but have a single instruction memory and control processor
+   4. NVIDIA: "SIMT"
+3. Multiple Instruction streams, Single Data stream (MISD)
+   1. Doesn't really exist in commercial use
+4. Multiple Instruction streams, Multiple Data stream (MIMD)
+   1. Each processor has its own instruction stream and data stream
+   2. More flexible than SIMD but due to overheads this parallelism is expensive (limits degree of parallelism achievable)

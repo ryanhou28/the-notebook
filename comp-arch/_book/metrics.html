@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>14&nbsp; Summary – Empty Book Template</title>
+<title>2&nbsp; Performance, Power, ISA – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./dlp.html" rel="prev">
+<link href="./inorder.html" rel="next">
+<link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./metrics.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Performance, Power, ISA</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -120,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./metrics.html" class="sidebar-item-text sidebar-link">
+  <a href="./metrics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Performance, Power, ISA</span></span></a>
   </div>
 </li>
@@ -192,7 +221,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link active">
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
@@ -207,15 +236,37 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#parallelism" id="toc-parallelism" class="nav-link active" data-scroll-target="#parallelism"><span class="header-section-number">2.1</span> Parallelism</a>
+  <ul class="collapse">
+  <li><a href="#amdahls-law" id="toc-amdahls-law" class="nav-link" data-scroll-target="#amdahls-law"><span class="header-section-number">2.1.1</span> Amdahl’s Law</a></li>
+  </ul></li>
+  <li><a href="#performance" id="toc-performance" class="nav-link" data-scroll-target="#performance"><span class="header-section-number">2.2</span> Performance</a>
+  <ul class="collapse">
+  <li><a href="#averaging-metrics" id="toc-averaging-metrics" class="nav-link" data-scroll-target="#averaging-metrics"><span class="header-section-number">2.2.1</span> Averaging Metrics</a></li>
+  <li><a href="#iron-law-of-processor-performance" id="toc-iron-law-of-processor-performance" class="nav-link" data-scroll-target="#iron-law-of-processor-performance"><span class="header-section-number">2.2.2</span> Iron Law of Processor Performance</a></li>
+  <li><a href="#performance---summary" id="toc-performance---summary" class="nav-link" data-scroll-target="#performance---summary"><span class="header-section-number">2.2.3</span> Performance - Summary</a></li>
+  </ul></li>
+  <li><a href="#instruction-set-architectures" id="toc-instruction-set-architectures" class="nav-link" data-scroll-target="#instruction-set-architectures"><span class="header-section-number">2.3</span> Instruction Set Architectures</a>
+  <ul class="collapse">
+  <li><a href="#risc-vs-cisc" id="toc-risc-vs-cisc" class="nav-link" data-scroll-target="#risc-vs-cisc"><span class="header-section-number">2.3.1</span> RISC vs CISC</a></li>
+  </ul></li>
+  <li><a href="#power" id="toc-power" class="nav-link" data-scroll-target="#power"><span class="header-section-number">2.4</span> Power</a></li>
+  <li><a href="#voltage-scaling" id="toc-voltage-scaling" class="nav-link" data-scroll-target="#voltage-scaling"><span class="header-section-number">2.5</span> Voltage Scaling</a></li>
+  <li><a href="#cpi-ipc" id="toc-cpi-ipc" class="nav-link" data-scroll-target="#cpi-ipc"><span class="header-section-number">2.6</span> CPI, IPC</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Performance, Power, ISA</span></h1>
 </div>
 
 
@@ -232,9 +283,150 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In summary…</p>
+<p>How do we speed up tasks? Three options</p>
+<ul>
+<li>Do less things
+<ul>
+<li>Program more efficiently</li>
+<li>Compilers - optimize code</li>
+</ul></li>
+<li>Do things faster
+<ul>
+<li>Logic optimizations</li>
+<li>Circuits - design faster and more efficient circuits</li>
+<li>Architecture
+<ul>
+<li>Memoization - (save results of previous comp. in memory to avoid recomputing)</li>
+<li>Locality - predict/speculate, cache</li>
+</ul></li>
+</ul></li>
+<li>Do more things at the same time
+<ul>
+<li>Architecture - Parallelization!
+<ul>
+<li>Pipelining</li>
+<li>Speculative execution</li>
+<li>Dynamic scheduling</li>
+<li>Register Renaming</li>
+<li>Branch Prediction</li>
+<li>Superscalar</li>
+<li>Multiprocessing / Multithreading</li>
+<li>VLIW</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="images/metrics/roadmap.png" class="img-fluid"></p>
+<section id="parallelism" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="parallelism"><span class="header-section-number">2.1</span> Parallelism</h2>
+<section id="amdahls-law" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="amdahls-law"><span class="header-section-number">2.1.1</span> Amdahl’s Law</h3>
+<p>Suppose an enhancement speeds up a fraction <span class="math inline">\(f\)</span> of a task by a factor of <span class="math inline">\(S\)</span>:</p>
+<p><span class="math display">\[time_{new} = time_{orig} \cdot ((1 - f) + \frac{f}{s})\]</span></p>
+<p><strong>Amdahl’s Law:</strong></p>
+<p><span class="math display">\[S_{overall} = \frac{1}{(1-f)+\frac{f}{s}}\]</span></p>
+<p><img src="images/metrics/parallelism-eqns.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="performance" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="performance"><span class="header-section-number">2.2</span> Performance</h2>
+<p>Two key performance metrics:</p>
+<ul>
+<li><strong>Latency (execution time)</strong>: time to finish a fixed task</li>
+<li><strong>Throughput (bandwidth)</strong>: number of tasks finished in fixed time</li>
+</ul>
+<p><img src="images/metrics/latthru.png" class="img-fluid"></p>
+<section id="averaging-metrics" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="averaging-metrics"><span class="header-section-number">2.2.1</span> Averaging Metrics</h3>
+<p>Latency can be added, but not throughput!</p>
+<ul>
+<li>Latency(A+B) = Latency(A) + Latency(B)</li>
+<li>Throughput(A+B) <span class="math inline">\(\neq\)</span> Throughput(A) + Throughput(B)</li>
+</ul>
+<p>Adding throughput:</p>
+<p><span class="math display">\[Throughput(A+B) = \frac{1}{\frac{1}{Throughput(A)} + \frac{1}{Throughput(B)}}\]</span></p>
+<p>Averaging Techniques:</p>
+<p><img src="images/metrics/averaging.png" class="img-fluid"></p>
+</section>
+<section id="iron-law-of-processor-performance" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="iron-law-of-processor-performance"><span class="header-section-number">2.2.2</span> Iron Law of Processor Performance</h3>
+<p><img src="images/metrics/ironlaw.png" class="img-fluid"></p>
+<p>Another way of looking at it:</p>
+<ul>
+<li>seconds / instruction = (cycles / instructions) * (seconds / cycle)</li>
+</ul>
+</section>
+<section id="performance---summary" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="performance---summary"><span class="header-section-number">2.2.3</span> Performance - Summary</h3>
+<p><img src="images/metrics/summary-eqns.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="instruction-set-architectures" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="instruction-set-architectures"><span class="header-section-number">2.3</span> Instruction Set Architectures</h2>
+<p>ISA is the “contract” between software and hardware:</p>
+<ul>
+<li><strong>Functional definition</strong> of operations, modes, and storage locations supported by hardware</li>
+<li><strong>Precise description</strong> of how to invoke and access them</li>
+</ul>
+<!-- TODO ADD MORE DETAILS -->
+<section id="risc-vs-cisc" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="risc-vs-cisc"><span class="header-section-number">2.3.1</span> RISC vs CISC</h3>
+<p><img src="images/metrics/risccisc.png" class="img-fluid"></p>
+<p>Back in the day it was important to minimize number of instructions due to limited memory. This has become much less of a concern nowadays.</p>
+</section>
+</section>
+<section id="power" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="power"><span class="header-section-number">2.4</span> Power</h2>
+<ul>
+<li>Dynamic Power: Switching power
+<ul>
+<li>Capacitive and short-circuit</li>
+<li>Capacitive power: charging/discharging transistrs from 0 to 1 and 1 to 0</li>
+<li>Short-circuit power: power due to brief short-circuit current during the transitions</li>
+<li>Data dependent - a function of switching activity</li>
+</ul></li>
+<li>Static Power: leakage power
+<ul>
+<li>Steady, per-cycle energy cost</li>
+</ul></li>
+<li>Dynamic power dominates but static power increasing in importance (due to large transistor count and increasing leakage in tech scaling and )</li>
+</ul>
+<p><img src="images/metrics/power-1.png" class="img-fluid"></p>
+<ul>
+<li>Power (Watts)
+<ul>
+<li>Determines battery life in hours</li>
+<li>Sets packaging limits (due to thermals, etc)</li>
+</ul></li>
+<li>Energy (Joules)
+<ul>
+<li>Rate at which energy is consumed over time</li>
+<li>Energy = Power <span class="math inline">\(\times\)</span> Delay
+<ul>
+<li>Joules = Watts <span class="math inline">\(\times\)</span> Seconds</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="voltage-scaling" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="voltage-scaling"><span class="header-section-number">2.5</span> Voltage Scaling</h2>
+<p><img src="images/metrics/voltscaling.png" class="img-fluid"></p>
+<p>Power has a cubic relationship with voltage! Why? Voltage linearly correlated to frequency (higher VDD enables faster switching)</p>
+</section>
+<section id="cpi-ipc" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="cpi-ipc"><span class="header-section-number">2.6</span> CPI, IPC</h2>
+<p>Cycles Per Instruction</p>
+<ul>
+<li>Lower the better</li>
+<li>IPC is its inverse</li>
+<li>Summary for different arch:
+<ul>
+<li>Ideal in-order pipeline (no stalling): 1 (ignoring cycles to load up and clear the pipeline)</li>
+<li></li>
+</ul></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -656,13 +848,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./dlp.html" class="pagination-link" aria-label="dlp.html">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">dlp.html</span></span>
+      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./inorder.html" class="pagination-link" aria-label="In-Order CPU, Pipelining">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-Order CPU, Pipelining</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

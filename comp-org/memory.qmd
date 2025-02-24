@@ -176,6 +176,7 @@ Cache does not write all stores to memory immediately
   - Only need to check a single tag - the one associated with the region the reference is located in
 - **Associativity** is 1
 
+
 ![](images/memory/dm-cache.png)
 
 ![](images/memory/dm-cache-logic.png)
@@ -196,6 +197,7 @@ Cache does not write all stores to memory immediately
   - E.g. if a set is 2-way associative, it has 2 cache lines within a set
     - i.e. it has to perform 2 tag comparisons per access
 - **Sets** are essentially the number of partitions you split your entire cache into smaller fully-associative "sub" caches
+- **Associativity** = number of ways
 
 ![](images/memory/sa-cache-logic.png)
 

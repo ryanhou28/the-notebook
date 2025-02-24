@@ -53,6 +53,18 @@ Key concepts
 
 **Q: Write a pattern detector that detects input sequence of 101 from a binary stream. (Pattern 1101 is also a common question)**
 
+
+## Verilog Modules
+
+### Asynchronous FIFO
+
+### Synchronous FIFO
+
+### Round-Robin Arbiter
+
+
+### Counters
+
 ## Online References
 
 - [Blind Post - Design Verification Interview](https://www.teamblind.com/post/Design-Verification-Interview-aaATLRVa/4807423)

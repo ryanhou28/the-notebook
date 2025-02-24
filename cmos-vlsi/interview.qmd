@@ -20,5 +20,31 @@ Common interview problems:
 
 
 
+### Power
+
+Q: Dynamic power dominates but why has static power consumption become increasingly important to deal with?
+
+- Large transistor count - small leakage quickly get big when multiplied by billions of transistors
+- Technology scaling - end of Dennard Scaling
+  - Dennard Scaling suggested that power density remained constant at smaller transistor sizes - however the scaling has broken down at modern nodes
+    - Scaling suggested VDD and VTh scales proportionally with feature size
+  - VDD stopped scaling due to reliability
+  - VTh stopped scaling as pushing it further down increases leakage
+- Increased leakage currents
+  - Subthreshold leakage - small threshold voltage leads to faster switching, but increases the leakage current even when transistor is OFF
+  - Gate leakage - thin gate oxides in modern nodes lead to tunneling currents through the gate
+  - Junction leakage - small junction depths increase leakage at source/drain junctions
+
+
+Q: How to reduce dynamic power?
+
+
+Q: How to reduce static power?
+
+
+Q: What caused the end of Dennard Scaling?
+
+- VDD stopped scaling due to reliability
+- VTh stopped scaling as pushing it further down increases leakage
 
 ### List of Questions - To be categorized...
