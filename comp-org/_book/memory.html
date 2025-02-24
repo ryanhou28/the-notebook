@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – Empty Book Template</title>
+<title>7&nbsp; Memory Hierarchy &amp; Caching – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="prev">
+<link href="./virtualmem.html" rel="next">
+<link href="./cpu.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -68,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -80,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./memory.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Memory Hierarchy &amp; Caching</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -149,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./memory.html" class="sidebar-item-text sidebar-link">
+  <a href="./memory.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Memory Hierarchy &amp; Caching</span></span></a>
   </div>
 </li>
@@ -167,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -176,15 +206,51 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#cache-basics" id="toc-cache-basics" class="nav-link active" data-scroll-target="#cache-basics"><span class="header-section-number">7.1</span> Cache Basics</a>
+  <ul class="collapse">
+  <li><a href="#basic-cache-design" id="toc-basic-cache-design" class="nav-link" data-scroll-target="#basic-cache-design"><span class="header-section-number">7.1.1</span> Basic Cache Design</a></li>
+  </ul></li>
+  <li><a href="#cache-operation" id="toc-cache-operation" class="nav-link" data-scroll-target="#cache-operation"><span class="header-section-number">7.2</span> Cache Operation</a>
+  <ul class="collapse">
+  <li><a href="#amat" id="toc-amat" class="nav-link" data-scroll-target="#amat"><span class="header-section-number">7.2.1</span> AMAT</a></li>
+  <li><a href="#overheads" id="toc-overheads" class="nav-link" data-scroll-target="#overheads"><span class="header-section-number">7.2.2</span> Overheads</a></li>
+  </ul></li>
+  <li><a href="#tracking-lru" id="toc-tracking-lru" class="nav-link" data-scroll-target="#tracking-lru"><span class="header-section-number">7.3</span> Tracking LRU</a>
+  <ul class="collapse">
+  <li><a href="#pseudo-lru" id="toc-pseudo-lru" class="nav-link" data-scroll-target="#pseudo-lru"><span class="header-section-number">7.3.1</span> Pseudo LRU</a></li>
+  </ul></li>
+  <li><a href="#cache-blocks" id="toc-cache-blocks" class="nav-link" data-scroll-target="#cache-blocks"><span class="header-section-number">7.4</span> Cache Blocks</a>
+  <ul class="collapse">
+  <li><a href="#row-vs-column-major" id="toc-row-vs-column-major" class="nav-link" data-scroll-target="#row-vs-column-major"><span class="header-section-number">7.4.1</span> Row vs Column Major</a></li>
+  </ul></li>
+  <li><a href="#stores-write-through-vs-write-back" id="toc-stores-write-through-vs-write-back" class="nav-link" data-scroll-target="#stores-write-through-vs-write-back"><span class="header-section-number">7.5</span> Stores: Write-Through vs Write-Back</a></li>
+  <li><a href="#cache-mapping" id="toc-cache-mapping" class="nav-link" data-scroll-target="#cache-mapping"><span class="header-section-number">7.6</span> Cache Mapping</a>
+  <ul class="collapse">
+  <li><a href="#fully-associative-cache" id="toc-fully-associative-cache" class="nav-link" data-scroll-target="#fully-associative-cache"><span class="header-section-number">7.6.1</span> Fully-Associative Cache</a></li>
+  <li><a href="#direct-mapped-cache" id="toc-direct-mapped-cache" class="nav-link" data-scroll-target="#direct-mapped-cache"><span class="header-section-number">7.6.2</span> Direct Mapped Cache</a></li>
+  <li><a href="#set-associative-cache" id="toc-set-associative-cache" class="nav-link" data-scroll-target="#set-associative-cache"><span class="header-section-number">7.6.3</span> Set-Associative Cache</a></li>
+  <li><a href="#cache-associativity-summary" id="toc-cache-associativity-summary" class="nav-link" data-scroll-target="#cache-associativity-summary"><span class="header-section-number">7.6.4</span> Cache Associativity Summary</a></li>
+  </ul></li>
+  <li><a href="#cache-misses" id="toc-cache-misses" class="nav-link" data-scroll-target="#cache-misses"><span class="header-section-number">7.7</span> Cache Misses</a>
+  <ul class="collapse">
+  <li><a href="#cache-parameters" id="toc-cache-parameters" class="nav-link" data-scroll-target="#cache-parameters"><span class="header-section-number">7.7.1</span> Cache Parameters</a></li>
+  </ul></li>
+  <li><a href="#cache-summary" id="toc-cache-summary" class="nav-link" data-scroll-target="#cache-summary"><span class="header-section-number">7.8</span> Cache Summary</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">7.9</span> Examples</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Memory Hierarchy &amp; Caching</span></h1>
 </div>
 
 
@@ -201,10 +267,227 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!-- ::: {#refs}
-::: -->
+<p><img src="images/memory/mem-hier.png" class="img-fluid"></p>
+<p><strong>SRAM</strong></p>
+<p>Area: 6T per bit (used on-chip within processor) Speed: Typical Size: Cost: Volatile ()</p>
+<p><strong>DRAM</strong></p>
+<p><strong>Disks</strong></p>
+<p><strong>Flash</strong></p>
+<p><img src="images/memory/mem-hier2.png" class="img-fluid"></p>
+<p><strong>Virtual Memory</strong> provides an illusion that an ISA’s entire address space is available (since cost of having all addresses be available in a 64 bit system is too high)</p>
+<section id="cache-basics" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="cache-basics"><span class="header-section-number">7.1</span> Cache Basics</h2>
+<p>Cache commonly refers to SRAM used on-chip within the processor. Used to store data that is <strong>most likely</strong> to be referenced by a program</p>
+<p>Key cache performance metric: AMAT - Average Memory Access Time</p>
+<p>Cache consumes most of a CPU’s die area</p>
+<p><img src="images/memory/cache-hier-.png" class="img-fluid"></p>
+<section id="basic-cache-design" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="basic-cache-design"><span class="header-section-number">7.1.1</span> Basic Cache Design</h3>
+<p><img src="images/memory/cache-tagblock.png" class="img-fluid"></p>
+<ul>
+<li><strong>TAG</strong> (CAM) holds the memory address</li>
+<li><strong>BLOCK</strong> (SRAM) holds the memory data</li>
+</ul>
+<p>Accessing the cache: compare reference address and tag</p>
+<ul>
+<li>Match? Get data from cache block -&gt; Cache HIT</li>
+<li>No match? Get data from main memory -&gt; Cache MISS</li>
+<li>This is implemented with CAMs to store tags</li>
+</ul>
+<p>A cache consists of multiple tag/block pairs, each pair is a <strong>cache line</strong></p>
+<p><img src="images/memory/cache-hitmiss.png" class="img-fluid"></p>
+<p><strong>Cache Block</strong> refers to the data block</p>
+<p><strong>Cache Line</strong> refers to the entire line (including valid, tag array, data array)</p>
+<section id="operations-of-a-cam" class="level4" data-number="7.1.1.1">
+<h4 data-number="7.1.1.1" class="anchored" data-anchor-id="operations-of-a-cam"><span class="header-section-number">7.1.1.1</span> Operations of a CAM</h4>
+<p><img src="images/memory/cam.png" class="img-fluid"></p>
+<p><img src="images/memory/cam2.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="cache-operation" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="cache-operation"><span class="header-section-number">7.2</span> Cache Operation</h2>
+<p>On a cache miss, we fetch data from main memory and allocate a cache line and store the fetched data in it</p>
+<p>Different policies exist to pick the victim of data replacement</p>
+<p>We mainly exploit two localities:</p>
+<ol type="1">
+<li><strong>Temporal Locality</strong>
+<ol type="1">
+<li>More recently accessed memory locations are more likely to be re-accessed than other locations</li>
+<li>Data in least recently referenced (or Least Recently Used <strong>LRU</strong>) cache line should be evicted to make room</li>
+</ol></li>
+<li><strong>Spatial Locality</strong>
+<ol type="1">
+<li>Memory addresses close to gether are more likely to be accessed than far apart addresses</li>
+</ol></li>
+</ol>
+<section id="amat" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="amat"><span class="header-section-number">7.2.1</span> AMAT</h3>
+<p>AMAT = cache latency <span class="math inline">\(\times\)</span> hit rate + memory latency <span class="math inline">\(\times\)</span> miss rate</p>
+<ul>
+<li>Every memory access goes through the cache
+<ul>
+<li>Cache misses go through main memory</li>
+<li>*this eqn doesn’t include disk latency, thus changes if we include disk</li>
+</ul></li>
+</ul>
+<p>To improve AMAT:</p>
+<ol type="1">
+<li>Reduce latency of cache/main memory/disk AND/OR</li>
+<li>Increase hit rate of cache and main memory</li>
+</ol>
+</section>
+<section id="overheads" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="overheads"><span class="header-section-number">7.2.2</span> Overheads</h3>
+<p>Cost of tags often drives the design of real caches, since these functionalities use significant area</p>
+<p>Overheads: tag bits, valid bits, dirty bits, etc per cache line</p>
+</section>
+</section>
+<section id="tracking-lru" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="tracking-lru"><span class="header-section-number">7.3</span> Tracking LRU</h2>
+<p>Naive Method:</p>
+<ul>
+<li>Maintain LRU_rank per cache line</li>
+<li>Set LRU_rank of newly accessed block to 0, increment all others by 1</li>
+<li>Line with highest LRU_rank is victim on eviction</li>
+<li>Area overhead: log(# cache lines) per cache line</li>
+<li>However this is extremely slow and inefficient for hardware since it requires linearly modifying every cache line</li>
+</ul>
+<p>LRU with least area overhead:</p>
+<ul>
+<li>We know that the number of permutations for N cache lines is <span class="math inline">\(n!\)</span>
+<ul>
+<li>Thus, we need <span class="math inline">\(log(n!)\)</span> bits (in total) for N cache lines</li>
+</ul></li>
+</ul>
+<section id="pseudo-lru" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="pseudo-lru"><span class="header-section-number">7.3.1</span> Pseudo LRU</h3>
+<p><img src="images/memory/pseudolru1.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="cache-blocks" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="cache-blocks"><span class="header-section-number">7.4</span> Cache Blocks</h2>
+<p>To reduce overhead of each cache line, we could also increase cache block size</p>
+<p>Memory Address / Block Size = Tag (which is essentially a Block Address)</p>
+<p>Block Offset = Address % Block Size</p>
+<p>Block Size = <span class="math inline">\(2^{block\_offset}\)</span></p>
+<p>sizeof(block_offset) = log2(block_size)</p>
+<p>Tag size = address_size - block_offset_size</p>
+<p>However, larger block size isn’t always better due to (slower access since larger data needs to be fetched, and wasteful fetches exceeding spatial locality)</p>
+<section id="row-vs-column-major" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="row-vs-column-major"><span class="header-section-number">7.4.1</span> Row vs Column Major</h3>
+<p><img src="images/memory/rowcolmaj.png" class="img-fluid"></p>
+<p>Row major is more common. Column major used for more GPU and HPC tasks. Row/Col major is important due to spatial locality in memory going through 2D/3D arrays.</p>
+</section>
+</section>
+<section id="stores-write-through-vs-write-back" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="stores-write-through-vs-write-back"><span class="header-section-number">7.5</span> Stores: Write-Through vs Write-Back</h2>
+<p><img src="images/memory/writethruback.png" class="img-fluid"></p>
+<p>Cache does not write all stores to memory immediately - Keep track of most recent updated copy and only update main memory when data is evicted from the cache - Keep a <strong>dirty bit</strong> that tracks whether a cache line has been modified and needs to writeback to memory - Such that we don’t need to write back other unmodified lines to memory on eviction</p>
+<p><img src="images/memory/cache-wb-tab1.png" class="img-fluid"></p>
+<p><img src="images/memory/cache-wb-tab2.png" class="img-fluid"></p>
+</section>
+<section id="cache-mapping" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="cache-mapping"><span class="header-section-number">7.6</span> Cache Mapping</h2>
+<p><img src="images/memory/cache-cont.png" class="img-fluid"></p>
+<section id="fully-associative-cache" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="fully-associative-cache"><span class="header-section-number">7.6.1</span> Fully-Associative Cache</h3>
+<ul>
+<li>A memory location can go to any free cache line</li>
+<li>Check the tag of every cache line to determine match
+<ul>
+<li>Slow due to parallel tag searches over entire cache</li>
+</ul></li>
+</ul>
+<p><img src="images/memory/fa-cache.png" class="img-fluid"></p>
+</section>
+<section id="direct-mapped-cache" class="level3" data-number="7.6.2">
+<h3 data-number="7.6.2" class="anchored" data-anchor-id="direct-mapped-cache"><span class="header-section-number">7.6.2</span> Direct Mapped Cache</h3>
+<ul>
+<li>Directly map blocks of memory to one single location it can be held in</li>
+<li>Partition memory into as many regions as there are cache lines</li>
+<li>Each memory region maps to a single cache line in which data can be placed</li>
+<li>Eliminates requirement for parallel tag lookups
+<ul>
+<li>Only need to check a single tag - the one associated with the region the reference is located in</li>
+</ul></li>
+<li><strong>Associativity</strong> is 1</li>
+</ul>
+<p><img src="images/memory/dm-cache.png" class="img-fluid"></p>
+<p><img src="images/memory/dm-cache-logic.png" class="img-fluid"></p>
+</section>
+<section id="set-associative-cache" class="level3" data-number="7.6.3">
+<h3 data-number="7.6.3" class="anchored" data-anchor-id="set-associative-cache"><span class="header-section-number">7.6.3</span> Set-Associative Cache</h3>
+<ul>
+<li>Partition memory into regions but with fewer partitions than direct mapped</li>
+<li>Associate a region to a set of cache lines
+<ul>
+<li>Check tags for all lines in a set to determine a HIT</li>
+</ul></li>
+<li>Treat each line in a set like a small fully associative cache
+<ul>
+<li>LRU (or LRU-like policy generally used)</li>
+</ul></li>
+</ul>
+<p><img src="images/memory/sa-cache.png" class="img-fluid"></p>
+<ul>
+<li><strong>Ways</strong> are the blocks within a set</li>
+<li>Each cache line within a set is a <strong>way</strong>
+<ul>
+<li>E.g. if a set is 2-way associative, it has 2 cache lines within a set
+<ul>
+<li>i.e.&nbsp;it has to perform 2 tag comparisons per access</li>
+</ul></li>
+</ul></li>
+<li><strong>Sets</strong> are essentially the number of partitions you split your entire cache into smaller fully-associative “sub” caches</li>
+</ul>
+<p><img src="images/memory/sa-cache-logic.png" class="img-fluid"></p>
+</section>
+<section id="cache-associativity-summary" class="level3" data-number="7.6.4">
+<h3 data-number="7.6.4" class="anchored" data-anchor-id="cache-associativity-summary"><span class="header-section-number">7.6.4</span> Cache Associativity Summary</h3>
+<p><img src="images/memory/cache-comp.png" class="img-fluid"></p>
+<p><img src="images/memory/cache-eqns.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="cache-misses" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="cache-misses"><span class="header-section-number">7.7</span> Cache Misses</h2>
+<p><img src="images/memory/cache-misses-cs.png" class="img-fluid"></p>
+<p><img src="images/memory/cache-miss2.png" class="img-fluid"></p>
+<p><img src="images/cache-miss3.png" class="img-fluid"></p>
+<section id="cache-parameters" class="level3" data-number="7.7.1">
+<h3 data-number="7.7.1" class="anchored" data-anchor-id="cache-parameters"><span class="header-section-number">7.7.1</span> Cache Parameters</h3>
+<p>Key parameters affecting miss rate:</p>
+<ul>
+<li>Cache Size</li>
+<li>Block Size</li>
+<li>Associativity</li>
+<li>Replacement Policy</li>
+</ul>
+<section id="cache-size" class="level4" data-number="7.7.1.1">
+<h4 data-number="7.7.1.1" class="anchored" data-anchor-id="cache-size"><span class="header-section-number">7.7.1.1</span> Cache Size</h4>
+<p><img src="images/memory/cachesize-miss.png" class="img-fluid"></p>
+</section>
+<section id="block-line-size" class="level4" data-number="7.7.1.2">
+<h4 data-number="7.7.1.2" class="anchored" data-anchor-id="block-line-size"><span class="header-section-number">7.7.1.2</span> Block / Line Size</h4>
+<p><img src="images/memory/cache-blocksize.png" class="img-fluid"></p>
+</section>
+<section id="associativity" class="level4" data-number="7.7.1.3">
+<h4 data-number="7.7.1.3" class="anchored" data-anchor-id="associativity"><span class="header-section-number">7.7.1.3</span> Associativity</h4>
+<p><img src="images/memory/cache-associativity-miss.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="cache-summary" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="cache-summary"><span class="header-section-number">7.8</span> Cache Summary</h2>
+<p><img src="images/memory/cache-sum1.png" class="img-fluid"></p>
+<p><img src="images/memory/cache-sum2.png" class="img-fluid"></p>
+</section>
+<section id="examples" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="examples"><span class="header-section-number">7.9</span> Examples</h2>
+<p><img src="images/memory/ex-q1.png" class="img-fluid"></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -626,11 +909,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span>
+      <a href="./cpu.html" class="pagination-link" aria-label="cpu.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">cpu.html</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./virtualmem.html" class="pagination-link" aria-label="Virtual Memory">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Virtual Memory</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

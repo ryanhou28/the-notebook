@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – Empty Book Template</title>
+<title>8&nbsp; Virtual Memory – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="prev">
+<link href="./summary.html" rel="next">
+<link href="./memory.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -80,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./virtualmem.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Virtual Memory</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -155,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./virtualmem.html" class="sidebar-item-text sidebar-link">
+  <a href="./virtualmem.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Virtual Memory</span></span></a>
   </div>
 </li>
@@ -167,7 +168,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -176,15 +177,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#page-faults" id="toc-page-faults" class="nav-link active" data-scroll-target="#page-faults"><span class="header-section-number">8.0.1</span> Page Faults</a></li>
+  <li><a href="#hierarchical-page-tables" id="toc-hierarchical-page-tables" class="nav-link" data-scroll-target="#hierarchical-page-tables"><span class="header-section-number">8.1</span> Hierarchical Page Tables</a></li>
+  <li><a href="#translation-look-aside-buffer-tlb" id="toc-translation-look-aside-buffer-tlb" class="nav-link" data-scroll-target="#translation-look-aside-buffer-tlb"><span class="header-section-number">8.2</span> Translation Look-Aside Buffer (TLB)</a></li>
+  <li><a href="#virtually-addressed-caches" id="toc-virtually-addressed-caches" class="nav-link" data-scroll-target="#virtually-addressed-caches"><span class="header-section-number">8.3</span> Virtually-Addressed Caches</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Virtual Memory</span></h1>
 </div>
 
 
@@ -201,10 +211,68 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!-- ::: {#refs}
-::: -->
+<p>Problems when running concurrent programs:</p>
+<ul>
+<li>How do we divide memory between programs?</li>
+<li>How do we isolate programs and prevent them from overwriting/accessing each others memory?</li>
+<li>How do we handle the limited physical capacity of memory?</li>
+</ul>
+<p><strong>Virtual Memory</strong> is introduced to provide a layer of indirection, letting each program think they have access to the entire address space, but is an illusion maintained by both the OS and the hardware</p>
+<ul>
+<li>It is an <strong>operating system functionality</strong> that enables multiple concurrently running programs to share physical memory and swap disk space
+<ul>
+<li>TLB (Translation Look-Aside Buffer) is a special cache that helps implement this efficiently</li>
+</ul></li>
+</ul>
+<p><strong>Virtual addresses</strong> are used by loads and stores in a program</p>
+<p><strong>Physical addresses</strong> are used by the hardware to identify storage</p>
+<p>Primary Capabilities provided:</p>
+<ul>
+<li>Capacity
+<ul>
+<li>An illusion of full address space capacity</li>
+</ul></li>
+<li>Security
+<ul>
+<li>Isolation
+<ul>
+<li>Isolates programs from each other</li>
+</ul></li>
+<li>Permissions
+<ul>
+<li>Manage access permissions to data/code</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>To efficiently create a mapping between virtual and physical addresses, we map entire chunks of memory addresses, called <strong>pages</strong></p>
+<p><strong>Page Tables</strong> store this translation, and is managed by the OS and stored in memory.</p>
+<ul>
+<li>Size of a virtual page = size of physical page</li>
+</ul>
+<p><img src="images/virtualmem/vm-addr.png" class="img-fluid"></p>
+<p><img src="images/virtualmem/addr-tran.png" class="img-fluid"></p>
+<p><img src="images/virtualmem/pagetable1.png" class="img-fluid"></p>
+<section id="page-faults" class="level3" data-number="8.0.1">
+<h3 data-number="8.0.1" class="anchored" data-anchor-id="page-faults"><span class="header-section-number">8.0.1</span> Page Faults</h3>
+<p>When main memory is exhausted, the disk is used as “extra” space. This space is called <strong>swap partition</strong> (in linux based systems)</p>
+<p><img src="images/virtualmem/pagefault.png" class="img-fluid"></p>
+</section>
+<section id="hierarchical-page-tables" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="hierarchical-page-tables"><span class="header-section-number">8.1</span> Hierarchical Page Tables</h2>
+<p>to be done…</p>
+</section>
+<section id="translation-look-aside-buffer-tlb" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="translation-look-aside-buffer-tlb"><span class="header-section-number">8.2</span> Translation Look-Aside Buffer (TLB)</h2>
+<p>A special cache for page-tables to speed up address translation (reduce main memory access to page tables)</p>
+<p>Commonly 16-512 entries and typically low miss rate (&lt;1%)</p>
+<p><img src="images/virtualmem/tlb-hw.png" class="img-fluid"></p>
+</section>
+<section id="virtually-addressed-caches" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="virtually-addressed-caches"><span class="header-section-number">8.3</span> Virtually-Addressed Caches</h2>
+<p>See more in Computer Architecture notes</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -626,11 +694,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span>
+      <a href="./memory.html" class="pagination-link" aria-label="Memory Hierarchy &amp; Caching">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Memory Hierarchy &amp; Caching</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

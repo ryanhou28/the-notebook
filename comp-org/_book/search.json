@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Empty Book Template",
     "section": "",
-    "text": "Preface\nThis is my notes on ????.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
+    "text": "Preface\nMy notes on ???.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
     "crumbs": [
       "Preface"
     ]
@@ -14,7 +14,7 @@
     "href": "intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Perspective\nThis note does …",
+    "text": "1.1 Perspective",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -30,23 +30,293 @@
     ]
   },
   {
-    "objectID": "intro.html#high-level-ideas",
-    "href": "intro.html#high-level-ideas",
+    "objectID": "intro.html#eight-great-ideas",
+    "href": "intro.html#eight-great-ideas",
     "title": "1  Introduction",
-    "section": "1.2 High Level Ideas",
-    "text": "1.2 High Level Ideas",
+    "section": "1.2 Eight Great Ideas",
+    "text": "1.2 Eight Great Ideas\nEight Great Ideas:\n\nDesign for Moore’s Law\nUse abstraction to simplify design\nMake the common case fast\nPerformance via pipelining\nPerformance via prediction\nPerformance via parallelism\nHierarchy of memories\nDependability via redundancy",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
+    "objectID": "intro.html#high-level-ideas",
+    "href": "intro.html#high-level-ideas",
+    "title": "1  Introduction",
+    "section": "1.3 High Level Ideas",
+    "text": "1.3 High Level Ideas",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "isa.html",
+    "href": "isa.html",
+    "title": "2  Instruction Set Architecture",
+    "section": "",
+    "text": "2.1 (Simplified) System Organization\nInstruction Set Architecture (ISA)\nits essentially a legal document that states the instructions, machine code that works on the hardware\nStack - Grows down in memory Heap Data - dynamically allocated data, Grows up in memory Text - Reserved",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instruction Set Architecture</span>"
+    ]
+  },
+  {
+    "objectID": "isa.html#simplified-system-organization",
+    "href": "isa.html#simplified-system-organization",
+    "title": "2  Instruction Set Architecture",
+    "section": "",
+    "text": "Von Neumann Architecture\n\nData and instructions are stored in the same memory\nPrograms (instructions) can be viewed as data - simplifies storage\nData can be viewed as instructions - complicates computer security",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instruction Set Architecture</span>"
+    ]
+  },
+  {
+    "objectID": "isa.html#isa-design-space",
+    "href": "isa.html#isa-design-space",
+    "title": "2  Instruction Set Architecture",
+    "section": "2.2 ISA Design Space",
+    "text": "2.2 ISA Design Space\n\nWhat instructions to include?\n\nadd, mult, divide, branch, load/store, etc.\n\nWhat storage locations?\n\nhow many registers, how much memory, other “architected” storage?\n\nHow should instructions be formatted?\n\n0, 1, 2, or more operands? Immediate operands?\n\nHow to encode instructions?\n\nCISC vs RISC\n\nWhat instructions can access memory?\n\n\nRISC (Reduced Instruction Set Computer)\n\nAll instructions are same length (eg ARM, LC2K) smaller set of simpler instructions\nthe microarchitecture can be simple so we can pack more into them. Is simple, compact\n\nCISC (Complex Instruction Set Computer)\n\nInstructions can vary in size (Digital Computer’s VAX, x86) large set of simple and complex instructions\n\nARM: only loads and stores can access memory (called a “load-store architecture”)\nIntel x86 is a “register-memory architecture”, that is, other instructions beyond load/store can access memory",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instruction Set Architecture</span>"
+    ]
+  },
+  {
+    "objectID": "assembly.html",
+    "href": "assembly.html",
+    "title": "3  Assembly",
+    "section": "",
+    "text": "3.1 Basics",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Assembly</span>"
+    ]
+  },
+  {
+    "objectID": "assembly.html#basics",
+    "href": "assembly.html#basics",
+    "title": "3  Assembly",
+    "section": "",
+    "text": "3.1.1 Instruction Encoding\n\n\n3.1.2 Properties",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Assembly</span>"
+    ]
+  },
+  {
+    "objectID": "assembly.html#special-purpose-registers",
+    "href": "assembly.html#special-purpose-registers",
+    "title": "3  Assembly",
+    "section": "3.2 Special Purpose Registers",
+    "text": "3.2 Special Purpose Registers\nReturn Address:\n\nExample: ARM register X30, aka Link Register (LR)\nHolds the return address or link address of a subroutine\n\nStack Pointer\n\nExample: ARM register X28-SP, or x86 ESP\nHolds the memory address of the stack\n\nPoints to the bottom of the stack\n\n\nFrame Pointer\n\nExample: ARM register X29-FP\nHolds the memory address of the start of the stack frame\n\nProgram Counter (PC)\n\nCannot be accessed directly in most architectures\nAccessed indirectly through jump insts\n\nThe above registers store memory addresses\n0 Value Register\n\nARM register X31-XZR\nno storage, reading always return 0\nlots of uses - ex: mov-&gt;add\nIts a source of 0s\n\nWe can throw a value away by writing to it\nWe can get a 0 by reading it\nWe can use fewer opcodes if we have a 0 value register\n\nEg you can make a move instruction by adding 0\n\n\n\nStatus Register\n\nExample: ARM SPSR, or x86 EFLAGs\nStatus bit set by various instructions\n\nCompare, add (overflow and carry), etc\n\nUsed by other instructions like conditionanl branches",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Assembly</span>"
+    ]
+  },
+  {
+    "objectID": "assembly.html#memory",
+    "href": "assembly.html#memory",
+    "title": "3  Assembly",
+    "section": "3.3 Memory",
+    "text": "3.3 Memory\nMachine with \\(n\\)-bit address can reference memory locations \\([0, 2^n-1]\\)\nAssembly instructions have multiple ways to access memory (ie addressing)\n\nAddressing Modes\n\nDirect addressing - mem address is in the instruction\nRegister indirect - mem addr is stored in a reg\nBase + Displacement - reg. indirect + an imm. value\nPC-relative - base + displacement using the PC (essentially PC + imm. value)\n\nA word is a collection of bytes\n\nExact size of a word depends on the architecture\nIn ARM a word is 4 bytes\n\nARM and most modern ISAs are byte addressable\n\nI.e. each addr. refers to a particular byte in memory",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Assembly</span>"
+    ]
+  },
+  {
+    "objectID": "assembly.html#big-endian-vs-little-endian",
+    "href": "assembly.html#big-endian-vs-little-endian",
+    "title": "3  Assembly",
+    "section": "3.4 Big Endian vs Little Endian",
+    "text": "3.4 Big Endian vs Little Endian\nEndian-ness: ordering of bytes within a word\n\nLittle - increasing numeric significance with increasing memory addresses\nBig - opposite, most significant byte first\nInternet is big indian, x86 is little endian, ARM can switch\nNo advantage to either one, just arbitrary\n\n\nHow to tell the endian-ness of a system?\n\nMethod 1: Using simple C program to check byte order:\n\nunsigned int x = 1;\nchar *c = (char*)&x;\n\nif (*c)    \n    printf(\"Little Endian\\n\");\nelse\n    printf(\"Big Endian\\n\");\n\nThe integer x is assigned 1, which in memory is represented as 0x00000001.\nWe then take a pointer to the first byte (char* c = (char*)&x).\nIf the first byte (*c) is 1, the system is Little Endian (least significant byte stored first).\nIf the first byte is 0, the system is Big Endian (most significant byte stored first).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Assembly</span>"
+    ]
+  },
+  {
+    "objectID": "assembly.html#memory-layout",
+    "href": "assembly.html#memory-layout",
+    "title": "3  Assembly",
+    "section": "3.5 Memory Layout",
+    "text": "3.5 Memory Layout\n\n3.5.1 Memory Layout of Variable\n\nMost modern ISAs require that data be aligned\n\nalignment: An N-byte variable must start at an address A, such that A % N = 0\n\ni.e. address must be divisible by the size of the variables\n\n\n“Golden” Rule: Address of a avariable is aligned based on the size of the variable\n\nchar is byte aligned (any address is fine)\n\n1 byte, anything mod 1 is fine\n\nshort is half-word (H) aligned (LSB of address must be 0)\nint is word (W) aligned (2 LSBs of address must be 0)\n\nWhy? This simplifies hardware needs for loads and stores\n\nOtherwise multiple memory accesses are needed to access one variable\n\n\n\n\n3.5.2 Structure Alignment\n\nEach field in a struct is laid out in the order it is declared using the Golden Rule for alignment\nIdentify largest (primitive) field\n\nStarting address of overall struct is aligned based on the largest field (any primitive variable)\n\nPrimitives are mostly 1,2,4,8 bytes\n\nSize of overall struct is a multiple of the largest fields\nWhy? So that we could have an array of structs\n\nGuarantees that each instance of struct is aligned the same way\n\n\nNote: Notice how arrays are itsel a struct, thus arrays are aligned on its data type rather than the overall size of the array\n\nWhy care about data layout?\n\nCompilers don’t reorder variables in memory to avoid padding\nProgrammer is expected to manage data layout for your program and structs\nTip: Powers of 2s for arrays\n\nCan use shifting to access faster\n\n\n\n3.5.2.1 Examples\nPointers are 8 bytes in ARM and x86",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Assembly</span>"
+    ]
+  },
+  {
+    "objectID": "assembly.html#control-flow",
+    "href": "assembly.html#control-flow",
+    "title": "3  Assembly",
+    "section": "3.6 Control Flow",
+    "text": "3.6 Control Flow",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Assembly</span>"
+    ]
+  },
+  {
+    "objectID": "assembly.html#c-to-assembly",
+    "href": "assembly.html#c-to-assembly",
+    "title": "3  Assembly",
+    "section": "3.7 C to Assembly",
+    "text": "3.7 C to Assembly",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Assembly</span>"
+    ]
+  },
+  {
+    "objectID": "assembly.html#functions",
+    "href": "assembly.html#functions",
+    "title": "3  Assembly",
+    "section": "3.8 Functions",
+    "text": "3.8 Functions\n\n3.8.1 Call and Return",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Assembly</span>"
+    ]
+  },
+  {
+    "objectID": "memory.html",
+    "href": "memory.html",
+    "title": "7  Memory Hierarchy & Caching",
+    "section": "",
+    "text": "7.1 Cache Basics\nSRAM\nArea: 6T per bit (used on-chip within processor) Speed: Typical Size: Cost: Volatile ()\nDRAM\nDisks\nFlash\nVirtual Memory provides an illusion that an ISA’s entire address space is available (since cost of having all addresses be available in a 64 bit system is too high)\nCache commonly refers to SRAM used on-chip within the processor. Used to store data that is most likely to be referenced by a program\nKey cache performance metric: AMAT - Average Memory Access Time\nCache consumes most of a CPU’s die area",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Memory Hierarchy & Caching</span>"
+    ]
+  },
+  {
+    "objectID": "memory.html#cache-basics",
+    "href": "memory.html#cache-basics",
+    "title": "7  Memory Hierarchy & Caching",
+    "section": "",
+    "text": "7.1.1 Basic Cache Design\n\n\nTAG (CAM) holds the memory address\nBLOCK (SRAM) holds the memory data\n\nAccessing the cache: compare reference address and tag\n\nMatch? Get data from cache block -&gt; Cache HIT\nNo match? Get data from main memory -&gt; Cache MISS\nThis is implemented with CAMs to store tags\n\nA cache consists of multiple tag/block pairs, each pair is a cache line\n\nCache Block refers to the data block\nCache Line refers to the entire line (including valid, tag array, data array)\n\n7.1.1.1 Operations of a CAM",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Memory Hierarchy & Caching</span>"
+    ]
+  },
+  {
+    "objectID": "memory.html#cache-operation",
+    "href": "memory.html#cache-operation",
+    "title": "7  Memory Hierarchy & Caching",
+    "section": "7.2 Cache Operation",
+    "text": "7.2 Cache Operation\nOn a cache miss, we fetch data from main memory and allocate a cache line and store the fetched data in it\nDifferent policies exist to pick the victim of data replacement\nWe mainly exploit two localities:\n\nTemporal Locality\n\nMore recently accessed memory locations are more likely to be re-accessed than other locations\nData in least recently referenced (or Least Recently Used LRU) cache line should be evicted to make room\n\nSpatial Locality\n\nMemory addresses close to gether are more likely to be accessed than far apart addresses\n\n\n\n7.2.1 AMAT\nAMAT = cache latency \\(\\times\\) hit rate + memory latency \\(\\times\\) miss rate\n\nEvery memory access goes through the cache\n\nCache misses go through main memory\n*this eqn doesn’t include disk latency, thus changes if we include disk\n\n\nTo improve AMAT:\n\nReduce latency of cache/main memory/disk AND/OR\nIncrease hit rate of cache and main memory\n\n\n\n7.2.2 Overheads\nCost of tags often drives the design of real caches, since these functionalities use significant area\nOverheads: tag bits, valid bits, dirty bits, etc per cache line",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Memory Hierarchy & Caching</span>"
+    ]
+  },
+  {
+    "objectID": "memory.html#tracking-lru",
+    "href": "memory.html#tracking-lru",
+    "title": "7  Memory Hierarchy & Caching",
+    "section": "7.3 Tracking LRU",
+    "text": "7.3 Tracking LRU\nNaive Method:\n\nMaintain LRU_rank per cache line\nSet LRU_rank of newly accessed block to 0, increment all others by 1\nLine with highest LRU_rank is victim on eviction\nArea overhead: log(# cache lines) per cache line\nHowever this is extremely slow and inefficient for hardware since it requires linearly modifying every cache line\n\nLRU with least area overhead:\n\nWe know that the number of permutations for N cache lines is \\(n!\\)\n\nThus, we need \\(log(n!)\\) bits (in total) for N cache lines\n\n\n\n7.3.1 Pseudo LRU",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Memory Hierarchy & Caching</span>"
+    ]
+  },
+  {
+    "objectID": "memory.html#cache-blocks",
+    "href": "memory.html#cache-blocks",
+    "title": "7  Memory Hierarchy & Caching",
+    "section": "7.4 Cache Blocks",
+    "text": "7.4 Cache Blocks\nTo reduce overhead of each cache line, we could also increase cache block size\nMemory Address / Block Size = Tag (which is essentially a Block Address)\nBlock Offset = Address % Block Size\nBlock Size = \\(2^{block\\_offset}\\)\nsizeof(block_offset) = log2(block_size)\nTag size = address_size - block_offset_size\nHowever, larger block size isn’t always better due to (slower access since larger data needs to be fetched, and wasteful fetches exceeding spatial locality)\n\n7.4.1 Row vs Column Major\n\nRow major is more common. Column major used for more GPU and HPC tasks. Row/Col major is important due to spatial locality in memory going through 2D/3D arrays.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Memory Hierarchy & Caching</span>"
+    ]
+  },
+  {
+    "objectID": "memory.html#stores-write-through-vs-write-back",
+    "href": "memory.html#stores-write-through-vs-write-back",
+    "title": "7  Memory Hierarchy & Caching",
+    "section": "7.5 Stores: Write-Through vs Write-Back",
+    "text": "7.5 Stores: Write-Through vs Write-Back\n\nCache does not write all stores to memory immediately - Keep track of most recent updated copy and only update main memory when data is evicted from the cache - Keep a dirty bit that tracks whether a cache line has been modified and needs to writeback to memory - Such that we don’t need to write back other unmodified lines to memory on eviction",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Memory Hierarchy & Caching</span>"
+    ]
+  },
+  {
+    "objectID": "memory.html#cache-mapping",
+    "href": "memory.html#cache-mapping",
+    "title": "7  Memory Hierarchy & Caching",
+    "section": "7.6 Cache Mapping",
+    "text": "7.6 Cache Mapping\n\n\n7.6.1 Fully-Associative Cache\n\nA memory location can go to any free cache line\nCheck the tag of every cache line to determine match\n\nSlow due to parallel tag searches over entire cache\n\n\n\n\n\n7.6.2 Direct Mapped Cache\n\nDirectly map blocks of memory to one single location it can be held in\nPartition memory into as many regions as there are cache lines\nEach memory region maps to a single cache line in which data can be placed\nEliminates requirement for parallel tag lookups\n\nOnly need to check a single tag - the one associated with the region the reference is located in\n\nAssociativity is 1\n\n\n\n\n\n7.6.3 Set-Associative Cache\n\nPartition memory into regions but with fewer partitions than direct mapped\nAssociate a region to a set of cache lines\n\nCheck tags for all lines in a set to determine a HIT\n\nTreat each line in a set like a small fully associative cache\n\nLRU (or LRU-like policy generally used)\n\n\n\n\nWays are the blocks within a set\nEach cache line within a set is a way\n\nE.g. if a set is 2-way associative, it has 2 cache lines within a set\n\ni.e. it has to perform 2 tag comparisons per access\n\n\nSets are essentially the number of partitions you split your entire cache into smaller fully-associative “sub” caches\n\n\n\n\n7.6.4 Cache Associativity Summary",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Memory Hierarchy & Caching</span>"
+    ]
+  },
+  {
+    "objectID": "memory.html#cache-misses",
+    "href": "memory.html#cache-misses",
+    "title": "7  Memory Hierarchy & Caching",
+    "section": "7.7 Cache Misses",
+    "text": "7.7 Cache Misses\n\n\n\n\n7.7.1 Cache Parameters\nKey parameters affecting miss rate:\n\nCache Size\nBlock Size\nAssociativity\nReplacement Policy\n\n\n7.7.1.1 Cache Size\n\n\n\n7.7.1.2 Block / Line Size\n\n\n\n7.7.1.3 Associativity",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Memory Hierarchy & Caching</span>"
+    ]
+  },
+  {
+    "objectID": "memory.html#cache-summary",
+    "href": "memory.html#cache-summary",
+    "title": "7  Memory Hierarchy & Caching",
+    "section": "7.8 Cache Summary",
+    "text": "7.8 Cache Summary",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Memory Hierarchy & Caching</span>"
+    ]
+  },
+  {
+    "objectID": "memory.html#examples",
+    "href": "memory.html#examples",
+    "title": "7  Memory Hierarchy & Caching",
+    "section": "7.9 Examples",
+    "text": "7.9 Examples",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Memory Hierarchy & Caching</span>"
+    ]
+  },
+  {
+    "objectID": "virtualmem.html",
+    "href": "virtualmem.html",
+    "title": "8  Virtual Memory",
+    "section": "",
+    "text": "8.0.1 Page Faults\nProblems when running concurrent programs:\nVirtual Memory is introduced to provide a layer of indirection, letting each program think they have access to the entire address space, but is an illusion maintained by both the OS and the hardware\nVirtual addresses are used by loads and stores in a program\nPhysical addresses are used by the hardware to identify storage\nPrimary Capabilities provided:\nTo efficiently create a mapping between virtual and physical addresses, we map entire chunks of memory addresses, called pages\nPage Tables store this translation, and is managed by the OS and stored in memory.\nWhen main memory is exhausted, the disk is used as “extra” space. This space is called swap partition (in linux based systems)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Virtual Memory</span>"
+    ]
+  },
+  {
+    "objectID": "virtualmem.html#hierarchical-page-tables",
+    "href": "virtualmem.html#hierarchical-page-tables",
+    "title": "8  Virtual Memory",
+    "section": "8.1 Hierarchical Page Tables",
+    "text": "8.1 Hierarchical Page Tables\nto be done…",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Virtual Memory</span>"
+    ]
+  },
+  {
+    "objectID": "virtualmem.html#translation-look-aside-buffer-tlb",
+    "href": "virtualmem.html#translation-look-aside-buffer-tlb",
+    "title": "8  Virtual Memory",
+    "section": "8.2 Translation Look-Aside Buffer (TLB)",
+    "text": "8.2 Translation Look-Aside Buffer (TLB)\nA special cache for page-tables to speed up address translation (reduce main memory access to page tables)\nCommonly 16-512 entries and typically low miss rate (&lt;1%)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Virtual Memory</span>"
+    ]
+  },
+  {
+    "objectID": "virtualmem.html#virtually-addressed-caches",
+    "href": "virtualmem.html#virtually-addressed-caches",
+    "title": "8  Virtual Memory",
+    "section": "8.3 Virtually-Addressed Caches",
+    "text": "8.3 Virtually-Addressed Caches\nSee more in Computer Architecture notes",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Virtual Memory</span>"
+    ]
+  },
+  {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "2  Summary",
+    "title": "9  Summary",
     "section": "",
     "text": "In summary…",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Summary</span>"
     ]
   }
 ]

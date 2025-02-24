@@ -1,0 +1,54 @@
+# Instruction Set Architecture
+
+
+
+Instruction Set Architecture (ISA)
+
+- An abstract interface between the hardware and the lowest-level software that encompasses all the information necessary to write a machine language program that will run correctly, including instructions, registers, memory accesses, I/O, and so on
+- Includes anything programmers need to know to make a binary program work correctly
+- Defines interface between hardware and software
+
+its essentially a legal document that states the instructions, machine code that works on the hardware
+
+
+![](images/isa/computestack.png)
+
+
+## (Simplified) System Organization
+
+![](images/isa/sysoverview.png)
+
+
+![](images/isa/stack.png)
+
+- Von Neumann Architecture
+  - Data and instructions are stored in the same memory
+  - Programs (instructions) can be viewed as data - simplifies storage
+  - Data can be viewed as instructions - complicates computer security
+
+Stack - Grows down in memory
+Heap Data - dynamically allocated data, Grows up in memory
+Text - 
+Reserved
+
+## ISA Design Space
+
+1. What instructions to include?
+   1. add, mult, divide, branch, load/store, etc.
+2. What storage locations?
+   1. how many registers, how much memory, other "architected" storage?
+3. How should instructions be formatted?
+   1. 0, 1, 2, or more operands? Immediate operands?
+4. How to encode instructions?
+   1. CISC vs RISC
+5. What instructions can access memory?
+
+- RISC (Reduced Instruction Set Computer)
+  - All instructions are same length (eg ARM, LC2K) smaller set of simpler instructions
+  - the microarchitecture can be simple so we can pack more into them. Is simple, compact
+- CISC (Complex Instruction Set Computer)
+  - Instructions can vary in size (Digital Computer's VAX, x86) large set of simple and complex instructions
+
+- ARM: only loads and stores can access memory (called a **"load-store architecture"**)
+- Intel x86 is a "register-memory architecture", that is, other instructions beyond load/store can access memory
+

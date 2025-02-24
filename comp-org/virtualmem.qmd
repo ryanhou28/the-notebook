@@ -1,0 +1,62 @@
+# Virtual Memory
+
+Problems when running concurrent programs:
+
+- How do we divide memory between programs?
+- How do we isolate programs and prevent them from overwriting/accessing each others memory?
+- How do we handle the limited physical capacity of memory?
+
+**Virtual Memory** is introduced to provide a layer of indirection, letting each program think they have access to the entire address space, but is an illusion maintained by both the OS and the hardware
+
+- It is an **operating system functionality** that enables multiple concurrently running programs to share physical memory and swap disk space
+  - TLB (Translation Look-Aside Buffer) is a special cache that helps implement this efficiently
+
+**Virtual addresses** are used by loads and stores in a program
+
+**Physical addresses** are used by the hardware to identify storage
+
+Primary Capabilities provided:
+
+- Capacity
+  - An illusion of full address space capacity
+- Security
+  - Isolation
+    - Isolates programs from each other
+  - Permissions
+    - Manage access permissions to data/code
+
+To efficiently create a mapping between virtual and physical addresses, we map entire chunks of memory addresses, called **pages**
+
+**Page Tables** store this translation, and is managed by the OS and stored in memory.
+
+- Size of a virtual page = size of physical page
+
+![](images/virtualmem/vm-addr.png)
+
+![](images/virtualmem/addr-tran.png)
+
+![](images/virtualmem/pagetable1.png)
+
+### Page Faults
+
+When main memory is exhausted, the disk is used as "extra" space. This space is called **swap partition** (in linux based systems)
+
+![](images/virtualmem/pagefault.png)
+
+## Hierarchical Page Tables
+
+to be done...
+
+
+## Translation Look-Aside Buffer (TLB)
+
+A special cache for page-tables to speed up address translation (reduce main memory access to page tables)
+
+Commonly 16-512 entries and typically low miss rate (<1%)
+
+![](images/virtualmem/tlb-hw.png)
+
+## Virtually-Addressed Caches
+
+
+See more in Computer Architecture notes

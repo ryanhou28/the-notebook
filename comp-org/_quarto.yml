@@ -8,6 +8,13 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
+    - isa.qmd
+    - assembly.qmd
+    - linker.qmd
+    - float.qmd
+    - cpu.qmd
+    - memory.qmd
+    - virtualmem.qmd
     - summary.qmd
     - references.qmd
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – Empty Book Template</title>
+<title>2&nbsp; Instruction Set Architecture – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="prev">
+<link href="./assembly.html" rel="next">
+<link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -80,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./isa.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Instruction Set Architecture</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -119,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./isa.html" class="sidebar-item-text sidebar-link">
+  <a href="./isa.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Instruction Set Architecture</span></span></a>
   </div>
 </li>
@@ -167,7 +168,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -176,15 +177,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#simplified-system-organization" id="toc-simplified-system-organization" class="nav-link active" data-scroll-target="#simplified-system-organization"><span class="header-section-number">2.1</span> (Simplified) System Organization</a></li>
+  <li><a href="#isa-design-space" id="toc-isa-design-space" class="nav-link" data-scroll-target="#isa-design-space"><span class="header-section-number">2.2</span> ISA Design Space</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Instruction Set Architecture</span></h1>
 </div>
 
 
@@ -201,10 +209,65 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!-- ::: {#refs}
-::: -->
+<p>Instruction Set Architecture (ISA)</p>
+<ul>
+<li>An abstract interface between the hardware and the lowest-level software that encompasses all the information necessary to write a machine language program that will run correctly, including instructions, registers, memory accesses, I/O, and so on</li>
+<li>Includes anything programmers need to know to make a binary program work correctly</li>
+<li>Defines interface between hardware and software</li>
+</ul>
+<p>its essentially a legal document that states the instructions, machine code that works on the hardware</p>
+<p><img src="images/isa/computestack.png" class="img-fluid"></p>
+<section id="simplified-system-organization" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="simplified-system-organization"><span class="header-section-number">2.1</span> (Simplified) System Organization</h2>
+<p><img src="images/isa/sysoverview.png" class="img-fluid"></p>
+<p><img src="images/isa/stack.png" class="img-fluid"></p>
+<ul>
+<li>Von Neumann Architecture
+<ul>
+<li>Data and instructions are stored in the same memory</li>
+<li>Programs (instructions) can be viewed as data - simplifies storage</li>
+<li>Data can be viewed as instructions - complicates computer security</li>
+</ul></li>
+</ul>
+<p>Stack - Grows down in memory Heap Data - dynamically allocated data, Grows up in memory Text - Reserved</p>
+</section>
+<section id="isa-design-space" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="isa-design-space"><span class="header-section-number">2.2</span> ISA Design Space</h2>
+<ol type="1">
+<li>What instructions to include?
+<ol type="1">
+<li>add, mult, divide, branch, load/store, etc.</li>
+</ol></li>
+<li>What storage locations?
+<ol type="1">
+<li>how many registers, how much memory, other “architected” storage?</li>
+</ol></li>
+<li>How should instructions be formatted?
+<ol type="1">
+<li>0, 1, 2, or more operands? Immediate operands?</li>
+</ol></li>
+<li>How to encode instructions?
+<ol type="1">
+<li>CISC vs RISC</li>
+</ol></li>
+<li>What instructions can access memory?</li>
+</ol>
+<ul>
+<li>RISC (Reduced Instruction Set Computer)
+<ul>
+<li>All instructions are same length (eg ARM, LC2K) smaller set of simpler instructions</li>
+<li>the microarchitecture can be simple so we can pack more into them. Is simple, compact</li>
+</ul></li>
+<li>CISC (Complex Instruction Set Computer)
+<ul>
+<li>Instructions can vary in size (Digital Computer’s VAX, x86) large set of simple and complex instructions</li>
+</ul></li>
+<li>ARM: only loads and stores can access memory (called a <strong>“load-store architecture”</strong>)</li>
+<li>Intel x86 is a “register-memory architecture”, that is, other instructions beyond load/store can access memory</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -626,11 +689,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span>
+      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./assembly.html" class="pagination-link" aria-label="Assembly">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Assembly</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

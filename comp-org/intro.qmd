@@ -8,7 +8,19 @@
 **Term** is defined as blah blah blah...
 :::
 
-This note does ...
+## Eight Great Ideas
+
+Eight Great Ideas:
+
+- Design for Moore's Law
+- Use abstraction to simplify design
+- Make the common case fast
+- Performance via pipelining
+- Performance via prediction
+- Performance via parallelism
+- Hierarchy of memories
+- Dependability via redundancy
+
 
 ## High Level Ideas
 
