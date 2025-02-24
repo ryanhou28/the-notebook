@@ -1,3 +1,158 @@
 # Summary
 
 In summary...
+
+## Device: PN Junction and Diodes
+
+For a PN Junction:
+
+- Forward bias (voltage on P-side > N-side) shrinks depletion region - diode allows diffusion current - lowers Vt in a MOS
+- Reverse bias (voltage on N-side > P-side) expands depletion region - diode has minimal current - raises Vt in a MOS
+
+**Depletion Region**
+
+![](images/summary/pn-depletionregion.png)
+
+![](images/summary/pn-fb.png)
+
+![](images/summary/pn-rb.png)
+
+
+## Device: MOS
+
+![](images/summary/nmos.png)
+
+![](images/summary/pmos.png)
+
+**Threshold Voltage**
+
+![](images/summary/vth.png)
+
+- $V_{GS} < 0$
+  - Accumulation of holes
+- $0 < V_{GS} < V_T$
+  - Depletion: repel mobile holes
+  - Inversion: accumulation of electrons
+- $V_{GS} > V_T$
+  - Strong inversion: surface is as strongly n-type as the substrate is p-type
+
+**Body Effect**
+
+![](images/summary/bodyeffect.png)
+
+![](images/summary/linearnmos.png)
+
+![](images/summary/nmossat.png)
+
+![](images/summary/long-channel.png)
+
+![](images/summary/longchannelc-v.png)
+
+![](images/summary/model-analysis-simple.png)
+
+![](images/summary/shortchannel-cv.png)
+
+![](images/summary/velosat.png)
+
+![](images/summary/longshort-i-v.png)
+
+![](images/summary/longshort-iv2.png)
+
+![](images/summary/longshort-iv3.png)
+
+![](images/summary/unifiedmodel.png)
+
+![](images/summary/mos-model-regions.png)
+
+![](images/summary/pmos-iv.png)
+
+![](images/summary/transistor-switch.png)
+
+![](images/summary/transistor-switch2.png)
+
+### Capacitances and Nonidealities
+
+![](images/summary/paracap.png)
+
+![](images/summary/gateoverlapcap.png)
+
+![](images/summary/gatechan-cap.png)
+
+
+![](images/summary/gatecap.png)
+
+![](images/summary/junc-cap.png)
+
+**Summary of Capacitances**
+
+- Parasitic capacitance of MOS transistor
+  - \( C_{GS} \): overlap, gate-to-channel (linear, saturation/velocity sat)
+  - \( C_{GD} \): overlap, gate-to-channel (linear)
+  - \( C_{GB} \): gate-to-channel (cutoff)
+  - \( C_{SB} \): bottom plate, side wall
+  - \( C_{DB} \): bottom plate, side wall, reverse-bias effect
+
+
+![](images/summary/thresh-var.png)
+
+![](images/summary/sub-thresh-cond.png)
+
+![](images/summary/sub-thresh-iv.png)
+
+**Summary of Sub-threshold Conduction**
+
+- Exponential dependence on \( V_{GS} \)
+
+- **Slope factor**
+  - Higher slope factor \( \rightarrow \) subthreshold curve bends up, much higher current when \( V_{GS} = 0 \) (more leakage when switched off)
+  - Slope factor is a function of process parameter \( n \) and temperature \( T \)
+
+- **\( V_T \) effect**
+  - Lower \( V_T \) \( \rightarrow \) subthreshold curve shifts up, much higher current when \( V_{GS} = 0 \) (more leakage when switched off)
+  - \( V_T \) is a function of many parameters, in particular \( V_{SB} \) (body effect, reverse bias PN junction raises \( V_T \)) and \( V_{DS} \) (drain-induced barrier lowering, higher \( V_{DS} \) lowers \( V_T \))
+
+![](images/summary/para-resis.png)
+
+![](images/summary/circ-sim.png)
+
+![](images/summary/iv-char-nmos.png)
+
+
+## Device: MOS Fabrication
+
+
+## CMOS Inverter: Static Operation
+
+
+## CMOS Inverter: Dynamic Operation
+
+
+## CMOS Inverter: Sizing and Energy
+
+## CMOS Inverter: Scaling
+
+
+## Static CMOS Gates
+
+
+## Ratioed Logic
+
+## Pass Transistor Logic
+
+
+## Dynamic Logic
+
+## Interconnects
+
+
+## Latches and Registers
+
+
+
+## Memories
+
+
+## Memories: Peripherals
+
+## Memories: Flash, SRAM, DRAM
+

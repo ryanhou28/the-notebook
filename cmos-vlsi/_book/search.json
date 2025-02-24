@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "CMOS VLSI Notebook",
     "section": "",
-    "text": "Preface\nNotes on CMOS Integrated Circuits & VLSI.\n\n\nResources\nSome relevant resources:\n\nEECS 312 - University of Michigan\nEECS 427 - University of Michigan\nCMOS VLSI Design Web Supplements\n\nContains supplemental materials e.g. lecture slides, figures, solutions, code, etc\n\nDigital VLSI Chip Design with Cadence and Synopsys CAD Tools\n\nTextbooks:\n\nJ. Rabaey, A. Chandrakasan, and B. Nikolic. Digital Integrated Circuits A Design Perspective, Edition: 2. Alexandria, VA: Prentice Hall, 2003\nCMOS VLSI Design: A Circuits and Systems Perspective 4th Edition",
+    "text": "Preface\nNotes on CMOS Integrated Circuits & VLSI.\n\n\nResources\nSome relevant resources:\n\nEECS 312 - University of Michigan\nEECS 427 - University of Michigan\nCMOS VLSI Design Web Supplements\n\nContains supplemental materials e.g. lecture slides, figures, solutions, code, etc\n\nDigital VLSI Chip Design with Cadence and Synopsys CAD Tools\nVLSI Universe\n\nTextbooks:\n\nJ. Rabaey, A. Chandrakasan, and B. Nikolic. Digital Integrated Circuits A Design Perspective, Edition: 2. Alexandria, VA: Prentice Hall, 2003\nCMOS VLSI Design: A Circuits and Systems Perspective 4th Edition",
     "crumbs": [
       "Preface"
     ]
@@ -354,7 +354,167 @@
     "href": "summary.html",
     "title": "20  Summary",
     "section": "",
-    "text": "In summary…",
+    "text": "20.1 Device: PN Junction and Diodes\nIn summary…\nFor a PN Junction:\nDepletion Region",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#device-pn-junction-and-diodes",
+    "href": "summary.html#device-pn-junction-and-diodes",
+    "title": "20  Summary",
+    "section": "",
+    "text": "Forward bias (voltage on P-side &gt; N-side) shrinks depletion region - diode allows diffusion current - lowers Vt in a MOS\nReverse bias (voltage on N-side &gt; P-side) expands depletion region - diode has minimal current - raises Vt in a MOS",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#device-mos",
+    "href": "summary.html#device-mos",
+    "title": "20  Summary",
+    "section": "20.2 Device: MOS",
+    "text": "20.2 Device: MOS\n\n\nThreshold Voltage\n\n\n\\(V_{GS} &lt; 0\\)\n\nAccumulation of holes\n\n\\(0 &lt; V_{GS} &lt; V_T\\)\n\nDepletion: repel mobile holes\nInversion: accumulation of electrons\n\n\\(V_{GS} &gt; V_T\\)\n\nStrong inversion: surface is as strongly n-type as the substrate is p-type\n\n\nBody Effect\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n20.2.1 Capacitances and Nonidealities\n\n\n\n\n\nSummary of Capacitances\n\nParasitic capacitance of MOS transistor\n\n( C_{GS} ): overlap, gate-to-channel (linear, saturation/velocity sat)\n( C_{GD} ): overlap, gate-to-channel (linear)\n( C_{GB} ): gate-to-channel (cutoff)\n( C_{SB} ): bottom plate, side wall\n( C_{DB} ): bottom plate, side wall, reverse-bias effect\n\n\n\n\n\nSummary of Sub-threshold Conduction\n\nExponential dependence on ( V_{GS} )\nSlope factor\n\nHigher slope factor ( ) subthreshold curve bends up, much higher current when ( V_{GS} = 0 ) (more leakage when switched off)\nSlope factor is a function of process parameter ( n ) and temperature ( T )\n\n( V_T ) effect\n\nLower ( V_T ) ( ) subthreshold curve shifts up, much higher current when ( V_{GS} = 0 ) (more leakage when switched off)\n( V_T ) is a function of many parameters, in particular ( V_{SB} ) (body effect, reverse bias PN junction raises ( V_T )) and ( V_{DS} ) (drain-induced barrier lowering, higher ( V_{DS} ) lowers ( V_T ))",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#device-mos-fabrication",
+    "href": "summary.html#device-mos-fabrication",
+    "title": "20  Summary",
+    "section": "20.3 Device: MOS Fabrication",
+    "text": "20.3 Device: MOS Fabrication",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#cmos-inverter-static-operation",
+    "href": "summary.html#cmos-inverter-static-operation",
+    "title": "20  Summary",
+    "section": "20.4 CMOS Inverter: Static Operation",
+    "text": "20.4 CMOS Inverter: Static Operation",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#cmos-inverter-dynamic-operation",
+    "href": "summary.html#cmos-inverter-dynamic-operation",
+    "title": "20  Summary",
+    "section": "20.5 CMOS Inverter: Dynamic Operation",
+    "text": "20.5 CMOS Inverter: Dynamic Operation",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#cmos-inverter-sizing-and-energy",
+    "href": "summary.html#cmos-inverter-sizing-and-energy",
+    "title": "20  Summary",
+    "section": "20.6 CMOS Inverter: Sizing and Energy",
+    "text": "20.6 CMOS Inverter: Sizing and Energy",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#cmos-inverter-scaling",
+    "href": "summary.html#cmos-inverter-scaling",
+    "title": "20  Summary",
+    "section": "20.7 CMOS Inverter: Scaling",
+    "text": "20.7 CMOS Inverter: Scaling",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#static-cmos-gates",
+    "href": "summary.html#static-cmos-gates",
+    "title": "20  Summary",
+    "section": "20.8 Static CMOS Gates",
+    "text": "20.8 Static CMOS Gates",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#ratioed-logic",
+    "href": "summary.html#ratioed-logic",
+    "title": "20  Summary",
+    "section": "20.9 Ratioed Logic",
+    "text": "20.9 Ratioed Logic",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#pass-transistor-logic",
+    "href": "summary.html#pass-transistor-logic",
+    "title": "20  Summary",
+    "section": "20.10 Pass Transistor Logic",
+    "text": "20.10 Pass Transistor Logic",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#dynamic-logic",
+    "href": "summary.html#dynamic-logic",
+    "title": "20  Summary",
+    "section": "20.11 Dynamic Logic",
+    "text": "20.11 Dynamic Logic",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#interconnects",
+    "href": "summary.html#interconnects",
+    "title": "20  Summary",
+    "section": "20.12 Interconnects",
+    "text": "20.12 Interconnects",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#latches-and-registers",
+    "href": "summary.html#latches-and-registers",
+    "title": "20  Summary",
+    "section": "20.13 Latches and Registers",
+    "text": "20.13 Latches and Registers",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#memories",
+    "href": "summary.html#memories",
+    "title": "20  Summary",
+    "section": "20.14 Memories",
+    "text": "20.14 Memories",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#memories-peripherals",
+    "href": "summary.html#memories-peripherals",
+    "title": "20  Summary",
+    "section": "20.15 Memories: Peripherals",
+    "text": "20.15 Memories: Peripherals",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#memories-flash-sram-dram",
+    "href": "summary.html#memories-flash-sram-dram",
+    "title": "20  Summary",
+    "section": "20.16 Memories: Flash, SRAM, DRAM",
+    "text": "20.16 Memories: Flash, SRAM, DRAM",
     "crumbs": [
       "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
     ]
@@ -374,7 +534,7 @@
     "href": "interview.html#problems",
     "title": "21  Interview & Problems",
     "section": "21.2 Problems",
-    "text": "21.2 Problems\nCommon interview problems:\n\n21.2.1 CMOS\n\n\n21.2.2 Logic Design",
+    "text": "21.2 Problems\nCommon interview problems:\n\n21.2.1 CMOS\n\n\n21.2.2 Logic Design\n\n\n21.2.3 Power\nQ: Dynamic power dominates but why has static power consumption become increasingly important to deal with?\n\nLarge transistor count - small leakage quickly get big when multiplied by billions of transistors\nTechnology scaling - end of Dennard Scaling\n\nDennard Scaling suggested that power density remained constant at smaller transistor sizes - however the scaling has broken down at modern nodes\n\nScaling suggested VDD and VTh scales proportionally with feature size\n\nVDD stopped scaling due to reliability\nVTh stopped scaling as pushing it further down increases leakage\n\nIncreased leakage currents\n\nSubthreshold leakage - small threshold voltage leads to faster switching, but increases the leakage current even when transistor is OFF\nGate leakage - thin gate oxides in modern nodes lead to tunneling currents through the gate\nJunction leakage - small junction depths increase leakage at source/drain junctions\n\n\nQ: How to reduce dynamic power?\nQ: How to reduce static power?\nQ: What caused the end of Dennard Scaling?\n\nVDD stopped scaling due to reliability\nVTh stopped scaling as pushing it further down increases leakage\n\n\n\n21.2.4 List of Questions - To be categorized…",
     "crumbs": [
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Interview & Problems</span>"
     ]

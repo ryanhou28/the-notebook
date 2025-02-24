@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -249,8 +278,32 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#device-pn-junction-and-diodes" id="toc-device-pn-junction-and-diodes" class="nav-link active" data-scroll-target="#device-pn-junction-and-diodes"><span class="header-section-number">20.1</span> Device: PN Junction and Diodes</a></li>
+  <li><a href="#device-mos" id="toc-device-mos" class="nav-link" data-scroll-target="#device-mos"><span class="header-section-number">20.2</span> Device: MOS</a>
+  <ul class="collapse">
+  <li><a href="#capacitances-and-nonidealities" id="toc-capacitances-and-nonidealities" class="nav-link" data-scroll-target="#capacitances-and-nonidealities"><span class="header-section-number">20.2.1</span> Capacitances and Nonidealities</a></li>
+  </ul></li>
+  <li><a href="#device-mos-fabrication" id="toc-device-mos-fabrication" class="nav-link" data-scroll-target="#device-mos-fabrication"><span class="header-section-number">20.3</span> Device: MOS Fabrication</a></li>
+  <li><a href="#cmos-inverter-static-operation" id="toc-cmos-inverter-static-operation" class="nav-link" data-scroll-target="#cmos-inverter-static-operation"><span class="header-section-number">20.4</span> CMOS Inverter: Static Operation</a></li>
+  <li><a href="#cmos-inverter-dynamic-operation" id="toc-cmos-inverter-dynamic-operation" class="nav-link" data-scroll-target="#cmos-inverter-dynamic-operation"><span class="header-section-number">20.5</span> CMOS Inverter: Dynamic Operation</a></li>
+  <li><a href="#cmos-inverter-sizing-and-energy" id="toc-cmos-inverter-sizing-and-energy" class="nav-link" data-scroll-target="#cmos-inverter-sizing-and-energy"><span class="header-section-number">20.6</span> CMOS Inverter: Sizing and Energy</a></li>
+  <li><a href="#cmos-inverter-scaling" id="toc-cmos-inverter-scaling" class="nav-link" data-scroll-target="#cmos-inverter-scaling"><span class="header-section-number">20.7</span> CMOS Inverter: Scaling</a></li>
+  <li><a href="#static-cmos-gates" id="toc-static-cmos-gates" class="nav-link" data-scroll-target="#static-cmos-gates"><span class="header-section-number">20.8</span> Static CMOS Gates</a></li>
+  <li><a href="#ratioed-logic" id="toc-ratioed-logic" class="nav-link" data-scroll-target="#ratioed-logic"><span class="header-section-number">20.9</span> Ratioed Logic</a></li>
+  <li><a href="#pass-transistor-logic" id="toc-pass-transistor-logic" class="nav-link" data-scroll-target="#pass-transistor-logic"><span class="header-section-number">20.10</span> Pass Transistor Logic</a></li>
+  <li><a href="#dynamic-logic" id="toc-dynamic-logic" class="nav-link" data-scroll-target="#dynamic-logic"><span class="header-section-number">20.11</span> Dynamic Logic</a></li>
+  <li><a href="#interconnects" id="toc-interconnects" class="nav-link" data-scroll-target="#interconnects"><span class="header-section-number">20.12</span> Interconnects</a></li>
+  <li><a href="#latches-and-registers" id="toc-latches-and-registers" class="nav-link" data-scroll-target="#latches-and-registers"><span class="header-section-number">20.13</span> Latches and Registers</a></li>
+  <li><a href="#memories" id="toc-memories" class="nav-link" data-scroll-target="#memories"><span class="header-section-number">20.14</span> Memories</a></li>
+  <li><a href="#memories-peripherals" id="toc-memories-peripherals" class="nav-link" data-scroll-target="#memories-peripherals"><span class="header-section-number">20.15</span> Memories: Peripherals</a></li>
+  <li><a href="#memories-flash-sram-dram" id="toc-memories-flash-sram-dram" class="nav-link" data-scroll-target="#memories-flash-sram-dram"><span class="header-section-number">20.16</span> Memories: Flash, SRAM, DRAM</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -275,8 +328,140 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>In summary…</p>
+<section id="device-pn-junction-and-diodes" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="device-pn-junction-and-diodes"><span class="header-section-number">20.1</span> Device: PN Junction and Diodes</h2>
+<p>For a PN Junction:</p>
+<ul>
+<li>Forward bias (voltage on P-side &gt; N-side) shrinks depletion region - diode allows diffusion current - lowers Vt in a MOS</li>
+<li>Reverse bias (voltage on N-side &gt; P-side) expands depletion region - diode has minimal current - raises Vt in a MOS</li>
+</ul>
+<p><strong>Depletion Region</strong></p>
+<p><img src="images/summary/pn-depletionregion.png" class="img-fluid"></p>
+<p><img src="images/summary/pn-fb.png" class="img-fluid"></p>
+<p><img src="images/summary/pn-rb.png" class="img-fluid"></p>
+</section>
+<section id="device-mos" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="device-mos"><span class="header-section-number">20.2</span> Device: MOS</h2>
+<p><img src="images/summary/nmos.png" class="img-fluid"></p>
+<p><img src="images/summary/pmos.png" class="img-fluid"></p>
+<p><strong>Threshold Voltage</strong></p>
+<p><img src="images/summary/vth.png" class="img-fluid"></p>
+<ul>
+<li><span class="math inline">\(V_{GS} &lt; 0\)</span>
+<ul>
+<li>Accumulation of holes</li>
+</ul></li>
+<li><span class="math inline">\(0 &lt; V_{GS} &lt; V_T\)</span>
+<ul>
+<li>Depletion: repel mobile holes</li>
+<li>Inversion: accumulation of electrons</li>
+</ul></li>
+<li><span class="math inline">\(V_{GS} &gt; V_T\)</span>
+<ul>
+<li>Strong inversion: surface is as strongly n-type as the substrate is p-type</li>
+</ul></li>
+</ul>
+<p><strong>Body Effect</strong></p>
+<p><img src="images/summary/bodyeffect.png" class="img-fluid"></p>
+<p><img src="images/summary/linearnmos.png" class="img-fluid"></p>
+<p><img src="images/summary/nmossat.png" class="img-fluid"></p>
+<p><img src="images/summary/long-channel.png" class="img-fluid"></p>
+<p><img src="images/summary/longchannelc-v.png" class="img-fluid"></p>
+<p><img src="images/summary/model-analysis-simple.png" class="img-fluid"></p>
+<p><img src="images/summary/shortchannel-cv.png" class="img-fluid"></p>
+<p><img src="images/summary/velosat.png" class="img-fluid"></p>
+<p><img src="images/summary/longshort-i-v.png" class="img-fluid"></p>
+<p><img src="images/summary/longshort-iv2.png" class="img-fluid"></p>
+<p><img src="images/summary/longshort-iv3.png" class="img-fluid"></p>
+<p><img src="images/summary/unifiedmodel.png" class="img-fluid"></p>
+<p><img src="images/summary/mos-model-regions.png" class="img-fluid"></p>
+<p><img src="images/summary/pmos-iv.png" class="img-fluid"></p>
+<p><img src="images/summary/transistor-switch.png" class="img-fluid"></p>
+<p><img src="images/summary/transistor-switch2.png" class="img-fluid"></p>
+<section id="capacitances-and-nonidealities" class="level3" data-number="20.2.1">
+<h3 data-number="20.2.1" class="anchored" data-anchor-id="capacitances-and-nonidealities"><span class="header-section-number">20.2.1</span> Capacitances and Nonidealities</h3>
+<p><img src="images/summary/paracap.png" class="img-fluid"></p>
+<p><img src="images/summary/gateoverlapcap.png" class="img-fluid"></p>
+<p><img src="images/summary/gatechan-cap.png" class="img-fluid"></p>
+<p><img src="images/summary/gatecap.png" class="img-fluid"></p>
+<p><img src="images/summary/junc-cap.png" class="img-fluid"></p>
+<p><strong>Summary of Capacitances</strong></p>
+<ul>
+<li>Parasitic capacitance of MOS transistor
+<ul>
+<li>( C_{GS} ): overlap, gate-to-channel (linear, saturation/velocity sat)</li>
+<li>( C_{GD} ): overlap, gate-to-channel (linear)</li>
+<li>( C_{GB} ): gate-to-channel (cutoff)</li>
+<li>( C_{SB} ): bottom plate, side wall</li>
+<li>( C_{DB} ): bottom plate, side wall, reverse-bias effect</li>
+</ul></li>
+</ul>
+<p><img src="images/summary/thresh-var.png" class="img-fluid"></p>
+<p><img src="images/summary/sub-thresh-cond.png" class="img-fluid"></p>
+<p><img src="images/summary/sub-thresh-iv.png" class="img-fluid"></p>
+<p><strong>Summary of Sub-threshold Conduction</strong></p>
+<ul>
+<li><p>Exponential dependence on ( V_{GS} )</p></li>
+<li><p><strong>Slope factor</strong></p>
+<ul>
+<li>Higher slope factor ( ) subthreshold curve bends up, much higher current when ( V_{GS} = 0 ) (more leakage when switched off)</li>
+<li>Slope factor is a function of process parameter ( n ) and temperature ( T )</li>
+</ul></li>
+<li><p><strong>( V_T ) effect</strong></p>
+<ul>
+<li>Lower ( V_T ) ( ) subthreshold curve shifts up, much higher current when ( V_{GS} = 0 ) (more leakage when switched off)</li>
+<li>( V_T ) is a function of many parameters, in particular ( V_{SB} ) (body effect, reverse bias PN junction raises ( V_T )) and ( V_{DS} ) (drain-induced barrier lowering, higher ( V_{DS} ) lowers ( V_T ))</li>
+</ul></li>
+</ul>
+<p><img src="images/summary/para-resis.png" class="img-fluid"></p>
+<p><img src="images/summary/circ-sim.png" class="img-fluid"></p>
+<p><img src="images/summary/iv-char-nmos.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="device-mos-fabrication" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="device-mos-fabrication"><span class="header-section-number">20.3</span> Device: MOS Fabrication</h2>
+</section>
+<section id="cmos-inverter-static-operation" class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="cmos-inverter-static-operation"><span class="header-section-number">20.4</span> CMOS Inverter: Static Operation</h2>
+</section>
+<section id="cmos-inverter-dynamic-operation" class="level2" data-number="20.5">
+<h2 data-number="20.5" class="anchored" data-anchor-id="cmos-inverter-dynamic-operation"><span class="header-section-number">20.5</span> CMOS Inverter: Dynamic Operation</h2>
+</section>
+<section id="cmos-inverter-sizing-and-energy" class="level2" data-number="20.6">
+<h2 data-number="20.6" class="anchored" data-anchor-id="cmos-inverter-sizing-and-energy"><span class="header-section-number">20.6</span> CMOS Inverter: Sizing and Energy</h2>
+</section>
+<section id="cmos-inverter-scaling" class="level2" data-number="20.7">
+<h2 data-number="20.7" class="anchored" data-anchor-id="cmos-inverter-scaling"><span class="header-section-number">20.7</span> CMOS Inverter: Scaling</h2>
+</section>
+<section id="static-cmos-gates" class="level2" data-number="20.8">
+<h2 data-number="20.8" class="anchored" data-anchor-id="static-cmos-gates"><span class="header-section-number">20.8</span> Static CMOS Gates</h2>
+</section>
+<section id="ratioed-logic" class="level2" data-number="20.9">
+<h2 data-number="20.9" class="anchored" data-anchor-id="ratioed-logic"><span class="header-section-number">20.9</span> Ratioed Logic</h2>
+</section>
+<section id="pass-transistor-logic" class="level2" data-number="20.10">
+<h2 data-number="20.10" class="anchored" data-anchor-id="pass-transistor-logic"><span class="header-section-number">20.10</span> Pass Transistor Logic</h2>
+</section>
+<section id="dynamic-logic" class="level2" data-number="20.11">
+<h2 data-number="20.11" class="anchored" data-anchor-id="dynamic-logic"><span class="header-section-number">20.11</span> Dynamic Logic</h2>
+</section>
+<section id="interconnects" class="level2" data-number="20.12">
+<h2 data-number="20.12" class="anchored" data-anchor-id="interconnects"><span class="header-section-number">20.12</span> Interconnects</h2>
+</section>
+<section id="latches-and-registers" class="level2" data-number="20.13">
+<h2 data-number="20.13" class="anchored" data-anchor-id="latches-and-registers"><span class="header-section-number">20.13</span> Latches and Registers</h2>
+</section>
+<section id="memories" class="level2" data-number="20.14">
+<h2 data-number="20.14" class="anchored" data-anchor-id="memories"><span class="header-section-number">20.14</span> Memories</h2>
+</section>
+<section id="memories-peripherals" class="level2" data-number="20.15">
+<h2 data-number="20.15" class="anchored" data-anchor-id="memories-peripherals"><span class="header-section-number">20.15</span> Memories: Peripherals</h2>
+</section>
+<section id="memories-flash-sram-dram" class="level2" data-number="20.16">
+<h2 data-number="20.16" class="anchored" data-anchor-id="memories-flash-sram-dram"><span class="header-section-number">20.16</span> Memories: Flash, SRAM, DRAM</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
