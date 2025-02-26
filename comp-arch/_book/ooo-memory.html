@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ooo-memory – Empty Book Template</title>
+<title>6&nbsp; Memory Disambiguation – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ooo-memory.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ooo-memory.html</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ooo-memory.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory Disambiguation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -133,37 +133,37 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ooo-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ooo-basics.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Out-of-Order - Dynamic Scheduling, Tomasulo</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p6r10k.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">p6r10k.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Out-of-Order - Speculation, Precise Interrupts, Superscalar</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ooo-memory.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ooo-memory.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory Disambiguation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./branch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">branch.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instruction Flow</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cache.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">cache.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Caches</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prefetch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">prefetch.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Prefetching</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -207,15 +207,301 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#strategies-to-handle-loads" id="toc-strategies-to-handle-loads" class="nav-link active" data-scroll-target="#strategies-to-handle-loads"><span class="header-section-number">6.1</span> Strategies to handle Loads</a></li>
+  <li><a href="#simple-data-memory-fu-d-cachetlb-store-queue" id="toc-simple-data-memory-fu-d-cachetlb-store-queue" class="nav-link" data-scroll-target="#simple-data-memory-fu-d-cachetlb-store-queue"><span class="header-section-number">6.2</span> Simple Data Memory FU: D-Cache/TLB + Store Queue</a>
+  <ul class="collapse">
+  <li><a href="#pipeline" id="toc-pipeline" class="nav-link" data-scroll-target="#pipeline"><span class="header-section-number">6.2.1</span> Pipeline</a></li>
+  </ul></li>
+  <li><a href="#conservative-load-scheduling" id="toc-conservative-load-scheduling" class="nav-link" data-scroll-target="#conservative-load-scheduling"><span class="header-section-number">6.3</span> Conservative Load Scheduling</a></li>
+  <li><a href="#speculative-store-to-load-forwarding" id="toc-speculative-store-to-load-forwarding" class="nav-link" data-scroll-target="#speculative-store-to-load-forwarding"><span class="header-section-number">6.4</span> Speculative Store-to-Load Forwarding</a></li>
+  <li><a href="#load-queue" id="toc-load-queue" class="nav-link" data-scroll-target="#load-queue"><span class="header-section-number">6.5</span> Load Queue</a>
+  <ul class="collapse">
+  <li><a href="#advanced-memory-pipeline-lq-only" id="toc-advanced-memory-pipeline-lq-only" class="nav-link" data-scroll-target="#advanced-memory-pipeline-lq-only"><span class="header-section-number">6.5.1</span> Advanced Memory ““Pipeline (LQ Only)</a></li>
+  </ul></li>
+  <li><a href="#lsq-implementation" id="toc-lsq-implementation" class="nav-link" data-scroll-target="#lsq-implementation"><span class="header-section-number">6.6</span> LSQ Implementation</a>
+  <ul class="collapse">
+  <li><a href="#unified-load-store-queue" id="toc-unified-load-store-queue" class="nav-link" data-scroll-target="#unified-load-store-queue"><span class="header-section-number">6.6.1</span> Unified Load Store Queue</a></li>
+  <li><a href="#split-queues" id="toc-split-queues" class="nav-link" data-scroll-target="#split-queues"><span class="header-section-number">6.6.2</span> Split Queues</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.6.3</span> Summary</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory Disambiguation</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<p>Why are OoO memory instructions harder to deal with:</p>
+<ul>
+<li>Addresses have to be calculated (which happens OoO)</li>
+<li>A lot more memory locations than registers (thus can’t employ renaming technique)</li>
+<li>Load instructions can depend both on register instructions and older stores</li>
+<li>To sum: memory addresses are <strong>ambiguous</strong> during execution</li>
+</ul>
+<p><strong>Dynamic Reordering of Memory Operations</strong></p>
+<ul>
+<li>Storing to memory is irrevocable -&gt; hold stores until retire (at ROB head)</li>
+<li>Allow OoO loads that don’t have RAW dependence</li>
+</ul>
+<section id="strategies-to-handle-loads" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="strategies-to-handle-loads"><span class="header-section-number">6.1</span> Strategies to handle Loads</h2>
+<ol type="1">
+<li>Allow only one load or store in the OoO core at the same time
+<ol type="1">
+<li>Stall other operations at dispatch</li>
+<li>Very slow!</li>
+</ol></li>
+<li>Load may only issue when all older stores have finished
+<ol type="1">
+<li>This guarantees we read the most up to date value on loads</li>
+<li>Requires new queue to hold memory ops: <strong>Load-Store Queue</strong>
+<ol type="1">
+<li>Basically a ROB for mem. ops</li>
+</ol></li>
+</ol></li>
+<li>Store-to-load Forwarding
+<ol type="1">
+<li>Monitor the addresses calculated by loads and stores</li>
+<li>If there’s an alias in address between load and earlier stores, forward the value from within the LSQ without going to memory</li>
+<li>If no aliases, issue load to memory earlier</li>
+</ol></li>
+<li>Speculative Store-to-load Forwarding
+<ol type="1">
+<li>Idea: Most store’s and loads don’t alias</li>
+<li>If addresses aren’t known yet, speculate that there ISNT an alias for given load and issue it to memory now</li>
+<li>If we were wrong, squash instructions and rewind</li>
+</ol></li>
+</ol>
+<p><img src="images/ooo-memory/lsq-diagram.png" class="img-fluid"></p>
+</section>
+<section id="simple-data-memory-fu-d-cachetlb-store-queue" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="simple-data-memory-fu-d-cachetlb-store-queue"><span class="header-section-number">6.2</span> Simple Data Memory FU: D-Cache/TLB + Store Queue</h2>
+<p><img src="images/ooo-memory/simple-dm-fu.png" class="img-fluid"></p>
+<ul>
+<li>Dispatch things in program order into the FU</li>
+<li>Stores go in the store queue, storing all in-flight stores</li>
+<li>Have associatively searchable addresses in the store queue</li>
+</ul>
+<section id="pipeline" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="pipeline"><span class="header-section-number">6.2.1</span> Pipeline</h3>
+<p><strong>Stores</strong></p>
+<ul>
+<li>Dispatch
+<ul>
+<li>Allocate an entry on the SQ tail</li>
+</ul></li>
+<li>Execute
+<ul>
+<li>Write address and data are fed into corresponding SQ slot</li>
+</ul></li>
+<li>Retire
+<ul>
+<li>Write address/data from SQ head to the D-cache and free SQ head</li>
+</ul></li>
+</ul>
+<p><strong>Loads</strong></p>
+<ul>
+<li>Dispatch
+<ul>
+<li>Record current SQ tail as load position</li>
+</ul></li>
+<li>Execute
+<ul>
+<li>Multiple approaches towards how loads execute…</li>
+</ul></li>
+</ul>
+<p><img src="images/ooo-memory/ooo-load-exec.png" class="img-fluid"></p>
+<ul>
+<li>On a load, while we do a D-cache access:
+<ul>
+<li>We search for this address alias in the SQ</li>
+<li>Forward the youngest store older than the load</li>
+</ul></li>
+<li>However, an older store’s address might not have ben resolved yet
+<ul>
+<li>Thus there are different policies for scheduling loads</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="conservative-load-scheduling" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="conservative-load-scheduling"><span class="header-section-number">6.3</span> Conservative Load Scheduling</h2>
+<ul>
+<li>Loads can execute out-of-order w.r.t. other loads</li>
+<li><strong>Loads must execute in-order w.r.t. older stores</strong>
+<ul>
+<li>I.e. Load execution requires that addresses of all older stores are known</li>
+</ul></li>
+<li>However this conservative scheme restricts performance</li>
+</ul>
+</section>
+<section id="speculative-store-to-load-forwarding" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="speculative-store-to-load-forwarding"><span class="header-section-number">6.4</span> Speculative Store-to-Load Forwarding</h2>
+<ul>
+<li>If addresses aren’t known yet, speculate that there is no store-load alias and issue the load to memory now</li>
+<li>If it is wrong, squash instruction and rewind</li>
+<li>This adds a need for a load queue to track all load addresses that are in-flight
+<ul>
+<li>Need it to detct mis-speculation and recover</li>
+<li>Need to re-execute the previous loads and all dependent instructions</li>
+</ul></li>
+</ul>
+</section>
+<section id="load-queue" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="load-queue"><span class="header-section-number">6.5</span> Load Queue</h2>
+<p><img src="images/ooo-memory/lq-sq-.png" class="img-fluid"></p>
+<section id="advanced-memory-pipeline-lq-only" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="advanced-memory-pipeline-lq-only"><span class="header-section-number">6.5.1</span> Advanced Memory ““Pipeline (LQ Only)</h3>
+<p><strong>Loads</strong></p>
+<ul>
+<li>Dispatch
+<ul>
+<li>In program order</li>
+<li>Allocate entry at LQ tail</li>
+</ul></li>
+<li>Execute
+<ul>
+<li>Write address into corresponding LQ slot</li>
+</ul></li>
+</ul>
+<p><strong>Stores</strong></p>
+<ul>
+<li>Dispatch
+<ul>
+<li>Record current LQ tail as “store position”
+<ul>
+<li>To help with tracking and resolving store-load dependencies</li>
+<li>If a later load accesses an address this store will write to, this position allows FU to determine conflict and squash</li>
+</ul></li>
+</ul></li>
+<li>Execute
+<ul>
+<li>When addr of store is resolved, send address to LQ</li>
+<li>LQ checks with all loads
+<ul>
+<li>Find matching addr. AND oldest load younger than the store
+<ul>
+<li>This would be the load after the store in program order, speculatively executed so it needs fixing</li>
+<li>Squash and flush processor from this point and restart</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="images/ooo-memory/det-mem-ord.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="lsq-implementation" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="lsq-implementation"><span class="header-section-number">6.6</span> LSQ Implementation</h2>
+<p>Two basic choices of implementation:</p>
+<ol type="1">
+<li><strong>Unified LSQ</strong>
+<ol type="1">
+<li>Simpler conceptually</li>
+<li>More expensive hardware</li>
+<li>Limited in size
+<ol type="1">
+<li>Due to scalability of unifying them</li>
+</ol></li>
+</ol></li>
+<li><strong>Split LSQ</strong>
+<ol type="1">
+<li>More complex logic</li>
+<li>Cheaper hardware</li>
+<li>Can be made larger</li>
+</ol></li>
+</ol>
+<section id="unified-load-store-queue" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="unified-load-store-queue"><span class="header-section-number">6.6.1</span> Unified Load Store Queue</h3>
+<p><img src="images/ooo-memory/unified-lsq.png" class="img-fluid"></p>
+<ul>
+<li>Entries contain load or stores</li>
+<li>The comparator matrix (equality checks) doesn’t scale well
+<ul>
+<li>Matrix checks for address matches and relative ages</li>
+</ul></li>
+<li>Entries deallocated on retirement</li>
+</ul>
+</section>
+<section id="split-queues" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="split-queues"><span class="header-section-number">6.6.2</span> Split Queues</h3>
+<p>1 load queue, 1 store queue</p>
+<ul>
+<li>D$/TLB + structures to handle in-flight loads/stores</li>
+<li>Performs Four Functions:
+<ul>
+<li><strong>in-order store retirement</strong>
+<ul>
+<li>Write stores to D-Cache in program order</li>
+<li>Basic, implemented by SQ</li>
+</ul></li>
+<li><strong>Store-load Forwarding</strong>
+<ul>
+<li>Allows loads to read values from older un-retired stores</li>
+<li>Also basic, implmented by SQ</li>
+</ul></li>
+<li><strong>Memory Ordering Violation Detection</strong>
+<ul>
+<li>Checks load speculation</li>
+<li>Advanced, implemented by LQ</li>
+</ul></li>
+</ul></li>
+<li>A lot more scalable!</li>
+</ul>
+</section>
+<section id="summary" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored"><span class="header-section-number">6.6.3</span> Summary</h3>
+<ul>
+<li><p>Unified:</p>
+<ul>
+<li><ul>
+<li>Conceptually simple</li>
+</ul></li>
+<li>Any entry could be either load or store, so need NxN comparators…expensive in hardware and difficult to scale</li>
+</ul></li>
+<li><p>Split:</p>
+<ul>
+<li><ul>
+<li>Loads and stores are partitioned, only need to compare load addresses with store queue entries … less overhead and more scalable</li>
+</ul></li>
+<li><ul>
+<li>Harder (conceptually) to implement age logic</li>
+</ul></li>
+</ul>
+<h2 id="summary-1" data-number="6.7" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.7</span> Summary</h2>
+<p>OoO memory operations</p>
+<ul>
+<li>Store queue: conservative load scheduling (iO w.r.t. older stores)</li>
+<li>Load queue: opportunistic load scheduling (OoO w.r.t. older stores)</li>
+<li>Intelligent memory scheduling: hybrid</li>
+</ul></li>
+</ul>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -637,13 +923,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./p6r10k.html" class="pagination-link" aria-label="p6r10k.html">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">p6r10k.html</span></span>
+      <a href="./p6r10k.html" class="pagination-link" aria-label="Out-of-Order - Speculation, Precise Interrupts, Superscalar">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Out-of-Order - Speculation, Precise Interrupts, Superscalar</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./branch.html" class="pagination-link" aria-label="branch.html">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">branch.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./branch.html" class="pagination-link" aria-label="Instruction Flow">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instruction Flow</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

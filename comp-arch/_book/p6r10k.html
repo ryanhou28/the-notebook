@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>p6r10k – Empty Book Template</title>
+<title>5&nbsp; Out-of-Order - Speculation, Precise Interrupts, Superscalar – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,10 +69,39 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p6r10k.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">p6r10k.html</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p6r10k.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Out-of-Order - Speculation, Precise Interrupts, Superscalar</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -133,37 +162,37 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ooo-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ooo-basics.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Out-of-Order - Dynamic Scheduling, Tomasulo</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p6r10k.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">p6r10k.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Out-of-Order - Speculation, Precise Interrupts, Superscalar</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ooo-memory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ooo-memory.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory Disambiguation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./branch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">branch.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instruction Flow</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cache.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">cache.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Caches</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prefetch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">prefetch.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Prefetching</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -207,15 +236,663 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#superscalar" id="toc-superscalar" class="nav-link active" data-scroll-target="#superscalar"><span class="header-section-number">5.1</span> Superscalar</a>
+  <ul class="collapse">
+  <li><a href="#superscalar-select-logic" id="toc-superscalar-select-logic" class="nav-link" data-scroll-target="#superscalar-select-logic"><span class="header-section-number">5.1.1</span> Superscalar Select Logic</a></li>
+  </ul></li>
+  <li><a href="#bypassing" id="toc-bypassing" class="nav-link" data-scroll-target="#bypassing"><span class="header-section-number">5.2</span> Bypassing</a></li>
+  <li><a href="#interrupts-exceptions" id="toc-interrupts-exceptions" class="nav-link" data-scroll-target="#interrupts-exceptions"><span class="header-section-number">5.3</span> Interrupts &amp; Exceptions</a>
+  <ul class="collapse">
+  <li><a href="#precise-state" id="toc-precise-state" class="nav-link" data-scroll-target="#precise-state"><span class="header-section-number">5.3.1</span> Precise State</a></li>
+  <li><a href="#asides---rob-and-rs-sizing" id="toc-asides---rob-and-rs-sizing" class="nav-link" data-scroll-target="#asides---rob-and-rs-sizing"><span class="header-section-number">5.3.2</span> Asides - ROB and RS Sizing</a></li>
+  <li><a href="#complete-retire" id="toc-complete-retire" class="nav-link" data-scroll-target="#complete-retire"><span class="header-section-number">5.3.3</span> Complete &amp; Retire</a></li>
+  </ul></li>
+  <li><a href="#p6-style" id="toc-p6-style" class="nav-link" data-scroll-target="#p6-style"><span class="header-section-number">5.4</span> P6 Style</a>
+  <ul class="collapse">
+  <li><a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures"><span class="header-section-number">5.4.1</span> Data Structures</a></li>
+  <li><a href="#pipeline" id="toc-pipeline" class="nav-link" data-scroll-target="#pipeline"><span class="header-section-number">5.4.2</span> Pipeline</a></li>
+  <li><a href="#p6-dispatch" id="toc-p6-dispatch" class="nav-link" data-scroll-target="#p6-dispatch"><span class="header-section-number">5.4.3</span> P6 Dispatch</a></li>
+  <li><a href="#p6-complete" id="toc-p6-complete" class="nav-link" data-scroll-target="#p6-complete"><span class="header-section-number">5.4.4</span> P6 Complete</a></li>
+  <li><a href="#p6-retire" id="toc-p6-retire" class="nav-link" data-scroll-target="#p6-retire"><span class="header-section-number">5.4.5</span> P6 Retire</a></li>
+  <li><a href="#precise-state-in-p6" id="toc-precise-state-in-p6" class="nav-link" data-scroll-target="#precise-state-in-p6"><span class="header-section-number">5.4.6</span> Precise State in P6</a></li>
+  <li><a href="#p6" id="toc-p6" class="nav-link" data-scroll-target="#p6"><span class="header-section-number">5.4.7</span> P6</a></li>
+  </ul></li>
+  <li><a href="#mips-r10k" id="toc-mips-r10k" class="nav-link" data-scroll-target="#mips-r10k"><span class="header-section-number">5.5</span> MIPS R10K</a>
+  <ul class="collapse">
+  <li><a href="#r10k-register-renaming" id="toc-r10k-register-renaming" class="nav-link" data-scroll-target="#r10k-register-renaming"><span class="header-section-number">5.5.1</span> R10K Register Renaming</a></li>
+  <li><a href="#r10k-data-structures" id="toc-r10k-data-structures" class="nav-link" data-scroll-target="#r10k-data-structures"><span class="header-section-number">5.5.2</span> R10K Data Structures</a></li>
+  <li><a href="#r10k-pipeline" id="toc-r10k-pipeline" class="nav-link" data-scroll-target="#r10k-pipeline"><span class="header-section-number">5.5.3</span> R10K Pipeline</a></li>
+  <li><a href="#dispatch" id="toc-dispatch" class="nav-link" data-scroll-target="#dispatch"><span class="header-section-number">5.5.4</span> Dispatch</a></li>
+  <li><a href="#complete" id="toc-complete" class="nav-link" data-scroll-target="#complete"><span class="header-section-number">5.5.5</span> Complete</a></li>
+  <li><a href="#retire" id="toc-retire" class="nav-link" data-scroll-target="#retire"><span class="header-section-number">5.5.6</span> Retire</a></li>
+  <li><a href="#precise-state-in-r10k" id="toc-precise-state-in-r10k" class="nav-link" data-scroll-target="#precise-state-in-r10k"><span class="header-section-number">5.5.7</span> Precise State in R10k</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.6</span> Summary</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">5.7</span> Examples</a>
+  <ul class="collapse">
+  <li><a href="#p6-execution" id="toc-p6-execution" class="nav-link" data-scroll-target="#p6-execution"><span class="header-section-number">5.7.1</span> P6 Execution</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Out-of-Order - Speculation, Precise Interrupts, Superscalar</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="superscalar" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="superscalar"><span class="header-section-number">5.1</span> Superscalar</h2>
+<p><strong>Superscalar</strong> refers to issuing multiple instructions at the same time</p>
+<ul>
+<li>Dynamic scheduling and multiple issue are orthogonal techniques
+<ul>
+<li>Gives us 2 dimensions of scaling:
+<ul>
+<li>N: Superscalar width (number of parallel operations)</li>
+<li>W: Window Size (number of reservation stations)
+<ul>
+<li>i.e.&nbsp;how many instructions we can read into the processor and choose to re-order among those</li>
+<li>Determines # of independent ins. that can be operated on in parallel</li>
+<li>Directly limits ILP (since it controls how many instructions can wait for execution)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Scaling for an N-by-W Tomasulo:</p>
+<ul>
+<li>RS:
+<ul>
+<li>N tag/value write ports (Dispatch)</li>
+<li>N value read ports (Issue)</li>
+<li>2N tag CAMs (Writeback)
+<ul>
+<li>Each RS entry needs to search for operand tag, and we have 2 source regs (thus 2 tag CAMs per RS entry)</li>
+</ul></li>
+</ul></li>
+<li>Select Logic (Issue):
+<ul>
+<li>W to N priority encoder
+<ul>
+<li>to select N instructions to issue out of window W</li>
+</ul></li>
+</ul></li>
+<li>Map Table
+<ul>
+<li>2N read ports (Dispatch)
+<ul>
+<li>Read 2N (2 reg per instruction)</li>
+</ul></li>
+<li>N write ports (Dispatch)
+<ul>
+<li>N instructions could be written to, need N ports to update mapping</li>
+</ul></li>
+</ul></li>
+<li>Register File
+<ul>
+<li>2N read ports (Dispatch)</li>
+<li>N write ports (Writeback)
+<ul>
+<li>Similar read/write ports as Map Table (2 read for 2 source regs per ins, N write for 1 destReg per ins)</li>
+</ul></li>
+</ul></li>
+<li>CDB:
+<ul>
+<li>N (Writeback)</li>
+</ul></li>
+</ul>
+<p>What is hard to scale up?</p>
+<ul>
+<li>Select logic tends to be difficult to scale up</li>
+<li>RS is pretty expensive</li>
+<li>CDB also takes up a lot of space and power! Routing overhead of CDB is very significant! Difficult to design</li>
+</ul>
+<p>Note</p>
+<p>Kind of settled in industry that around 5-way superscalar is where we get a lot of benefits before diminishing returns (before starting to use too much power and add complexity / slows pipelines)</p>
+<section id="superscalar-select-logic" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="superscalar-select-logic"><span class="header-section-number">5.1.1</span> Superscalar Select Logic</h3>
+<ul>
+<li>Superscalar select logic: W-&gt;N priority encoder
+<ul>
+<li>Complicated (complexity of <span class="math inline">\(N^2log(W)\)</span>)</li>
+<li>Can be simplified with different designs</li>
+</ul></li>
+<li>Technique: Split design - Distributed Reservation Station
+<ul>
+<li>Divide RS into N banks: (1 per FU)</li>
+<li>Thus need to implement N separate W/N to 1 encoders</li>
+<li>Much simpler complexity: <span class="math inline">\(Nlog(W/N)\)</span></li>
+<li>Con: Much less scheduling flexibility
+<ul>
+<li>Other FU might be free, but a RS bank is tied to one FU</li>
+<li>Possible load imbalance between banks</li>
+</ul></li>
+</ul></li>
+<li>FIFO Design [Palacharla+]
+<ul>
+<li>Only issue the head of each RS bank</li>
+<li>Simpler: No need for select logic at all</li>
+<li>Con: Less scheduling flexibility (however, surprisingly not that bad)
+<ul>
+<li>Cannot issue OoO within a bank!</li>
+<li>Load balancing issues</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="bypassing" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="bypassing"><span class="header-section-number">5.2</span> Bypassing</h2>
+<p><img src="images/p6r10k/bypassing-1.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/bypassing-2.png" class="img-fluid"></p>
+<ul>
+<li>Bypassing in OoO is tricky!</li>
+</ul>
+</section>
+<section id="interrupts-exceptions" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="interrupts-exceptions"><span class="header-section-number">5.3</span> Interrupts &amp; Exceptions</h2>
+<p>From Tomasulo, we know branches don’t work well with wrong predictions since we need to clean up OoO execution of the instructions already inside the pipeline. Another problem is when dealing with interrupts &amp; exceptions.</p>
+<p>Interrupts and exceptiosn are <strong>unexpected transfer of control flow</strong> that is restartable (pick up where we left off from before).</p>
+<ul>
+<li><strong>Asynchronous (Interrupts)</strong>
+<ul>
+<li>E.g. I/O device wants attention</li>
+<li>Allows that we defer the interrupt until it is convenient
+<ul>
+<li>Therefore asynchronous interrupts are easier to deal with than synchronous exceptions</li>
+</ul></li>
+</ul></li>
+<li><strong>Synchronous (aka Exceptions, Traps)</strong>
+<ul>
+<li>Unusual condition for some instruction
+<ul>
+<li>E.g. divide by zero, page faults, etc. Need to switch to OS to deal with it or some specialized routine</li>
+</ul></li>
+<li>Explicit calls to operating system software</li>
+<li>Main difference from interrupts is that exceptions are always triggered by some specific instruction
+<ul>
+<li>Harder to deal with as we can’t just finish current instructions that are running</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="images/p6r10k/interrupt-1.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/precise-interrupt-1.png" class="img-fluid"></p>
+<p><strong>Precise Interrupt</strong> is an abstraction of our program that at any given point in time we should be able to draw a line in our program that separates instructions that are finished and instructions that have not yet finished. Need to somehow “hide” the result of the instructions until we know for sure we have to execute them.</p>
+<p>OoO execution messes both branch speculation and precise interrupts. Although precise state is implemented not for performance reasons (rather for programmability), we will get performance improvement since we won’t have to stall as much on branches.</p>
+<p><img src="images/p6r10k/spec-interr.png" class="img-fluid"></p>
+<ul>
+<li>Speculative execution needs
+<ul>
+<li>Ability to abort &amp; restart at every branch</li>
+<li>Abort &amp; restart at every load useful for load speculation (speculation in LSQ)
+<ul>
+<li>And for shared memory multiprocessing</li>
+</ul></li>
+</ul></li>
+<li>Interrupts and exceptions require abort &amp; restart at every instruction!</li>
+<li>The ability to abort &amp; restart at every instruction is <strong>precise state</strong>
+<ul>
+<li>Ignoring it (imprecise state) makes page faults (or any restartable exception) difficult, and makes speculative execution almost impossible</li>
+</ul></li>
+</ul>
+<section id="precise-state" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="precise-state"><span class="header-section-number">5.3.1</span> Precise State</h3>
+<ul>
+<li>Options:
+<ul>
+<li>Force in-order completion (at writeback) and stall if necessary - SLOW!</li>
+<li>Implement precise state in software - trap to recovery routine - will need to trap on every branch miss - BAD!</li>
+<li>Precise state in HW - way to go!</li>
+</ul></li>
+</ul>
+<p><img src="images/p6r10k/prob-precise-state.png" class="img-fluid"></p>
+<ul>
+<li>Recall that we split decode into an in-order dispatch and out-of-order issue.</li>
+<li>A similar idea can be done with the register file:
+<ul>
+<li>out of order write to a buffer, in order write to the actual register file</li>
+</ul></li>
+<li>We turn the instruction buffer into the <strong>Re-Order Buffer (ROB)</strong>
+<ul>
+<li>Re-order the instructions after executing them out of order, only updating the register file once things are at the head of the ROB (in-order)</li>
+<li>Thus: OoO write to ROB, in-order write to RF</li>
+</ul></li>
+<li>ROB may be combined with RS or used as a separate structure
+<ul>
+<li>Combined: register-update unit RUU (Sohi’s method)
+<ul>
+<li>PRos: Saves space, faster operand wakeup and forwarding. Simplifies execution flow</li>
+<li>Cons: Scalability issue - entire structure needs to support both scheduling and reordering, complex issue logic</li>
+</ul></li>
+<li>Separate (more common today): P6 style</li>
+</ul></li>
+<li>Split Writeback into two stages: Complete and Retire</li>
+<li>The ROB defines the <strong>number of instructions that can be in-flight in execution</strong>, essentially defining the size of the <strong>instruction window</strong>, meaning a larger ROB = more future instructions can be considered for execution</li>
+</ul>
+</section>
+<section id="asides---rob-and-rs-sizing" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="asides---rob-and-rs-sizing"><span class="header-section-number">5.3.2</span> Asides - ROB and RS Sizing</h3>
+<p><strong>ROB</strong> stores all in-flight instructions from dispatch until they commit in-order</p>
+<ul>
+<li>Ensures precise state, and in-order retirement</li>
+<li>Determines the <strong>instruction window</strong> - how many total instructions can be in-flight</li>
+</ul>
+<p><strong>RS</strong> holds instructions <strong>waiting for execution</strong></p>
+<ul>
+<li>Affects instruction issue rate - how many instructions can be issued in parallel</li>
+</ul>
+<p>“When sizing a reorder buffer (ROB) compared to a reservation station, the ROB generally needs to be larger because it holds the results of instructions until they are ready to commit, while a reservation station only needs to store operands temporarily until the instruction can execute, allowing for more instructions to be in flight during out-of-order execution; meaning a larger ROB is typically required to maintain program correctness while maximizing performance.”</p>
+</section>
+<section id="complete-retire" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="complete-retire"><span class="header-section-number">5.3.3</span> Complete &amp; Retire</h3>
+<p><img src="images/p6r10k/complete-retire.png" class="img-fluid"></p>
+<ul>
+<li>Complete - where instructions finish execution (but results don’t go to RF yet)
+<ul>
+<li>Write the results into the ROB, which holds the pending results and forward to pending instructions in the RS</li>
+</ul></li>
+<li>Retire - where we take the ROB head and wrie the result back into the RF
+<ul>
+<li>Head is the entry that has been in the ROB the longest (oldest instruction in program order)</li>
+<li>“committing” this instruction to the RF</li>
+<li>Finishes in program order</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="p6-style" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="p6-style"><span class="header-section-number">5.4</span> P6 Style</h2>
+<p>Basically Tomasulo’s algorithm + ROB, where ROB and RS are separate</p>
+<section id="data-structures" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="data-structures"><span class="header-section-number">5.4.1</span> Data Structures</h3>
+<ul>
+<li><strong>ROB</strong>
+<ul>
+<li>head, tail: pointers to maintain sequential order
+<ul>
+<li>Head is oldest insn, tail is youngest</li>
+</ul></li>
+<li>R: instruction destination register</li>
+<li>V: instruction output value</li>
+<li>Each instruction gets a ROB entry</li>
+<li>Helps solve following problems:
+<ul>
+<li>Main motivation: preventing writing back an instruction that wasn’t supposed to (in-order retire)</li>
+<li>Resolve name dependencies</li>
+</ul></li>
+</ul></li>
+<li>Reservation Station - same as in Tomasulo</li>
+<li><strong>Map Table</strong>:
+<ul>
+<li>Keeps track of which ROB entries holds latest values for each architectural register (maps arch reg -&gt; ROB#)</li>
+<li>Different from Tomasulo:</li>
+<li>Stores T+: tag + “ready-in-ROB” bit</li>
+<li>If T is empty, value is ready in the RF</li>
+<li>If T is not empty (but no + bit), value is not ready</li>
+<li>If T is not empty with + bit, value is ready in the ROB</li>
+</ul></li>
+<li>Tags are different:
+<ul>
+<li>Tomasulo uses RS# as Tag</li>
+<li>P6 uses ROB# as Tag (since ROB# corresponds to an instruction)</li>
+</ul></li>
+</ul>
+<p><img src="images/p6r10k/p6-ds.png" class="img-fluid"></p>
+<p>What about loads and stores?</p>
+<ul>
+<li>We can’t resolve data dependencies between loads and stores until we actually execute the instruction (need to compute address first)</li>
+<li>Need extra hardware structure: Load Store Queue (LSQ) - see notes later on this
+<ul>
+<li>Completed stores write to LSQ</li>
+<li>When stores retire, the head of the LSQ (oldest ins) gets written to D-cache</li>
+<li>When loads execute, access LSQ and D$ in parallel
+<ul>
+<li>Forward data from LSQ if older store has a matching address</li>
+</ul></li>
+<li>More modern designs: have loads and stores in separate queues</li>
+</ul></li>
+</ul>
+<p><img src="images/p6r10k/rob-lsq-p6.png" class="img-fluid"></p>
+</section>
+<section id="pipeline" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="pipeline"><span class="header-section-number">5.4.2</span> Pipeline</h3>
+<p>Pipeline: Fetch, Decode, Issue, Execute, Complete, Retire</p>
+<ul>
+<li><strong>Dispatch</strong>
+<ul>
+<li>If structural hazard on ROB/LSQ/RS then Stall
+<ul>
+<li>Since dispatching an instruction requires us to send insn to these structures</li>
+<li>Note: if non-memory dispatching insn and LSQ is full, it is fine</li>
+</ul></li>
+<li>Allocate entry in ROB/LSQ/RS</li>
+<li>Set RS tag to the ROB#</li>
+<li>Set the Map Table entry to the ROB# and clear “ready-in-ROB” bit</li>
+<li>Read ready registers into RS (from either ROB or RF)</li>
+</ul></li>
+<li><strong>Execute</strong>
+<ul>
+<li>Free RS entry
+<ul>
+<li>Note: recall how in Tomasulo we freed RS entry at writeback. This is moved earlier here because RS# are no longer tags</li>
+</ul></li>
+</ul></li>
+<li><strong>Complete</strong>
+<ul>
+<li>If there’s structural hazard on the CDB, then wait</li>
+<li>Write value into ROB entry indicated by the RS tag</li>
+<li>Mark the ROB entry as Complete
+<ul>
+<li>If the ROB entry overwritten, mark Map Table entry “ready-in-ROB” bit (+)</li>
+<li>i.e.&nbsp;if in the Map Table, the arch reg -&gt; ROB# (of the completed insn) is still there and not overwritten by a new instruction, then we set the “ready-in-ROB” bit since we now have the value. Otherwise the arch. reg. is overwritten by a newer instruction and needs a different value.</li>
+</ul></li>
+</ul></li>
+<li><strong>Retire</strong>
+<ul>
+<li>If instruction at ROB head not complete? Stall</li>
+<li>Handle any exceptions</li>
+<li>Write ROB head value to register file</li>
+<li>If store instruction at head, write the LSQ head to the D-cache</li>
+<li>Free ROB/LSQ entries that are retired</li>
+</ul></li>
+</ul>
+</section>
+<section id="p6-dispatch" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="p6-dispatch"><span class="header-section-number">5.4.3</span> P6 Dispatch</h3>
+<p><img src="images/p6r10k/p6dispatch-1.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6-dispatch-2.png" class="img-fluid"></p>
+</section>
+<section id="p6-complete" class="level3" data-number="5.4.4">
+<h3 data-number="5.4.4" class="anchored" data-anchor-id="p6-complete"><span class="header-section-number">5.4.4</span> P6 Complete</h3>
+<p><img src="images/p6r10k/p6-complete.png" class="img-fluid"></p>
+</section>
+<section id="p6-retire" class="level3" data-number="5.4.5">
+<h3 data-number="5.4.5" class="anchored" data-anchor-id="p6-retire"><span class="header-section-number">5.4.5</span> P6 Retire</h3>
+<p><img src="images/p6r10k/p6-retire.png" class="img-fluid"></p>
+</section>
+<section id="precise-state-in-p6" class="level3" data-number="5.4.6">
+<h3 data-number="5.4.6" class="anchored" data-anchor-id="precise-state-in-p6"><span class="header-section-number">5.4.6</span> Precise State in P6</h3>
+<p>Point of the ROB is to maintain <strong>Precise State</strong></p>
+<ul>
+<li>To do so:
+<ul>
+<li>Wait until last good instruction retires such that the first bad instruction is at the ROB head
+<ul>
+<li>Good as in insn should be finished as usual, bad as in insn that shouldn’t be run (such as insns after a mis-predicted branch)</li>
+</ul></li>
+<li>Then clear the contents of the ROB, RS, and Map Table</li>
+<li>Start over (start running the pipeline again from the correct instructions)</li>
+</ul></li>
+<li>This works because ROB helps us maintain program order, and we clear everything that should be flushed</li>
+</ul>
+</section>
+<section id="p6" class="level3" data-number="5.4.7">
+<h3 data-number="5.4.7" class="anchored" data-anchor-id="p6"><span class="header-section-number">5.4.7</span> P6</h3>
+<p>What is the cost of adding precise state?</p>
+<ul>
+<li>In general, P6 has same performance as “plain” Tomasulo
+<ul>
+<li>ROB is not designed to make system more performant (although it may give a little speedup since RS freed earlier leads to fewer structural hazards)</li>
+</ul></li>
+<li>Rule of Thumb for ROB Size:
+<ul>
+<li>At least N <span class="math inline">\(\times\)</span> number of pipe stages bewteen D and R
+<ul>
+<li>Need to make sure ROB covers pipeline</li>
+</ul></li>
+<li>At least <span class="math inline">\(N \times t_{hit-L2}\)</span>
+<ul>
+<li>Miss in L1 cache is most comon reason for a stall, thus if we can make sure the number of instructions “in flight” is N times hit time of L2 cache, this makes sure even if we have a miss on L1 we can keep fetching instructions to keep the CPU busy</li>
+</ul></li>
+</ul></li>
+<li>The problem with P6 for high performance implementations:
+<ul>
+<li>Too much <strong>value movement</strong> (regfile/ROB -&gt; RS -&gt; ROB -&gt; RF)</li>
+<li>Multi-input MUXes, long buses complicate routing and slows clock</li>
+<li>We’re moving values around a lot, could have many different copies of the same value
+<ul>
+<li>This motivates us towards a R10K design where we have 1 value and keep track of where things are</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="mips-r10k" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="mips-r10k"><span class="header-section-number">5.5</span> MIPS R10K</h2>
+<p>An alternative implementation is a MIPS R10K-style architecture</p>
+<p><img src="images/p6r10k/r10k-diagram.png" class="img-fluid"></p>
+<ul>
+<li>Big idea: Have all data in one place
+<ul>
+<li>Use one big physical register file to hold all data - no copies</li>
+</ul></li>
+<li>Register files are close to FUs, leading to small &amp; fast data path</li>
+<li>ROB and RS “on the side” used for only control and tags</li>
+</ul>
+<section id="r10k-register-renaming" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="r10k-register-renaming"><span class="header-section-number">5.5.1</span> R10K Register Renaming</h3>
+<p>No more architectural register file. Instead the <strong>physical register file</strong> holds all values.</p>
+<ul>
+<li>Num. of Physical Registers = Num. of Arch. Regs + Num. ROB Entries</li>
+<li>Map architectural registers to physical registers
+<ul>
+<li>This removes name hazards (WAW, WAR). Compared to P6, phys. reg. replace RS copies</li>
+</ul></li>
+<li>Big change to <strong>map table</strong>: each entry in the table always contains some mapping to physical registers (since there is no arch. register file anymore)</li>
+<li><strong>Free List</strong> keeps track of unallocated physical registers that we can assign to
+<ul>
+<li>ROB is responsible for returning physical registers to the free list</li>
+<li>Can be implemented with a bit array, one bit for each physical register, tracking if the register is free or not</li>
+</ul></li>
+<li>Conceptually, this is “true register renaming”</li>
+</ul>
+<p>How do we free registers?</p>
+<ul>
+<li>In P6, values were temporarily stored with the ROB entry. On retire, ROB value is copied to the RF, freeing the ROB entry</li>
+<li>However in R10k, we can’t free physical registers when instruction retires
+<ul>
+<li>There is no architectural register to copy the value to… other instructions might need this value</li>
+</ul></li>
+<li>Notice: We can free physical register that is previously mapped to same logical register
+<ul>
+<li>Why? All insns that will ever read its value have retired</li>
+<li>In otherwords:</li>
+<li>Once we retire an instruction, we know for sure that previous physical registers that used this destReg won’t be used anymore. Any instructions being executed now must be using the newer version of the register</li>
+</ul></li>
+</ul>
+</section>
+<section id="r10k-data-structures" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="r10k-data-structures"><span class="header-section-number">5.5.2</span> R10K Data Structures</h3>
+<ul>
+<li><strong>ROB</strong>
+<ul>
+<li>T: Physical register # corresponding to the instruction’s logical output</li>
+<li>T_old: physical register # <em>previously</em> mapped to instruction’s logical output
+<ul>
+<li>This is so that we know what physical register to free</li>
+</ul></li>
+</ul></li>
+<li><strong>RS</strong>
+<ul>
+<li>T, T1, T2: output and two input physical register numbers</li>
+</ul></li>
+<li><strong>Map Table</strong>
+<ul>
+<li>Stores the mapping from arch. reg to physical registers</li>
+<li>T+: Physica Reg # + “ready bit”</li>
+<li>Note that map table entires are never empty</li>
+</ul></li>
+<li><strong>Architectural Map Table</strong>
+<ul>
+<li>T: Physical Reg #</li>
+<li>Can be used to restore state after a branch mispredict or exception</li>
+<li>Keeps a separate version of the map table that doesn’t hold speculative updates
+<ul>
+<li>Speculative as in instructions that are in-flight</li>
+<li>Only gets updated on <strong>retire</strong> (in-order)</li>
+<li>When clearing out processor pipeline, this tells us where the “official” register values are kept at any given time</li>
+</ul></li>
+</ul></li>
+<li><strong>Free List</strong>
+<ul>
+<li>T: Physical Reg #</li>
+<li>Tracks what physical registers are free</li>
+</ul></li>
+</ul>
+<p>Key differences from P6:</p>
+<ul>
+<li>New tags: R10K tags are Physical Register # (compared to ROB# in P6)</li>
+<li>No register values are stored in ROB, RS, or on CDB
+<ul>
+<li>This is key for hardware since this minimizes overheads spent on value copies, especially the CDB (which adds significant routing costs, etc)!</li>
+</ul></li>
+</ul>
+</section>
+<section id="r10k-pipeline" class="level3" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="r10k-pipeline"><span class="header-section-number">5.5.3</span> R10K Pipeline</h3>
+<p><img src="images/p6r10k/r10k-datastruct.png" class="img-fluid"></p>
+<ul>
+<li>Fetch</li>
+<li>Dispatch
+<ul>
+<li>On structural hazard (RS, ROB, LSQ, or Physical Registers), then stall</li>
+<li>Allocate RS, ROB, LSQ entries and a new physical register (T)</li>
+<li>Record the previously mapped physical register (T_old)</li>
+</ul></li>
+<li>Complete
+<ul>
+<li>Write value to destination physical register</li>
+</ul></li>
+<li>Retire
+<ul>
+<li>If ROB head not complete, stall</li>
+<li>Handle any exceptions</li>
+<li>Store write LSQ head to D cache</li>
+<li>Free the ROB and LSQ entries that is retiring</li>
+<li><strong>Free previous physical register (T_old)</strong></li>
+<li>Record committed physical register (T) (to architectural map table)</li>
+</ul></li>
+</ul>
+</section>
+<section id="dispatch" class="level3" data-number="5.5.4">
+<h3 data-number="5.5.4" class="anchored" data-anchor-id="dispatch"><span class="header-section-number">5.5.4</span> Dispatch</h3>
+<p><img src="images/p6r10k/r10k-disp.png" class="img-fluid"></p>
+<ul>
+<li>Allocate entry at tail of ROB</li>
+<li>Allocate RS entry and populate values</li>
+<li>Allocate physical reg on free list to Map table</li>
+</ul>
+</section>
+<section id="complete" class="level3" data-number="5.5.5">
+<h3 data-number="5.5.5" class="anchored" data-anchor-id="complete"><span class="header-section-number">5.5.5</span> Complete</h3>
+<p><img src="images/p6r10k/r10k-comp.png" class="img-fluid"></p>
+</section>
+<section id="retire" class="level3" data-number="5.5.6">
+<h3 data-number="5.5.6" class="anchored" data-anchor-id="retire"><span class="header-section-number">5.5.6</span> Retire</h3>
+<p><img src="images/p6r10k/r10k-retire.png" class="img-fluid"></p>
+</section>
+<section id="precise-state-in-r10k" class="level3" data-number="5.5.7">
+<h3 data-number="5.5.7" class="anchored" data-anchor-id="precise-state-in-r10k"><span class="header-section-number">5.5.7</span> Precise State in R10k</h3>
+<p>Disadvantage of R10K is that precise state has more overhead</p>
+<ul>
+<li>On exception/mispredict, copy arch. map table into map table
+<ul>
+<li>Also need to keep an architectural free list
+<ul>
+<li>To track free physical registers after retirement</li>
+</ul></li>
+</ul></li>
+<li>Alternative: Serially rollback execution using T, T_old ROB fields
+<ul>
+<li>Very slow but costs less hardware (since no need for architectural map table)</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="summary" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.6</span> Summary</h2>
+<p><img src="images/p6r10k/p6r10k-comp-ren.png" class="img-fluid"></p>
+<ul>
+<li>Modern dynamic scheduling must support precise state (programmability)</li>
+<li>Strategy: Split writeback into Complete (OoO) + Retire (in order)</li>
+<li>Two basic designs:
+<ul>
+<li>P6: Tomasulo + ROB, copy-based register renaming
+<ul>
+<li>Precise state is simple, but fast implementation difficult (due to value copies)</li>
+</ul></li>
+<li>R10K: Implements “true” register renaming
+<ul>
+<li>Easier fast implementation, but precise state is more complex</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="images/p6r10k/p6r10k-dyn-sch-summary.png" class="img-fluid"></p>
+</section>
+<section id="examples" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="examples"><span class="header-section-number">5.7</span> Examples</h2>
+<section id="p6-execution" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="p6-execution"><span class="header-section-number">5.7.1</span> P6 Execution</h3>
+<p><img src="images/p6r10k/p6-exe1.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c1.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c2.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c3.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c4.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c5.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c6.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c7.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c8.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c9.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c10.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c11.png" class="img-fluid"></p>
+<section id="p6-with-precise-state" class="level4" data-number="5.7.1.1">
+<h4 data-number="5.7.1.1" class="anchored" data-anchor-id="p6-with-precise-state"><span class="header-section-number">5.7.1.1</span> P6 With Precise State</h4>
+<p><img src="images/p6r10k/p6c9-ps.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c10-ps.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c11-ps.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/p6c12-ps.png" class="img-fluid"></p>
+</section>
+<section id="r10k-execution" class="level4" data-number="5.7.1.2">
+<h4 data-number="5.7.1.2" class="anchored" data-anchor-id="r10k-execution"><span class="header-section-number">5.7.1.2</span> R10K Execution</h4>
+<p><img src="images/p6r10k/r10kc0.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/r10kc1.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/r10kc2.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/r10kc3.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/r10kc4.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/r10kc5.png" class="img-fluid"></p>
+</section>
+<section id="r10k-with-precise-state" class="level4" data-number="5.7.1.3">
+<h4 data-number="5.7.1.3" class="anchored" data-anchor-id="r10k-with-precise-state"><span class="header-section-number">5.7.1.3</span> R10K with Precise State</h4>
+<p><img src="images/p6r10k/r10kc5-ps.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/r10kc6-ps.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/r10kc7-ps.png" class="img-fluid"></p>
+<p><img src="images/p6r10k/r10kc8-ps.png" class="img-fluid"></p>
+
+
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -637,13 +1314,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ooo-basics.html" class="pagination-link" aria-label="ooo-basics.html">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ooo-basics.html</span></span>
+      <a href="./ooo-basics.html" class="pagination-link" aria-label="Out-of-Order - Dynamic Scheduling, Tomasulo">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Out-of-Order - Dynamic Scheduling, Tomasulo</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ooo-memory.html" class="pagination-link" aria-label="ooo-memory.html">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ooo-memory.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ooo-memory.html" class="pagination-link" aria-label="Memory Disambiguation">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory Disambiguation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

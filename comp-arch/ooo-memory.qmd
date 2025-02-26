@@ -1,0 +1,176 @@
+# Memory Disambiguation
+
+Why are OoO memory instructions harder to deal with:
+
+- Addresses have to be calculated (which happens OoO)
+- A lot more memory locations than registers (thus can't employ renaming technique)
+- Load instructions can depend both on register instructions and older stores
+- To sum: memory addresses are **ambiguous** during execution
+
+**Dynamic Reordering of Memory Operations**
+
+- Storing to memory is irrevocable -> hold stores until retire (at ROB head)
+- Allow OoO loads that don't have RAW dependence
+
+## Strategies to handle Loads
+
+1. Allow only one load or store in the OoO core at the same time
+   1. Stall other operations at dispatch
+   2. Very slow!
+2. Load may only issue when all older stores have finished
+   1. This guarantees we read the most up to date value on loads
+   2. Requires new queue to hold memory ops: **Load-Store Queue**
+      1. Basically a ROB for mem. ops
+3. Store-to-load Forwarding
+   1. Monitor the addresses calculated by loads and stores
+   2. If there's an alias in address between load and earlier stores, forward the value from within the LSQ without going to memory
+   3. If no aliases, issue load to memory earlier
+4. Speculative Store-to-load Forwarding
+   1. Idea: Most store's and loads don't alias
+   2. If addresses aren't known yet, speculate that there ISNT an alias for given load and issue it to memory now
+   3. If we were wrong, squash instructions and rewind
+
+
+![](images/ooo-memory/lsq-diagram.png)
+
+## Simple Data Memory FU: D-Cache/TLB + Store Queue
+
+![](images/ooo-memory/simple-dm-fu.png)
+
+- Dispatch things in program order into the FU
+- Stores go in the store queue, storing all in-flight stores
+- Have associatively searchable addresses in the store queue
+
+### Pipeline
+
+**Stores**
+
+- Dispatch
+  - Allocate an entry on the SQ tail
+- Execute
+  - Write address and data are fed into corresponding SQ slot
+- Retire
+  - Write address/data from SQ head to the D-cache and free SQ head
+
+**Loads**
+
+- Dispatch
+  - Record current SQ tail as load position
+- Execute
+  - Multiple approaches towards how loads execute...
+
+![](images/ooo-memory/ooo-load-exec.png)
+
+- On a load, while we do a D-cache access:
+  - We search for this address alias in the SQ
+  - Forward the youngest store older than the load
+- However, an older store's address might not have ben resolved yet
+  - Thus there are different policies for scheduling loads
+
+## Conservative Load Scheduling
+
+- Loads can execute out-of-order w.r.t. other loads
+- **Loads must execute in-order w.r.t. older stores**
+  - I.e. Load execution requires that addresses of all older stores are known
+- However this conservative scheme restricts performance
+
+
+## Speculative Store-to-Load Forwarding
+
+- If addresses aren't known yet, speculate that there is no store-load alias and issue the load to memory now
+- If it is wrong, squash instruction and rewind
+- This adds a need for a load queue to track all load addresses that are in-flight
+  - Need it to detct mis-speculation and recover
+  - Need to re-execute the previous loads and all dependent instructions
+
+## Load Queue
+
+![](images/ooo-memory/lq-sq-.png)
+
+
+### Advanced Memory ""Pipeline (LQ Only)
+
+**Loads**
+
+- Dispatch
+  - In program order
+  - Allocate entry at LQ tail
+- Execute
+  - Write address into corresponding LQ slot
+
+**Stores**
+
+- Dispatch
+  - Record current LQ tail as "store position"
+    - To help with tracking and resolving store-load dependencies
+    - If a later load accesses an address this store will write to, this position allows FU to determine conflict and squash
+- Execute
+  - When addr of store is resolved, send address to LQ
+  - LQ checks with all loads
+    - Find matching addr. AND oldest load younger than the store
+      - This would be the load after the store in program order, speculatively executed so it needs fixing
+      - Squash and flush processor from this point and restart 
+
+![](images/ooo-memory/det-mem-ord.png)
+
+## LSQ Implementation
+
+Two basic choices of implementation:
+
+1. **Unified LSQ**
+   1. Simpler conceptually
+   2. More expensive hardware
+   3. Limited in size
+      1. Due to scalability of unifying them
+2. **Split LSQ**
+   1. More complex logic
+   2. Cheaper hardware
+   3. Can be made larger
+
+
+### Unified Load Store Queue
+
+![](images/ooo-memory/unified-lsq.png)
+
+- Entries contain load or stores
+- The comparator matrix (equality checks) doesn't scale well
+  - Matrix checks for address matches and relative ages
+- Entries deallocated on retirement
+
+
+### Split Queues
+
+1 load queue, 1 store queue
+
+- D$/TLB + structures to handle in-flight loads/stores
+- Performs Four Functions:
+  - **in-order store retirement**
+    - Write stores to D-Cache in program order
+    - Basic, implemented by SQ
+  - **Store-load Forwarding**
+    - Allows loads to read values from older un-retired stores
+    - Also basic, implmented by SQ
+  - **Memory Ordering Violation Detection**
+    - Checks load speculation
+    - Advanced, implemented by LQ
+- A lot more scalable!
+
+### Summary
+
+- Unified:
+  - + Conceptually simple
+  - Any entry could be either load or store, so need NxN comparators...expensive in hardware and difficult to scale
+- Split:
+  - + Loads and stores are partitioned, only need to compare load addresses with store queue entries ... less overhead and more scalable
+  - - Harder (conceptually) to implement age logic
+
+
+  ## Summary
+
+  OoO memory operations
+
+  - Store queue: conservative load scheduling (iO w.r.t. older stores)
+  - Load queue: opportunistic load scheduling (OoO w.r.t. older stores)
+  - Intelligent memory scheduling: hybrid
+
+  

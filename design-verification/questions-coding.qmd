@@ -35,6 +35,8 @@ Common "software" coding questions, concepts, and ideas asked in a design verifi
 
 **Q: How do you build a queue from a stack? How do you build a stack from a queue?**
 
+**Q: C program to find the length of a string**
+
 ## Recursion/Iteration
 
 **Q: Write a function to calculate the factorial of a given number. Recursively and iteratively**

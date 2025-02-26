@@ -1,0 +1,250 @@
+# Instruction Flow
+
+
+Topics:
+
+- Instruction Buffers
+- Return Address Stack
+- Correlated Branch Predictors
+
+Resources: H&P Chp3.3,3.9
+
+![](images/branch/flowmodel.png)
+
+![](images/branch/470roadmap.png)
+
+![](images/branch/review-branches.png)
+
+![](images/branch/cond-resol.png)
+
+- Where do we resolve the branch? Depends on the type!
+
+![](images/branch/target-addr.png)
+
+- PC relative branches: don't need to wait long
+- Register indirect branch: need the value of the register, need to wait until instruction can be issued (ie when the registers are available)
+- Register indirect + offset (most general way):
+  - Need to calculate the address, thus is resolved at EX stage
+
+**Performance Penalties of Branches**
+
+- Use up execution resources
+- Fragmentation of I-cache lines
+- Disruption of seq. control flow
+  - Need to determine direction and target
+  - Often results in stalls and squashes
+
+## Instruction Fetch Buffer
+
+![](images/branch/i-fetch-buff.png)
+
+## Branch Prediction
+
+Two high level strategies:
+
+- Static - same prediction for a branch everytime
+  - implement in compiler, by programmer, or in HW
+  - simple HW implementation
+- Dynamic: some runtime info is used to make (potentially) different prediction each iteration
+  - implemented in HW
+  - need more HW, but better performance (most of the time, depends on workload)
+
+![](images/branch/bp-strats.png)
+
+![](images/branch/dyn-branch-pred.png)
+
+- Target predictor feeds the PC
+- Direction predictor only applies to conditionals
+  - since nonconditionals (eg jal) are always taken
+
+
+## Branch Target Buffer (BTB)
+
+![](images/branch/btb.png)
+
+- Basically a small cache of past branch targets
+- Use small set of the address (don't compare whole address)
+- Use part of the PC as the index into the cache
+- If we've seen a branch to this before (recently): predict taken
+- If we haven't seen this (recently): predict not taken
+
+![](images/branch/why-btb.png)
+
+## Return Address Stack
+
+![](images/branch/ras-.png)
+
+- As we access the instruction cache, we also send that PC to the BTB
+  - Every time we have a function call (jump instruction), we also put the return address on the return address stack (RAS), and maintain it in a last in first out (LIFO) order
+  - Now how do we choose whether to use the BTB or RAS's target address? We need to figure out if the instruction we're fetching is a return (unconditional jump)
+  - We could include a couple extra bits to the instruction cache that indicates whether the instruction was a return instruction last time or if it was a conditional branch
+  - Access the BTB and RAS in parallel and these extra bits in the i-cache will indicate to whether the instruction we're accessing was a return instruction last time we accessed it
+  - Sometimes encoded as a single bit in the ISA that indicates if it’s a return instruction
+    - These extra bits are indicated by the red blocks highlighted in the I-cache
+
+## Branch Direction Prediction
+
+**Direction Predictor (DIRP)**
+
+- Map conditional branch PC to taken/not-taken (T/N) decision
+- 90%+ one way or the other is considered a "biased"
+  - individual conditional branches are often unbiased or weakly biased
+
+### Branch History Table (BHT)
+
+![](images/branch/bht.png)
+
+- Add a table of branch histories
+- Index of the table = PC of the instruction
+  - Use PC to index into the table and check where the branch went last time
+- No tags because it isn't to determine aliases, since aliasing means it's hard to make sophisticated guess anyway
+- Everytime a **branch is retired**, we write into this table 
+- Simple BHT guesses the same thing as before
+
+#### Limitations of Simple Prediction
+
+Consider an inner loop branch (nested for loops)
+
+- branch predictor "changes its mind too quickly", resulting in many mispredicts
+
+![](images/branch/simple-bht.png)
+
+#### Two-Bit Saturating Counters (2bc)
+
+![](images/branch/2bc-pred.png)
+
+- Strongly Not taken, not taken, taken, strongly taken
+- Mis-predict lowers confidence
+- Correct prediction increases confidence
+
+![](images/branch/other-2bc-pred.png)
+
+#### Correlated Predictor
+
+![](images/branch/corr-pred.png)
+
+- Also looks at the outcome of previous branches
+- Branch history rable leads to a local history table
+  - Stores previous outcomes
+  - Eg the 8 previous outcomes of the branch is 10101010
+    - Last time we saw this outcome, then we assume that this keeps happening
+- Takes much longer to warm up
+
+
+![](images/branch/corr-pred-ex.png)
+
+![](images/branch/corr-pred-ex-size.png)
+
+#### Global Branch Prediction
+
+Instead of using a branch's own history to make predictions, we could also use the direction of all (global) branches to correlate outcomes
+
+![](images/branch/global-bp.png)
+
+#### Correlated Predictor Design Space
+
+![](images/branch/corr-pred-design-space.png)
+
+#### GShare
+
+![](images/branch/gshare.png)
+
+#### Hybrid (Tournament) Predictor
+
+![](images/branch/hyb-pred.png)
+
+
+
+### TAGE
+
+TAGE (TAged GEometric) predictor
+
+- Multiple predictors using different history lengths
+
+#### Perceptron
+
+- Use HW perceptrons to learn correlation with other branches
+- Allows for much longer histories than traditional methods
+  - Traditionally, HW grows exp. with history length
+  - Perceptron scales linearly
+
+
+
+
+### Branch Predictor Summary
+
+![](images/branch/branch-pred-summary.png)
+
+![](images/branch/branch-pred-challenge.png)
+
+
+## Early Branch Recovery
+
+Previously to do branch recovery, we waited until mispredicted branch gets retired in the ROB, then we clear out everything in-flight to start over again. However this is a lot of latency especially in wide instruction windows. Idea with early branch recovery is that we start squashing wrong instructions right as we know the branch is mispredicted. We update selectively what instructions get squashed
+
+![](images/branch/earlybranchrecov.png)
+
+- Everytime we have a branch, take a snapshot of all instructions older than the branch (ones we don't squash), and ones after (potentially squash)
+- Every time we dispatch an instruction, going to copy the current state of the branch mask register into the RS
+  - Eg, b-mask of 1000 is essentially saying that this instruction is only in the processor because we assumed that this branch was speculated correctly, if this branch is actually mis-speculated then it's not supposed to be getting executed and should be squashed
+  - Then a branch mask of 1100 would be based on speculating the two branches correctly, etc
+
+
+### Dispatch Stage
+
+![](images/branch/earlybranch-dispatch.png)
+
+
+### Branch Resolution - Mispredict
+
+![](images/branch/earlybranch-mispred.png)
+
+### Branch Resolution - Correct Prediction
+
+![](images/branch/earlybranch-correct-pred.png)
+
+- If the prediction is correct, once we resolve the branch and it's correct, we can clear out that branch stack entry and clear that bit in the b-mask
+- We also have to broadcast that the branch was correctly predicted to clear that bit for the b-mask register and for every b-mask in the pipeline
+- Since we might reallocate that branch stack entry for another branch now
+
+## Aside: Ports vs Banks
+
+![](images/branch/portsbanks.png)
+
+![](images/branch/portsbanks2.png)
+
+## Wide Instruction Fetch
+
+- Average basic block size:
+  - integer code: 4-6 instructions
+  - floating point code: 6-10 instructions
+- Major challenges:
+  - Multiple-branch prediction
+    - If we have multiple branch predictions in a single block we're fetching, how do we deal with that?
+  - Alignment
+    - Instructions we want to fetch may not be aligned in the way we get our data
+
+![](images/branch/wide-i-fetch-issues.png)
+
+![](images/branch/wide-fetch-seq.png)
+
+![](images/branch/widefetch-nonseq.png)
+
+![](images/branch/multi-branch-pred1.png)
+
+![](images/branch/multi-branch-pred.png)
+
+![](images/branch/multi-branch-pred-b.png)
+
+![](images/branch/multi-pred-taken-br.png)
+
+## Trace Cache
+
+
+![](images/branch/tracecache-mot.png)
+
+
+![](images/branch/tracecache.png)
+
+
+![](images/branch/tracecache-ex.png)

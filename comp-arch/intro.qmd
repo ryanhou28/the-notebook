@@ -24,7 +24,7 @@ This note does ...
 
 ## Classes of Parallelism & Parallel Architectures
 
-Reference: Patterson & Hennessy Chp. 1.2
+Reference: Hennessy & Patterson Chp. 1.2
 
 **Two Kinds of Parallelisms in Applications**:
 

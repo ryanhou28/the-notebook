@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>cache – Empty Book Template</title>
+<title>8&nbsp; Caches – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cache.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">cache.html</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cache.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Caches</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -133,37 +133,37 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ooo-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ooo-basics.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Out-of-Order - Dynamic Scheduling, Tomasulo</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p6r10k.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">p6r10k.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Out-of-Order - Speculation, Precise Interrupts, Superscalar</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ooo-memory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ooo-memory.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory Disambiguation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./branch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">branch.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instruction Flow</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cache.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">cache.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Caches</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prefetch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">prefetch.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Prefetching</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -207,15 +207,83 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#write-policies" id="toc-write-policies" class="nav-link active" data-scroll-target="#write-policies"><span class="header-section-number">8.1</span> Write Policies</a></li>
+  <li><a href="#classifying-reducing-misses" id="toc-classifying-reducing-misses" class="nav-link" data-scroll-target="#classifying-reducing-misses"><span class="header-section-number">8.2</span> Classifying &amp; Reducing Misses</a></li>
+  <li><a href="#seznecs-skewed-associative-cache" id="toc-seznecs-skewed-associative-cache" class="nav-link" data-scroll-target="#seznecs-skewed-associative-cache"><span class="header-section-number">8.3</span> Seznec’s Skewed-Associative Cache</a></li>
+  <li><a href="#victim-cache" id="toc-victim-cache" class="nav-link" data-scroll-target="#victim-cache"><span class="header-section-number">8.4</span> Victim Cache</a></li>
+  <li><a href="#multi-level-caches" id="toc-multi-level-caches" class="nav-link" data-scroll-target="#multi-level-caches"><span class="header-section-number">8.5</span> Multi-level Caches</a></li>
+  <li><a href="#inclusivity" id="toc-inclusivity" class="nav-link" data-scroll-target="#inclusivity"><span class="header-section-number">8.6</span> Inclusivity</a></li>
+  <li><a href="#non-block-caches" id="toc-non-block-caches" class="nav-link" data-scroll-target="#non-block-caches"><span class="header-section-number">8.7</span> Non-block Caches</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.8</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Caches</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<p>Refer to Comp. Org. notes for basic cache materials</p>
+<section id="write-policies" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="write-policies"><span class="header-section-number">8.1</span> Write Policies</h2>
+<p>Writes tend to be slower than reads but this is okay since store ops don’t have destination registers thus no instructions can be dependent on it.</p>
+<p><img src="images/cache/writepol-1.png" class="img-fluid"></p>
+<p><img src="images/cache/writepol-2.png" class="img-fluid"></p>
+<ul>
+<li>Write-through caches can become nasty in multicore systems (high traffic, coherency protocol still needed, scalability, etc)</li>
+</ul>
+</section>
+<section id="classifying-reducing-misses" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="classifying-reducing-misses"><span class="header-section-number">8.2</span> Classifying &amp; Reducing Misses</h2>
+<p><img src="images/cache/miss-class-3cs.png" class="img-fluid"></p>
+<p><img src="images/cache/red-conf-miss.png" class="img-fluid"></p>
+<p><img src="images/cache/sw-appr-reduce-miss.png" class="img-fluid"></p>
+<p><img src="images/cache/expo-cach-sw.png" class="img-fluid"></p>
+</section>
+<section id="seznecs-skewed-associative-cache" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="seznecs-skewed-associative-cache"><span class="header-section-number">8.3</span> Seznec’s Skewed-Associative Cache</h2>
+<!-- TODO -->
+</section>
+<section id="victim-cache" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="victim-cache"><span class="header-section-number">8.4</span> Victim Cache</h2>
+</section>
+<section id="multi-level-caches" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="multi-level-caches"><span class="header-section-number">8.5</span> Multi-level Caches</h2>
+</section>
+<section id="inclusivity" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="inclusivity"><span class="header-section-number">8.6</span> Inclusivity</h2>
+</section>
+<section id="non-block-caches" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="non-block-caches"><span class="header-section-number">8.7</span> Non-block Caches</h2>
+</section>
+<section id="summary" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">8.8</span> Summary</h2>
+<p><img src="images/cache/improv-cache-summary.png" class="img-fluid"></p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -637,13 +705,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./branch.html" class="pagination-link" aria-label="branch.html">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">branch.html</span></span>
+      <a href="./branch.html" class="pagination-link" aria-label="Instruction Flow">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instruction Flow</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./prefetch.html" class="pagination-link" aria-label="prefetch.html">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">prefetch.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./prefetch.html" class="pagination-link" aria-label="Prefetching">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Prefetching</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

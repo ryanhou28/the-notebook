@@ -289,7 +289,7 @@ Control Hazard - Detect and Stall:
 
 ## References
 
-- Patterson & Hennesy - Appendix C
+- Hennessy & Patterson - Appendix C
 - [CS4617 - L9](https://www.cs.ucc.ie/~jvaughan/cs4617/slides/lecture9.pdf)
 
 

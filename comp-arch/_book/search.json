@@ -54,7 +54,7 @@
     "href": "intro.html#classes-of-parallelism-parallel-architectures",
     "title": "1  Introduction",
     "section": "1.4 Classes of Parallelism & Parallel Architectures",
-    "text": "1.4 Classes of Parallelism & Parallel Architectures\nReference: Patterson & Hennessy Chp. 1.2\nTwo Kinds of Parallelisms in Applications:\n\nData-Level Parallelism\n\nMultiple data items can be operated on at the same time\n\nTask-Level Parallelism\n\nMultiple tasks can be processed independently at the same time\n\n\nHardware can exploit these application parallelisms in four ways:\n\nInstruction-Level Parallelism\nVector Architectures\nThread-Level Parallelism\nRequest-Level Parallelism\n\nFour Categories of Computing Architectures:\n\nSingle Instruction stream, Single Data stream (SISD)\n\nA uniprocessor - can exploit ILP such as superscalar and speculative execution\n\nSingle Instruction stream, Multiple Data stream (SIMD)\n\nSame instruction executed by many processors on different data streams\nExploits DLP\nEach processor has its own data memory, but have a single instruction memory and control processor\nNVIDIA: “SIMT”\n\nMultiple Instruction streams, Single Data stream (MISD)\n\nDoesn’t really exist in commercial use\n\nMultiple Instruction streams, Multiple Data stream (MIMD)\n\nEach processor has its own instruction stream and data stream\nMore flexible than SIMD but due to overheads this parallelism is expensive (limits degree of parallelism achievable)",
+    "text": "1.4 Classes of Parallelism & Parallel Architectures\nReference: Hennessy & Patterson Chp. 1.2\nTwo Kinds of Parallelisms in Applications:\n\nData-Level Parallelism\n\nMultiple data items can be operated on at the same time\n\nTask-Level Parallelism\n\nMultiple tasks can be processed independently at the same time\n\n\nHardware can exploit these application parallelisms in four ways:\n\nInstruction-Level Parallelism\nVector Architectures\nThread-Level Parallelism\nRequest-Level Parallelism\n\nFour Categories of Computing Architectures:\n\nSingle Instruction stream, Single Data stream (SISD)\n\nA uniprocessor - can exploit ILP such as superscalar and speculative execution\n\nSingle Instruction stream, Multiple Data stream (SIMD)\n\nSame instruction executed by many processors on different data streams\nExploits DLP\nEach processor has its own data memory, but have a single instruction memory and control processor\nNVIDIA: “SIMT”\n\nMultiple Instruction streams, Single Data stream (MISD)\n\nDoesn’t really exist in commercial use\n\nMultiple Instruction streams, Multiple Data stream (MIMD)\n\nEach processor has its own instruction stream and data stream\nMore flexible than SIMD but due to overheads this parallelism is expensive (limits degree of parallelism achievable)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -124,7 +124,7 @@
     "href": "metrics.html#cpi-ipc",
     "title": "2  Performance, Power, ISA",
     "section": "2.6 CPI, IPC",
-    "text": "2.6 CPI, IPC\nCycles Per Instruction\n\nLower the better\nIPC is its inverse\nSummary for different arch:\n\nIdeal in-order pipeline (no stalling): 1 (ignoring cycles to load up and clear the pipeline)",
+    "text": "2.6 CPI, IPC\nCycles Per Instruction\n\nLower the better\nIPC is its inverse\nSummary for different arch:\n\nIdeal in-order pipeline (no stalling): 1 (ignoring cycles to load up and clear the pipeline)\n\nProblem: Can never get more than 1 IPC unless we go superscalar",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Performance, Power, ISA</span>"
     ]
@@ -224,9 +224,439 @@
     "href": "inorder.html#references",
     "title": "3  In-Order CPU, Pipelining",
     "section": "3.9 References",
-    "text": "3.9 References\n\nPatterson & Hennesy - Appendix C\nCS4617 - L9",
+    "text": "3.9 References\n\nHennessy & Patterson - Appendix C\nCS4617 - L9",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>In-Order CPU, Pipelining</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-basics.html",
+    "href": "ooo-basics.html",
+    "title": "4  Out-of-Order - Dynamic Scheduling, Tomasulo",
+    "section": "",
+    "text": "4.1 Dynamic Scheduling\nIn-order pipeline is limited by IPC = 1 - an upper bound (“Flynn Bottleneck”)\nFor a pipeline with depth D stages, a superscalar machine of width N would lead to an instruction parallelism \\(D \\times N\\) in the architecture. However, a simple in-order scaling to superscalar, CPI would be limited by dependency stalls once width increases beyond a certain point\nInstruction-Level Parllelism is a measure of the amount of inter-dependencies between instructions\nAverage ILP = Number of Instructions / Number of Cycles\nWe now introduce two (somewhat) independent techniques (although frequently employed together):\nSome advantages offered by dynamic scheduling (H&P Ch3.4):\nA.k.a. Out-of-order processing\nWe now split the decode stage into a Dispatch stage and an Issue stage",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Out-of-Order - Dynamic Scheduling, Tomasulo</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-basics.html#dynamic-scheduling",
+    "href": "ooo-basics.html#dynamic-scheduling",
+    "title": "4  Out-of-Order - Dynamic Scheduling, Tomasulo",
+    "section": "",
+    "text": "Add new hardware: Instruction Buffer\n\nAka instruction window, instruction scheduler\n\nEach cycle, HW checks if the sourceRegs for each instruction is ready to execute\nInstruction leaves buffer when ready (this can be in arbitrary order)\n\nThis makes it “out-of-order” since instructions can be executed in arbitrary order\n\nTo sum:\n\nInstructions going into the instruction buffer is same order as the program\nInstructions are sent to next stage as soon as its ready, thus:\nInstructions going out of instruction buffer can be in any order\nInstructions are committed in order\n\n\n\n\n\n4.1.1 New Hazards\nOut-of-order introduces new types of hazards:\n\nRead-after-write (RAW) - “true dependencies” as we have seen before\nWrite-after-read (WAR) - “Anti dependencies”\nWrite-after-write (WAW) - “Output Dependencies”\n\nWAR and WAW also called “Name” Hazards\n\nThese dependencies are “false” dependencies, since their dependence is on name/register/location rather than data\n\nGiven infinite registers, WAR/WAW could be eliminated\n\nThis leads us to the register renaming technique",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Out-of-Order - Dynamic Scheduling, Tomasulo</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-basics.html#register-renaming",
+    "href": "ooo-basics.html#register-renaming",
+    "title": "4  Out-of-Order - Dynamic Scheduling, Tomasulo",
+    "section": "4.2 Register Renaming",
+    "text": "4.2 Register Renaming\nIdea: to solve false dependencies, we increase the number of physical registers (not visible to the programmer, since architectural registers are defined by ISA)\n\nIn hardware, dynamically rename instructions to use new physical registers\n\nRemoves WAR and WAW but keeps RAW intact (because RAW is a true dependency)\n\n\n\nA Map Table records the correspondence between architectural registers and physical registers\nA Free List records physical registers that are free to use\n\nOn reads: check map table to see which physical register to read from\nOn writes: (within a certain distance that could cause a hazard), we update the map table with a physical register on the free list (eliminates name hazards)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Out-of-Order - Dynamic Scheduling, Tomasulo</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-basics.html#scoreboarding",
+    "href": "ooo-basics.html#scoreboarding",
+    "title": "4  Out-of-Order - Dynamic Scheduling, Tomasulo",
+    "section": "4.3 Scoreboarding",
+    "text": "4.3 Scoreboarding\n\nOut-of-order with no register renaming\nUses a centralized control scheme - instruction status explicitly tracked\nInstruction buffer: Functional Unit Status Table (FUST)\n\n\n4.3.1 Data Structures\n\n\nFU Status Table\n\nTracks dest/source reg, which operation and whether FU is busy\nT: destination register tag (FU producing the value)\nT1, T2: source reg tag (FU producing the value)\nEach entry in the table represents a single FU\n\nRegister Status Table\n\nT: Tag (FU that will write this register)\nEssentially tracking which FU’s instruction is going to write to this reg\n\n4.4 Instruction Status Table\n\nTags track what FUs we are waiting on (0 for value alrady in RF, not 0 means value will be supplied by T)\n\n\n4.4.1 Scoreboard Dispatch\n\n\nSince no register renaming, still have to worry about WAW\nIf instruction is writing to a reg, tag it in reg status table\n\n\n\n4.4.2 Scoreboard Issue\n\n\nIssue Policy - If multiple instructions are ready, which one do we choose?\n\nOldest first? Safe choice\nLongest latency first? May yield better performance\n\nSelect logic implements the issue policy\n\nBased on a W to 1 priority encoder\n\nW is the window size (number of scoreboard entries)\n\n\n\n\n\n4.4.3 Scoreboard Execute\n\n\n\n4.4.4 Scoreboard Writeback\n\n\nSince reg is written back, reg status of the destReg is cleared ()\nWritting back an instruction clears the corresponding input tags in FU Status\nScoreboard (FU Status) entry is freed since the FU can take on a new instruction\n\n\n\n4.4.5 Scoreboard Pipeline\n\nPipeline: F, D, S, X, W\nFetch\nDispatch\n\nIf structural or WAW hazard? stall\n\nStructural: All FUs busy\nWAW: curr_inst writes to regA but RegStatus[regA] is non-empty\n\ni.e. destination register is tagged in Reg Status table\nThis means it is being written to by a current instruction\n\n\nOtherwise allocate scoreboard entry\n\nIssue\n\nIf RAW hazard? stall\n\nRAW: curr_inst reading regA but regA has pending results to be written\nCheck with tags in FU status table (recall a reg is tagged if it is being written to)\n\nOtherwise read registers and issue to execute\n\nExecute\nWriteback\n\nIf WAR hazard? stall\n\nWAR: instruction tries to write to a reg that has not been read yet\nCheck if destReg matches any sourceReg that is untagged in scoreboard\n\nUntagged means it is reading the register’s content BEFORE this instruction should write to it (otherwise it would be tagged)\n\n\nOtherwise write register and free scoreboard entry\n\n\nAdding register renaming would help us reduce stalls in D and S stages by eliminating name dependencies\n\n\n4.4.6 Comparisons\n\nOn branch: stall dispatch until branch completes\nScoreboarding didn’t provide too much speedup\n\nOriginally used for scientific computing (where programs have minimum branches)\n\nScoreboarding is still used in GPUs\n\nThousands of independent threads that can be switched to when one thread has a branch\n\nNot great for general purpose processing…\nPros:\n\nRelatively cheap hardware (compared to more complex OoO)\n\nCons\n\nLimited scheduling scope (due to structural and WAW hazards delaying dispatch)\nSlow issue of RAW\nWAR hazard delays writeback\n\nWe introduce register renaming to advance to Tomasulo’s",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Out-of-Order - Dynamic Scheduling, Tomasulo</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-basics.html#tomasulos-algorithm",
+    "href": "ooo-basics.html#tomasulos-algorithm",
+    "title": "4  Out-of-Order - Dynamic Scheduling, Tomasulo",
+    "section": "4.5 Tomasulo’s Algorithm",
+    "text": "4.5 Tomasulo’s Algorithm\n\nOut-of-order with register renaming\nMap table maps arch. reg. to phys. reg.\nOn write: allocate new location (from free list of reg), note in map table\nOn read: find the phys. reg. from map table\nNeed to de-allocate mappings eventually\nRegister renaming removes WAR/WAW hazards\n\n\n\n\nNote that H&P’s Tomasulo assumes a distributed reservation station\n\n\nHere we introduce a Simple Tomasulo\n\n4.5.1 Data Structures\n\nReservation Stations (RS) is the “instruction buffer”\n\nStores FU, busy, opcode, destReg of instructions\nT: destination reg tag (RS# of this RS)\nT1, T2: source reg tags (RS$ of the RS That will produce the value used)\nV1, V2: source reg values\n\nCommon Data Bus (CDB) - bus that broadcasts results to the RS\n\nBroadcasts &lt;RS#,value&gt; of the completed instruction\n\nMap Table\n\nStore the Tags (RS#) that will write to this register\n\n\nTags are the reservation station entry index, where 0 (empty) means the value is ready somewhere. Otherwise the value is not ready and is dependent on the corresponding RS# instruction to write to it, thus need to wait until CDB broadcasts the tag\n\n\n\n4.5.2 Pipeline\n\nDispatch:\n\nStructural hazard on FUs? Yes then stall, otherwise allocate RS entry\nIf the operands are not in the registers, keep track of the functional units that will produce the operands (as tags). This step renames registers, eliminating WAR and WAW hazards\n\nIssue:\n\nCheck for RAW hazards (same was as scoreboarding) by checking if the sourceReg has all their values ready. If source reg is tagged, wait until CDB broadcast\nIf no RAW, then issue instruction for execution\n\nWriteback\n\nWrite the register and free the RS entry\n\n\n\n\n4.5.3 Tomasulo Dispatch\n\n\n\n4.5.4 Tomasulo Issue\n\n\n\n4.5.5 Tomasulo Execute\n\n\nSame as previous pipelines\n\n\n\n4.5.6 Tomasulo Writeback\n\n\n\n4.5.7 Tomasulo - Register Renaming\nDifferences with scoreboarding:\n\nScoreboarding explicitly keeps track of the indices of the source registers (Tags)\n\nThe basic idea is that a reservation station fetches and buffers an operand as soon as it is available, eliminating the need to get the operand from a register. When successive writes to a register overlap in execution, only the last one is actually used to update the register\n\nData structures (Map table, values table in the RS that copies the reg values) are much larger than indices used in Scoreboarding, costing more hardware\n\nWhat in Tomasulo implements register renaming?\n\nValue copies in the RS (V1, V2 in the value table)\n\nInstructions stores correct input values in its own RS entry\nFuture instructions can overwrite master copy in the register file\n\nBut for WAW/WAR hazards, the correct values are in the RS\n\n\nThus, Tomasulo-style register renaming is “value-based”/“copy-based”\n\nNames: architectural registers\nStorage locations: register file and RS\n\nValues can exist in both\nRF holds most recent values\nCopies of values in the RS prevents WAR hazards\n\nStorage location referred to by the RS# tags\n\nRegister table translates names to tags\nEmpty tag -&gt; value is in RF\nTagged value means it is computed by the corresponding RS#\n\nCDB broadcast contains the tag, thus instructions knows if it is the correct value they want\n\n\n\nTakeaway: Dynamic scheduling WITH register renaming shines in high latency instructions\n\nProblem with Simple Tomasulo: Cannot handle exceptions - we don’t know the relative ordering of instructions by looking at the RS",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Out-of-Order - Dynamic Scheduling, Tomasulo</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-basics.html#quick-summary",
+    "href": "ooo-basics.html#quick-summary",
+    "title": "4  Out-of-Order - Dynamic Scheduling, Tomasulo",
+    "section": "4.6 Quick Summary:",
+    "text": "4.6 Quick Summary:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Out-of-Order - Dynamic Scheduling, Tomasulo</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-basics.html#looking-ahead",
+    "href": "ooo-basics.html#looking-ahead",
+    "title": "4  Out-of-Order - Dynamic Scheduling, Tomasulo",
+    "section": "4.7 Looking Ahead",
+    "text": "4.7 Looking Ahead\nNext chapter discusses how we build on to handle precise state and speculation in P6 and R10k -style architectures",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Out-of-Order - Dynamic Scheduling, Tomasulo</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-basics.html#example-executions",
+    "href": "ooo-basics.html#example-executions",
+    "title": "4  Out-of-Order - Dynamic Scheduling, Tomasulo",
+    "section": "4.8 Example Executions",
+    "text": "4.8 Example Executions\n\n4.8.1 Scoreboard\n\n\n\n\n\n\n\n\n\n\n\n\n4.8.2 Tomasulo",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Out-of-Order - Dynamic Scheduling, Tomasulo</span>"
+    ]
+  },
+  {
+    "objectID": "p6r10k.html",
+    "href": "p6r10k.html",
+    "title": "5  Out-of-Order - Speculation, Precise Interrupts, Superscalar",
+    "section": "",
+    "text": "5.1 Superscalar\nSuperscalar refers to issuing multiple instructions at the same time\nScaling for an N-by-W Tomasulo:\nWhat is hard to scale up?\nNote\nKind of settled in industry that around 5-way superscalar is where we get a lot of benefits before diminishing returns (before starting to use too much power and add complexity / slows pipelines)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Out-of-Order - Speculation, Precise Interrupts, Superscalar</span>"
+    ]
+  },
+  {
+    "objectID": "p6r10k.html#superscalar",
+    "href": "p6r10k.html#superscalar",
+    "title": "5  Out-of-Order - Speculation, Precise Interrupts, Superscalar",
+    "section": "",
+    "text": "Dynamic scheduling and multiple issue are orthogonal techniques\n\nGives us 2 dimensions of scaling:\n\nN: Superscalar width (number of parallel operations)\nW: Window Size (number of reservation stations)\n\ni.e. how many instructions we can read into the processor and choose to re-order among those\nDetermines # of independent ins. that can be operated on in parallel\nDirectly limits ILP (since it controls how many instructions can wait for execution)\n\n\n\n\n\n\nRS:\n\nN tag/value write ports (Dispatch)\nN value read ports (Issue)\n2N tag CAMs (Writeback)\n\nEach RS entry needs to search for operand tag, and we have 2 source regs (thus 2 tag CAMs per RS entry)\n\n\nSelect Logic (Issue):\n\nW to N priority encoder\n\nto select N instructions to issue out of window W\n\n\nMap Table\n\n2N read ports (Dispatch)\n\nRead 2N (2 reg per instruction)\n\nN write ports (Dispatch)\n\nN instructions could be written to, need N ports to update mapping\n\n\nRegister File\n\n2N read ports (Dispatch)\nN write ports (Writeback)\n\nSimilar read/write ports as Map Table (2 read for 2 source regs per ins, N write for 1 destReg per ins)\n\n\nCDB:\n\nN (Writeback)\n\n\n\n\nSelect logic tends to be difficult to scale up\nRS is pretty expensive\nCDB also takes up a lot of space and power! Routing overhead of CDB is very significant! Difficult to design\n\n\n\n\n5.1.1 Superscalar Select Logic\n\nSuperscalar select logic: W-&gt;N priority encoder\n\nComplicated (complexity of \\(N^2log(W)\\))\nCan be simplified with different designs\n\nTechnique: Split design - Distributed Reservation Station\n\nDivide RS into N banks: (1 per FU)\nThus need to implement N separate W/N to 1 encoders\nMuch simpler complexity: \\(Nlog(W/N)\\)\nCon: Much less scheduling flexibility\n\nOther FU might be free, but a RS bank is tied to one FU\nPossible load imbalance between banks\n\n\nFIFO Design [Palacharla+]\n\nOnly issue the head of each RS bank\nSimpler: No need for select logic at all\nCon: Less scheduling flexibility (however, surprisingly not that bad)\n\nCannot issue OoO within a bank!\nLoad balancing issues",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Out-of-Order - Speculation, Precise Interrupts, Superscalar</span>"
+    ]
+  },
+  {
+    "objectID": "p6r10k.html#bypassing",
+    "href": "p6r10k.html#bypassing",
+    "title": "5  Out-of-Order - Speculation, Precise Interrupts, Superscalar",
+    "section": "5.2 Bypassing",
+    "text": "5.2 Bypassing\n\n\n\nBypassing in OoO is tricky!",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Out-of-Order - Speculation, Precise Interrupts, Superscalar</span>"
+    ]
+  },
+  {
+    "objectID": "p6r10k.html#interrupts-exceptions",
+    "href": "p6r10k.html#interrupts-exceptions",
+    "title": "5  Out-of-Order - Speculation, Precise Interrupts, Superscalar",
+    "section": "5.3 Interrupts & Exceptions",
+    "text": "5.3 Interrupts & Exceptions\nFrom Tomasulo, we know branches don’t work well with wrong predictions since we need to clean up OoO execution of the instructions already inside the pipeline. Another problem is when dealing with interrupts & exceptions.\nInterrupts and exceptiosn are unexpected transfer of control flow that is restartable (pick up where we left off from before).\n\nAsynchronous (Interrupts)\n\nE.g. I/O device wants attention\nAllows that we defer the interrupt until it is convenient\n\nTherefore asynchronous interrupts are easier to deal with than synchronous exceptions\n\n\nSynchronous (aka Exceptions, Traps)\n\nUnusual condition for some instruction\n\nE.g. divide by zero, page faults, etc. Need to switch to OS to deal with it or some specialized routine\n\nExplicit calls to operating system software\nMain difference from interrupts is that exceptions are always triggered by some specific instruction\n\nHarder to deal with as we can’t just finish current instructions that are running\n\n\n\n\n\nPrecise Interrupt is an abstraction of our program that at any given point in time we should be able to draw a line in our program that separates instructions that are finished and instructions that have not yet finished. Need to somehow “hide” the result of the instructions until we know for sure we have to execute them.\nOoO execution messes both branch speculation and precise interrupts. Although precise state is implemented not for performance reasons (rather for programmability), we will get performance improvement since we won’t have to stall as much on branches.\n\n\nSpeculative execution needs\n\nAbility to abort & restart at every branch\nAbort & restart at every load useful for load speculation (speculation in LSQ)\n\nAnd for shared memory multiprocessing\n\n\nInterrupts and exceptions require abort & restart at every instruction!\nThe ability to abort & restart at every instruction is precise state\n\nIgnoring it (imprecise state) makes page faults (or any restartable exception) difficult, and makes speculative execution almost impossible\n\n\n\n5.3.1 Precise State\n\nOptions:\n\nForce in-order completion (at writeback) and stall if necessary - SLOW!\nImplement precise state in software - trap to recovery routine - will need to trap on every branch miss - BAD!\nPrecise state in HW - way to go!\n\n\n\n\nRecall that we split decode into an in-order dispatch and out-of-order issue.\nA similar idea can be done with the register file:\n\nout of order write to a buffer, in order write to the actual register file\n\nWe turn the instruction buffer into the Re-Order Buffer (ROB)\n\nRe-order the instructions after executing them out of order, only updating the register file once things are at the head of the ROB (in-order)\nThus: OoO write to ROB, in-order write to RF\n\nROB may be combined with RS or used as a separate structure\n\nCombined: register-update unit RUU (Sohi’s method)\n\nPRos: Saves space, faster operand wakeup and forwarding. Simplifies execution flow\nCons: Scalability issue - entire structure needs to support both scheduling and reordering, complex issue logic\n\nSeparate (more common today): P6 style\n\nSplit Writeback into two stages: Complete and Retire\nThe ROB defines the number of instructions that can be in-flight in execution, essentially defining the size of the instruction window, meaning a larger ROB = more future instructions can be considered for execution\n\n\n\n5.3.2 Asides - ROB and RS Sizing\nROB stores all in-flight instructions from dispatch until they commit in-order\n\nEnsures precise state, and in-order retirement\nDetermines the instruction window - how many total instructions can be in-flight\n\nRS holds instructions waiting for execution\n\nAffects instruction issue rate - how many instructions can be issued in parallel\n\n“When sizing a reorder buffer (ROB) compared to a reservation station, the ROB generally needs to be larger because it holds the results of instructions until they are ready to commit, while a reservation station only needs to store operands temporarily until the instruction can execute, allowing for more instructions to be in flight during out-of-order execution; meaning a larger ROB is typically required to maintain program correctness while maximizing performance.”\n\n\n5.3.3 Complete & Retire\n\n\nComplete - where instructions finish execution (but results don’t go to RF yet)\n\nWrite the results into the ROB, which holds the pending results and forward to pending instructions in the RS\n\nRetire - where we take the ROB head and wrie the result back into the RF\n\nHead is the entry that has been in the ROB the longest (oldest instruction in program order)\n“committing” this instruction to the RF\nFinishes in program order",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Out-of-Order - Speculation, Precise Interrupts, Superscalar</span>"
+    ]
+  },
+  {
+    "objectID": "p6r10k.html#p6-style",
+    "href": "p6r10k.html#p6-style",
+    "title": "5  Out-of-Order - Speculation, Precise Interrupts, Superscalar",
+    "section": "5.4 P6 Style",
+    "text": "5.4 P6 Style\nBasically Tomasulo’s algorithm + ROB, where ROB and RS are separate\n\n5.4.1 Data Structures\n\nROB\n\nhead, tail: pointers to maintain sequential order\n\nHead is oldest insn, tail is youngest\n\nR: instruction destination register\nV: instruction output value\nEach instruction gets a ROB entry\nHelps solve following problems:\n\nMain motivation: preventing writing back an instruction that wasn’t supposed to (in-order retire)\nResolve name dependencies\n\n\nReservation Station - same as in Tomasulo\nMap Table:\n\nKeeps track of which ROB entries holds latest values for each architectural register (maps arch reg -&gt; ROB#)\nDifferent from Tomasulo:\nStores T+: tag + “ready-in-ROB” bit\nIf T is empty, value is ready in the RF\nIf T is not empty (but no + bit), value is not ready\nIf T is not empty with + bit, value is ready in the ROB\n\nTags are different:\n\nTomasulo uses RS# as Tag\nP6 uses ROB# as Tag (since ROB# corresponds to an instruction)\n\n\n\nWhat about loads and stores?\n\nWe can’t resolve data dependencies between loads and stores until we actually execute the instruction (need to compute address first)\nNeed extra hardware structure: Load Store Queue (LSQ) - see notes later on this\n\nCompleted stores write to LSQ\nWhen stores retire, the head of the LSQ (oldest ins) gets written to D-cache\nWhen loads execute, access LSQ and D$ in parallel\n\nForward data from LSQ if older store has a matching address\n\nMore modern designs: have loads and stores in separate queues\n\n\n\n\n\n5.4.2 Pipeline\nPipeline: Fetch, Decode, Issue, Execute, Complete, Retire\n\nDispatch\n\nIf structural hazard on ROB/LSQ/RS then Stall\n\nSince dispatching an instruction requires us to send insn to these structures\nNote: if non-memory dispatching insn and LSQ is full, it is fine\n\nAllocate entry in ROB/LSQ/RS\nSet RS tag to the ROB#\nSet the Map Table entry to the ROB# and clear “ready-in-ROB” bit\nRead ready registers into RS (from either ROB or RF)\n\nExecute\n\nFree RS entry\n\nNote: recall how in Tomasulo we freed RS entry at writeback. This is moved earlier here because RS# are no longer tags\n\n\nComplete\n\nIf there’s structural hazard on the CDB, then wait\nWrite value into ROB entry indicated by the RS tag\nMark the ROB entry as Complete\n\nIf the ROB entry overwritten, mark Map Table entry “ready-in-ROB” bit (+)\ni.e. if in the Map Table, the arch reg -&gt; ROB# (of the completed insn) is still there and not overwritten by a new instruction, then we set the “ready-in-ROB” bit since we now have the value. Otherwise the arch. reg. is overwritten by a newer instruction and needs a different value.\n\n\nRetire\n\nIf instruction at ROB head not complete? Stall\nHandle any exceptions\nWrite ROB head value to register file\nIf store instruction at head, write the LSQ head to the D-cache\nFree ROB/LSQ entries that are retired\n\n\n\n\n5.4.3 P6 Dispatch\n\n\n\n\n5.4.4 P6 Complete\n\n\n\n5.4.5 P6 Retire\n\n\n\n5.4.6 Precise State in P6\nPoint of the ROB is to maintain Precise State\n\nTo do so:\n\nWait until last good instruction retires such that the first bad instruction is at the ROB head\n\nGood as in insn should be finished as usual, bad as in insn that shouldn’t be run (such as insns after a mis-predicted branch)\n\nThen clear the contents of the ROB, RS, and Map Table\nStart over (start running the pipeline again from the correct instructions)\n\nThis works because ROB helps us maintain program order, and we clear everything that should be flushed\n\n\n\n5.4.7 P6\nWhat is the cost of adding precise state?\n\nIn general, P6 has same performance as “plain” Tomasulo\n\nROB is not designed to make system more performant (although it may give a little speedup since RS freed earlier leads to fewer structural hazards)\n\nRule of Thumb for ROB Size:\n\nAt least N \\(\\times\\) number of pipe stages bewteen D and R\n\nNeed to make sure ROB covers pipeline\n\nAt least \\(N \\times t_{hit-L2}\\)\n\nMiss in L1 cache is most comon reason for a stall, thus if we can make sure the number of instructions “in flight” is N times hit time of L2 cache, this makes sure even if we have a miss on L1 we can keep fetching instructions to keep the CPU busy\n\n\nThe problem with P6 for high performance implementations:\n\nToo much value movement (regfile/ROB -&gt; RS -&gt; ROB -&gt; RF)\nMulti-input MUXes, long buses complicate routing and slows clock\nWe’re moving values around a lot, could have many different copies of the same value\n\nThis motivates us towards a R10K design where we have 1 value and keep track of where things are",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Out-of-Order - Speculation, Precise Interrupts, Superscalar</span>"
+    ]
+  },
+  {
+    "objectID": "p6r10k.html#mips-r10k",
+    "href": "p6r10k.html#mips-r10k",
+    "title": "5  Out-of-Order - Speculation, Precise Interrupts, Superscalar",
+    "section": "5.5 MIPS R10K",
+    "text": "5.5 MIPS R10K\nAn alternative implementation is a MIPS R10K-style architecture\n\n\nBig idea: Have all data in one place\n\nUse one big physical register file to hold all data - no copies\n\nRegister files are close to FUs, leading to small & fast data path\nROB and RS “on the side” used for only control and tags\n\n\n5.5.1 R10K Register Renaming\nNo more architectural register file. Instead the physical register file holds all values.\n\nNum. of Physical Registers = Num. of Arch. Regs + Num. ROB Entries\nMap architectural registers to physical registers\n\nThis removes name hazards (WAW, WAR). Compared to P6, phys. reg. replace RS copies\n\nBig change to map table: each entry in the table always contains some mapping to physical registers (since there is no arch. register file anymore)\nFree List keeps track of unallocated physical registers that we can assign to\n\nROB is responsible for returning physical registers to the free list\nCan be implemented with a bit array, one bit for each physical register, tracking if the register is free or not\n\nConceptually, this is “true register renaming”\n\nHow do we free registers?\n\nIn P6, values were temporarily stored with the ROB entry. On retire, ROB value is copied to the RF, freeing the ROB entry\nHowever in R10k, we can’t free physical registers when instruction retires\n\nThere is no architectural register to copy the value to… other instructions might need this value\n\nNotice: We can free physical register that is previously mapped to same logical register\n\nWhy? All insns that will ever read its value have retired\nIn otherwords:\nOnce we retire an instruction, we know for sure that previous physical registers that used this destReg won’t be used anymore. Any instructions being executed now must be using the newer version of the register\n\n\n\n\n5.5.2 R10K Data Structures\n\nROB\n\nT: Physical register # corresponding to the instruction’s logical output\nT_old: physical register # previously mapped to instruction’s logical output\n\nThis is so that we know what physical register to free\n\n\nRS\n\nT, T1, T2: output and two input physical register numbers\n\nMap Table\n\nStores the mapping from arch. reg to physical registers\nT+: Physica Reg # + “ready bit”\nNote that map table entires are never empty\n\nArchitectural Map Table\n\nT: Physical Reg #\nCan be used to restore state after a branch mispredict or exception\nKeeps a separate version of the map table that doesn’t hold speculative updates\n\nSpeculative as in instructions that are in-flight\nOnly gets updated on retire (in-order)\nWhen clearing out processor pipeline, this tells us where the “official” register values are kept at any given time\n\n\nFree List\n\nT: Physical Reg #\nTracks what physical registers are free\n\n\nKey differences from P6:\n\nNew tags: R10K tags are Physical Register # (compared to ROB# in P6)\nNo register values are stored in ROB, RS, or on CDB\n\nThis is key for hardware since this minimizes overheads spent on value copies, especially the CDB (which adds significant routing costs, etc)!\n\n\n\n\n5.5.3 R10K Pipeline\n\n\nFetch\nDispatch\n\nOn structural hazard (RS, ROB, LSQ, or Physical Registers), then stall\nAllocate RS, ROB, LSQ entries and a new physical register (T)\nRecord the previously mapped physical register (T_old)\n\nComplete\n\nWrite value to destination physical register\n\nRetire\n\nIf ROB head not complete, stall\nHandle any exceptions\nStore write LSQ head to D cache\nFree the ROB and LSQ entries that is retiring\nFree previous physical register (T_old)\nRecord committed physical register (T) (to architectural map table)\n\n\n\n\n5.5.4 Dispatch\n\n\nAllocate entry at tail of ROB\nAllocate RS entry and populate values\nAllocate physical reg on free list to Map table\n\n\n\n5.5.5 Complete\n\n\n\n5.5.6 Retire\n\n\n\n5.5.7 Precise State in R10k\nDisadvantage of R10K is that precise state has more overhead\n\nOn exception/mispredict, copy arch. map table into map table\n\nAlso need to keep an architectural free list\n\nTo track free physical registers after retirement\n\n\nAlternative: Serially rollback execution using T, T_old ROB fields\n\nVery slow but costs less hardware (since no need for architectural map table)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Out-of-Order - Speculation, Precise Interrupts, Superscalar</span>"
+    ]
+  },
+  {
+    "objectID": "p6r10k.html#summary",
+    "href": "p6r10k.html#summary",
+    "title": "5  Out-of-Order - Speculation, Precise Interrupts, Superscalar",
+    "section": "5.6 Summary",
+    "text": "5.6 Summary\n\n\nModern dynamic scheduling must support precise state (programmability)\nStrategy: Split writeback into Complete (OoO) + Retire (in order)\nTwo basic designs:\n\nP6: Tomasulo + ROB, copy-based register renaming\n\nPrecise state is simple, but fast implementation difficult (due to value copies)\n\nR10K: Implements “true” register renaming\n\nEasier fast implementation, but precise state is more complex",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Out-of-Order - Speculation, Precise Interrupts, Superscalar</span>"
+    ]
+  },
+  {
+    "objectID": "p6r10k.html#examples",
+    "href": "p6r10k.html#examples",
+    "title": "5  Out-of-Order - Speculation, Precise Interrupts, Superscalar",
+    "section": "5.7 Examples",
+    "text": "5.7 Examples\n\n5.7.1 P6 Execution\n\n\n\n\n\n\n\n\n\n\n\n\n\n5.7.1.1 P6 With Precise State\n\n\n\n\n\n\n5.7.1.2 R10K Execution\n\n\n\n\n\n\n\n\n5.7.1.3 R10K with Precise State",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Out-of-Order - Speculation, Precise Interrupts, Superscalar</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-memory.html",
+    "href": "ooo-memory.html",
+    "title": "6  Memory Disambiguation",
+    "section": "",
+    "text": "6.1 Strategies to handle Loads\nWhy are OoO memory instructions harder to deal with:\nDynamic Reordering of Memory Operations",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Memory Disambiguation</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-memory.html#strategies-to-handle-loads",
+    "href": "ooo-memory.html#strategies-to-handle-loads",
+    "title": "6  Memory Disambiguation",
+    "section": "",
+    "text": "Allow only one load or store in the OoO core at the same time\n\nStall other operations at dispatch\nVery slow!\n\nLoad may only issue when all older stores have finished\n\nThis guarantees we read the most up to date value on loads\nRequires new queue to hold memory ops: Load-Store Queue\n\nBasically a ROB for mem. ops\n\n\nStore-to-load Forwarding\n\nMonitor the addresses calculated by loads and stores\nIf there’s an alias in address between load and earlier stores, forward the value from within the LSQ without going to memory\nIf no aliases, issue load to memory earlier\n\nSpeculative Store-to-load Forwarding\n\nIdea: Most store’s and loads don’t alias\nIf addresses aren’t known yet, speculate that there ISNT an alias for given load and issue it to memory now\nIf we were wrong, squash instructions and rewind",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Memory Disambiguation</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-memory.html#simple-data-memory-fu-d-cachetlb-store-queue",
+    "href": "ooo-memory.html#simple-data-memory-fu-d-cachetlb-store-queue",
+    "title": "6  Memory Disambiguation",
+    "section": "6.2 Simple Data Memory FU: D-Cache/TLB + Store Queue",
+    "text": "6.2 Simple Data Memory FU: D-Cache/TLB + Store Queue\n\n\nDispatch things in program order into the FU\nStores go in the store queue, storing all in-flight stores\nHave associatively searchable addresses in the store queue\n\n\n6.2.1 Pipeline\nStores\n\nDispatch\n\nAllocate an entry on the SQ tail\n\nExecute\n\nWrite address and data are fed into corresponding SQ slot\n\nRetire\n\nWrite address/data from SQ head to the D-cache and free SQ head\n\n\nLoads\n\nDispatch\n\nRecord current SQ tail as load position\n\nExecute\n\nMultiple approaches towards how loads execute…\n\n\n\n\nOn a load, while we do a D-cache access:\n\nWe search for this address alias in the SQ\nForward the youngest store older than the load\n\nHowever, an older store’s address might not have ben resolved yet\n\nThus there are different policies for scheduling loads",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Memory Disambiguation</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-memory.html#conservative-load-scheduling",
+    "href": "ooo-memory.html#conservative-load-scheduling",
+    "title": "6  Memory Disambiguation",
+    "section": "6.3 Conservative Load Scheduling",
+    "text": "6.3 Conservative Load Scheduling\n\nLoads can execute out-of-order w.r.t. other loads\nLoads must execute in-order w.r.t. older stores\n\nI.e. Load execution requires that addresses of all older stores are known\n\nHowever this conservative scheme restricts performance",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Memory Disambiguation</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-memory.html#speculative-store-to-load-forwarding",
+    "href": "ooo-memory.html#speculative-store-to-load-forwarding",
+    "title": "6  Memory Disambiguation",
+    "section": "6.4 Speculative Store-to-Load Forwarding",
+    "text": "6.4 Speculative Store-to-Load Forwarding\n\nIf addresses aren’t known yet, speculate that there is no store-load alias and issue the load to memory now\nIf it is wrong, squash instruction and rewind\nThis adds a need for a load queue to track all load addresses that are in-flight\n\nNeed it to detct mis-speculation and recover\nNeed to re-execute the previous loads and all dependent instructions",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Memory Disambiguation</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-memory.html#load-queue",
+    "href": "ooo-memory.html#load-queue",
+    "title": "6  Memory Disambiguation",
+    "section": "6.5 Load Queue",
+    "text": "6.5 Load Queue\n\n\n6.5.1 Advanced Memory ““Pipeline (LQ Only)\nLoads\n\nDispatch\n\nIn program order\nAllocate entry at LQ tail\n\nExecute\n\nWrite address into corresponding LQ slot\n\n\nStores\n\nDispatch\n\nRecord current LQ tail as “store position”\n\nTo help with tracking and resolving store-load dependencies\nIf a later load accesses an address this store will write to, this position allows FU to determine conflict and squash\n\n\nExecute\n\nWhen addr of store is resolved, send address to LQ\nLQ checks with all loads\n\nFind matching addr. AND oldest load younger than the store\n\nThis would be the load after the store in program order, speculatively executed so it needs fixing\nSquash and flush processor from this point and restart",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Memory Disambiguation</span>"
+    ]
+  },
+  {
+    "objectID": "ooo-memory.html#lsq-implementation",
+    "href": "ooo-memory.html#lsq-implementation",
+    "title": "6  Memory Disambiguation",
+    "section": "6.6 LSQ Implementation",
+    "text": "6.6 LSQ Implementation\nTwo basic choices of implementation:\n\nUnified LSQ\n\nSimpler conceptually\nMore expensive hardware\nLimited in size\n\nDue to scalability of unifying them\n\n\nSplit LSQ\n\nMore complex logic\nCheaper hardware\nCan be made larger\n\n\n\n6.6.1 Unified Load Store Queue\n\n\nEntries contain load or stores\nThe comparator matrix (equality checks) doesn’t scale well\n\nMatrix checks for address matches and relative ages\n\nEntries deallocated on retirement\n\n\n\n6.6.2 Split Queues\n1 load queue, 1 store queue\n\nD$/TLB + structures to handle in-flight loads/stores\nPerforms Four Functions:\n\nin-order store retirement\n\nWrite stores to D-Cache in program order\nBasic, implemented by SQ\n\nStore-load Forwarding\n\nAllows loads to read values from older un-retired stores\nAlso basic, implmented by SQ\n\nMemory Ordering Violation Detection\n\nChecks load speculation\nAdvanced, implemented by LQ\n\n\nA lot more scalable!\n\n\n\n6.6.3 Summary\n\nUnified:\n\n\nConceptually simple\n\nAny entry could be either load or store, so need NxN comparators…expensive in hardware and difficult to scale\n\nSplit:\n\n\nLoads and stores are partitioned, only need to compare load addresses with store queue entries … less overhead and more scalable\n\n\nHarder (conceptually) to implement age logic\n\n\n6.7 Summary\nOoO memory operations\n\nStore queue: conservative load scheduling (iO w.r.t. older stores)\nLoad queue: opportunistic load scheduling (OoO w.r.t. older stores)\nIntelligent memory scheduling: hybrid",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Memory Disambiguation</span>"
+    ]
+  },
+  {
+    "objectID": "branch.html",
+    "href": "branch.html",
+    "title": "7  Instruction Flow",
+    "section": "",
+    "text": "7.1 Instruction Fetch Buffer\nTopics:\nResources: H&P Chp3.3,3.9\nPerformance Penalties of Branches",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Instruction Flow</span>"
+    ]
+  },
+  {
+    "objectID": "branch.html#branch-prediction",
+    "href": "branch.html#branch-prediction",
+    "title": "7  Instruction Flow",
+    "section": "7.2 Branch Prediction",
+    "text": "7.2 Branch Prediction\nTwo high level strategies:\n\nStatic - same prediction for a branch everytime\n\nimplement in compiler, by programmer, or in HW\nsimple HW implementation\n\nDynamic: some runtime info is used to make (potentially) different prediction each iteration\n\nimplemented in HW\nneed more HW, but better performance (most of the time, depends on workload)\n\n\n\n\n\nTarget predictor feeds the PC\nDirection predictor only applies to conditionals\n\nsince nonconditionals (eg jal) are always taken",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Instruction Flow</span>"
+    ]
+  },
+  {
+    "objectID": "branch.html#branch-target-buffer-btb",
+    "href": "branch.html#branch-target-buffer-btb",
+    "title": "7  Instruction Flow",
+    "section": "7.3 Branch Target Buffer (BTB)",
+    "text": "7.3 Branch Target Buffer (BTB)\n\n\nBasically a small cache of past branch targets\nUse small set of the address (don’t compare whole address)\nUse part of the PC as the index into the cache\nIf we’ve seen a branch to this before (recently): predict taken\nIf we haven’t seen this (recently): predict not taken",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Instruction Flow</span>"
+    ]
+  },
+  {
+    "objectID": "branch.html#return-address-stack",
+    "href": "branch.html#return-address-stack",
+    "title": "7  Instruction Flow",
+    "section": "7.4 Return Address Stack",
+    "text": "7.4 Return Address Stack\n\n\nAs we access the instruction cache, we also send that PC to the BTB\n\nEvery time we have a function call (jump instruction), we also put the return address on the return address stack (RAS), and maintain it in a last in first out (LIFO) order\nNow how do we choose whether to use the BTB or RAS’s target address? We need to figure out if the instruction we’re fetching is a return (unconditional jump)\nWe could include a couple extra bits to the instruction cache that indicates whether the instruction was a return instruction last time or if it was a conditional branch\nAccess the BTB and RAS in parallel and these extra bits in the i-cache will indicate to whether the instruction we’re accessing was a return instruction last time we accessed it\nSometimes encoded as a single bit in the ISA that indicates if it’s a return instruction\n\nThese extra bits are indicated by the red blocks highlighted in the I-cache",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Instruction Flow</span>"
+    ]
+  },
+  {
+    "objectID": "branch.html#branch-direction-prediction",
+    "href": "branch.html#branch-direction-prediction",
+    "title": "7  Instruction Flow",
+    "section": "7.5 Branch Direction Prediction",
+    "text": "7.5 Branch Direction Prediction\nDirection Predictor (DIRP)\n\nMap conditional branch PC to taken/not-taken (T/N) decision\n90%+ one way or the other is considered a “biased”\n\nindividual conditional branches are often unbiased or weakly biased\n\n\n\n7.5.1 Branch History Table (BHT)\n\n\nAdd a table of branch histories\nIndex of the table = PC of the instruction\n\nUse PC to index into the table and check where the branch went last time\n\nNo tags because it isn’t to determine aliases, since aliasing means it’s hard to make sophisticated guess anyway\nEverytime a branch is retired, we write into this table\nSimple BHT guesses the same thing as before\n\n\n7.5.1.1 Limitations of Simple Prediction\nConsider an inner loop branch (nested for loops)\n\nbranch predictor “changes its mind too quickly”, resulting in many mispredicts\n\n\n\n\n7.5.1.2 Two-Bit Saturating Counters (2bc)\n\n\nStrongly Not taken, not taken, taken, strongly taken\nMis-predict lowers confidence\nCorrect prediction increases confidence\n\n\n\n\n7.5.1.3 Correlated Predictor\n\n\nAlso looks at the outcome of previous branches\nBranch history rable leads to a local history table\n\nStores previous outcomes\nEg the 8 previous outcomes of the branch is 10101010\n\nLast time we saw this outcome, then we assume that this keeps happening\n\n\nTakes much longer to warm up\n\n\n\n\n\n7.5.1.4 Global Branch Prediction\nInstead of using a branch’s own history to make predictions, we could also use the direction of all (global) branches to correlate outcomes\n\n\n\n7.5.1.5 Correlated Predictor Design Space\n\n\n\n7.5.1.6 GShare\n\n\n\n7.5.1.7 Hybrid (Tournament) Predictor\n\n\n\n\n7.5.2 TAGE\nTAGE (TAged GEometric) predictor\n\nMultiple predictors using different history lengths\n\n\n7.5.2.1 Perceptron\n\nUse HW perceptrons to learn correlation with other branches\nAllows for much longer histories than traditional methods\n\nTraditionally, HW grows exp. with history length\nPerceptron scales linearly\n\n\n\n\n\n7.5.3 Branch Predictor Summary",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Instruction Flow</span>"
+    ]
+  },
+  {
+    "objectID": "branch.html#early-branch-recovery",
+    "href": "branch.html#early-branch-recovery",
+    "title": "7  Instruction Flow",
+    "section": "7.6 Early Branch Recovery",
+    "text": "7.6 Early Branch Recovery\nPreviously to do branch recovery, we waited until mispredicted branch gets retired in the ROB, then we clear out everything in-flight to start over again. However this is a lot of latency especially in wide instruction windows. Idea with early branch recovery is that we start squashing wrong instructions right as we know the branch is mispredicted. We update selectively what instructions get squashed\n\n\nEverytime we have a branch, take a snapshot of all instructions older than the branch (ones we don’t squash), and ones after (potentially squash)\nEvery time we dispatch an instruction, going to copy the current state of the branch mask register into the RS\n\nEg, b-mask of 1000 is essentially saying that this instruction is only in the processor because we assumed that this branch was speculated correctly, if this branch is actually mis-speculated then it’s not supposed to be getting executed and should be squashed\nThen a branch mask of 1100 would be based on speculating the two branches correctly, etc\n\n\n\n7.6.1 Dispatch Stage\n\n\n\n7.6.2 Branch Resolution - Mispredict\n\n\n\n7.6.3 Branch Resolution - Correct Prediction\n\n\nIf the prediction is correct, once we resolve the branch and it’s correct, we can clear out that branch stack entry and clear that bit in the b-mask\nWe also have to broadcast that the branch was correctly predicted to clear that bit for the b-mask register and for every b-mask in the pipeline\nSince we might reallocate that branch stack entry for another branch now",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Instruction Flow</span>"
+    ]
+  },
+  {
+    "objectID": "branch.html#aside-ports-vs-banks",
+    "href": "branch.html#aside-ports-vs-banks",
+    "title": "7  Instruction Flow",
+    "section": "7.7 Aside: Ports vs Banks",
+    "text": "7.7 Aside: Ports vs Banks",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Instruction Flow</span>"
+    ]
+  },
+  {
+    "objectID": "branch.html#wide-instruction-fetch",
+    "href": "branch.html#wide-instruction-fetch",
+    "title": "7  Instruction Flow",
+    "section": "7.8 Wide Instruction Fetch",
+    "text": "7.8 Wide Instruction Fetch\n\nAverage basic block size:\n\ninteger code: 4-6 instructions\nfloating point code: 6-10 instructions\n\nMajor challenges:\n\nMultiple-branch prediction\n\nIf we have multiple branch predictions in a single block we’re fetching, how do we deal with that?\n\nAlignment\n\nInstructions we want to fetch may not be aligned in the way we get our data",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Instruction Flow</span>"
+    ]
+  },
+  {
+    "objectID": "branch.html#trace-cache",
+    "href": "branch.html#trace-cache",
+    "title": "7  Instruction Flow",
+    "section": "7.9 Trace Cache",
+    "text": "7.9 Trace Cache",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Instruction Flow</span>"
+    ]
+  },
+  {
+    "objectID": "cache.html",
+    "href": "cache.html",
+    "title": "8  Caches",
+    "section": "",
+    "text": "8.1 Write Policies\nRefer to Comp. Org. notes for basic cache materials\nWrites tend to be slower than reads but this is okay since store ops don’t have destination registers thus no instructions can be dependent on it.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
+    ]
+  },
+  {
+    "objectID": "cache.html#write-policies",
+    "href": "cache.html#write-policies",
+    "title": "8  Caches",
+    "section": "",
+    "text": "Write-through caches can become nasty in multicore systems (high traffic, coherency protocol still needed, scalability, etc)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
+    ]
+  },
+  {
+    "objectID": "cache.html#classifying-reducing-misses",
+    "href": "cache.html#classifying-reducing-misses",
+    "title": "8  Caches",
+    "section": "8.2 Classifying & Reducing Misses",
+    "text": "8.2 Classifying & Reducing Misses",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
+    ]
+  },
+  {
+    "objectID": "cache.html#seznecs-skewed-associative-cache",
+    "href": "cache.html#seznecs-skewed-associative-cache",
+    "title": "8  Caches",
+    "section": "8.3 Seznec’s Skewed-Associative Cache",
+    "text": "8.3 Seznec’s Skewed-Associative Cache",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
+    ]
+  },
+  {
+    "objectID": "cache.html#victim-cache",
+    "href": "cache.html#victim-cache",
+    "title": "8  Caches",
+    "section": "8.4 Victim Cache",
+    "text": "8.4 Victim Cache",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
+    ]
+  },
+  {
+    "objectID": "cache.html#multi-level-caches",
+    "href": "cache.html#multi-level-caches",
+    "title": "8  Caches",
+    "section": "8.5 Multi-level Caches",
+    "text": "8.5 Multi-level Caches",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
+    ]
+  },
+  {
+    "objectID": "cache.html#inclusivity",
+    "href": "cache.html#inclusivity",
+    "title": "8  Caches",
+    "section": "8.6 Inclusivity",
+    "text": "8.6 Inclusivity",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
+    ]
+  },
+  {
+    "objectID": "cache.html#non-block-caches",
+    "href": "cache.html#non-block-caches",
+    "title": "8  Caches",
+    "section": "8.7 Non-block Caches",
+    "text": "8.7 Non-block Caches",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
+    ]
+  },
+  {
+    "objectID": "cache.html#summary",
+    "href": "cache.html#summary",
+    "title": "8  Caches",
+    "section": "8.8 Summary",
+    "text": "8.8 Summary",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
+    ]
+  },
+  {
+    "objectID": "prefetch.html",
+    "href": "prefetch.html",
+    "title": "9  Prefetching",
+    "section": "",
+    "text": "9.1 Software Prefetching",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Prefetching</span>"
+    ]
+  },
+  {
+    "objectID": "prefetch.html#hardware-prefetching",
+    "href": "prefetch.html#hardware-prefetching",
+    "title": "9  Prefetching",
+    "section": "9.2 Hardware Prefetching",
+    "text": "9.2 Hardware Prefetching",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Prefetching</span>"
     ]
   },
   {

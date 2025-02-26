@@ -39,7 +39,15 @@ Key concepts:
 
 **Q: What are the different types of hazards in an OoO design? How are they detected and dealt with?**
 
+**Q: FSM for a Hybrid Branch Predictor to choose between two BP using Global and Local Branch History**
+
+**Q: Design a Simple ROB and Retirement logic**
+
+**Q: Questions and Simple design on Issue Queue and Reservation station**
+
 ## Memory Architecture, Caches
+
+**Q: find the number of tag bits in the cache**
 
 **Q: How would you determine if the requested data is available in the cache?**
 
@@ -95,8 +103,34 @@ Key concepts:
 
 **Q: Draw the state diagram for MESI**
 
+**Q: Explain different cache coherency protocol.**
+
 ## Memory Consistency
 
 **Q: Consistency basics, what is memory consistency and why is it needed?**
 
 **Q: Given a sequence of instructions on 2 cores, which values are possible/not possible - how would you check if a barrier is working?**
+
+
+## Interconnect
+
+**Q: How do credits work in protocols**
+
+**A:**
+
+- Credit Initialization:
+  - The receiver starts with a certain number of credits, indicating how many messages or flits (flow control units) it can accept.
+  - The sender maintains a credit counter that tracks how many credits it has available.
+- Sending Data:
+  - Every time the sender transmits a packet/flit, it decrements its available credits.
+  - If the sender runs out of credits, it must stop sending until it receives more.
+- Credit Return:
+  - When the receiver processes or forwards a message, it returns a credit back to the sender, signaling that it has space for more data.
+  - This ensures that the receiver’s buffer never overflows.
+- Use cases:
+  - NoCs: Ensures flow control in mesh/toroidal interconnects to avoid congestion.
+  - Coherent Interconnects (e.g., AMBA CHI, CXL, UPI): Used to manage request/response ordering and avoid buffer overflow.
+- Why use credits:
+  - Prevent buffer overflows at the receiver
+  - Help load balance across links in NoC
+  - Ensure efficient resource utilization

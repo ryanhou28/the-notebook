@@ -1,0 +1,49 @@
+# Caches
+
+
+Refer to Comp. Org. notes for basic cache materials
+
+
+## Write Policies
+
+Writes tend to be slower than reads but this is okay since store ops don't have destination registers thus no instructions can be dependent on it.
+
+![](images/cache/writepol-1.png)
+
+![](images/cache/writepol-2.png)
+
+- Write-through caches can become nasty in multicore systems (high traffic, coherency protocol still needed, scalability, etc)
+
+## Classifying & Reducing Misses
+
+![](images/cache/miss-class-3cs.png)
+
+![](images/cache/red-conf-miss.png)
+
+![](images/cache/sw-appr-reduce-miss.png)
+
+![](images/cache/expo-cach-sw.png)
+
+## Seznec's Skewed-Associative Cache
+
+<!-- TODO -->
+
+## Victim Cache
+
+
+## Multi-level Caches
+
+
+
+## Inclusivity
+
+
+
+## Non-block Caches
+
+
+
+## Summary
+
+
+![](images/cache/improv-cache-summary.png)

@@ -135,4 +135,4 @@ Cycles Per Instruction
 - IPC is its inverse
 - Summary for different arch:
   - Ideal in-order pipeline (no stalling): 1 (ignoring cycles to load up and clear the pipeline)
-  - 
+    - Problem: Can never get more than 1 IPC unless we go superscalar

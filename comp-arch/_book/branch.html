@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>branch – Empty Book Template</title>
+<title>7&nbsp; Instruction Flow – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./branch.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">branch.html</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./branch.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instruction Flow</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -133,37 +133,37 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ooo-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ooo-basics.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Out-of-Order - Dynamic Scheduling, Tomasulo</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p6r10k.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">p6r10k.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Out-of-Order - Speculation, Precise Interrupts, Superscalar</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ooo-memory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ooo-memory.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory Disambiguation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./branch.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">branch.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instruction Flow</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cache.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">cache.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Caches</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prefetch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">prefetch.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Prefetching</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -207,15 +207,318 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#instruction-fetch-buffer" id="toc-instruction-fetch-buffer" class="nav-link active" data-scroll-target="#instruction-fetch-buffer"><span class="header-section-number">7.1</span> Instruction Fetch Buffer</a></li>
+  <li><a href="#branch-prediction" id="toc-branch-prediction" class="nav-link" data-scroll-target="#branch-prediction"><span class="header-section-number">7.2</span> Branch Prediction</a></li>
+  <li><a href="#branch-target-buffer-btb" id="toc-branch-target-buffer-btb" class="nav-link" data-scroll-target="#branch-target-buffer-btb"><span class="header-section-number">7.3</span> Branch Target Buffer (BTB)</a></li>
+  <li><a href="#return-address-stack" id="toc-return-address-stack" class="nav-link" data-scroll-target="#return-address-stack"><span class="header-section-number">7.4</span> Return Address Stack</a></li>
+  <li><a href="#branch-direction-prediction" id="toc-branch-direction-prediction" class="nav-link" data-scroll-target="#branch-direction-prediction"><span class="header-section-number">7.5</span> Branch Direction Prediction</a>
+  <ul class="collapse">
+  <li><a href="#branch-history-table-bht" id="toc-branch-history-table-bht" class="nav-link" data-scroll-target="#branch-history-table-bht"><span class="header-section-number">7.5.1</span> Branch History Table (BHT)</a></li>
+  <li><a href="#tage" id="toc-tage" class="nav-link" data-scroll-target="#tage"><span class="header-section-number">7.5.2</span> TAGE</a></li>
+  <li><a href="#branch-predictor-summary" id="toc-branch-predictor-summary" class="nav-link" data-scroll-target="#branch-predictor-summary"><span class="header-section-number">7.5.3</span> Branch Predictor Summary</a></li>
+  </ul></li>
+  <li><a href="#early-branch-recovery" id="toc-early-branch-recovery" class="nav-link" data-scroll-target="#early-branch-recovery"><span class="header-section-number">7.6</span> Early Branch Recovery</a>
+  <ul class="collapse">
+  <li><a href="#dispatch-stage" id="toc-dispatch-stage" class="nav-link" data-scroll-target="#dispatch-stage"><span class="header-section-number">7.6.1</span> Dispatch Stage</a></li>
+  <li><a href="#branch-resolution---mispredict" id="toc-branch-resolution---mispredict" class="nav-link" data-scroll-target="#branch-resolution---mispredict"><span class="header-section-number">7.6.2</span> Branch Resolution - Mispredict</a></li>
+  <li><a href="#branch-resolution---correct-prediction" id="toc-branch-resolution---correct-prediction" class="nav-link" data-scroll-target="#branch-resolution---correct-prediction"><span class="header-section-number">7.6.3</span> Branch Resolution - Correct Prediction</a></li>
+  </ul></li>
+  <li><a href="#aside-ports-vs-banks" id="toc-aside-ports-vs-banks" class="nav-link" data-scroll-target="#aside-ports-vs-banks"><span class="header-section-number">7.7</span> Aside: Ports vs Banks</a></li>
+  <li><a href="#wide-instruction-fetch" id="toc-wide-instruction-fetch" class="nav-link" data-scroll-target="#wide-instruction-fetch"><span class="header-section-number">7.8</span> Wide Instruction Fetch</a></li>
+  <li><a href="#trace-cache" id="toc-trace-cache" class="nav-link" data-scroll-target="#trace-cache"><span class="header-section-number">7.9</span> Trace Cache</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instruction Flow</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<p>Topics:</p>
+<ul>
+<li>Instruction Buffers</li>
+<li>Return Address Stack</li>
+<li>Correlated Branch Predictors</li>
+</ul>
+<p>Resources: H&amp;P Chp3.3,3.9</p>
+<p><img src="images/branch/flowmodel.png" class="img-fluid"></p>
+<p><img src="images/branch/470roadmap.png" class="img-fluid"></p>
+<p><img src="images/branch/review-branches.png" class="img-fluid"></p>
+<p><img src="images/branch/cond-resol.png" class="img-fluid"></p>
+<ul>
+<li>Where do we resolve the branch? Depends on the type!</li>
+</ul>
+<p><img src="images/branch/target-addr.png" class="img-fluid"></p>
+<ul>
+<li>PC relative branches: don’t need to wait long</li>
+<li>Register indirect branch: need the value of the register, need to wait until instruction can be issued (ie when the registers are available)</li>
+<li>Register indirect + offset (most general way):
+<ul>
+<li>Need to calculate the address, thus is resolved at EX stage</li>
+</ul></li>
+</ul>
+<p><strong>Performance Penalties of Branches</strong></p>
+<ul>
+<li>Use up execution resources</li>
+<li>Fragmentation of I-cache lines</li>
+<li>Disruption of seq. control flow
+<ul>
+<li>Need to determine direction and target</li>
+<li>Often results in stalls and squashes</li>
+</ul></li>
+</ul>
+<section id="instruction-fetch-buffer" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="instruction-fetch-buffer"><span class="header-section-number">7.1</span> Instruction Fetch Buffer</h2>
+<p><img src="images/branch/i-fetch-buff.png" class="img-fluid"></p>
+</section>
+<section id="branch-prediction" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="branch-prediction"><span class="header-section-number">7.2</span> Branch Prediction</h2>
+<p>Two high level strategies:</p>
+<ul>
+<li>Static - same prediction for a branch everytime
+<ul>
+<li>implement in compiler, by programmer, or in HW</li>
+<li>simple HW implementation</li>
+</ul></li>
+<li>Dynamic: some runtime info is used to make (potentially) different prediction each iteration
+<ul>
+<li>implemented in HW</li>
+<li>need more HW, but better performance (most of the time, depends on workload)</li>
+</ul></li>
+</ul>
+<p><img src="images/branch/bp-strats.png" class="img-fluid"></p>
+<p><img src="images/branch/dyn-branch-pred.png" class="img-fluid"></p>
+<ul>
+<li>Target predictor feeds the PC</li>
+<li>Direction predictor only applies to conditionals
+<ul>
+<li>since nonconditionals (eg jal) are always taken</li>
+</ul></li>
+</ul>
+</section>
+<section id="branch-target-buffer-btb" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="branch-target-buffer-btb"><span class="header-section-number">7.3</span> Branch Target Buffer (BTB)</h2>
+<p><img src="images/branch/btb.png" class="img-fluid"></p>
+<ul>
+<li>Basically a small cache of past branch targets</li>
+<li>Use small set of the address (don’t compare whole address)</li>
+<li>Use part of the PC as the index into the cache</li>
+<li>If we’ve seen a branch to this before (recently): predict taken</li>
+<li>If we haven’t seen this (recently): predict not taken</li>
+</ul>
+<p><img src="images/branch/why-btb.png" class="img-fluid"></p>
+</section>
+<section id="return-address-stack" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="return-address-stack"><span class="header-section-number">7.4</span> Return Address Stack</h2>
+<p><img src="images/branch/ras-.png" class="img-fluid"></p>
+<ul>
+<li>As we access the instruction cache, we also send that PC to the BTB
+<ul>
+<li>Every time we have a function call (jump instruction), we also put the return address on the return address stack (RAS), and maintain it in a last in first out (LIFO) order</li>
+<li>Now how do we choose whether to use the BTB or RAS’s target address? We need to figure out if the instruction we’re fetching is a return (unconditional jump)</li>
+<li>We could include a couple extra bits to the instruction cache that indicates whether the instruction was a return instruction last time or if it was a conditional branch</li>
+<li>Access the BTB and RAS in parallel and these extra bits in the i-cache will indicate to whether the instruction we’re accessing was a return instruction last time we accessed it</li>
+<li>Sometimes encoded as a single bit in the ISA that indicates if it’s a return instruction
+<ul>
+<li>These extra bits are indicated by the red blocks highlighted in the I-cache</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="branch-direction-prediction" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="branch-direction-prediction"><span class="header-section-number">7.5</span> Branch Direction Prediction</h2>
+<p><strong>Direction Predictor (DIRP)</strong></p>
+<ul>
+<li>Map conditional branch PC to taken/not-taken (T/N) decision</li>
+<li>90%+ one way or the other is considered a “biased”
+<ul>
+<li>individual conditional branches are often unbiased or weakly biased</li>
+</ul></li>
+</ul>
+<section id="branch-history-table-bht" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="branch-history-table-bht"><span class="header-section-number">7.5.1</span> Branch History Table (BHT)</h3>
+<p><img src="images/branch/bht.png" class="img-fluid"></p>
+<ul>
+<li>Add a table of branch histories</li>
+<li>Index of the table = PC of the instruction
+<ul>
+<li>Use PC to index into the table and check where the branch went last time</li>
+</ul></li>
+<li>No tags because it isn’t to determine aliases, since aliasing means it’s hard to make sophisticated guess anyway</li>
+<li>Everytime a <strong>branch is retired</strong>, we write into this table</li>
+<li>Simple BHT guesses the same thing as before</li>
+</ul>
+<section id="limitations-of-simple-prediction" class="level4" data-number="7.5.1.1">
+<h4 data-number="7.5.1.1" class="anchored" data-anchor-id="limitations-of-simple-prediction"><span class="header-section-number">7.5.1.1</span> Limitations of Simple Prediction</h4>
+<p>Consider an inner loop branch (nested for loops)</p>
+<ul>
+<li>branch predictor “changes its mind too quickly”, resulting in many mispredicts</li>
+</ul>
+<p><img src="images/branch/simple-bht.png" class="img-fluid"></p>
+</section>
+<section id="two-bit-saturating-counters-2bc" class="level4" data-number="7.5.1.2">
+<h4 data-number="7.5.1.2" class="anchored" data-anchor-id="two-bit-saturating-counters-2bc"><span class="header-section-number">7.5.1.2</span> Two-Bit Saturating Counters (2bc)</h4>
+<p><img src="images/branch/2bc-pred.png" class="img-fluid"></p>
+<ul>
+<li>Strongly Not taken, not taken, taken, strongly taken</li>
+<li>Mis-predict lowers confidence</li>
+<li>Correct prediction increases confidence</li>
+</ul>
+<p><img src="images/branch/other-2bc-pred.png" class="img-fluid"></p>
+</section>
+<section id="correlated-predictor" class="level4" data-number="7.5.1.3">
+<h4 data-number="7.5.1.3" class="anchored" data-anchor-id="correlated-predictor"><span class="header-section-number">7.5.1.3</span> Correlated Predictor</h4>
+<p><img src="images/branch/corr-pred.png" class="img-fluid"></p>
+<ul>
+<li>Also looks at the outcome of previous branches</li>
+<li>Branch history rable leads to a local history table
+<ul>
+<li>Stores previous outcomes</li>
+<li>Eg the 8 previous outcomes of the branch is 10101010
+<ul>
+<li>Last time we saw this outcome, then we assume that this keeps happening</li>
+</ul></li>
+</ul></li>
+<li>Takes much longer to warm up</li>
+</ul>
+<p><img src="images/branch/corr-pred-ex.png" class="img-fluid"></p>
+<p><img src="images/branch/corr-pred-ex-size.png" class="img-fluid"></p>
+</section>
+<section id="global-branch-prediction" class="level4" data-number="7.5.1.4">
+<h4 data-number="7.5.1.4" class="anchored" data-anchor-id="global-branch-prediction"><span class="header-section-number">7.5.1.4</span> Global Branch Prediction</h4>
+<p>Instead of using a branch’s own history to make predictions, we could also use the direction of all (global) branches to correlate outcomes</p>
+<p><img src="images/branch/global-bp.png" class="img-fluid"></p>
+</section>
+<section id="correlated-predictor-design-space" class="level4" data-number="7.5.1.5">
+<h4 data-number="7.5.1.5" class="anchored" data-anchor-id="correlated-predictor-design-space"><span class="header-section-number">7.5.1.5</span> Correlated Predictor Design Space</h4>
+<p><img src="images/branch/corr-pred-design-space.png" class="img-fluid"></p>
+</section>
+<section id="gshare" class="level4" data-number="7.5.1.6">
+<h4 data-number="7.5.1.6" class="anchored" data-anchor-id="gshare"><span class="header-section-number">7.5.1.6</span> GShare</h4>
+<p><img src="images/branch/gshare.png" class="img-fluid"></p>
+</section>
+<section id="hybrid-tournament-predictor" class="level4" data-number="7.5.1.7">
+<h4 data-number="7.5.1.7" class="anchored" data-anchor-id="hybrid-tournament-predictor"><span class="header-section-number">7.5.1.7</span> Hybrid (Tournament) Predictor</h4>
+<p><img src="images/branch/hyb-pred.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="tage" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="tage"><span class="header-section-number">7.5.2</span> TAGE</h3>
+<p>TAGE (TAged GEometric) predictor</p>
+<ul>
+<li>Multiple predictors using different history lengths</li>
+</ul>
+<section id="perceptron" class="level4" data-number="7.5.2.1">
+<h4 data-number="7.5.2.1" class="anchored" data-anchor-id="perceptron"><span class="header-section-number">7.5.2.1</span> Perceptron</h4>
+<ul>
+<li>Use HW perceptrons to learn correlation with other branches</li>
+<li>Allows for much longer histories than traditional methods
+<ul>
+<li>Traditionally, HW grows exp. with history length</li>
+<li>Perceptron scales linearly</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="branch-predictor-summary" class="level3" data-number="7.5.3">
+<h3 data-number="7.5.3" class="anchored" data-anchor-id="branch-predictor-summary"><span class="header-section-number">7.5.3</span> Branch Predictor Summary</h3>
+<p><img src="images/branch/branch-pred-summary.png" class="img-fluid"></p>
+<p><img src="images/branch/branch-pred-challenge.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="early-branch-recovery" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="early-branch-recovery"><span class="header-section-number">7.6</span> Early Branch Recovery</h2>
+<p>Previously to do branch recovery, we waited until mispredicted branch gets retired in the ROB, then we clear out everything in-flight to start over again. However this is a lot of latency especially in wide instruction windows. Idea with early branch recovery is that we start squashing wrong instructions right as we know the branch is mispredicted. We update selectively what instructions get squashed</p>
+<p><img src="images/branch/earlybranchrecov.png" class="img-fluid"></p>
+<ul>
+<li>Everytime we have a branch, take a snapshot of all instructions older than the branch (ones we don’t squash), and ones after (potentially squash)</li>
+<li>Every time we dispatch an instruction, going to copy the current state of the branch mask register into the RS
+<ul>
+<li>Eg, b-mask of 1000 is essentially saying that this instruction is only in the processor because we assumed that this branch was speculated correctly, if this branch is actually mis-speculated then it’s not supposed to be getting executed and should be squashed</li>
+<li>Then a branch mask of 1100 would be based on speculating the two branches correctly, etc</li>
+</ul></li>
+</ul>
+<section id="dispatch-stage" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="dispatch-stage"><span class="header-section-number">7.6.1</span> Dispatch Stage</h3>
+<p><img src="images/branch/earlybranch-dispatch.png" class="img-fluid"></p>
+</section>
+<section id="branch-resolution---mispredict" class="level3" data-number="7.6.2">
+<h3 data-number="7.6.2" class="anchored" data-anchor-id="branch-resolution---mispredict"><span class="header-section-number">7.6.2</span> Branch Resolution - Mispredict</h3>
+<p><img src="images/branch/earlybranch-mispred.png" class="img-fluid"></p>
+</section>
+<section id="branch-resolution---correct-prediction" class="level3" data-number="7.6.3">
+<h3 data-number="7.6.3" class="anchored" data-anchor-id="branch-resolution---correct-prediction"><span class="header-section-number">7.6.3</span> Branch Resolution - Correct Prediction</h3>
+<p><img src="images/branch/earlybranch-correct-pred.png" class="img-fluid"></p>
+<ul>
+<li>If the prediction is correct, once we resolve the branch and it’s correct, we can clear out that branch stack entry and clear that bit in the b-mask</li>
+<li>We also have to broadcast that the branch was correctly predicted to clear that bit for the b-mask register and for every b-mask in the pipeline</li>
+<li>Since we might reallocate that branch stack entry for another branch now</li>
+</ul>
+</section>
+</section>
+<section id="aside-ports-vs-banks" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="aside-ports-vs-banks"><span class="header-section-number">7.7</span> Aside: Ports vs Banks</h2>
+<p><img src="images/branch/portsbanks.png" class="img-fluid"></p>
+<p><img src="images/branch/portsbanks2.png" class="img-fluid"></p>
+</section>
+<section id="wide-instruction-fetch" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="wide-instruction-fetch"><span class="header-section-number">7.8</span> Wide Instruction Fetch</h2>
+<ul>
+<li>Average basic block size:
+<ul>
+<li>integer code: 4-6 instructions</li>
+<li>floating point code: 6-10 instructions</li>
+</ul></li>
+<li>Major challenges:
+<ul>
+<li>Multiple-branch prediction
+<ul>
+<li>If we have multiple branch predictions in a single block we’re fetching, how do we deal with that?</li>
+</ul></li>
+<li>Alignment
+<ul>
+<li>Instructions we want to fetch may not be aligned in the way we get our data</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="images/branch/wide-i-fetch-issues.png" class="img-fluid"></p>
+<p><img src="images/branch/wide-fetch-seq.png" class="img-fluid"></p>
+<p><img src="images/branch/widefetch-nonseq.png" class="img-fluid"></p>
+<p><img src="images/branch/multi-branch-pred1.png" class="img-fluid"></p>
+<p><img src="images/branch/multi-branch-pred.png" class="img-fluid"></p>
+<p><img src="images/branch/multi-branch-pred-b.png" class="img-fluid"></p>
+<p><img src="images/branch/multi-pred-taken-br.png" class="img-fluid"></p>
+</section>
+<section id="trace-cache" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="trace-cache"><span class="header-section-number">7.9</span> Trace Cache</h2>
+<p><img src="images/branch/tracecache-mot.png" class="img-fluid"></p>
+<p><img src="images/branch/tracecache.png" class="img-fluid"></p>
+<p><img src="images/branch/tracecache-ex.png" class="img-fluid"></p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -637,13 +940,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ooo-memory.html" class="pagination-link" aria-label="ooo-memory.html">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ooo-memory.html</span></span>
+      <a href="./ooo-memory.html" class="pagination-link" aria-label="Memory Disambiguation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory Disambiguation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./cache.html" class="pagination-link" aria-label="cache.html">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">cache.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./cache.html" class="pagination-link" aria-label="Caches">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Caches</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

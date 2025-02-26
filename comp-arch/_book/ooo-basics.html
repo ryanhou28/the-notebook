@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ooo-basics – Empty Book Template</title>
+<title>4&nbsp; Out-of-Order - Dynamic Scheduling, Tomasulo – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,10 +69,39 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ooo-basics.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ooo-basics.html</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ooo-basics.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Out-of-Order - Dynamic Scheduling, Tomasulo</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -133,37 +162,37 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ooo-basics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ooo-basics.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Out-of-Order - Dynamic Scheduling, Tomasulo</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p6r10k.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">p6r10k.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Out-of-Order - Speculation, Precise Interrupts, Superscalar</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ooo-memory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ooo-memory.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory Disambiguation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./branch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">branch.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instruction Flow</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cache.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">cache.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Caches</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prefetch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">prefetch.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Prefetching</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -207,15 +236,442 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#dynamic-scheduling" id="toc-dynamic-scheduling" class="nav-link active" data-scroll-target="#dynamic-scheduling"><span class="header-section-number">4.1</span> Dynamic Scheduling</a>
+  <ul class="collapse">
+  <li><a href="#new-hazards" id="toc-new-hazards" class="nav-link" data-scroll-target="#new-hazards"><span class="header-section-number">4.1.1</span> New Hazards</a></li>
+  </ul></li>
+  <li><a href="#register-renaming" id="toc-register-renaming" class="nav-link" data-scroll-target="#register-renaming"><span class="header-section-number">4.2</span> Register Renaming</a></li>
+  <li><a href="#scoreboarding" id="toc-scoreboarding" class="nav-link" data-scroll-target="#scoreboarding"><span class="header-section-number">4.3</span> Scoreboarding</a>
+  <ul class="collapse">
+  <li><a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures"><span class="header-section-number">4.3.1</span> Data Structures</a></li>
+  <li><a href="#scoreboard-dispatch" id="toc-scoreboard-dispatch" class="nav-link" data-scroll-target="#scoreboard-dispatch"><span class="header-section-number">4.4.1</span> Scoreboard Dispatch</a></li>
+  <li><a href="#scoreboard-issue" id="toc-scoreboard-issue" class="nav-link" data-scroll-target="#scoreboard-issue"><span class="header-section-number">4.4.2</span> Scoreboard Issue</a></li>
+  <li><a href="#scoreboard-execute" id="toc-scoreboard-execute" class="nav-link" data-scroll-target="#scoreboard-execute"><span class="header-section-number">4.4.3</span> Scoreboard Execute</a></li>
+  <li><a href="#scoreboard-writeback" id="toc-scoreboard-writeback" class="nav-link" data-scroll-target="#scoreboard-writeback"><span class="header-section-number">4.4.4</span> Scoreboard Writeback</a></li>
+  <li><a href="#scoreboard-pipeline" id="toc-scoreboard-pipeline" class="nav-link" data-scroll-target="#scoreboard-pipeline"><span class="header-section-number">4.4.5</span> Scoreboard Pipeline</a></li>
+  <li><a href="#comparisons" id="toc-comparisons" class="nav-link" data-scroll-target="#comparisons"><span class="header-section-number">4.4.6</span> Comparisons</a></li>
+  </ul></li>
+  <li><a href="#tomasulos-algorithm" id="toc-tomasulos-algorithm" class="nav-link" data-scroll-target="#tomasulos-algorithm"><span class="header-section-number">4.5</span> Tomasulo’s Algorithm</a>
+  <ul class="collapse">
+  <li><a href="#data-structures-1" id="toc-data-structures-1" class="nav-link" data-scroll-target="#data-structures-1"><span class="header-section-number">4.5.1</span> Data Structures</a></li>
+  <li><a href="#pipeline" id="toc-pipeline" class="nav-link" data-scroll-target="#pipeline"><span class="header-section-number">4.5.2</span> Pipeline</a></li>
+  <li><a href="#tomasulo-dispatch" id="toc-tomasulo-dispatch" class="nav-link" data-scroll-target="#tomasulo-dispatch"><span class="header-section-number">4.5.3</span> Tomasulo Dispatch</a></li>
+  <li><a href="#tomasulo-issue" id="toc-tomasulo-issue" class="nav-link" data-scroll-target="#tomasulo-issue"><span class="header-section-number">4.5.4</span> Tomasulo Issue</a></li>
+  <li><a href="#tomasulo-execute" id="toc-tomasulo-execute" class="nav-link" data-scroll-target="#tomasulo-execute"><span class="header-section-number">4.5.5</span> Tomasulo Execute</a></li>
+  <li><a href="#tomasulo-writeback" id="toc-tomasulo-writeback" class="nav-link" data-scroll-target="#tomasulo-writeback"><span class="header-section-number">4.5.6</span> Tomasulo Writeback</a></li>
+  <li><a href="#tomasulo---register-renaming" id="toc-tomasulo---register-renaming" class="nav-link" data-scroll-target="#tomasulo---register-renaming"><span class="header-section-number">4.5.7</span> Tomasulo - Register Renaming</a></li>
+  </ul></li>
+  <li><a href="#quick-summary" id="toc-quick-summary" class="nav-link" data-scroll-target="#quick-summary"><span class="header-section-number">4.6</span> Quick Summary:</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead"><span class="header-section-number">4.7</span> Looking Ahead</a></li>
+  <li><a href="#example-executions" id="toc-example-executions" class="nav-link" data-scroll-target="#example-executions"><span class="header-section-number">4.8</span> Example Executions</a>
+  <ul class="collapse">
+  <li><a href="#scoreboard" id="toc-scoreboard" class="nav-link" data-scroll-target="#scoreboard"><span class="header-section-number">4.8.1</span> Scoreboard</a></li>
+  <li><a href="#tomasulo" id="toc-tomasulo" class="nav-link" data-scroll-target="#tomasulo"><span class="header-section-number">4.8.2</span> Tomasulo</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Out-of-Order - Dynamic Scheduling, Tomasulo</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<p>In-order pipeline is limited by IPC = 1 - an upper bound (“Flynn Bottleneck”)</p>
+<p>For a pipeline with depth D stages, a <strong>superscalar</strong> machine of width N would lead to an instruction parallelism <span class="math inline">\(D \times N\)</span> in the architecture. However, a simple in-order scaling to superscalar, CPI would be limited by dependency stalls once width increases beyond a certain point</p>
+<p><strong>Instruction-Level Parllelism</strong> is a measure of the amount of inter-dependencies between instructions</p>
+<p><strong>Average ILP</strong> = Number of Instructions / Number of Cycles</p>
+<ul>
+<li>ILP = 1 is the worst case (meaning each instruction has to be executed serially/sequentially). There is no upper limit to ILP</li>
+</ul>
+<p>We now introduce two (somewhat) independent techniques (although frequently employed together):</p>
+<ul>
+<li>Dynamic scheduling (out-of-order processing)</li>
+<li>Register Renaming</li>
+</ul>
+<p>Some advantages offered by dynamic scheduling (H&amp;P Ch3.4):</p>
+<ul>
+<li>Allows code compiled for one pipeline to efficiently run on a different pipeline</li>
+<li>Handles cases where dependences are not known at compile time</li>
+<li>(Most importantly) Allows processor to tolerate unpredictable delays (e.g.&nbsp;cache misses) by executing other instructions while waiting for the long instruction to resolve</li>
+</ul>
+<section id="dynamic-scheduling" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="dynamic-scheduling"><span class="header-section-number">4.1</span> Dynamic Scheduling</h2>
+<p>A.k.a. Out-of-order processing</p>
+<ul>
+<li>Add new hardware: <strong>Instruction Buffer</strong>
+<ul>
+<li>Aka instruction window, instruction scheduler</li>
+</ul></li>
+<li>Each cycle, HW checks if the sourceRegs for each instruction is ready to execute</li>
+<li>Instruction leaves buffer when ready (this can be in arbitrary order)
+<ul>
+<li>This makes it “out-of-order” since instructions can be executed in arbitrary order</li>
+</ul></li>
+<li>To sum:
+<ul>
+<li>Instructions going into the instruction buffer is same order as the program</li>
+<li>Instructions are sent to next stage as soon as its ready, thus:</li>
+<li>Instructions going out of instruction buffer can be in any order</li>
+<li>Instructions are <strong>committed</strong> in order</li>
+</ul></li>
+</ul>
+<p><img src="images/ooo-basics/disp-issue-ibuff.png" class="img-fluid"></p>
+<p>We now split the decode stage into a Dispatch stage and an Issue stage</p>
+<section id="new-hazards" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="new-hazards"><span class="header-section-number">4.1.1</span> New Hazards</h3>
+<p>Out-of-order introduces new types of hazards:</p>
+<ul>
+<li>Read-after-write (RAW) - “true dependencies” as we have seen before</li>
+<li>Write-after-read (WAR) - “Anti dependencies”</li>
+<li>Write-after-write (WAW) - “Output Dependencies”</li>
+</ul>
+<p>WAR and WAW also called “Name” Hazards</p>
+<ul>
+<li>These dependencies are “false” dependencies, since their dependence is on name/register/location rather than data
+<ul>
+<li>Given infinite registers, WAR/WAW could be eliminated</li>
+</ul></li>
+<li>This leads us to the register renaming technique</li>
+</ul>
+</section>
+</section>
+<section id="register-renaming" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="register-renaming"><span class="header-section-number">4.2</span> Register Renaming</h2>
+<p>Idea: to solve false dependencies, we increase the number of <strong>physical registers</strong> (not visible to the programmer, since architectural registers are defined by ISA)</p>
+<ul>
+<li>In hardware, dynamically rename instructions to use new physical registers
+<ul>
+<li>Removes WAR and WAW but keeps RAW intact (because RAW is a true dependency)</li>
+</ul></li>
+</ul>
+<p><img src="images/ooo-basics/regrename-ex1.png" class="img-fluid"></p>
+<p>A <strong>Map Table</strong> records the correspondence between architectural registers and physical registers</p>
+<p>A <strong>Free List</strong> records physical registers that are free to use</p>
+<ul>
+<li>On reads: check map table to see which physical register to read from</li>
+<li>On writes: (within a certain distance that could cause a hazard), we update the map table with a physical register on the free list (eliminates name hazards)</li>
+</ul>
+</section>
+<section id="scoreboarding" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="scoreboarding"><span class="header-section-number">4.3</span> Scoreboarding</h2>
+<ul>
+<li>Out-of-order with no register renaming</li>
+<li>Uses a centralized control scheme - instruction status explicitly tracked</li>
+<li>Instruction buffer: <strong>Functional Unit Status Table (FUST)</strong></li>
+</ul>
+<section id="data-structures" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored"><span class="header-section-number">4.3.1</span> Data Structures</h3>
+<p><img src="images/ooo-basics/scoreboard-ds.png" class="img-fluid"></p>
+<ul>
+<li>FU Status Table
+<ul>
+<li>Tracks dest/source reg, which operation and whether FU is busy</li>
+<li>T: destination register tag (FU producing the value)</li>
+<li>T1, T2: source reg tag (FU producing the value)</li>
+<li>Each entry in the table represents a single FU</li>
+</ul></li>
+<li>Register Status Table
+<ul>
+<li>T: Tag (FU that will write this register)</li>
+<li>Essentially tracking which FU’s instruction is going to write to this reg</li>
+</ul></li>
+<li><h2 id="instruction-status-table" data-number="4.4" class="anchored" data-anchor-id="data-structures"><span class="header-section-number">4.4</span> Instruction Status Table</h2></li>
+</ul>
+<p>Tags track what FUs we are waiting on (0 for value alrady in RF, not 0 means value will be supplied by T)</p>
+</section>
+<section id="scoreboard-dispatch" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="scoreboard-dispatch"><span class="header-section-number">4.4.1</span> Scoreboard Dispatch</h3>
+<p><img src="images/ooo-basics/scoreb-dispatch.png" class="img-fluid"></p>
+<ul>
+<li>Since no register renaming, still have to worry about WAW</li>
+<li>If instruction is writing to a reg, tag it in reg status table</li>
+</ul>
+</section>
+<section id="scoreboard-issue" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="scoreboard-issue"><span class="header-section-number">4.4.2</span> Scoreboard Issue</h3>
+<p><img src="images/ooo-basics/scoreb-issue.png" class="img-fluid"></p>
+<ul>
+<li><strong>Issue Policy</strong> - If multiple instructions are ready, which one do we choose?
+<ul>
+<li>Oldest first? Safe choice</li>
+<li>Longest latency first? May yield better performance</li>
+</ul></li>
+<li><strong>Select logic</strong> implements the issue policy
+<ul>
+<li>Based on a W to 1 priority encoder
+<ul>
+<li>W is the window size (number of scoreboard entries)</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="scoreboard-execute" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="scoreboard-execute"><span class="header-section-number">4.4.3</span> Scoreboard Execute</h3>
+<p><img src="images/ooo-basics/scoreb-exe.png" class="img-fluid"></p>
+</section>
+<section id="scoreboard-writeback" class="level3" data-number="4.4.4">
+<h3 data-number="4.4.4" class="anchored" data-anchor-id="scoreboard-writeback"><span class="header-section-number">4.4.4</span> Scoreboard Writeback</h3>
+<p><img src="images/ooo-basics/screb-wb.png" class="img-fluid"></p>
+<ul>
+<li>Since reg is written back, reg status of the destReg is cleared ()</li>
+<li>Writting back an instruction clears the corresponding input tags in FU Status</li>
+<li>Scoreboard (FU Status) entry is freed since the FU can take on a new instruction</li>
+</ul>
+</section>
+<section id="scoreboard-pipeline" class="level3" data-number="4.4.5">
+<h3 data-number="4.4.5" class="anchored" data-anchor-id="scoreboard-pipeline"><span class="header-section-number">4.4.5</span> Scoreboard Pipeline</h3>
+<ul>
+<li>Pipeline: F, D, S, X, W</li>
+<li>Fetch</li>
+<li>Dispatch
+<ul>
+<li>If structural or WAW hazard? stall
+<ul>
+<li>Structural: All FUs busy</li>
+<li>WAW: curr_inst writes to regA but RegStatus[regA] is non-empty
+<ul>
+<li>i.e.&nbsp;destination register is tagged in Reg Status table</li>
+<li>This means it is being written to by a current instruction</li>
+</ul></li>
+</ul></li>
+<li>Otherwise allocate scoreboard entry</li>
+</ul></li>
+<li>Issue
+<ul>
+<li>If RAW hazard? stall
+<ul>
+<li>RAW: curr_inst reading regA but regA has pending results to be written</li>
+<li>Check with tags in FU status table (recall a reg is tagged if it is being written to)</li>
+</ul></li>
+<li>Otherwise read registers and issue to execute</li>
+</ul></li>
+<li>Execute</li>
+<li>Writeback
+<ul>
+<li>If WAR hazard? stall
+<ul>
+<li>WAR: instruction tries to write to a reg that has not been read yet</li>
+<li>Check if destReg matches any sourceReg that is <strong>untagged</strong> in scoreboard
+<ul>
+<li>Untagged means it is reading the register’s content BEFORE this instruction should write to it (otherwise it would be tagged)</li>
+</ul></li>
+</ul></li>
+<li>Otherwise write register and free scoreboard entry</li>
+</ul></li>
+</ul>
+<p>Adding register renaming would help us reduce stalls in D and S stages by eliminating name dependencies</p>
+</section>
+<section id="comparisons" class="level3" data-number="4.4.6">
+<h3 data-number="4.4.6" class="anchored" data-anchor-id="comparisons"><span class="header-section-number">4.4.6</span> Comparisons</h3>
+<ul>
+<li>On branch: stall dispatch until branch completes</li>
+<li>Scoreboarding didn’t provide too much speedup
+<ul>
+<li>Originally used for scientific computing (where programs have minimum branches)</li>
+</ul></li>
+<li>Scoreboarding is still used in GPUs
+<ul>
+<li>Thousands of independent threads that can be switched to when one thread has a branch</li>
+</ul></li>
+<li>Not great for general purpose processing…</li>
+<li>Pros:
+<ul>
+<li>Relatively cheap hardware (compared to more complex OoO)</li>
+</ul></li>
+<li>Cons
+<ul>
+<li>Limited scheduling scope (due to structural and WAW hazards delaying dispatch)</li>
+<li>Slow issue of RAW</li>
+<li>WAR hazard delays writeback</li>
+</ul></li>
+<li>We introduce register renaming to advance to Tomasulo’s</li>
+</ul>
+</section>
+</section>
+<section id="tomasulos-algorithm" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="tomasulos-algorithm"><span class="header-section-number">4.5</span> Tomasulo’s Algorithm</h2>
+<ul>
+<li>Out-of-order with register renaming</li>
+<li>Map table maps arch. reg. to phys. reg.</li>
+<li>On write: allocate new location (from free list of reg), note in map table</li>
+<li>On read: find the phys. reg. from map table</li>
+<li>Need to de-allocate mappings eventually</li>
+<li>Register renaming removes WAR/WAW hazards</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/p6r10k/tom-struct-hp1.png" class="img-fluid figure-img"></p>
+<figcaption>Note that H&amp;P’s Tomasulo assumes a distributed reservation station</figcaption>
+</figure>
+</div>
+<p>Here we introduce a Simple Tomasulo</p>
+<section id="data-structures-1" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="data-structures-1"><span class="header-section-number">4.5.1</span> Data Structures</h3>
+<ul>
+<li><strong>Reservation Stations (RS)</strong> is the “instruction buffer”
+<ul>
+<li>Stores FU, busy, opcode, destReg of instructions</li>
+<li>T: destination reg tag (RS# of this RS)</li>
+<li>T1, T2: source reg tags (RS$ of the RS That will produce the value used)</li>
+<li>V1, V2: source reg values</li>
+</ul></li>
+<li><strong>Common Data Bus (CDB)</strong> - bus that broadcasts results to the RS
+<ul>
+<li>Broadcasts &lt;RS#,value&gt; of the completed instruction</li>
+</ul></li>
+<li>Map Table
+<ul>
+<li>Store the Tags (RS#) that will write to this register</li>
+</ul></li>
+</ul>
+<p>Tags are the reservation station entry index, where 0 (empty) means the value is ready somewhere. Otherwise the value is not ready and is dependent on the corresponding RS# instruction to write to it, thus need to wait until CDB broadcasts the tag</p>
+<p><img src="images/ooo-basics.png" class="img-fluid"></p>
+</section>
+<section id="pipeline" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="pipeline"><span class="header-section-number">4.5.2</span> Pipeline</h3>
+<ul>
+<li>Dispatch:
+<ul>
+<li>Structural hazard on FUs? Yes then stall, otherwise allocate RS entry</li>
+<li>If the operands are not in the registers, keep track of the functional units that will produce the operands (as tags). This step renames registers, eliminating WAR and WAW hazards</li>
+</ul></li>
+<li>Issue:
+<ul>
+<li>Check for RAW hazards (same was as scoreboarding) by checking if the sourceReg has all their values ready. If source reg is tagged, wait until CDB broadcast</li>
+<li>If no RAW, then issue instruction for execution</li>
+</ul></li>
+<li>Writeback
+<ul>
+<li>Write the register and free the RS entry</li>
+</ul></li>
+</ul>
+</section>
+<section id="tomasulo-dispatch" class="level3" data-number="4.5.3">
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="tomasulo-dispatch"><span class="header-section-number">4.5.3</span> Tomasulo Dispatch</h3>
+<p><img src="images/ooo-basics/tom-dispatch.png" class="img-fluid"></p>
+</section>
+<section id="tomasulo-issue" class="level3" data-number="4.5.4">
+<h3 data-number="4.5.4" class="anchored" data-anchor-id="tomasulo-issue"><span class="header-section-number">4.5.4</span> Tomasulo Issue</h3>
+<p><img src="images/ooo-basics/tom-issue.png" class="img-fluid"></p>
+</section>
+<section id="tomasulo-execute" class="level3" data-number="4.5.5">
+<h3 data-number="4.5.5" class="anchored" data-anchor-id="tomasulo-execute"><span class="header-section-number">4.5.5</span> Tomasulo Execute</h3>
+<p><img src="images/ooo-basics/tom-exe.png" class="img-fluid"></p>
+<ul>
+<li>Same as previous pipelines</li>
+</ul>
+</section>
+<section id="tomasulo-writeback" class="level3" data-number="4.5.6">
+<h3 data-number="4.5.6" class="anchored" data-anchor-id="tomasulo-writeback"><span class="header-section-number">4.5.6</span> Tomasulo Writeback</h3>
+<p><img src="images/ooo-basics/tom-wb.png" class="img-fluid"></p>
+</section>
+<section id="tomasulo---register-renaming" class="level3" data-number="4.5.7">
+<h3 data-number="4.5.7" class="anchored" data-anchor-id="tomasulo---register-renaming"><span class="header-section-number">4.5.7</span> Tomasulo - Register Renaming</h3>
+<p>Differences with scoreboarding:</p>
+<ul>
+<li>Scoreboarding explicitly keeps track of the indices of the source registers (Tags)
+<ul>
+<li>The basic idea is that a reservation station fetches and buffers an operand as soon as it is available, eliminating the need to get the operand from a register. When successive writes to a register overlap in execution, only the last one is actually used to update the register</li>
+</ul></li>
+<li>Data structures (Map table, values table in the RS that copies the reg values) are much larger than indices used in Scoreboarding, costing more hardware</li>
+</ul>
+<p>What in Tomasulo implements register renaming?</p>
+<ul>
+<li>Value copies in the RS (V1, V2 in the value table)
+<ul>
+<li>Instructions stores correct input values in its own RS entry</li>
+<li>Future instructions can overwrite master copy in the register file
+<ul>
+<li>But for WAW/WAR hazards, the correct values are in the RS</li>
+</ul></li>
+</ul></li>
+<li>Thus, Tomasulo-style register renaming is <strong>“value-based”/“copy-based”</strong>
+<ul>
+<li>Names: architectural registers</li>
+<li>Storage locations: register file and RS
+<ul>
+<li>Values can exist in both</li>
+<li>RF holds most recent values</li>
+<li><strong>Copies of values in the RS prevents WAR hazards</strong></li>
+</ul></li>
+<li>Storage location referred to by the RS# tags
+<ul>
+<li>Register table translates names to tags</li>
+<li>Empty tag -&gt; value is in RF</li>
+<li>Tagged value means it is computed by the corresponding RS#</li>
+</ul></li>
+<li>CDB broadcast contains the tag, thus instructions knows if it is the correct value they want</li>
+</ul></li>
+</ul>
+<p><img src="images/ooo-basics/score-tom-diff.png" class="img-fluid"></p>
+<p><strong>Takeaway: Dynamic scheduling WITH register renaming shines in high latency instructions</strong></p>
+<ul>
+<li>Problem with Simple Tomasulo: Cannot handle exceptions - we don’t know the relative ordering of instructions by looking at the RS</li>
+</ul>
+</section>
+</section>
+<section id="quick-summary" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="quick-summary"><span class="header-section-number">4.6</span> Quick Summary:</h2>
+<p><img src="images/ooo-basics/dyn-sch-summary.png" class="img-fluid"></p>
+</section>
+<section id="looking-ahead" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="looking-ahead"><span class="header-section-number">4.7</span> Looking Ahead</h2>
+<p>Next chapter discusses how we build on to handle precise state and speculation in P6 and R10k -style architectures</p>
+</section>
+<section id="example-executions" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="example-executions"><span class="header-section-number">4.8</span> Example Executions</h2>
+<section id="scoreboard" class="level3" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="scoreboard"><span class="header-section-number">4.8.1</span> Scoreboard</h3>
+<p><img src="images/ooo-basics/scoreboardc1.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/scoreboardc2.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/scoreboardc3.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/scoreboardc4.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/scoreboardc5.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/scoreboardc6.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/scoreboardc7.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/scoreboardc8.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/scoreboardc9.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/scoreboardc10.png" class="img-fluid"></p>
+</section>
+<section id="tomasulo" class="level3" data-number="4.8.2">
+<h3 data-number="4.8.2" class="anchored" data-anchor-id="tomasulo"><span class="header-section-number">4.8.2</span> Tomasulo</h3>
+<p><img src="images/ooo-basics/tom-ex-c0.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/tomc1.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/tomc2.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/tomc3.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/tomc4.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/tomc5.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/tomc6.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/tomc7.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/tomc8.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/tomc9.png" class="img-fluid"></p>
+<p><img src="images/ooo-basics/tomc10.png" class="img-fluid"></p>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -642,8 +1098,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./p6r10k.html" class="pagination-link" aria-label="p6r10k.html">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">p6r10k.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./p6r10k.html" class="pagination-link" aria-label="Out-of-Order - Speculation, Precise Interrupts, Superscalar">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Out-of-Order - Speculation, Precise Interrupts, Superscalar</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
