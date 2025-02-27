@@ -1,1 +1,123 @@
 # Object-Oriented Programming
+
+The Four Pillars of OOP:
+
+1. Abstraction
+   1. Hides implementation details and only shows the necessary functionality to the user 
+2. Encapsulation
+   1. Restricts direct access to some components of an object 
+3. Inheritance
+   1. Creates a child class that inherits behavior and properties from a parent class 
+4. Polymorphism
+   1. Ability of an object to take on multiple forms
+
+## Inheritance
+
+![](images/oop/inheritance-ex.png)
+
+Order of constructor/destructor calls:
+
+1. Base class constructor is called first
+2. Derived class constructor is then called
+3. Derived class destructor is called first on destruction
+4. Base class destructor is then called
+
+### Varieties of Inheritance
+
+C++ offers 3 different varieties of inheritance:
+
+- Public
+	• Entire program knows the class
+		○  (eg whole program knows a duck is a bird)
+- Protected
+	• allows members to be accessed within the class, by derived classes, but not by outside code
+- Private
+	• Inheritance is only known to exist only within the class itself
+
+
+## Polymorphism
+
+- ad hoc polymorphism, which refers to function overloading
+- parametric polymorphism in the form of templates
+- subtype polymorphism, which allows a derived-class object to be used where a base-class object is expected
+
+
+**Non-Virtual Function**
+
+- A normal function that does not support polymorphism.
+- The function is resolved at compile-time (static binding).
+- If a derived class overrides the function, calling the function through a base class pointer or reference will always invoke the base class version.
+
+```cpp
+class Base {
+public:
+    void show() { std::cout << "Base class\n"; }
+};
+
+class Derived : public Base {
+public:
+    void show() { std::cout << "Derived class\n"; }
+};
+
+int main() {
+    Base* b = new Derived();
+    b->show();  // Calls Base::show() due to static binding
+    delete b;
+    return 0;
+}
+
+// OUTPUT: Base class
+```
+
+**Virtual Function**
+
+- Declared using the virtual keyword in the base class.
+- Supports runtime polymorphism (dynamic binding).
+- If a derived class overrides the function and a base class pointer/reference calls it, the derived class version is executed.
+
+```cpp
+class Base {
+public:
+    virtual void show() { std::cout << "Base class\n"; }
+};
+
+class Derived : public Base {
+public:
+    void show() override { std::cout << "Derived class\n"; }
+};
+
+int main() {
+    Base* b = new Derived();
+    b->show();  // Calls Derived::show() due to dynamic binding
+    delete b;
+    return 0;
+}
+// OUTPUT: Derived class
+```
+
+**Pure Virtual Function (Abstract Function)**
+
+- Declared using = 0 syntax in the base class.
+- Makes the base class an abstract class (cannot be instantiated).
+- Must be overridden by derived classes; otherwise, they remain abstract.
+
+```cpp
+class Base {
+public:
+    virtual void show() = 0;  // Pure virtual function
+};
+
+class Derived : public Base {
+public:
+    void show() override { std::cout << "Derived class\n"; }
+};
+
+int main() {
+    // Base b; // Error: Cannot instantiate an abstract class
+    Base* b = new Derived();
+    b->show();  // Calls Derived::show()
+    delete b;
+    return 0;
+}
+// OUTPUT: Derived class
+```

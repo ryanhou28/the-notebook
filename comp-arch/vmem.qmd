@@ -1,0 +1,115 @@
+# Virtual Memory
+
+Basics on virtual memory are covered in Computer Organization notes
+
+### Base and Bound Registers
+
+![](images/vmem/bbreg.png)
+
+- Disadvantage:
+	- Have to keep the whole process's region in memory at the same time
+	- Process' memory has to be contiguous in physical memory
+	- A big problem if a program uses a signficant amount of memory
+
+### Segmented Address Space
+
+![](images/vmem/segaddrspace.png)
+
+- Run into segmentation problems: we can get wasted chunks of memory in between processes' address space, where the wasted chunks may be too small for new segments to fit in (wasteful)
+
+### Paged Address Space
+
+- Paged address space fixes segmentation problem by having non-contiguous fixed size pages
+  - No wasted space in between "segments" as a process's memory doesn't have to sit together (contiguously) in physical memory
+
+![](images/vmem/pagedaddrspace.png)
+
+![](images/vmem/page-vmem.png)
+
+## Page Table Organization
+
+![](images/vmem/pagetable-.png)
+
+- 1 big page table too large even for small programs
+  - most programs don't use that much memory, wasting a lot of space
+
+## Hierarchical Page Table
+
+![](images/vmem/hierchical.png)
+
+## Inverted or Hashed Page Table
+
+![](images/vmem/inv-hash-pt.png)
+
+## Virtual-to-Physical Translation
+
+![](images/vmem/v-to-p-trans.png)
+
+![](images/vmem/cache-placement-addr-trans.png)
+
+### Translation Look-aside Buffer
+
+![](images/vmem/tlb-.png)
+
+
+### Virtually Indexed Virtually Tagged (VIVT) Cache
+
+![](images/vmem/vivt-cache.png)
+
+- Use the whole virtual address
+  - Send entire virtual addr to D-cache, giving us the data
+  - Only do translation of physical addr. on a miss
+- Pros:
+  - Fast - access cache right away
+  - Simple
+- Cons:
+  - Homonyms (one virtual address could map to several different physical addreses, eg multiple threads using the same address)
+    - Flush cache after context switch or need to add address space ID to cache
+  - Synonyms (one physical address maps to multiple virtual addresses)
+    - We may want multiple contexts to share some section of memory (shared memory)
+    - Need to flush cache on context switch
+
+### Physicall Indexed Physically Tagged (PIPT) Cache
+
+
+![](images/vmem/pipt-cache.png)
+
+- Does translation before accessing the D-cache
+  - Do translation with TLB
+- Avoids homonym and synonym
+- Pros:
+  - Simple
+  - No aliasing
+- Cons
+  - Slow (memory translation is added to critical path)
+
+### Virtually Indexed Physically Tagged (VIPT) Cache
+
+![](images/vmem/vipt-cache.png)
+
+
+- In parallel, access cache and do translation
+- Access the data cache using only the page offset
+  - Since page offset doesn't get translated, only the virtual page number gets translated into a physical page number
+  - Index into the cache using page offset, at the same time translate the virtual page number into a physical page number
+- Caveats:
+  - This limits how large the cache can be
+    - If cache gets too large, then the index (page offset bits) into the cache gets much larger, index might start bleeding into virtual page number
+  - Need to ensure index into the cache is contained entirely in the page offset
+- Pros:
+  - Fast (two memory transactiosn done in parallel)
+- Cons
+  - More complicated
+  - Cache size is constrained (bad)
+
+![](images/vmem/large-vipt.png)
+
+### Virtual Address Synonyms
+
+![](images/vmem/vaddr-synonym.png)
+
+
+![](images/vmem/vaddr-synonym-sol.png)
+
+
+

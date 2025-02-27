@@ -2,9 +2,9 @@ project:
   type: book
 
 book:
-  title: "Empty Book Template"
+  title: "Computer Architecture"
   author: "Ryan Hou"
-  date: "mm/dd/year"
+  date: "02/26/2025"
   chapters:
     - index.qmd
     - intro.qmd

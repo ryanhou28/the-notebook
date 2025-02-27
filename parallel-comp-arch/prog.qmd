@@ -1,0 +1,40 @@
+# Parallel Programming Models
+
+
+**Programming Model Elements**
+
+- Processes and Threads
+  - Process
+  - Thread
+  - Task
+- Communication
+- Synchronization
+
+
+## Message Passing
+
+- Each process has their own local address space
+- Cannot directly access memory of another node
+- Use explicit send/receive operations
+
+### Synchronous vs Asynchronous
+
+
+## Shared Memory
+
+- Multiple execution contexts shares single address space
+- Communicate via loads and stores to shared memory
+
+### Paired vs Separate Processor/Memory
+
+![](images/prog/uma-numa.png)
+
+- **Uniform Memory Access (UMA)**
+  - 
+- **Non-Uniform Memory Access (NUMA)**
+  - 
+
+
+### Shared Memory - Summary
+
+![](images/prog/shared-mem-summary.png)

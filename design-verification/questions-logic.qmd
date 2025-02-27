@@ -52,6 +52,10 @@ Key concepts:
 
 **Q: What are the different types of latches? What about flip-flops?**
 
+**Q: Propagation of metastability...**
+
+**Q: Design of hierarchical priority encoder?**
+
 ## FPGAs 
 
 **Q: How do FPGAs work? How are they programmable?**

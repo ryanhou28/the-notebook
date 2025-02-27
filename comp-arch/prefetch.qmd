@@ -1,10 +1,79 @@
 # Prefetching
 
+Fetch memory before it's needed
+
+- Targets compulsory, capacity, & coherence misses (but not conflict misses)
+- Challenges:
+  - Knowing what to fetch
+  - Knowing when to fetch
 
 ## Software Prefetching
 
-
+- Compiler/programmer can place prefetch instructions
+  - requires ISA support
+- Can prefetch into register (binding) or caches (non-binding)
 
 ## Hardware Prefetching
+
+- What to prefetch?
+  - use address predictors -> works for regular patterns (such as for loops)
+- When to prefetch?
+  - on every reference
+  - on every miss
+  - when prior prefetched data is referenced
+- Where to put prefetched data?
+  - auxiliary buffers
+  - caches
+
+![](images/prefetch/gen-acc-patt.png)
+
+### Spatial Locality and Sequential Prefetching
+
+- Sequential prefetching
+  - Just grab the next few lines from memory
+  - Works well for I-cache
+  - Instruction fetching tends to access memory sequentially
+- Doesn’t work very well for D-cache
+  - More irregular access pattern
+  - Regular patterns may have non-unit stride (e.g. matrix code)
+- Relatively easy to implement
+  - Large cache block size already has the effect of prefetching
+  - After loading one cache line, start loading the next line automatically if the line is not in cache and the bus is not busy
+  - If we know the typical basic block size (i.e. avg distance between branches), we can fetch the next several lines
+
+
+### Stride Prefetchers
+
+![](images/prefetch/stride-pref.png)
+
+
+### Stream Buffers
+
+
+![](images/prefetch/streambuffers.png)
+
+
+### Runahead Prefetcher
+
+
+![](images/prefetch/runahead.png)
+
+- To get ahead:
+  - Must avoid waiting
+  - Must compute less
+
+- Predict:
+  - 1. Control flow thru branch prediction
+  - 2. Data flow thru value prediction
+  - 3. Address generation computation only
+  - (+) Prefetch any pattern (need not be repetitive)
+  - (-) Prediction only as good as branch + value prediction
+
+### Correlation-Based Prefetching
+
+![](images/prefetch/corr-based.png)
+
+![](images/prefetch/corr-based-2.png)
+
 
 

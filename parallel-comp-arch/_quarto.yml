@@ -2,12 +2,18 @@ project:
   type: book
 
 book:
-  title: "Empty Book Template"
+  title: "Parallel Computer Architecture"
   author: "Ryan Hou"
   date: "mm/dd/year"
   chapters:
     - index.qmd
     - intro.qmd
+    - prog.qmd
+    - dlp.qmd
+    - synch.qmd
+    - coherence.qmd
+    - consistency.qmd
+    - nocs.qmd
     - summary.qmd
     - references.qmd
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Questions - Coding (Non-HDL) – Design Verification</title>
+<title>8&nbsp; Questions - Coding (Non-HDL) – Design Verification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./questions-coding.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Questions - Coding (Non-HDL)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./questions-coding.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Questions - Coding (Non-HDL)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -120,44 +154,56 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./verif-basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Verification Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./uvm-basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">UVM Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./questions-fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Questions - Fundamentals of Verification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Questions - Fundamentals of Verification</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./questions-logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Questions - Logic Design &amp; Basics of Digital Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Questions - Logic Design &amp; Basics of Digital Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./questions-arch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Questions - Computer Architecture</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Questions - Computer Architecture</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./questions-coding.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Questions - Coding (Non-HDL)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Questions - Coding (Non-HDL)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./questions-verilog.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Questions - Verilog</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Questions - Verilog</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./questions-uvm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Questions - UVM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Questions - UVM</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -176,13 +222,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#bit-manipulation" id="toc-bit-manipulation" class="nav-link active" data-scroll-target="#bit-manipulation"><span class="header-section-number">6.1</span> Bit Manipulation</a></li>
-  <li><a href="#strings" id="toc-strings" class="nav-link" data-scroll-target="#strings"><span class="header-section-number">6.2</span> Strings</a></li>
-  <li><a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures"><span class="header-section-number">6.3</span> Data Structures</a></li>
-  <li><a href="#recursioniteration" id="toc-recursioniteration" class="nav-link" data-scroll-target="#recursioniteration"><span class="header-section-number">6.4</span> Recursion/Iteration</a></li>
-  <li><a href="#object-oriented-design" id="toc-object-oriented-design" class="nav-link" data-scroll-target="#object-oriented-design"><span class="header-section-number">6.5</span> Object-Oriented Design</a></li>
-  <li><a href="#others" id="toc-others" class="nav-link" data-scroll-target="#others"><span class="header-section-number">6.6</span> Others</a></li>
-  <li><a href="#scripting" id="toc-scripting" class="nav-link" data-scroll-target="#scripting"><span class="header-section-number">6.7</span> Scripting</a></li>
+  <li><a href="#bit-manipulation" id="toc-bit-manipulation" class="nav-link active" data-scroll-target="#bit-manipulation"><span class="header-section-number">8.1</span> Bit Manipulation</a></li>
+  <li><a href="#strings" id="toc-strings" class="nav-link" data-scroll-target="#strings"><span class="header-section-number">8.2</span> Strings</a></li>
+  <li><a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures"><span class="header-section-number">8.3</span> Data Structures</a></li>
+  <li><a href="#recursioniteration" id="toc-recursioniteration" class="nav-link" data-scroll-target="#recursioniteration"><span class="header-section-number">8.4</span> Recursion/Iteration</a></li>
+  <li><a href="#object-oriented-design" id="toc-object-oriented-design" class="nav-link" data-scroll-target="#object-oriented-design"><span class="header-section-number">8.5</span> Object-Oriented Design</a></li>
+  <li><a href="#others" id="toc-others" class="nav-link" data-scroll-target="#others"><span class="header-section-number">8.6</span> Others</a></li>
+  <li><a href="#scripting" id="toc-scripting" class="nav-link" data-scroll-target="#scripting"><span class="header-section-number">8.7</span> Scripting</a></li>
   </ul>
 </nav>
     </div>
@@ -191,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Questions - Coding (Non-HDL)</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Questions - Coding (Non-HDL)</span></h1>
 </div>
 
 
@@ -220,38 +266,70 @@ ul.task-list li input[type="checkbox"] {
 <li>Basic array leetcode problems</li>
 <li>Mostly in C++ or Python (or another choice of scripting language)</li>
 </ul>
-<section id="bit-manipulation" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="bit-manipulation"><span class="header-section-number">6.1</span> Bit Manipulation</h2>
+<section id="bit-manipulation" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="bit-manipulation"><span class="header-section-number">8.1</span> Bit Manipulation</h2>
 <p><strong>Q: Bit manipulation leetcode questions</strong></p>
 </section>
-<section id="strings" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="strings"><span class="header-section-number">6.2</span> Strings</h2>
+<section id="strings" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="strings"><span class="header-section-number">8.2</span> Strings</h2>
 <p><strong>Q: String matching regex</strong></p>
 <p><strong>Q: Parse a string in Python: Given a .txt file, parse the file and print the frequency of each word, printed by ordering of most frequent first.</strong></p>
 </section>
-<section id="data-structures" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="data-structures"><span class="header-section-number">6.3</span> Data Structures</h2>
+<section id="data-structures" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="data-structures"><span class="header-section-number">8.3</span> Data Structures</h2>
 <p><strong>Q: Code up a class for a stack, including functions for push and pop</strong></p>
 <p><strong>Q: Write C++ code to move value to the front of an array</strong></p>
 <p><strong>Q: Write C++ code to find the second minimum of an array</strong></p>
 <p><strong>Q: Two ints are represented as a linked list. Create a new linked list that is the sum of these two integers</strong></p>
 <p><strong>Q: How do you build a queue from a stack? How do you build a stack from a queue?</strong></p>
+<p><strong>Q: C program to find the length of a string</strong></p>
 </section>
-<section id="recursioniteration" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="recursioniteration"><span class="header-section-number">6.4</span> Recursion/Iteration</h2>
+<section id="recursioniteration" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="recursioniteration"><span class="header-section-number">8.4</span> Recursion/Iteration</h2>
 <p><strong>Q: Write a function to calculate the factorial of a given number. Recursively and iteratively</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> <span class="dt">long</span> factorial_recursive<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>n <span class="op">==</span> <span class="dv">0</span> <span class="op">||</span> n <span class="op">==</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> factorial_recursive<span class="op">(</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> <span class="dt">long</span> factorial_iterative<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="dt">long</span> result <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">2</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        result <span class="op">*=</span> i<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Q: Write a function to output the fibonacci sequence recursively. How about iteratively? What are the differences (especially in terms of complexity)?</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> <span class="dt">long</span> fibonacci_recursive<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>n <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>n <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fibonacci_recursive<span class="op">(</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">+</span> fibonacci_recursive<span class="op">(</span>n <span class="op">-</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> fibonacci_iterative<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="dt">long</span> a <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> c<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Fibonacci (Iterative) sequence up to "</span> <span class="op">&lt;&lt;</span> n <span class="op">&lt;&lt;</span> <span class="st">" terms: "</span><span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> a <span class="op">&lt;&lt;</span> <span class="st">" "</span><span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> a <span class="op">+</span> b<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> b<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> c<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Q: Deleting objects at the end after execution (freeing up dynamic memory): use linked list, vector, or a counter</strong></p>
 </section>
-<section id="object-oriented-design" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="object-oriented-design"><span class="header-section-number">6.5</span> Object-Oriented Design</h2>
+<section id="object-oriented-design" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="object-oriented-design"><span class="header-section-number">8.5</span> Object-Oriented Design</h2>
 <p><strong>Q: What is polymorphism? What is inheritance?</strong></p>
 <ul>
 <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7280173238419124224/">LinkedIn Post - Polymorphism in DV Interview</a></li>
 </ul>
 </section>
-<section id="others" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="others"><span class="header-section-number">6.6</span> Others</h2>
+<section id="others" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="others"><span class="header-section-number">8.6</span> Others</h2>
 <p><strong>Q: Write the pseudocode for how you would go about solving the traveling salesman problem</strong></p>
 <p><strong>Q: Write code for a card game in C++: Black jack - shuffle, deal, and check the sum is equal to a value. If greater then lose. If rounds are complete, then highest wins</strong></p>
 <p><strong>Q: Write code to perform matrix multiplication in C++</strong></p>
@@ -260,8 +338,8 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Q: Compilers - register renaming</strong></p>
 <p><strong>Q: How would you code Fibonacci in assembly?</strong></p>
 </section>
-<section id="scripting" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="scripting"><span class="header-section-number">6.7</span> Scripting</h2>
+<section id="scripting" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="scripting"><span class="header-section-number">8.7</span> Scripting</h2>
 <p><strong>Q: In Python, parse a file line-by-line and finding the minimum time for a particular bucket id given this file structure: TASK_ID | STATUS | COMMAND_LINE | BUCKET_ID | TIME (HH:MM:SS)</strong></p>
 
 
@@ -688,12 +766,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./questions-arch.html" class="pagination-link" aria-label="Questions - Computer Architecture">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Questions - Computer Architecture</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Questions - Computer Architecture</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./questions-verilog.html" class="pagination-link" aria-label="Questions - Verilog">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Questions - Verilog</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Questions - Verilog</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Questions - Computer Architecture – Design Verification</title>
+<title>7&nbsp; Questions - Computer Architecture – Design Verification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./questions-arch.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Questions - Computer Architecture</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./questions-arch.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Questions - Computer Architecture</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -120,44 +120,56 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./verif-basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Verification Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./uvm-basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">UVM Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./questions-fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Questions - Fundamentals of Verification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Questions - Fundamentals of Verification</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./questions-logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Questions - Logic Design &amp; Basics of Digital Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Questions - Logic Design &amp; Basics of Digital Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./questions-arch.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Questions - Computer Architecture</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Questions - Computer Architecture</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./questions-coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Questions - Coding (Non-HDL)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Questions - Coding (Non-HDL)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./questions-verilog.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Questions - Verilog</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Questions - Verilog</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./questions-uvm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Questions - UVM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Questions - UVM</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -176,13 +188,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#isa" id="toc-isa" class="nav-link active" data-scroll-target="#isa"><span class="header-section-number">5.1</span> ISA</a></li>
-  <li><a href="#in-order-cpu" id="toc-in-order-cpu" class="nav-link" data-scroll-target="#in-order-cpu"><span class="header-section-number">5.2</span> In-Order CPU</a></li>
-  <li><a href="#ooo-cpu-design" id="toc-ooo-cpu-design" class="nav-link" data-scroll-target="#ooo-cpu-design"><span class="header-section-number">5.3</span> OoO CPU Design</a></li>
-  <li><a href="#memory-architecture-caches" id="toc-memory-architecture-caches" class="nav-link" data-scroll-target="#memory-architecture-caches"><span class="header-section-number">5.4</span> Memory Architecture, Caches</a></li>
-  <li><a href="#branch-prediction" id="toc-branch-prediction" class="nav-link" data-scroll-target="#branch-prediction"><span class="header-section-number">5.5</span> Branch Prediction</a></li>
-  <li><a href="#memory-coherency" id="toc-memory-coherency" class="nav-link" data-scroll-target="#memory-coherency"><span class="header-section-number">5.6</span> Memory Coherency</a></li>
-  <li><a href="#memory-consistency" id="toc-memory-consistency" class="nav-link" data-scroll-target="#memory-consistency"><span class="header-section-number">5.7</span> Memory Consistency</a></li>
+  <li><a href="#isa" id="toc-isa" class="nav-link active" data-scroll-target="#isa"><span class="header-section-number">7.1</span> ISA</a></li>
+  <li><a href="#in-order-cpu" id="toc-in-order-cpu" class="nav-link" data-scroll-target="#in-order-cpu"><span class="header-section-number">7.2</span> In-Order CPU</a></li>
+  <li><a href="#ooo-cpu-design" id="toc-ooo-cpu-design" class="nav-link" data-scroll-target="#ooo-cpu-design"><span class="header-section-number">7.3</span> OoO CPU Design</a></li>
+  <li><a href="#memory-architecture-caches" id="toc-memory-architecture-caches" class="nav-link" data-scroll-target="#memory-architecture-caches"><span class="header-section-number">7.4</span> Memory Architecture, Caches</a></li>
+  <li><a href="#branch-prediction" id="toc-branch-prediction" class="nav-link" data-scroll-target="#branch-prediction"><span class="header-section-number">7.5</span> Branch Prediction</a></li>
+  <li><a href="#memory-coherency" id="toc-memory-coherency" class="nav-link" data-scroll-target="#memory-coherency"><span class="header-section-number">7.6</span> Memory Coherency</a></li>
+  <li><a href="#memory-consistency" id="toc-memory-consistency" class="nav-link" data-scroll-target="#memory-consistency"><span class="header-section-number">7.7</span> Memory Consistency</a></li>
+  <li><a href="#interconnect" id="toc-interconnect" class="nav-link" data-scroll-target="#interconnect"><span class="header-section-number">7.8</span> Interconnect</a></li>
   </ul>
 </nav>
     </div>
@@ -191,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Questions - Computer Architecture</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Questions - Computer Architecture</span></h1>
 </div>
 
 
@@ -216,18 +229,18 @@ ul.task-list li input[type="checkbox"] {
 <li>Memory coherence (MSI, MESI, MOESI, etc)</li>
 <li>Memory consistency ()</li>
 </ul>
-<section id="isa" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="isa"><span class="header-section-number">5.1</span> ISA</h2>
+<section id="isa" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="isa"><span class="header-section-number">7.1</span> ISA</h2>
 <p><strong>Q: ISA has a set of compressed instructions. Should find the instruction using LSB. Each inst can take one or two lines based on the type. The section selected can start from an inst or an half inst of an uncompressed.</strong></p>
 </section>
-<section id="in-order-cpu" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="in-order-cpu"><span class="header-section-number">5.2</span> In-Order CPU</h2>
+<section id="in-order-cpu" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="in-order-cpu"><span class="header-section-number">7.2</span> In-Order CPU</h2>
 <p><strong>Q: Explain how a 5-stage pipeline works</strong></p>
 <p><strong>Q: Why don’t we make in-order pipelines deep? Why not make pipelines of anything in general deep (general tradeoffs)?</strong></p>
 <p><strong>Q: What are the hazards in an in-order pipeline? How are they detected? What causes them? How does moving towards OoO help with each?</strong></p>
 </section>
-<section id="ooo-cpu-design" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="ooo-cpu-design"><span class="header-section-number">5.3</span> OoO CPU Design</h2>
+<section id="ooo-cpu-design" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="ooo-cpu-design"><span class="header-section-number">7.3</span> OoO CPU Design</h2>
 <p><strong>Q: LSQ. How does it work</strong></p>
 <p><strong>Q: (in your project), how did you decoder work?</strong></p>
 <p><strong>Q: (in your project), how did you try to optimize your design?</strong></p>
@@ -236,9 +249,13 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Q: What are the differences/tradeoffs between a distributed reservation station and a centralized reservation state?</strong></p>
 <p><strong>Q: Explain Tomasulo</strong></p>
 <p><strong>Q: What are the different types of hazards in an OoO design? How are they detected and dealt with?</strong></p>
+<p><strong>Q: FSM for a Hybrid Branch Predictor to choose between two BP using Global and Local Branch History</strong></p>
+<p><strong>Q: Design a Simple ROB and Retirement logic</strong></p>
+<p><strong>Q: Questions and Simple design on Issue Queue and Reservation station</strong></p>
 </section>
-<section id="memory-architecture-caches" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="memory-architecture-caches"><span class="header-section-number">5.4</span> Memory Architecture, Caches</h2>
+<section id="memory-architecture-caches" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="memory-architecture-caches"><span class="header-section-number">7.4</span> Memory Architecture, Caches</h2>
+<p><strong>Q: find the number of tag bits in the cache</strong></p>
 <p><strong>Q: How would you determine if the requested data is available in the cache?</strong></p>
 <p><strong>Q: What LRU policy do you use? (in project setting or for specific scenario)</strong></p>
 <p><strong>Q: Assume a scenario where a cache line gets evicted and immediately the CPU Wants the same cache line. What should you do?</strong></p>
@@ -260,21 +277,55 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Q: Non-blocking D-cache and how you implement it?</strong></p>
 <p><strong>Q: Virtual memory, VIPT. Explain</strong></p>
 </section>
-<section id="branch-prediction" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="branch-prediction"><span class="header-section-number">5.5</span> Branch Prediction</h2>
+<section id="branch-prediction" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="branch-prediction"><span class="header-section-number">7.5</span> Branch Prediction</h2>
 <p><strong>Q: Perceptron, what is it? Equation? How do you implement it in hardware?</strong></p>
 </section>
-<section id="memory-coherency" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="memory-coherency"><span class="header-section-number">5.6</span> Memory Coherency</h2>
+<section id="memory-coherency" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="memory-coherency"><span class="header-section-number">7.6</span> Memory Coherency</h2>
 <p><strong>Q: What is memory coherence and why is it needed?</strong></p>
 <p><strong>Q: MSI protocol. What is it, how does it work?</strong></p>
 <p><strong>Q: MSI, MESI, MOESI: why was each extra state added?</strong></p>
 <p><strong>Q: Draw the state diagram for MESI</strong></p>
+<p><strong>Q: Explain different cache coherency protocol.</strong></p>
 </section>
-<section id="memory-consistency" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="memory-consistency"><span class="header-section-number">5.7</span> Memory Consistency</h2>
+<section id="memory-consistency" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="memory-consistency"><span class="header-section-number">7.7</span> Memory Consistency</h2>
 <p><strong>Q: Consistency basics, what is memory consistency and why is it needed?</strong></p>
 <p><strong>Q: Given a sequence of instructions on 2 cores, which values are possible/not possible - how would you check if a barrier is working?</strong></p>
+</section>
+<section id="interconnect" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="interconnect"><span class="header-section-number">7.8</span> Interconnect</h2>
+<p><strong>Q: How do credits work in protocols</strong></p>
+<p><strong>A:</strong></p>
+<ul>
+<li>Credit Initialization:
+<ul>
+<li>The receiver starts with a certain number of credits, indicating how many messages or flits (flow control units) it can accept.</li>
+<li>The sender maintains a credit counter that tracks how many credits it has available.</li>
+</ul></li>
+<li>Sending Data:
+<ul>
+<li>Every time the sender transmits a packet/flit, it decrements its available credits.</li>
+<li>If the sender runs out of credits, it must stop sending until it receives more.</li>
+</ul></li>
+<li>Credit Return:
+<ul>
+<li>When the receiver processes or forwards a message, it returns a credit back to the sender, signaling that it has space for more data.</li>
+<li>This ensures that the receiver’s buffer never overflows.</li>
+</ul></li>
+<li>Use cases:
+<ul>
+<li>NoCs: Ensures flow control in mesh/toroidal interconnects to avoid congestion.</li>
+<li>Coherent Interconnects (e.g., AMBA CHI, CXL, UPI): Used to manage request/response ordering and avoid buffer overflow.</li>
+</ul></li>
+<li>Why use credits:
+<ul>
+<li>Prevent buffer overflows at the receiver</li>
+<li>Help load balance across links in NoC</li>
+<li>Ensure efficient resource utilization</li>
+</ul></li>
+</ul>
 
 
 </section>
@@ -700,12 +751,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./questions-logic.html" class="pagination-link" aria-label="Questions - Logic Design &amp; Basics of Digital Systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Questions - Logic Design &amp; Basics of Digital Systems</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Questions - Logic Design &amp; Basics of Digital Systems</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./questions-coding.html" class="pagination-link" aria-label="Questions - Coding (Non-HDL)">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Questions - Coding (Non-HDL)</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Questions - Coding (Non-HDL)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

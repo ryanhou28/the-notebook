@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Prefetching – Empty Book Template</title>
+<title>9&nbsp; Prefetching – Computer Architecture</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -96,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Empty Book Template</a> 
+      <a href="./">Computer Architecture</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -169,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vmem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">vmem.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Virtual Memory</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -213,7 +213,14 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#software-prefetching" id="toc-software-prefetching" class="nav-link active" data-scroll-target="#software-prefetching"><span class="header-section-number">9.1</span> Software Prefetching</a></li>
-  <li><a href="#hardware-prefetching" id="toc-hardware-prefetching" class="nav-link" data-scroll-target="#hardware-prefetching"><span class="header-section-number">9.2</span> Hardware Prefetching</a></li>
+  <li><a href="#hardware-prefetching" id="toc-hardware-prefetching" class="nav-link" data-scroll-target="#hardware-prefetching"><span class="header-section-number">9.2</span> Hardware Prefetching</a>
+  <ul class="collapse">
+  <li><a href="#spatial-locality-and-sequential-prefetching" id="toc-spatial-locality-and-sequential-prefetching" class="nav-link" data-scroll-target="#spatial-locality-and-sequential-prefetching"><span class="header-section-number">9.2.1</span> Spatial Locality and Sequential Prefetching</a></li>
+  <li><a href="#stride-prefetchers" id="toc-stride-prefetchers" class="nav-link" data-scroll-target="#stride-prefetchers"><span class="header-section-number">9.2.2</span> Stride Prefetchers</a></li>
+  <li><a href="#stream-buffers" id="toc-stream-buffers" class="nav-link" data-scroll-target="#stream-buffers"><span class="header-section-number">9.2.3</span> Stream Buffers</a></li>
+  <li><a href="#runahead-prefetcher" id="toc-runahead-prefetcher" class="nav-link" data-scroll-target="#runahead-prefetcher"><span class="header-section-number">9.2.4</span> Runahead Prefetcher</a></li>
+  <li><a href="#correlation-based-prefetching" id="toc-correlation-based-prefetching" class="nav-link" data-scroll-target="#correlation-based-prefetching"><span class="header-section-number">9.2.5</span> Correlation-Based Prefetching</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -239,13 +246,107 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Fetch memory before it’s needed</p>
+<ul>
+<li>Targets compulsory, capacity, &amp; coherence misses (but not conflict misses)</li>
+<li>Challenges:
+<ul>
+<li>Knowing what to fetch</li>
+<li>Knowing when to fetch</li>
+</ul></li>
+</ul>
 <section id="software-prefetching" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="software-prefetching"><span class="header-section-number">9.1</span> Software Prefetching</h2>
+<ul>
+<li>Compiler/programmer can place prefetch instructions
+<ul>
+<li>requires ISA support</li>
+</ul></li>
+<li>Can prefetch into register (binding) or caches (non-binding)</li>
+</ul>
 </section>
 <section id="hardware-prefetching" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="hardware-prefetching"><span class="header-section-number">9.2</span> Hardware Prefetching</h2>
+<ul>
+<li>What to prefetch?
+<ul>
+<li>use address predictors -&gt; works for regular patterns (such as for loops)</li>
+</ul></li>
+<li>When to prefetch?
+<ul>
+<li>on every reference</li>
+<li>on every miss</li>
+<li>when prior prefetched data is referenced</li>
+</ul></li>
+<li>Where to put prefetched data?
+<ul>
+<li>auxiliary buffers</li>
+<li>caches</li>
+</ul></li>
+</ul>
+<p><img src="images/prefetch/gen-acc-patt.png" class="img-fluid"></p>
+<section id="spatial-locality-and-sequential-prefetching" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="spatial-locality-and-sequential-prefetching"><span class="header-section-number">9.2.1</span> Spatial Locality and Sequential Prefetching</h3>
+<ul>
+<li>Sequential prefetching
+<ul>
+<li>Just grab the next few lines from memory</li>
+<li>Works well for I-cache</li>
+<li>Instruction fetching tends to access memory sequentially</li>
+</ul></li>
+<li>Doesn’t work very well for D-cache
+<ul>
+<li>More irregular access pattern</li>
+<li>Regular patterns may have non-unit stride (e.g.&nbsp;matrix code)</li>
+</ul></li>
+<li>Relatively easy to implement
+<ul>
+<li>Large cache block size already has the effect of prefetching</li>
+<li>After loading one cache line, start loading the next line automatically if the line is not in cache and the bus is not busy</li>
+<li>If we know the typical basic block size (i.e.&nbsp;avg distance between branches), we can fetch the next several lines</li>
+</ul></li>
+</ul>
+</section>
+<section id="stride-prefetchers" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="stride-prefetchers"><span class="header-section-number">9.2.2</span> Stride Prefetchers</h3>
+<p><img src="images/prefetch/stride-pref.png" class="img-fluid"></p>
+</section>
+<section id="stream-buffers" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="stream-buffers"><span class="header-section-number">9.2.3</span> Stream Buffers</h3>
+<p><img src="images/prefetch/streambuffers.png" class="img-fluid"></p>
+</section>
+<section id="runahead-prefetcher" class="level3" data-number="9.2.4">
+<h3 data-number="9.2.4" class="anchored" data-anchor-id="runahead-prefetcher"><span class="header-section-number">9.2.4</span> Runahead Prefetcher</h3>
+<p><img src="images/prefetch/runahead.png" class="img-fluid"></p>
+<ul>
+<li>To get ahead:
+<ul>
+<li>Must avoid waiting</li>
+<li>Must compute less</li>
+</ul></li>
+<li>Predict:
+<ul>
+<li><ol type="1">
+<li>Control flow thru branch prediction</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>Data flow thru value prediction</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>Address generation computation only</li>
+</ol></li>
+<li>(+) Prefetch any pattern (need not be repetitive)</li>
+<li>(-) Prediction only as good as branch + value prediction</li>
+</ul></li>
+</ul>
+</section>
+<section id="correlation-based-prefetching" class="level3" data-number="9.2.5">
+<h3 data-number="9.2.5" class="anchored" data-anchor-id="correlation-based-prefetching"><span class="header-section-number">9.2.5</span> Correlation-Based Prefetching</h3>
+<p><img src="images/prefetch/corr-based.png" class="img-fluid"></p>
+<p><img src="images/prefetch/corr-based-2.png" class="img-fluid"></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -673,8 +774,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./vmem.html" class="pagination-link" aria-label="vmem.html">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">vmem.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./vmem.html" class="pagination-link" aria-label="Virtual Memory">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Virtual Memory</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

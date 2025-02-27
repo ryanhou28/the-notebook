@@ -8,7 +8,7 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
-    # - verif-basic.qmd
+    - verif-basic.qmd
     # - verif-testbench.qmd
     # - verif-coverage.qmd
     # - verilog-data-types.qmd
@@ -21,6 +21,7 @@ book:
     # - sv-interface.qmd
     # - sv-constraint.qmd
     # - sv-tb.qmd
+    - uvm-basic.qmd
     # - uvm-sequences.qmd
     # - uvm-tb-comp.qmd
     # - uvm-tlm.qmd

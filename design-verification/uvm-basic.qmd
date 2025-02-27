@@ -1,0 +1,67 @@
+# UVM Basics
+
+UVM contains set of classes, methods for creating testbench components. Key components include:
+
+- Testbench components
+  - Base classes that can be extended to create tb components (drivers, monitors, scoreboards, agents, etc)
+    - UVM classes denoted by `uvm_` prefix 
+- Transactions
+  - Used to model communication between DUT and testbench
+  - UVM transaction class - can be extended to carry info between DUT and TB
+- Phases
+  - set of simulation phases
+- Messaging and Reporting
+  - Output infrastructure
+- Configuration
+  - Configuration database
+- Functional Coverage
+  - UVM provides a mechanism for tracking functional coverage
+- Register Abstraction Layer
+  - RAL for creating and accessing register maps
+
+In a testbench, **static** entities called **components** exist in a verification environment throughout a simulation, operating on data that flows around the environment. Data or transactions, called **objects** or **sequence items** are dynamic.
+
+
+## UVM Class Hierarchy
+
+- uvm_object is the main class
+- two branches in the hierarchy:
+  - uvm_component: verification components
+  - uvm_transaction: data objects operated on by verification components
+
+![Source: ChipVerify](images/uvm-basic/uvm-class-hier.png)
+
+## UVM Class Categories
+
+- UVM Objects
+  - configuration classes (define how tb environment is built)
+- UVM Sequence
+  - A container for the actual stimulus to the design
+  - Sequence can be used inside other sequences
+- UVM Sequence Items
+  - Data objects that have to be driven to DUT
+- UVM Components
+  - uvm_driver - drives signal to DUT
+  - uvm_monitor - monitor signals at DUT output
+  - uvm_sequencer - create different test patterns
+  - uvm_agent - contains the sequencer, driver, and monitor (an agent)
+  - uvm_env - contains all other verification components
+  - uvm_scoreboard - checker to determine test pass/fail
+  - uvm_subscriber - subscribes to activites of other components
+- Register Layer
+  - set of classes to help with configuring control registers
+- TLM Connections
+  - 
+- UVM Phases
+  - Phasing enables every component to sync with each other before proceeding to next phase
+  - Every component goes through:
+    - **build** phase - instantiation
+    - **connect** phase - connect w/ other components
+    - **run** phase - consume simulation time
+    - **final** phase - stops
+
+
+
+## References:
+
+- [ChipVerify UVM Tutorial](https://www.chipverify.com/tutorials/uvm)

@@ -30,18 +30,34 @@ Writes tend to be slower than reads but this is okay since store ops don't have 
 
 ## Victim Cache
 
+## Buffers
+
+### Store Buffers
+
+
+### Writeback Buffers
+
+## Large Blocks & Subblocking
+
+
 
 ## Multi-level Caches
 
+![](images/cache/multilvl-cache.png)
 
+![](images/cache/multilvlcachedesign.png)
 
-## Inclusivity
+### Inclusion Property
 
+![](images/cache/inclusionprop.png)
+
+![](images/cache/inclusionvio.png)
 
 
 ## Non-block Caches
 
 
+![](images/cache/nonblockingcache.png)
 
 ## Summary
 

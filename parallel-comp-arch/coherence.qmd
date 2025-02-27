@@ -1,0 +1,80 @@
+# Cache Coherence
+
+Cache coherence ensure that all processors in a system sees a consistent view of memory, even when multiple caches store copies of the same data.
+
+Coherence can be thought of as two invariants:
+
+- Single-Writer Multiple Readers (SWMR)
+  - At any (logical) time, there is either only one writer or zero or more readers of a cache line
+  - i.e. SWMR enforces that there is only one writer (if there is a writer at all) and that there can be as many readers when there is no writer
+- Data Value Invariant (DVI)
+  - All cores see the values of the address/line update in the same order
+  - Everybody needs to agree on the ordering of the changes on the cache line
+
+**Snooping Cache-Coherence Protocols**
+
+- The bus provides serialization point
+- Each cache controller snoops all bus transactions
+  - then takes action to ensure coherence
+
+## Valid-Invalid Snooping Protocol
+
+
+![](images/coherence/valid-invalid-snoop.png)
+
+
+## MSI Protocol
+
+![](images/coherence/msi-summ.png)
+
+
+## MESI Protocol
+
+- MSI suffers from frequent read-upgrade sequences
+  - leads to two bus transactions
+- Solution: Add exclusive state
+  - Exclusive - only one copy; writable; clean
+  - Stores make it transition to modified to indicate data is dirty
+  - We'll be able to read with "write" permissions so the line is clean and we haven't written to it yet
+
+
+![](images/coherence/mesi-summary.png)
+
+To sum:
+
+- Reduce unnecessary writebacks
+  - Faster S->M transition if there are no other readers
+    - In MSI, S->M requires sending invalidates
+  - If we're the exclusive reader E, can directly change to M state on a store
+- Reduce bus traffic (as above)
+
+
+## MOESI Protocol
+
+![](images/coherence/moesi-text.png)
+
+- M->S requires writing the modified value back to memory
+  - Writebacks to mem may be unnecessary
+- With an O state, cache can supply modified data to other caches, avoiding memory writeback
+  - On eviction, Owner is responsible for writeback
+- Going to O vs M
+  - We go to O when another processor wants to get data (down-grade from M)
+
+![](images/coherence/mosei-framework.png)
+
+![[Source](https://www.researchgate.net/figure/E-MOESI-Cache-Coherence-Protocol-The-text-in-bold-indicates-our-modifications-Bus-Read_fig27_306545370)](images/coherence/moesi-fsm-1.png)
+
+## MOSI
+
+![](images/coherence/mosi-fsm.png)
+ 
+## DEC Firefly Protocol
+
+
+
+## Implementing Snoopy Coherent SMPs
+
+
+## Directory-Based Coherenece
+
+- Why? Bus-based coherence doesn't scale well

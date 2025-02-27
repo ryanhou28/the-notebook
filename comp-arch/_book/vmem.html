@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>vmem – Empty Book Template</title>
+<title>10&nbsp; Virtual Memory – Computer Architecture</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./vmem.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">vmem.html</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./vmem.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Virtual Memory</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -96,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Empty Book Template</a> 
+      <a href="./">Computer Architecture</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -169,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vmem.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">vmem.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Virtual Memory</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -207,15 +207,193 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#base-and-bound-registers" id="toc-base-and-bound-registers" class="nav-link active" data-scroll-target="#base-and-bound-registers"><span class="header-section-number">10.0.1</span> Base and Bound Registers</a></li>
+  <li><a href="#segmented-address-space" id="toc-segmented-address-space" class="nav-link" data-scroll-target="#segmented-address-space"><span class="header-section-number">10.0.2</span> Segmented Address Space</a></li>
+  <li><a href="#paged-address-space" id="toc-paged-address-space" class="nav-link" data-scroll-target="#paged-address-space"><span class="header-section-number">10.0.3</span> Paged Address Space</a></li>
+  <li><a href="#page-table-organization" id="toc-page-table-organization" class="nav-link" data-scroll-target="#page-table-organization"><span class="header-section-number">10.1</span> Page Table Organization</a></li>
+  <li><a href="#hierarchical-page-table" id="toc-hierarchical-page-table" class="nav-link" data-scroll-target="#hierarchical-page-table"><span class="header-section-number">10.2</span> Hierarchical Page Table</a></li>
+  <li><a href="#inverted-or-hashed-page-table" id="toc-inverted-or-hashed-page-table" class="nav-link" data-scroll-target="#inverted-or-hashed-page-table"><span class="header-section-number">10.3</span> Inverted or Hashed Page Table</a></li>
+  <li><a href="#virtual-to-physical-translation" id="toc-virtual-to-physical-translation" class="nav-link" data-scroll-target="#virtual-to-physical-translation"><span class="header-section-number">10.4</span> Virtual-to-Physical Translation</a>
+  <ul class="collapse">
+  <li><a href="#translation-look-aside-buffer" id="toc-translation-look-aside-buffer" class="nav-link" data-scroll-target="#translation-look-aside-buffer"><span class="header-section-number">10.4.1</span> Translation Look-aside Buffer</a></li>
+  <li><a href="#virtually-indexed-virtually-tagged-vivt-cache" id="toc-virtually-indexed-virtually-tagged-vivt-cache" class="nav-link" data-scroll-target="#virtually-indexed-virtually-tagged-vivt-cache"><span class="header-section-number">10.4.2</span> Virtually Indexed Virtually Tagged (VIVT) Cache</a></li>
+  <li><a href="#physicall-indexed-physically-tagged-pipt-cache" id="toc-physicall-indexed-physically-tagged-pipt-cache" class="nav-link" data-scroll-target="#physicall-indexed-physically-tagged-pipt-cache"><span class="header-section-number">10.4.3</span> Physicall Indexed Physically Tagged (PIPT) Cache</a></li>
+  <li><a href="#virtually-indexed-physically-tagged-vipt-cache" id="toc-virtually-indexed-physically-tagged-vipt-cache" class="nav-link" data-scroll-target="#virtually-indexed-physically-tagged-vipt-cache"><span class="header-section-number">10.4.4</span> Virtually Indexed Physically Tagged (VIPT) Cache</a></li>
+  <li><a href="#virtual-address-synonyms" id="toc-virtual-address-synonyms" class="nav-link" data-scroll-target="#virtual-address-synonyms"><span class="header-section-number">10.4.5</span> Virtual Address Synonyms</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Virtual Memory</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<p>Basics on virtual memory are covered in Computer Organization notes</p>
+<section id="base-and-bound-registers" class="level3" data-number="10.0.1">
+<h3 data-number="10.0.1" class="anchored" data-anchor-id="base-and-bound-registers"><span class="header-section-number">10.0.1</span> Base and Bound Registers</h3>
+<p><img src="images/vmem/bbreg.png" class="img-fluid"></p>
+<ul>
+<li>Disadvantage:
+<ul>
+<li>Have to keep the whole process’s region in memory at the same time</li>
+<li>Process’ memory has to be contiguous in physical memory</li>
+<li>A big problem if a program uses a signficant amount of memory</li>
+</ul></li>
+</ul>
+</section>
+<section id="segmented-address-space" class="level3" data-number="10.0.2">
+<h3 data-number="10.0.2" class="anchored" data-anchor-id="segmented-address-space"><span class="header-section-number">10.0.2</span> Segmented Address Space</h3>
+<p><img src="images/vmem/segaddrspace.png" class="img-fluid"></p>
+<ul>
+<li>Run into segmentation problems: we can get wasted chunks of memory in between processes’ address space, where the wasted chunks may be too small for new segments to fit in (wasteful)</li>
+</ul>
+</section>
+<section id="paged-address-space" class="level3" data-number="10.0.3">
+<h3 data-number="10.0.3" class="anchored" data-anchor-id="paged-address-space"><span class="header-section-number">10.0.3</span> Paged Address Space</h3>
+<ul>
+<li>Paged address space fixes segmentation problem by having non-contiguous fixed size pages
+<ul>
+<li>No wasted space in between “segments” as a process’s memory doesn’t have to sit together (contiguously) in physical memory</li>
+</ul></li>
+</ul>
+<p><img src="images/vmem/pagedaddrspace.png" class="img-fluid"></p>
+<p><img src="images/vmem/page-vmem.png" class="img-fluid"></p>
+</section>
+<section id="page-table-organization" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="page-table-organization"><span class="header-section-number">10.1</span> Page Table Organization</h2>
+<p><img src="images/vmem/pagetable-.png" class="img-fluid"></p>
+<ul>
+<li>1 big page table too large even for small programs
+<ul>
+<li>most programs don’t use that much memory, wasting a lot of space</li>
+</ul></li>
+</ul>
+</section>
+<section id="hierarchical-page-table" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="hierarchical-page-table"><span class="header-section-number">10.2</span> Hierarchical Page Table</h2>
+<p><img src="images/vmem/hierchical.png" class="img-fluid"></p>
+</section>
+<section id="inverted-or-hashed-page-table" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="inverted-or-hashed-page-table"><span class="header-section-number">10.3</span> Inverted or Hashed Page Table</h2>
+<p><img src="images/vmem/inv-hash-pt.png" class="img-fluid"></p>
+</section>
+<section id="virtual-to-physical-translation" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="virtual-to-physical-translation"><span class="header-section-number">10.4</span> Virtual-to-Physical Translation</h2>
+<p><img src="images/vmem/v-to-p-trans.png" class="img-fluid"></p>
+<p><img src="images/vmem/cache-placement-addr-trans.png" class="img-fluid"></p>
+<section id="translation-look-aside-buffer" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="translation-look-aside-buffer"><span class="header-section-number">10.4.1</span> Translation Look-aside Buffer</h3>
+<p><img src="images/vmem/tlb-.png" class="img-fluid"></p>
+</section>
+<section id="virtually-indexed-virtually-tagged-vivt-cache" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="virtually-indexed-virtually-tagged-vivt-cache"><span class="header-section-number">10.4.2</span> Virtually Indexed Virtually Tagged (VIVT) Cache</h3>
+<p><img src="images/vmem/vivt-cache.png" class="img-fluid"></p>
+<ul>
+<li>Use the whole virtual address
+<ul>
+<li>Send entire virtual addr to D-cache, giving us the data</li>
+<li>Only do translation of physical addr. on a miss</li>
+</ul></li>
+<li>Pros:
+<ul>
+<li>Fast - access cache right away</li>
+<li>Simple</li>
+</ul></li>
+<li>Cons:
+<ul>
+<li>Homonyms (one virtual address could map to several different physical addreses, eg multiple threads using the same address)
+<ul>
+<li>Flush cache after context switch or need to add address space ID to cache</li>
+</ul></li>
+<li>Synonyms (one physical address maps to multiple virtual addresses)
+<ul>
+<li>We may want multiple contexts to share some section of memory (shared memory)</li>
+<li>Need to flush cache on context switch</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="physicall-indexed-physically-tagged-pipt-cache" class="level3" data-number="10.4.3">
+<h3 data-number="10.4.3" class="anchored" data-anchor-id="physicall-indexed-physically-tagged-pipt-cache"><span class="header-section-number">10.4.3</span> Physicall Indexed Physically Tagged (PIPT) Cache</h3>
+<p><img src="images/vmem/pipt-cache.png" class="img-fluid"></p>
+<ul>
+<li>Does translation before accessing the D-cache
+<ul>
+<li>Do translation with TLB</li>
+</ul></li>
+<li>Avoids homonym and synonym</li>
+<li>Pros:
+<ul>
+<li>Simple</li>
+<li>No aliasing</li>
+</ul></li>
+<li>Cons
+<ul>
+<li>Slow (memory translation is added to critical path)</li>
+</ul></li>
+</ul>
+</section>
+<section id="virtually-indexed-physically-tagged-vipt-cache" class="level3" data-number="10.4.4">
+<h3 data-number="10.4.4" class="anchored" data-anchor-id="virtually-indexed-physically-tagged-vipt-cache"><span class="header-section-number">10.4.4</span> Virtually Indexed Physically Tagged (VIPT) Cache</h3>
+<p><img src="images/vmem/vipt-cache.png" class="img-fluid"></p>
+<ul>
+<li>In parallel, access cache and do translation</li>
+<li>Access the data cache using only the page offset
+<ul>
+<li>Since page offset doesn’t get translated, only the virtual page number gets translated into a physical page number</li>
+<li>Index into the cache using page offset, at the same time translate the virtual page number into a physical page number</li>
+</ul></li>
+<li>Caveats:
+<ul>
+<li>This limits how large the cache can be
+<ul>
+<li>If cache gets too large, then the index (page offset bits) into the cache gets much larger, index might start bleeding into virtual page number</li>
+</ul></li>
+<li>Need to ensure index into the cache is contained entirely in the page offset</li>
+</ul></li>
+<li>Pros:
+<ul>
+<li>Fast (two memory transactiosn done in parallel)</li>
+</ul></li>
+<li>Cons
+<ul>
+<li>More complicated</li>
+<li>Cache size is constrained (bad)</li>
+</ul></li>
+</ul>
+<p><img src="images/vmem/large-vipt.png" class="img-fluid"></p>
+</section>
+<section id="virtual-address-synonyms" class="level3" data-number="10.4.5">
+<h3 data-number="10.4.5" class="anchored" data-anchor-id="virtual-address-synonyms"><span class="header-section-number">10.4.5</span> Virtual Address Synonyms</h3>
+<p><img src="images/vmem/vaddr-synonym.png" class="img-fluid"></p>
+<p><img src="images/vmem/vaddr-synonym-sol.png" class="img-fluid"></p>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

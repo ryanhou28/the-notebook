@@ -40,273 +40,413 @@
     ]
   },
   {
+    "objectID": "verif-basic.html",
+    "href": "verif-basic.html",
+    "title": "2  Verification Basics",
+    "section": "",
+    "text": "2.1 ASIC Design Flow\nVerification: testing and validating the correctness and functionality of a design\nCode coverage tells us how much of the code in the DUT has been executed by the testbench, while functional coverage tells us how well the functionality of the DUT has been tested by the testbench.\nWhen can you stop verification?",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verification Basics</span>"
+    ]
+  },
+  {
+    "objectID": "verif-basic.html#asic-design-flow",
+    "href": "verif-basic.html#asic-design-flow",
+    "title": "2  Verification Basics",
+    "section": "",
+    "text": "Requirements\nSpecifications\nArchitecture\nDigital Design\nVerification\nLogic Synthesis\nLogic Equivalence\nPlacement & Routing\nValidation\n\n\nNote that above steps a huge simplification and are often intertwined and fed back, as multiple iterations of the steps are gone through",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verification Basics</span>"
+    ]
+  },
+  {
+    "objectID": "verif-basic.html#verification-techniques",
+    "href": "verif-basic.html#verification-techniques",
+    "title": "2  Verification Basics",
+    "section": "2.2 Verification Techniques",
+    "text": "2.2 Verification Techniques\n\nFunctional Simulation: running design in simulation to validate its functionality, using various inputs, such as test vectors\nFormal verification: use mathematical proofs to verify the correctness of the design, often used for critical designs (eg safety-critical systems)\nEmulation: testing on specialized hardware that can emulate the behavior of the system, often for large, complex designs that can’t be simulated on a computer\nPrototyping: building a physical prototype of the system to test its functionality in a real-world environment (often used for designs that require testing with real-world inputs and conditions)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verification Basics</span>"
+    ]
+  },
+  {
+    "objectID": "verif-basic.html#verification-stages",
+    "href": "verif-basic.html#verification-stages",
+    "title": "2  Verification Basics",
+    "section": "2.3 Verification Stages",
+    "text": "2.3 Verification Stages\n\nPlanning\nTestbench development\n\nDevelop testbench environment, provide inputs\n\nTest creation\n\nCreate tests based on spec\n\nTest execution\nCoverage analysis\nDebugging\nClosure\n\n\n2.3.1 Levels of Verification\n\nUnit Level\n\nlowest level, verify individual modules/blocks\n\nBlock Level\n\nMultiple modules/blocks are integrated and verified together\n\nSubsystem Level\nChip level / SOC level",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verification Basics</span>"
+    ]
+  },
+  {
+    "objectID": "verif-basic.html#directed-verification",
+    "href": "verif-basic.html#directed-verification",
+    "title": "2  Verification Basics",
+    "section": "2.4 Directed Verification",
+    "text": "2.4 Directed Verification\n\nA type of functional verification where tests are created to test specific features/functions\nDone with different types of testbenches:\n\nfile-based\nlinear\nstate machine-based\n\n\nLimitations:\n\nLimited test coverage\nBias towards designer’s assumptions\nDifficult to detect complex bugs\nLimited scalability\nTime-consuming to create",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verification Basics</span>"
+    ]
+  },
+  {
+    "objectID": "verif-basic.html#constraint-random-verification",
+    "href": "verif-basic.html#constraint-random-verification",
+    "title": "2  Verification Basics",
+    "section": "2.5 Constraint Random Verification",
+    "text": "2.5 Constraint Random Verification\ngenerating randomized test cases with specific constraints to ensure that the generated input stimuli meet certain design requirements.\nlimitations: The generated test cases may not cover all possible scenarios",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verification Basics</span>"
+    ]
+  },
+  {
+    "objectID": "verif-basic.html#assertion-based-verification",
+    "href": "verif-basic.html#assertion-based-verification",
+    "title": "2  Verification Basics",
+    "section": "2.6 Assertion Based Verification",
+    "text": "2.6 Assertion Based Verification\nassertions are used as the primary means of verifying the correctness of a digital design. Assertions are statements that describe a condition that must always be true within a design\nbasic idea: to use a combination of functional and formal verification techniques to verify the design\nSystemVerilog Assertions. Example:\nassert property ( @(posedge clk) disable iff (!rst_n)\n    (in_fifo_wr && !in_fifo_full) ##[1:$] !in_fifo_empty && !in_fifo_wr );",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verification Basics</span>"
+    ]
+  },
+  {
+    "objectID": "verif-basic.html#verification-plan",
+    "href": "verif-basic.html#verification-plan",
+    "title": "2  Verification Basics",
+    "section": "2.7 Verification Plan",
+    "text": "2.7 Verification Plan\nContents of a verification plan:\n\nOverview\nScope and Goal\nMethodology\nTestbench Architecture\nTest Cases\nCoverage Metrics\n\nA description of the coverage metrics to be used, including functional coverage, code coverage, and assertion coverage\n\nSign-off Criteria\n\n\n2.7.1 Example Verification Plan\n\nIntroduction\n\nDescription of the design and its purpose\nGoals of the verification process\n\nVerification Environment\n\nDescription of the simulation environment\nList of all verification components\nDetails of the simulation flow\n\nFeatures to be Verified\n\nList of all design features to be verified\nDescription of the expected behavior of each feature\n\nTest Plan\n\nList of all test cases\nDescription of the purpose and scope of each test case\nExpected results for each test case\nPass/fail criteria for each test case\n\nCode/Functional/Assertion Coverage Plan\n\nDescription of the code coverage metrics to be used\nGoal for each coverage metric\nMethodology for measuring code coverage\n\nBug Tracking\n\nMethodology for tracking and reporting bugs\nReporting format for each bug\nBug severity levels and priority\n\nSign-off Criteria\n\nCriteria for determining when verification is complete\nCriteria for determining if the design is ready for tapeout\nVerification closure process",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verification Basics</span>"
+    ]
+  },
+  {
+    "objectID": "uvm-basic.html",
+    "href": "uvm-basic.html",
+    "title": "3  UVM Basics",
+    "section": "",
+    "text": "3.1 UVM Class Hierarchy\nUVM contains set of classes, methods for creating testbench components. Key components include:\nIn a testbench, static entities called components exist in a verification environment throughout a simulation, operating on data that flows around the environment. Data or transactions, called objects or sequence items are dynamic.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>UVM Basics</span>"
+    ]
+  },
+  {
+    "objectID": "uvm-basic.html#uvm-class-hierarchy",
+    "href": "uvm-basic.html#uvm-class-hierarchy",
+    "title": "3  UVM Basics",
+    "section": "",
+    "text": "uvm_object is the main class\ntwo branches in the hierarchy:\n\nuvm_component: verification components\nuvm_transaction: data objects operated on by verification components\n\n\n\n\n\nSource: ChipVerify",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>UVM Basics</span>"
+    ]
+  },
+  {
+    "objectID": "uvm-basic.html#uvm-class-categories",
+    "href": "uvm-basic.html#uvm-class-categories",
+    "title": "3  UVM Basics",
+    "section": "3.2 UVM Class Categories",
+    "text": "3.2 UVM Class Categories\n\nUVM Objects\n\nconfiguration classes (define how tb environment is built)\n\nUVM Sequence\n\nA container for the actual stimulus to the design\nSequence can be used inside other sequences\n\nUVM Sequence Items\n\nData objects that have to be driven to DUT\n\nUVM Components\n\nuvm_driver - drives signal to DUT\nuvm_monitor - monitor signals at DUT output\nuvm_sequencer - create different test patterns\nuvm_agent - contains the sequencer, driver, and monitor (an agent)\nuvm_env - contains all other verification components\nuvm_scoreboard - checker to determine test pass/fail\nuvm_subscriber - subscribes to activites of other components\n\nRegister Layer\n\nset of classes to help with configuring control registers\n\n3.3 TLM Connections\nUVM Phases\n\nPhasing enables every component to sync with each other before proceeding to next phase\nEvery component goes through:\n\nbuild phase - instantiation\nconnect phase - connect w/ other components\nrun phase - consume simulation time\nfinal phase - stops",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>UVM Basics</span>"
+    ]
+  },
+  {
+    "objectID": "uvm-basic.html#references",
+    "href": "uvm-basic.html#references",
+    "title": "3  UVM Basics",
+    "section": "3.4 References:",
+    "text": "3.4 References:\n\nChipVerify UVM Tutorial",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>UVM Basics</span>"
+    ]
+  },
+  {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "2  Summary",
+    "title": "4  Summary",
     "section": "",
     "text": "In summary…",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {
     "objectID": "questions-fundamentals.html",
     "href": "questions-fundamentals.html",
-    "title": "3  Questions - Fundamentals of Verification",
+    "title": "5  Questions - Fundamentals of Verification",
     "section": "",
-    "text": "3.1 Verification Concepts\nKey concepts:\nQ: What is the way to start verifying a design after finishing designing?\nQ: What are the steps to verify a design?\nQ: What conversations would you have while working with the designer?\nQ: After functional simulation and no more bugs, will there be more bugs that will be caught in the emulation / gate level simulation stages?\nQ: How would you verify an asynchronous design?\nQ: CDC Question: What is the way to get a data input from an asynchronous signal?\nQ: Imagine a case where your coverage events are not correct. Top bins are not being hit. Why might this be the case? Brainstorm possible reasons why top bins are being hit?\nA:  Possible reasons include driver issue, constraint being wrong\nQ: Who do DV teams interact with?\nQ: What are differences between SoC level verification vs IP/Component level verification?\nQ: Design sign-off: when and how?\nQ: There are always logical bugs found post-silicon. What to do about those?\nQ: Coverage - FSM, toggle, branch, code, functional",
+    "text": "5.1 Verification Concepts\nKey concepts:\nQ: What is the way to start verifying a design after finishing designing?\nQ: What are the steps to verify a design?\nQ: What conversations would you have while working with the designer?\nQ: After functional simulation and no more bugs, will there be more bugs that will be caught in the emulation / gate level simulation stages?\nQ: How would you verify an asynchronous design?\nQ: CDC Question: What is the way to get a data input from an asynchronous signal?\nQ: Imagine a case where your coverage events are not correct. Top bins are not being hit. Why might this be the case? Brainstorm possible reasons why top bins are being hit?\nA:  Possible reasons include driver issue, constraint being wrong\nQ: Who do DV teams interact with?\nQ: What are differences between SoC level verification vs IP/Component level verification?\nQ: Design sign-off: when and how?\nQ: There are always logical bugs found post-silicon. What to do about those?\nQ: Coverage - FSM, toggle, branch, code, functional",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Questions - Fundamentals of Verification</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Questions - Fundamentals of Verification</span>"
     ]
   },
   {
     "objectID": "questions-fundamentals.html#test-plans",
     "href": "questions-fundamentals.html#test-plans",
-    "title": "3  Questions - Fundamentals of Verification",
-    "section": "3.2 Test Plans",
-    "text": "3.2 Test Plans\nQ: Given a DUT block diagram and timing diagram, try to come up with a verification plan to verify it\nQ: Come up with a verification plan for priority arbiter with ack. What test cases would you run? What is your test plan? How would you structure your testbench?\nQ: Given a round robin arbiter, where each input to the round robin arbiter is a FIFO, how would you verify this module?\nQ: Verification plan - table of contents",
+    "title": "5  Questions - Fundamentals of Verification",
+    "section": "5.2 Test Plans",
+    "text": "5.2 Test Plans\nQ: Given a DUT block diagram and timing diagram, try to come up with a verification plan to verify it\nQ: Come up with a verification plan for priority arbiter with ack. What test cases would you run? What is your test plan? How would you structure your testbench?\nQ: Given a round robin arbiter, where each input to the round robin arbiter is a FIFO, how would you verify this module?\nQ: Verification plan - table of contents",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Questions - Fundamentals of Verification</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Questions - Fundamentals of Verification</span>"
     ]
   },
   {
     "objectID": "questions-fundamentals.html#constraints",
     "href": "questions-fundamentals.html#constraints",
-    "title": "3  Questions - Fundamentals of Verification",
-    "section": "3.3 Constraints",
-    "text": "3.3 Constraints\nQ: You have 4 animal types: Dog, Cat, Sheep, Horse. Each dog can eat exactly 4 apples, each cat can eat exactly 3 apples, each sheep can eat exactly 1 apple, and each horse can eat exactly 10 apples. There are a total of 1024 apples. Write a constraint such that all animal types in total will eat more than 16 apples.",
+    "title": "5  Questions - Fundamentals of Verification",
+    "section": "5.3 Constraints",
+    "text": "5.3 Constraints\nQ: You have 4 animal types: Dog, Cat, Sheep, Horse. Each dog can eat exactly 4 apples, each cat can eat exactly 3 apples, each sheep can eat exactly 1 apple, and each horse can eat exactly 10 apples. There are a total of 1024 apples. Write a constraint such that all animal types in total will eat more than 16 apples.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Questions - Fundamentals of Verification</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Questions - Fundamentals of Verification</span>"
     ]
   },
   {
     "objectID": "questions-logic.html",
     "href": "questions-logic.html",
-    "title": "4  Questions - Logic Design & Basics of Digital Systems",
+    "title": "6  Questions - Logic Design & Basics of Digital Systems",
     "section": "",
-    "text": "4.1 Digital System Basics\nKey concepts:\nQ: Calculation of gigabits and speed\nQ: How do you tell if your system is little endian or big endian?\nQ: Constraint question: You have a total memory size of 4096 bytes. Each page can be 32, 64, 128 bytes. Each page must be aligned. Write a constraint / function that generates a random range that satisfy this constraint",
+    "text": "6.1 Digital System Basics\nKey concepts:\nQ: Calculation of gigabits and speed\nQ: How do you tell if your system is little endian or big endian?\nQ: Constraint question: You have a total memory size of 4096 bytes. Each page can be 32, 64, 128 bytes. Each page must be aligned. Write a constraint / function that generates a random range that satisfy this constraint",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Questions - Logic Design & Basics of Digital Systems</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Logic Design & Basics of Digital Systems</span>"
     ]
   },
   {
     "objectID": "questions-logic.html#fifos",
     "href": "questions-logic.html#fifos",
-    "title": "4  Questions - Logic Design & Basics of Digital Systems",
-    "section": "4.2 FIFOs",
-    "text": "4.2 FIFOs\nQ: Asynchronous FIFO qustion (with dual port RAM): gray code? FIFO depth is 10, read/write pointers is 4 bits wide. What should the initial value of the read/write pointers be?\nQ: How would you implement this: An asynchronous FIFO, with 8bit read port and 16 bit write port, and the pointers are encoded in gray code",
+    "title": "6  Questions - Logic Design & Basics of Digital Systems",
+    "section": "6.2 FIFOs",
+    "text": "6.2 FIFOs\nQ: Asynchronous FIFO qustion (with dual port RAM): gray code? FIFO depth is 10, read/write pointers is 4 bits wide. What should the initial value of the read/write pointers be?\nQ: How would you implement this: An asynchronous FIFO, with 8bit read port and 16 bit write port, and the pointers are encoded in gray code",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Questions - Logic Design & Basics of Digital Systems</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Logic Design & Basics of Digital Systems</span>"
     ]
   },
   {
     "objectID": "questions-logic.html#static-timing-analysis",
     "href": "questions-logic.html#static-timing-analysis",
-    "title": "4  Questions - Logic Design & Basics of Digital Systems",
-    "section": "4.3 Static Timing Analysis",
-    "text": "4.3 Static Timing Analysis\nQ: Static timing analysis - given a logic circuit and some delay values, what will the setup and hold time be? How about the maximum clock frequency (given some constraints, circuit, etc)?\nQ: (not really STA but timing): How do you delay a signal by N cycles?",
+    "title": "6  Questions - Logic Design & Basics of Digital Systems",
+    "section": "6.3 Static Timing Analysis",
+    "text": "6.3 Static Timing Analysis\nQ: Static timing analysis - given a logic circuit and some delay values, what will the setup and hold time be? How about the maximum clock frequency (given some constraints, circuit, etc)?\nQ: (not really STA but timing): How do you delay a signal by N cycles?",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Questions - Logic Design & Basics of Digital Systems</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Logic Design & Basics of Digital Systems</span>"
     ]
   },
   {
     "objectID": "questions-logic.html#sequential-logic-design",
     "href": "questions-logic.html#sequential-logic-design",
-    "title": "4  Questions - Logic Design & Basics of Digital Systems",
-    "section": "4.4 Sequential Logic Design",
-    "text": "4.4 Sequential Logic Design\nEntries inserted into a buffer. You have to choose the oldest request among those that are ready. Optimize for power\nQ: Regarray vs Flops. Indirect branches",
+    "title": "6  Questions - Logic Design & Basics of Digital Systems",
+    "section": "6.4 Sequential Logic Design",
+    "text": "6.4 Sequential Logic Design\nEntries inserted into a buffer. You have to choose the oldest request among those that are ready. Optimize for power\nQ: Regarray vs Flops. Indirect branches",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Questions - Logic Design & Basics of Digital Systems</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Logic Design & Basics of Digital Systems</span>"
     ]
   },
   {
     "objectID": "questions-logic.html#logic-design---general",
     "href": "questions-logic.html#logic-design---general",
-    "title": "4  Questions - Logic Design & Basics of Digital Systems",
-    "section": "4.5 Logic Design - General",
-    "text": "4.5 Logic Design - General\nQ: Design a circuit to divide the clock frequency by 4 (f/4) - in sychronous way and asynchronous way\nQ: Design a circuit to divide the clock frequency by 3 - 50 % duty cycle\nQ: How do you build a larger priority encoder from smaller priority encoders (16:4 from 4:1)?\nQ: How do you design an edge detector? How about an edge detector that also detects glitched edges? (normal edge detector circuit does not detect if the transition is from x-&gt;x’-&gt;x)\nQ: How are latches different from flip-flops?\nQ: What are the different types of latches? What about flip-flops?",
+    "title": "6  Questions - Logic Design & Basics of Digital Systems",
+    "section": "6.5 Logic Design - General",
+    "text": "6.5 Logic Design - General\nQ: Design a circuit to divide the clock frequency by 4 (f/4) - in sychronous way and asynchronous way\nQ: Design a circuit to divide the clock frequency by 3 - 50 % duty cycle\nQ: How do you build a larger priority encoder from smaller priority encoders (16:4 from 4:1)?\nQ: How do you design an edge detector? How about an edge detector that also detects glitched edges? (normal edge detector circuit does not detect if the transition is from x-&gt;x’-&gt;x)\nQ: How are latches different from flip-flops?\nQ: What are the different types of latches? What about flip-flops?\nQ: Propagation of metastability…\nQ: Design of hierarchical priority encoder?",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Questions - Logic Design & Basics of Digital Systems</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Logic Design & Basics of Digital Systems</span>"
     ]
   },
   {
     "objectID": "questions-logic.html#fpgas",
     "href": "questions-logic.html#fpgas",
-    "title": "4  Questions - Logic Design & Basics of Digital Systems",
-    "section": "4.6 FPGAs",
-    "text": "4.6 FPGAs\nQ: How do FPGAs work? How are they programmable?\nQ: How to fix setup and hold time in an FPGA?\nQ: What are some data structures used in an FPGA?\nQ: How is coding Verilog on FPGA different from ASIC?",
+    "title": "6  Questions - Logic Design & Basics of Digital Systems",
+    "section": "6.6 FPGAs",
+    "text": "6.6 FPGAs\nQ: How do FPGAs work? How are they programmable?\nQ: How to fix setup and hold time in an FPGA?\nQ: What are some data structures used in an FPGA?\nQ: How is coding Verilog on FPGA different from ASIC?",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Questions - Logic Design & Basics of Digital Systems</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Logic Design & Basics of Digital Systems</span>"
     ]
   },
   {
     "objectID": "questions-arch.html",
     "href": "questions-arch.html",
-    "title": "5  Questions - Computer Architecture",
+    "title": "7  Questions - Computer Architecture",
     "section": "",
-    "text": "5.1 ISA\nKey concepts:\nQ: ISA has a set of compressed instructions. Should find the instruction using LSB. Each inst can take one or two lines based on the type. The section selected can start from an inst or an half inst of an uncompressed.",
+    "text": "7.1 ISA\nKey concepts:\nQ: ISA has a set of compressed instructions. Should find the instruction using LSB. Each inst can take one or two lines based on the type. The section selected can start from an inst or an half inst of an uncompressed.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
     ]
   },
   {
     "objectID": "questions-arch.html#in-order-cpu",
     "href": "questions-arch.html#in-order-cpu",
-    "title": "5  Questions - Computer Architecture",
-    "section": "5.2 In-Order CPU",
-    "text": "5.2 In-Order CPU\nQ: Explain how a 5-stage pipeline works\nQ: Why don’t we make in-order pipelines deep? Why not make pipelines of anything in general deep (general tradeoffs)?\nQ: What are the hazards in an in-order pipeline? How are they detected? What causes them? How does moving towards OoO help with each?",
+    "title": "7  Questions - Computer Architecture",
+    "section": "7.2 In-Order CPU",
+    "text": "7.2 In-Order CPU\nQ: Explain how a 5-stage pipeline works\nQ: Why don’t we make in-order pipelines deep? Why not make pipelines of anything in general deep (general tradeoffs)?\nQ: What are the hazards in an in-order pipeline? How are they detected? What causes them? How does moving towards OoO help with each?",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
     ]
   },
   {
     "objectID": "questions-arch.html#ooo-cpu-design",
     "href": "questions-arch.html#ooo-cpu-design",
-    "title": "5  Questions - Computer Architecture",
-    "section": "5.3 OoO CPU Design",
-    "text": "5.3 OoO CPU Design\nQ: LSQ. How does it work\nQ: (in your project), how did you decoder work?\nQ: (in your project), how did you try to optimize your design?\nQ: (in your project), what are the sizes of your reservation station, reorder buffer, store queue, other buffers, etc? How did you find that it is the best size?\nQ: (in your project) Explain the register path of your project, from the free list to back\nQ: What are the differences/tradeoffs between a distributed reservation station and a centralized reservation state?\nQ: Explain Tomasulo\nQ: What are the different types of hazards in an OoO design? How are they detected and dealt with?",
+    "title": "7  Questions - Computer Architecture",
+    "section": "7.3 OoO CPU Design",
+    "text": "7.3 OoO CPU Design\nQ: LSQ. How does it work\nQ: (in your project), how did you decoder work?\nQ: (in your project), how did you try to optimize your design?\nQ: (in your project), what are the sizes of your reservation station, reorder buffer, store queue, other buffers, etc? How did you find that it is the best size?\nQ: (in your project) Explain the register path of your project, from the free list to back\nQ: What are the differences/tradeoffs between a distributed reservation station and a centralized reservation state?\nQ: Explain Tomasulo\nQ: What are the different types of hazards in an OoO design? How are they detected and dealt with?\nQ: FSM for a Hybrid Branch Predictor to choose between two BP using Global and Local Branch History\nQ: Design a Simple ROB and Retirement logic\nQ: Questions and Simple design on Issue Queue and Reservation station",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
     ]
   },
   {
     "objectID": "questions-arch.html#memory-architecture-caches",
     "href": "questions-arch.html#memory-architecture-caches",
-    "title": "5  Questions - Computer Architecture",
-    "section": "5.4 Memory Architecture, Caches",
-    "text": "5.4 Memory Architecture, Caches\nQ: How would you determine if the requested data is available in the cache?\nQ: What LRU policy do you use? (in project setting or for specific scenario)\nQ: Assume a scenario where a cache line gets evicted and immediately the CPU Wants the same cache line. What should you do?\nQ: What type of cache did you use? (for project setting or specific scenario)\nQ: NUMA vs UMA. Differences and tradeoffs?\nQ: Virtual memory, and TLBs. How do they work, what are they for?\nQ: Aliasing of memory addresses in a cache. How to solve aliasing and conflict misses?\nQ: What are the different types of cache misses?\nQ: What are the different types of cache writeback policies and eviction policies?\nQ: You have a 16-way cache. How would you speed it up?\nQ: In cache design, explain the differences/tradeoffs between DM vs FA vs SA. What situations would you use them in?\nQ: True LRU vs Pseudo LRU\nQ: True LRU: How many bits to implement?\nQ: Given an age vector for a LRU cache and a valid/invalid vector, how would you choose which way to evict?\nQ: Prefetcher and I-cache logics\nQ: (for your project) implementation details on your Load Store Queue\nQ: Come up with cache access patterns in which FA would perform better than DM. In general: come up with a cache access pattern that performs better for each of DM, FA, SA\nQ: Write back vs Write through, MRU vs LRU. (and what did you do in your project and how you went about choosing this?)\nQ: Non-blocking D-cache and how you implement it?\nQ: Virtual memory, VIPT. Explain",
+    "title": "7  Questions - Computer Architecture",
+    "section": "7.4 Memory Architecture, Caches",
+    "text": "7.4 Memory Architecture, Caches\nQ: find the number of tag bits in the cache\nQ: How would you determine if the requested data is available in the cache?\nQ: What LRU policy do you use? (in project setting or for specific scenario)\nQ: Assume a scenario where a cache line gets evicted and immediately the CPU Wants the same cache line. What should you do?\nQ: What type of cache did you use? (for project setting or specific scenario)\nQ: NUMA vs UMA. Differences and tradeoffs?\nQ: Virtual memory, and TLBs. How do they work, what are they for?\nQ: Aliasing of memory addresses in a cache. How to solve aliasing and conflict misses?\nQ: What are the different types of cache misses?\nQ: What are the different types of cache writeback policies and eviction policies?\nQ: You have a 16-way cache. How would you speed it up?\nQ: In cache design, explain the differences/tradeoffs between DM vs FA vs SA. What situations would you use them in?\nQ: True LRU vs Pseudo LRU\nQ: True LRU: How many bits to implement?\nQ: Given an age vector for a LRU cache and a valid/invalid vector, how would you choose which way to evict?\nQ: Prefetcher and I-cache logics\nQ: (for your project) implementation details on your Load Store Queue\nQ: Come up with cache access patterns in which FA would perform better than DM. In general: come up with a cache access pattern that performs better for each of DM, FA, SA\nQ: Write back vs Write through, MRU vs LRU. (and what did you do in your project and how you went about choosing this?)\nQ: Non-blocking D-cache and how you implement it?\nQ: Virtual memory, VIPT. Explain",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
     ]
   },
   {
     "objectID": "questions-arch.html#branch-prediction",
     "href": "questions-arch.html#branch-prediction",
-    "title": "5  Questions - Computer Architecture",
-    "section": "5.5 Branch Prediction",
-    "text": "5.5 Branch Prediction\nQ: Perceptron, what is it? Equation? How do you implement it in hardware?",
+    "title": "7  Questions - Computer Architecture",
+    "section": "7.5 Branch Prediction",
+    "text": "7.5 Branch Prediction\nQ: Perceptron, what is it? Equation? How do you implement it in hardware?",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
     ]
   },
   {
     "objectID": "questions-arch.html#memory-coherency",
     "href": "questions-arch.html#memory-coherency",
-    "title": "5  Questions - Computer Architecture",
-    "section": "5.6 Memory Coherency",
-    "text": "5.6 Memory Coherency\nQ: What is memory coherence and why is it needed?\nQ: MSI protocol. What is it, how does it work?\nQ: MSI, MESI, MOESI: why was each extra state added?\nQ: Draw the state diagram for MESI",
+    "title": "7  Questions - Computer Architecture",
+    "section": "7.6 Memory Coherency",
+    "text": "7.6 Memory Coherency\nQ: What is memory coherence and why is it needed?\nQ: MSI protocol. What is it, how does it work?\nQ: MSI, MESI, MOESI: why was each extra state added?\nQ: Draw the state diagram for MESI\nQ: Explain different cache coherency protocol.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
     ]
   },
   {
     "objectID": "questions-arch.html#memory-consistency",
     "href": "questions-arch.html#memory-consistency",
-    "title": "5  Questions - Computer Architecture",
-    "section": "5.7 Memory Consistency",
-    "text": "5.7 Memory Consistency\nQ: Consistency basics, what is memory consistency and why is it needed?\nQ: Given a sequence of instructions on 2 cores, which values are possible/not possible - how would you check if a barrier is working?",
+    "title": "7  Questions - Computer Architecture",
+    "section": "7.7 Memory Consistency",
+    "text": "7.7 Memory Consistency\nQ: Consistency basics, what is memory consistency and why is it needed?\nQ: Given a sequence of instructions on 2 cores, which values are possible/not possible - how would you check if a barrier is working?",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
+    ]
+  },
+  {
+    "objectID": "questions-arch.html#interconnect",
+    "href": "questions-arch.html#interconnect",
+    "title": "7  Questions - Computer Architecture",
+    "section": "7.8 Interconnect",
+    "text": "7.8 Interconnect\nQ: How do credits work in protocols\nA:\n\nCredit Initialization:\n\nThe receiver starts with a certain number of credits, indicating how many messages or flits (flow control units) it can accept.\nThe sender maintains a credit counter that tracks how many credits it has available.\n\nSending Data:\n\nEvery time the sender transmits a packet/flit, it decrements its available credits.\nIf the sender runs out of credits, it must stop sending until it receives more.\n\nCredit Return:\n\nWhen the receiver processes or forwards a message, it returns a credit back to the sender, signaling that it has space for more data.\nThis ensures that the receiver’s buffer never overflows.\n\nUse cases:\n\nNoCs: Ensures flow control in mesh/toroidal interconnects to avoid congestion.\nCoherent Interconnects (e.g., AMBA CHI, CXL, UPI): Used to manage request/response ordering and avoid buffer overflow.\n\nWhy use credits:\n\nPrevent buffer overflows at the receiver\nHelp load balance across links in NoC\nEnsure efficient resource utilization",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Questions - Computer Architecture</span>"
     ]
   },
   {
     "objectID": "questions-coding.html",
     "href": "questions-coding.html",
-    "title": "6  Questions - Coding (Non-HDL)",
+    "title": "8  Questions - Coding (Non-HDL)",
     "section": "",
-    "text": "6.1 Bit Manipulation\nCommon “software” coding questions, concepts, and ideas asked in a design verification interview:\nQ: Bit manipulation leetcode questions",
+    "text": "8.1 Bit Manipulation\nCommon “software” coding questions, concepts, and ideas asked in a design verification interview:\nQ: Bit manipulation leetcode questions",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
     ]
   },
   {
     "objectID": "questions-coding.html#strings",
     "href": "questions-coding.html#strings",
-    "title": "6  Questions - Coding (Non-HDL)",
-    "section": "6.2 Strings",
-    "text": "6.2 Strings\nQ: String matching regex\nQ: Parse a string in Python: Given a .txt file, parse the file and print the frequency of each word, printed by ordering of most frequent first.",
+    "title": "8  Questions - Coding (Non-HDL)",
+    "section": "8.2 Strings",
+    "text": "8.2 Strings\nQ: String matching regex\nQ: Parse a string in Python: Given a .txt file, parse the file and print the frequency of each word, printed by ordering of most frequent first.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
     ]
   },
   {
     "objectID": "questions-coding.html#data-structures",
     "href": "questions-coding.html#data-structures",
-    "title": "6  Questions - Coding (Non-HDL)",
-    "section": "6.3 Data Structures",
-    "text": "6.3 Data Structures\nQ: Code up a class for a stack, including functions for push and pop\nQ: Write C++ code to move value to the front of an array\nQ: Write C++ code to find the second minimum of an array\nQ: Two ints are represented as a linked list. Create a new linked list that is the sum of these two integers\nQ: How do you build a queue from a stack? How do you build a stack from a queue?",
+    "title": "8  Questions - Coding (Non-HDL)",
+    "section": "8.3 Data Structures",
+    "text": "8.3 Data Structures\nQ: Code up a class for a stack, including functions for push and pop\nQ: Write C++ code to move value to the front of an array\nQ: Write C++ code to find the second minimum of an array\nQ: Two ints are represented as a linked list. Create a new linked list that is the sum of these two integers\nQ: How do you build a queue from a stack? How do you build a stack from a queue?\nQ: C program to find the length of a string",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
     ]
   },
   {
     "objectID": "questions-coding.html#recursioniteration",
     "href": "questions-coding.html#recursioniteration",
-    "title": "6  Questions - Coding (Non-HDL)",
-    "section": "6.4 Recursion/Iteration",
-    "text": "6.4 Recursion/Iteration\nQ: Write a function to calculate the factorial of a given number. Recursively and iteratively\nQ: Write a function to output the fibonacci sequence recursively. How about iteratively? What are the differences (especially in terms of complexity)?\nQ: Deleting objects at the end after execution (freeing up dynamic memory): use linked list, vector, or a counter",
+    "title": "8  Questions - Coding (Non-HDL)",
+    "section": "8.4 Recursion/Iteration",
+    "text": "8.4 Recursion/Iteration\nQ: Write a function to calculate the factorial of a given number. Recursively and iteratively\nlong long factorial_recursive(int n) {\n    if (n == 0 || n == 1)\n        return 1;\n    return n * factorial_recursive(n - 1);\n}\n\nlong long factorial_iterative(int n) {\n    long long result = 1;\n    for (int i = 2; i &lt;= n; i++) {\n        result *= i;\n    }\n    return result;\n}\nQ: Write a function to output the fibonacci sequence recursively. How about iteratively? What are the differences (especially in terms of complexity)?\nlong long fibonacci_recursive(int n) {\n    if (n == 0) return 0;\n    if (n == 1) return 1;\n    return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2);\n}\n\nvoid fibonacci_iterative(int n) {\n    long long a = 0, b = 1, c;\n    cout &lt;&lt; \"Fibonacci (Iterative) sequence up to \" &lt;&lt; n &lt;&lt; \" terms: \";\n    \n    for (int i = 0; i &lt; n; i++) {\n        cout &lt;&lt; a &lt;&lt; \" \";\n        c = a + b;\n        a = b;\n        b = c;\n    }\n    cout &lt;&lt; endl;\n}\nQ: Deleting objects at the end after execution (freeing up dynamic memory): use linked list, vector, or a counter",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
     ]
   },
   {
     "objectID": "questions-coding.html#object-oriented-design",
     "href": "questions-coding.html#object-oriented-design",
-    "title": "6  Questions - Coding (Non-HDL)",
-    "section": "6.5 Object-Oriented Design",
-    "text": "6.5 Object-Oriented Design\nQ: What is polymorphism? What is inheritance?\n\nLinkedIn Post - Polymorphism in DV Interview",
+    "title": "8  Questions - Coding (Non-HDL)",
+    "section": "8.5 Object-Oriented Design",
+    "text": "8.5 Object-Oriented Design\nQ: What is polymorphism? What is inheritance?\n\nLinkedIn Post - Polymorphism in DV Interview",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
     ]
   },
   {
     "objectID": "questions-coding.html#others",
     "href": "questions-coding.html#others",
-    "title": "6  Questions - Coding (Non-HDL)",
-    "section": "6.6 Others",
-    "text": "6.6 Others\nQ: Write the pseudocode for how you would go about solving the traveling salesman problem\nQ: Write code for a card game in C++: Black jack - shuffle, deal, and check the sum is equal to a value. If greater then lose. If rounds are complete, then highest wins\nQ: Write code to perform matrix multiplication in C++\nQ: Write C++ code to implement LRU. What is the time complexity?\nQ: Loop interchange - to improve cache hit rate\nQ: Compilers - register renaming\nQ: How would you code Fibonacci in assembly?",
+    "title": "8  Questions - Coding (Non-HDL)",
+    "section": "8.6 Others",
+    "text": "8.6 Others\nQ: Write the pseudocode for how you would go about solving the traveling salesman problem\nQ: Write code for a card game in C++: Black jack - shuffle, deal, and check the sum is equal to a value. If greater then lose. If rounds are complete, then highest wins\nQ: Write code to perform matrix multiplication in C++\nQ: Write C++ code to implement LRU. What is the time complexity?\nQ: Loop interchange - to improve cache hit rate\nQ: Compilers - register renaming\nQ: How would you code Fibonacci in assembly?",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
     ]
   },
   {
     "objectID": "questions-coding.html#scripting",
     "href": "questions-coding.html#scripting",
-    "title": "6  Questions - Coding (Non-HDL)",
-    "section": "6.7 Scripting",
-    "text": "6.7 Scripting\nQ: In Python, parse a file line-by-line and finding the minimum time for a particular bucket id given this file structure: TASK_ID | STATUS | COMMAND_LINE | BUCKET_ID | TIME (HH:MM:SS)",
+    "title": "8  Questions - Coding (Non-HDL)",
+    "section": "8.7 Scripting",
+    "text": "8.7 Scripting\nQ: In Python, parse a file line-by-line and finding the minimum time for a particular bucket id given this file structure: TASK_ID | STATUS | COMMAND_LINE | BUCKET_ID | TIME (HH:MM:SS)",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Questions - Coding (Non-HDL)</span>"
     ]
   },
   {
     "objectID": "questions-verilog.html",
     "href": "questions-verilog.html",
-    "title": "7  Questions - Verilog",
+    "title": "9  Questions - Verilog",
     "section": "",
-    "text": "7.1 Online References\nKey concepts\nQ: Given some Verilog code (blocking vs non-blocking assignment), what will these synthesize to?\nQ: Code fizz buzz in Verilog\nQ: How does polymorphism work in SystemVerilog?\nQ: How do virtual interface work in SystemVerilog?\nQ: What do clocking blocks do in SystemVerilog? What are they?\nQ: Differences between Verilog and SystemVerilog?\nQ: Code a sequence (pattern) detector state machine. How would you verify this state machine?\nQ: SV data structures: queues, maps, associative array, dynamic array\nQ: Write the code for a FIFO in SystemVerilog\nQ: SystemVerilog Fork, Join(). Given some example code with these, what would happen to a task (e.g. a given task could take forever)? What could you do to fix it (e.g. by writing a task to print ERROR if a task doesn’t return by TIMEOUT seconds)?\nQ: Traffic light signaling problem in Verilog (state machine). Use counter and output color depending on range using assign statements\nQ: Given an FSM state diagram, code it in SystemVerilog\nQ: Logic vs wire vs bit in Verilog/SystemVerilog\nQ: Write the RTL to generate a signal that is clock for 3 cycles then 0 for 3 cycles\nQ: Given 3 enums, constrain 32 bits to be within these 3 enums. Then constrain their distribution\nQ: SystemVerilog Assertions. Write assertions for Req and Ack with the given spec:\nQ: CAM & TCAM in SystemVerilog. Modeling with 2D/3D array vs associative array (key as data, addr as value), and pros and cons of these approaches\nQ: Write a module to convert binary to gray code (how about vice versa)?",
+    "text": "9.1 Verilog Modules\nKey concepts\nQ: Given some Verilog code (blocking vs non-blocking assignment), what will these synthesize to?\nQ: Code fizz buzz in Verilog\nQ: How does polymorphism work in SystemVerilog?\nQ: How do virtual interface work in SystemVerilog?\nQ: What do clocking blocks do in SystemVerilog? What are they?\nQ: Differences between Verilog and SystemVerilog?\nQ: Code a sequence (pattern) detector state machine. How would you verify this state machine?\nQ: SV data structures: queues, maps, associative array, dynamic array\nQ: Write the code for a FIFO in SystemVerilog\nQ: SystemVerilog Fork, Join(). Given some example code with these, what would happen to a task (e.g. a given task could take forever)? What could you do to fix it (e.g. by writing a task to print ERROR if a task doesn’t return by TIMEOUT seconds)?\nQ: Traffic light signaling problem in Verilog (state machine). Use counter and output color depending on range using assign statements\nQ: Given an FSM state diagram, code it in SystemVerilog\nQ: Logic vs wire vs bit in Verilog/SystemVerilog\nQ: Write the RTL to generate a signal that is clock for 3 cycles then 0 for 3 cycles\nQ: Given 3 enums, constrain 32 bits to be within these 3 enums. Then constrain their distribution\nQ: SystemVerilog Assertions. Write assertions for Req and Ack with the given spec:\nQ: CAM & TCAM in SystemVerilog. Modeling with 2D/3D array vs associative array (key as data, addr as value), and pros and cons of these approaches\nQ: Write a module to convert binary to gray code (how about vice versa)?\nQ: Write a pattern detector that detects input sequence of 101 from a binary stream. (Pattern 1101, 1011 are also common)\nQ: Posedge reset vs negedge reset? Why?\nQ: Write a stack in Verilog",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Questions - Verilog</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Questions - Verilog</span>"
+    ]
+  },
+  {
+    "objectID": "questions-verilog.html#verilog-modules",
+    "href": "questions-verilog.html#verilog-modules",
+    "title": "9  Questions - Verilog",
+    "section": "9.2 Operation:",
+    "text": "9.1.1 Asynchronous FIFO\n\nAsynchronous FIFO: data read and writes use different clock frequencies (i.e. reads and writes are not synchronized)\nUsage: in systems with clock domain crossing to help synchronize data flow between systems in different clock domains. e.g. used to pass data from system A at 100MHz clock to system B at 125MHz clock\n\n\n\n\nSource: VLSI Verify\n\n\n\n9.2 Operation:\n\nReferences:\n\nVLSI Verify\n\n\n\n9.2.1 Synchronous FIFO\n\nKey parameters:\n\nDepth: Number of entries in the FIFO\nWidth: Number of bits of each entry\n\nSynchronous FIFO: data read and write use the same clock frequency\nOperation:\n\nWhen write enable is on, write the write data until full. Write pointer gets incremented on every data write\n\n\n\n\n9.2.1.1 Method 1 -\nmodule synchronous_fifo #(parameter DEPTH=8, DATA_WIDTH=8) (\n  input clk, rst_n,\n  input w_en, r_en,\n  input [DATA_WIDTH-1:0] data_in,\n  output reg [DATA_WIDTH-1:0] data_out,\n  output full, empty\n);\n  \n  reg [$clog2(DEPTH)-1:0] w_ptr, r_ptr;\n  reg [DATA_WIDTH-1:0] fifo[DEPTH];\n  \n  // Set Default values on reset.\n  always@(posedge clk) begin\n    if(!rst_n) begin\n      w_ptr &lt;= 0; r_ptr &lt;= 0;\n      data_out &lt;= 0;\n    end\n  end\n  \n  // To write data to FIFO\n  always@(posedge clk) begin\n    if(w_en & !full)begin\n      fifo[w_ptr] &lt;= data_in;\n      w_ptr &lt;= w_ptr + 1;\n    end\n  end\n  \n  // To read data from FIFO\n  always@(posedge clk) begin\n    if(r_en & !empty) begin\n      data_out &lt;= fifo[r_ptr];\n      r_ptr &lt;= r_ptr + 1;\n    end\n  end\n  \n  assign full = ((w_ptr+1'b1) == r_ptr);\n  assign empty = (w_ptr == r_ptr);\nendmodule\n\n\n\nVLSI Verify\n\n\nReferences:\n\nVLSI Verify\n\n\n\n\n9.2.2 Arbiter\nCase Statement Implementation\ncasez (req[3:0])\n    4'b???1 : grant &lt;= 4'b0001;\n    4'b??10 : grant &lt;= 4'b0010;\n    4'b?100 : grant &lt;= 4'b0100;\n    4'b1000 : grant &lt;= 4'b1000;\n    4'b0000 : grant &lt;= 4'b0000;\nendcase\nAssign Statement\ngrant[0] = req[0];\ngrant[1] = ~req[0] & req[1];\ngrant[2] = ~req[0] & ~req[1] & req[2];\n// ...etc...\nParameterized Assign\nparameter N = 16; // Number of requesters\n\n// For example, higher_pri_reqs[3] = higher_pri_reqs[2] | req[2];\nassign higher_pri_reqs[N-1:1] = higher_pri_reqs[N-2:0] | req[N-2:0];\nassign higher_pri_reqs[0] = 1'b0;\nassign grant[N-1:0] = req[N-1:0] & ~higher_pri_reqs[N-1:0];\nReferences:\n\nArbiter Design Ideas & Coding Styles\n\n\n\n9.2.3 Round-Robin Arbiter\nReferences:\n\nArbiter Design Ideas & Coding Styles\n\n\n9.2.3.1 Naive\nalways_comb begin\n    case (pointer_reg)\n        2'b00 :\n            if (req[0]) grant = 4'b0001;\n            else if (req[1]) grant = 4'b0010;\n            else if (req[2]) grant = 4'b0100;\n            else if (req[3]) grant = 4'b1000;\n            else grant = 4'b0000;\n        2'b01 :\n            if (req[1]) grant = 4'b0010;\n            else if (req[2]) grant = 4'b0100;\n            else if (req[3]) grant = 4'b1000;\n            else if (req[0]) grant = 4'b0001;\n            else grant = 4'b0000;\n            2'b10 :\n            if (req[2]) grant = 4'b0100;\n            else if (req[3]) grant = 4'b1000;\n            else if (req[0]) grant = 4'b0001;\n            else if (req[1]) grant = 4'b0010;\n            else grant = 4'b0000;\n        2'b11 :\n            if (req[3]) grant = 4'b1000;\n            else if (req[0]) grant = 4'b0001;\n            else if (req[1]) grant = 4'b0010;\n            else if (req[2]) grant = 4'b0100;\n            else grant = 4'b0000;\n    endcase // case(req)\nend\n\n// Pointer Reg Logic:\nlogic [1:0] pointer_req, next_pointer_req;\n  \n  always @(posedge clock) begin\n    if (reset) pointer_req &lt;= '0;\n    else       pointer_req &lt;= next_pointer_req;\n  end\n  \n  always_comb begin\n    assign next_pointer_req = 2'b00;\n    casez (gnt)\n      4'b0001: next_pointer_req = 2'b01;\n      4'b0010: next_pointer_req = 2'b10;\n      4'b0100: next_pointer_req = 2'b11;\n      4'b1000: next_pointer_req = 2'b00;\n    endcase\n  end \n\n\n9.2.3.2 Rotate + Priority + Rotate\n\n\nIdea: rotate by amount specified by pointer, feed to simple arbiter, then rotate back\n\n\n\n9.2.3.3 MUXed Parallel Priority Arbiter\n\n\n\nSource\n\n\n\nRotate-i block rotates the request by i positions (just rewiring)\nPointer selects the intermediate grant vectors to use\nCritical path: MUX tree (that can be built with 2:1 MUXes in logN complexity)\nReference: Code Source\n\nmodule muxed_rr_arb(\n  input logic clock,\n              reset,\n  input logic [3:0] req,\n  output logic [3:0] gnt\n);\n  \n  logic [3:0] mux_ip0, mux_ip1, mux_ip2, mux_ip3;\n  \n  //Instantiate fixed priority arbiter and calculate the grant output for shifted priorities\n  fixed_pri_arbiter inst0 (.req(req),    .gnt(mux_ip0));\n  fixed_pri_arbiter inst1 (.req(req&gt;&gt;1), .gnt(mux_ip1));\n  fixed_pri_arbiter inst2 (.req(req&gt;&gt;2), .gnt(mux_ip2));\n  fixed_pri_arbiter inst3 (.req(req&gt;&gt;3), .gnt(mux_ip3));\n  \n  //Select line pointer calculation\n  logic [1:0] pointer_req, next_pointer_req;\n  \n  always @(posedge clock) begin\n    if (reset) pointer_req &lt;= '0;\n    else     pointer_req &lt;= next_pointer_req;\n  end\n  \n  always_comb begin\n    assign next_pointer_req = 2'b00;\n    casez (gnt)\n      4'b0001: next_pointer_req = 2'b01;\n      4'b0010: next_pointer_req = 2'b10;\n      4'b0100: next_pointer_req = 2'b11;\n      4'b1000: next_pointer_req = 2'b00;\n    endcase\n  end\n  \n  //Final output\n  always_comb begin\n    case (pointer_req)\n      2'b00: gnt = mux_ip0;\n      2'b01: gnt = mux_ip1;\n      2'b10: gnt = mux_ip2;\n      2'b11: gnt = mux_ip3;\n    endcase\n  end\n  \nendmodule\n\n\n\n9.2.4 Rotating Priority Selector\n\n// 2-Bit Rotating Priority Selector\nmodule rps2(\n    input           [1:0] req,\n    input                 sel,\n    input                  en,\n    output logic       req_up,\n    output logic    [1:0] gnt\n);\n\n    // Set grant lines\n    assign gnt[1] = en && req[1] && (sel || (~sel && ~req[0]));\n    assign gnt[0] = en && req[0] && (~sel || (sel && ~req[1]));\n\n    // req_up is asserted if either request is asserted (no matter the value of the enable)\n    assign req_up = req[1] || req[0];\n\nendmodule\n\n// ---- N-Bit Rotating Priority Selector ----\nmodule rps #(parameter NUM_LINES = `NUM_LINES_DEFAULT) (\n    input clock,\n    input reset,\n    input [NUM_LINES-1:0] req,\n    input              en,\n\n    output [NUM_LINES-1:0] gnt,\n    output              req_up\n  `ifdef DEBUG\n  ,\n  output logic [$clog2(NUM_LINES)-1:0] rps_priority\n  `endif\n);\n\n    logic [$clog2(NUM_LINES)-1:0] count;\n  assign rps_priority = count;\n    rps_counter #(.NUM_LINES(NUM_LINES)) cnt(\n        .clock(clock),\n        .reset(reset),\n        .count(count)\n    );\n    \n  logic [NUM_LINES-2:0] [$clog2($clog2(NUM_LINES))-1:0] sel_idx;\n    wire [NUM_LINES-2:0] req_ups;\n    wire [NUM_LINES-2:0] enables;\n\n    assign req_up = req_ups[NUM_LINES-2];\n    assign enables[NUM_LINES-2] = en;\n\n    genvar i,j;\n    generate\n        // not well-defined for NUM_LINES &lt; 2 (what are you selecting between?)\n        if (NUM_LINES == 2) begin\n            rps2 single (\n                .req    (req),\n                .sel    (count),\n                .en     (en),\n                .req_up (req_up),\n                .gnt    (gnt)\n            );\n        end else begin\n            for(i = 0; i &lt; NUM_LINES/2; i = i+1) begin\n                rps2 base (\n                    .req    (req[2*i+1:2*i]),\n                    .sel    (count[0]),\n                    .en     (enables[i]),\n                    .req_up (req_ups[i]),\n                    .gnt    (gnt[2*i+1:2*i])\n                );\n            end\n\n            for(j = NUM_LINES/2; j &lt;= NUM_LINES-2; j = j+1) begin\n                assign sel_idx[j] = $ceil($ln(NUM_LINES)/$ln(2) - $ln(NUM_LINES-1-j)/$ln(2) - 1);\n                rps2 top (\n                    .req    (req_ups[2*j-NUM_LINES+1:2*j-NUM_LINES]),\n                    .sel    (count[sel_idx[j]]),\n                    .en     (enables[j]),\n                    .req_up (req_ups[j]),\n                    .gnt    (enables[2*j-NUM_LINES+1:2*j-NUM_LINES])\n                );\n            end\n        end\n    endgenerate\nendmodule\n\n\n9.2.5 Counters\n\n\n9.2.6 Gray Code Counter",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Questions - Verilog</span>"
     ]
   },
   {
     "objectID": "questions-verilog.html#online-references",
     "href": "questions-verilog.html#online-references",
-    "title": "7  Questions - Verilog",
-    "section": "",
-    "text": "Blind Post - Design Verification Interview",
+    "title": "9  Questions - Verilog",
+    "section": "9.3 Online References",
+    "text": "9.3 Online References\n\nBlind Post - Design Verification Interview",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Questions - Verilog</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Questions - Verilog</span>"
     ]
   },
   {
     "objectID": "questions-uvm.html",
     "href": "questions-uvm.html",
-    "title": "8  Questions - UVM",
+    "title": "10  Questions - UVM",
     "section": "",
     "text": "Q: What UVM phase is different from the others, and why?\nQ: UVM Polymorphism question, child handle",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Questions - UVM</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Questions - UVM</span>"
     ]
   }
 ]

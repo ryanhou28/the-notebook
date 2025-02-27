@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Empty Book Template",
+    "title": "Computer Architecture",
     "section": "",
     "text": "Preface\nNotes on computer architecture.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
     "crumbs": [
@@ -600,21 +600,31 @@
     ]
   },
   {
-    "objectID": "cache.html#multi-level-caches",
-    "href": "cache.html#multi-level-caches",
+    "objectID": "cache.html#buffers",
+    "href": "cache.html#buffers",
     "title": "8  Caches",
-    "section": "8.5 Multi-level Caches",
-    "text": "8.5 Multi-level Caches",
+    "section": "8.5 Buffers",
+    "text": "8.5 Buffers\n\n8.5.1 Store Buffers\n\n\n8.5.2 Writeback Buffers",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
     ]
   },
   {
-    "objectID": "cache.html#inclusivity",
-    "href": "cache.html#inclusivity",
+    "objectID": "cache.html#large-blocks-subblocking",
+    "href": "cache.html#large-blocks-subblocking",
     "title": "8  Caches",
-    "section": "8.6 Inclusivity",
-    "text": "8.6 Inclusivity",
+    "section": "8.6 Large Blocks & Subblocking",
+    "text": "8.6 Large Blocks & Subblocking",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
+    ]
+  },
+  {
+    "objectID": "cache.html#multi-level-caches",
+    "href": "cache.html#multi-level-caches",
+    "title": "8  Caches",
+    "section": "8.7 Multi-level Caches",
+    "text": "8.7 Multi-level Caches\n\n\n\n8.7.1 Inclusion Property",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
     ]
@@ -623,8 +633,8 @@
     "objectID": "cache.html#non-block-caches",
     "href": "cache.html#non-block-caches",
     "title": "8  Caches",
-    "section": "8.7 Non-block Caches",
-    "text": "8.7 Non-block Caches",
+    "section": "8.8 Non-block Caches",
+    "text": "8.8 Non-block Caches",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
     ]
@@ -633,8 +643,8 @@
     "objectID": "cache.html#summary",
     "href": "cache.html#summary",
     "title": "8  Caches",
-    "section": "8.8 Summary",
-    "text": "8.8 Summary",
+    "section": "8.9 Summary",
+    "text": "8.9 Summary",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Caches</span>"
     ]
@@ -644,7 +654,17 @@
     "href": "prefetch.html",
     "title": "9  Prefetching",
     "section": "",
-    "text": "9.1 Software Prefetching",
+    "text": "9.1 Software Prefetching\nFetch memory before it’s needed",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Prefetching</span>"
+    ]
+  },
+  {
+    "objectID": "prefetch.html#software-prefetching",
+    "href": "prefetch.html#software-prefetching",
+    "title": "9  Prefetching",
+    "section": "",
+    "text": "Compiler/programmer can place prefetch instructions\n\nrequires ISA support\n\nCan prefetch into register (binding) or caches (non-binding)",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Prefetching</span>"
     ]
@@ -654,9 +674,59 @@
     "href": "prefetch.html#hardware-prefetching",
     "title": "9  Prefetching",
     "section": "9.2 Hardware Prefetching",
-    "text": "9.2 Hardware Prefetching",
+    "text": "9.2 Hardware Prefetching\n\nWhat to prefetch?\n\nuse address predictors -&gt; works for regular patterns (such as for loops)\n\nWhen to prefetch?\n\non every reference\non every miss\nwhen prior prefetched data is referenced\n\nWhere to put prefetched data?\n\nauxiliary buffers\ncaches\n\n\n\n\n9.2.1 Spatial Locality and Sequential Prefetching\n\nSequential prefetching\n\nJust grab the next few lines from memory\nWorks well for I-cache\nInstruction fetching tends to access memory sequentially\n\nDoesn’t work very well for D-cache\n\nMore irregular access pattern\nRegular patterns may have non-unit stride (e.g. matrix code)\n\nRelatively easy to implement\n\nLarge cache block size already has the effect of prefetching\nAfter loading one cache line, start loading the next line automatically if the line is not in cache and the bus is not busy\nIf we know the typical basic block size (i.e. avg distance between branches), we can fetch the next several lines\n\n\n\n\n9.2.2 Stride Prefetchers\n\n\n\n9.2.3 Stream Buffers\n\n\n\n9.2.4 Runahead Prefetcher\n\n\nTo get ahead:\n\nMust avoid waiting\nMust compute less\n\nPredict:\n\n\nControl flow thru branch prediction\n\n\nData flow thru value prediction\n\n\nAddress generation computation only\n\n(+) Prefetch any pattern (need not be repetitive)\n(-) Prediction only as good as branch + value prediction\n\n\n\n\n9.2.5 Correlation-Based Prefetching",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Prefetching</span>"
+    ]
+  },
+  {
+    "objectID": "vmem.html",
+    "href": "vmem.html",
+    "title": "10  Virtual Memory",
+    "section": "",
+    "text": "10.0.1 Base and Bound Registers\nBasics on virtual memory are covered in Computer Organization notes",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Virtual Memory</span>"
+    ]
+  },
+  {
+    "objectID": "vmem.html#page-table-organization",
+    "href": "vmem.html#page-table-organization",
+    "title": "10  Virtual Memory",
+    "section": "10.1 Page Table Organization",
+    "text": "10.1 Page Table Organization\n\n\n1 big page table too large even for small programs\n\nmost programs don’t use that much memory, wasting a lot of space",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Virtual Memory</span>"
+    ]
+  },
+  {
+    "objectID": "vmem.html#hierarchical-page-table",
+    "href": "vmem.html#hierarchical-page-table",
+    "title": "10  Virtual Memory",
+    "section": "10.2 Hierarchical Page Table",
+    "text": "10.2 Hierarchical Page Table",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Virtual Memory</span>"
+    ]
+  },
+  {
+    "objectID": "vmem.html#inverted-or-hashed-page-table",
+    "href": "vmem.html#inverted-or-hashed-page-table",
+    "title": "10  Virtual Memory",
+    "section": "10.3 Inverted or Hashed Page Table",
+    "text": "10.3 Inverted or Hashed Page Table",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Virtual Memory</span>"
+    ]
+  },
+  {
+    "objectID": "vmem.html#virtual-to-physical-translation",
+    "href": "vmem.html#virtual-to-physical-translation",
+    "title": "10  Virtual Memory",
+    "section": "10.4 Virtual-to-Physical Translation",
+    "text": "10.4 Virtual-to-Physical Translation\n\n\n\n10.4.1 Translation Look-aside Buffer\n\n\n\n10.4.2 Virtually Indexed Virtually Tagged (VIVT) Cache\n\n\nUse the whole virtual address\n\nSend entire virtual addr to D-cache, giving us the data\nOnly do translation of physical addr. on a miss\n\nPros:\n\nFast - access cache right away\nSimple\n\nCons:\n\nHomonyms (one virtual address could map to several different physical addreses, eg multiple threads using the same address)\n\nFlush cache after context switch or need to add address space ID to cache\n\nSynonyms (one physical address maps to multiple virtual addresses)\n\nWe may want multiple contexts to share some section of memory (shared memory)\nNeed to flush cache on context switch\n\n\n\n\n\n10.4.3 Physicall Indexed Physically Tagged (PIPT) Cache\n\n\nDoes translation before accessing the D-cache\n\nDo translation with TLB\n\nAvoids homonym and synonym\nPros:\n\nSimple\nNo aliasing\n\nCons\n\nSlow (memory translation is added to critical path)\n\n\n\n\n10.4.4 Virtually Indexed Physically Tagged (VIPT) Cache\n\n\nIn parallel, access cache and do translation\nAccess the data cache using only the page offset\n\nSince page offset doesn’t get translated, only the virtual page number gets translated into a physical page number\nIndex into the cache using page offset, at the same time translate the virtual page number into a physical page number\n\nCaveats:\n\nThis limits how large the cache can be\n\nIf cache gets too large, then the index (page offset bits) into the cache gets much larger, index might start bleeding into virtual page number\n\nNeed to ensure index into the cache is contained entirely in the page offset\n\nPros:\n\nFast (two memory transactiosn done in parallel)\n\nCons\n\nMore complicated\nCache size is constrained (bad)\n\n\n\n\n\n10.4.5 Virtual Address Synonyms",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Virtual Memory</span>"
     ]
   },
   {

@@ -41,7 +41,44 @@ Common "software" coding questions, concepts, and ideas asked in a design verifi
 
 **Q: Write a function to calculate the factorial of a given number. Recursively and iteratively**
 
+```cpp
+long long factorial_recursive(int n) {
+    if (n == 0 || n == 1)
+        return 1;
+    return n * factorial_recursive(n - 1);
+}
+
+long long factorial_iterative(int n) {
+    long long result = 1;
+    for (int i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+```
+
 **Q: Write a function to output the fibonacci sequence recursively. How about iteratively? What are the differences (especially in terms of complexity)?**
+
+```cpp
+long long fibonacci_recursive(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2);
+}
+
+void fibonacci_iterative(int n) {
+    long long a = 0, b = 1, c;
+    cout << "Fibonacci (Iterative) sequence up to " << n << " terms: ";
+    
+    for (int i = 0; i < n; i++) {
+        cout << a << " ";
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    cout << endl;
+}
+```
 
 **Q: Deleting objects at the end after execution (freeing up dynamic memory): use linked list, vector, or a counter**
 

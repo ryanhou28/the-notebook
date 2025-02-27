@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Caches – Empty Book Template</title>
+<title>8&nbsp; Caches – Computer Architecture</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -96,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Empty Book Template</a> 
+      <a href="./">Computer Architecture</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -169,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vmem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">vmem.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Virtual Memory</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -216,10 +216,18 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#classifying-reducing-misses" id="toc-classifying-reducing-misses" class="nav-link" data-scroll-target="#classifying-reducing-misses"><span class="header-section-number">8.2</span> Classifying &amp; Reducing Misses</a></li>
   <li><a href="#seznecs-skewed-associative-cache" id="toc-seznecs-skewed-associative-cache" class="nav-link" data-scroll-target="#seznecs-skewed-associative-cache"><span class="header-section-number">8.3</span> Seznec’s Skewed-Associative Cache</a></li>
   <li><a href="#victim-cache" id="toc-victim-cache" class="nav-link" data-scroll-target="#victim-cache"><span class="header-section-number">8.4</span> Victim Cache</a></li>
-  <li><a href="#multi-level-caches" id="toc-multi-level-caches" class="nav-link" data-scroll-target="#multi-level-caches"><span class="header-section-number">8.5</span> Multi-level Caches</a></li>
-  <li><a href="#inclusivity" id="toc-inclusivity" class="nav-link" data-scroll-target="#inclusivity"><span class="header-section-number">8.6</span> Inclusivity</a></li>
-  <li><a href="#non-block-caches" id="toc-non-block-caches" class="nav-link" data-scroll-target="#non-block-caches"><span class="header-section-number">8.7</span> Non-block Caches</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.8</span> Summary</a></li>
+  <li><a href="#buffers" id="toc-buffers" class="nav-link" data-scroll-target="#buffers"><span class="header-section-number">8.5</span> Buffers</a>
+  <ul class="collapse">
+  <li><a href="#store-buffers" id="toc-store-buffers" class="nav-link" data-scroll-target="#store-buffers"><span class="header-section-number">8.5.1</span> Store Buffers</a></li>
+  <li><a href="#writeback-buffers" id="toc-writeback-buffers" class="nav-link" data-scroll-target="#writeback-buffers"><span class="header-section-number">8.5.2</span> Writeback Buffers</a></li>
+  </ul></li>
+  <li><a href="#large-blocks-subblocking" id="toc-large-blocks-subblocking" class="nav-link" data-scroll-target="#large-blocks-subblocking"><span class="header-section-number">8.6</span> Large Blocks &amp; Subblocking</a></li>
+  <li><a href="#multi-level-caches" id="toc-multi-level-caches" class="nav-link" data-scroll-target="#multi-level-caches"><span class="header-section-number">8.7</span> Multi-level Caches</a>
+  <ul class="collapse">
+  <li><a href="#inclusion-property" id="toc-inclusion-property" class="nav-link" data-scroll-target="#inclusion-property"><span class="header-section-number">8.7.1</span> Inclusion Property</a></li>
+  </ul></li>
+  <li><a href="#non-block-caches" id="toc-non-block-caches" class="nav-link" data-scroll-target="#non-block-caches"><span class="header-section-number">8.8</span> Non-block Caches</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.9</span> Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -269,17 +277,34 @@ ul.task-list li input[type="checkbox"] {
 <section id="victim-cache" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="victim-cache"><span class="header-section-number">8.4</span> Victim Cache</h2>
 </section>
-<section id="multi-level-caches" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="multi-level-caches"><span class="header-section-number">8.5</span> Multi-level Caches</h2>
+<section id="buffers" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="buffers"><span class="header-section-number">8.5</span> Buffers</h2>
+<section id="store-buffers" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="store-buffers"><span class="header-section-number">8.5.1</span> Store Buffers</h3>
 </section>
-<section id="inclusivity" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="inclusivity"><span class="header-section-number">8.6</span> Inclusivity</h2>
+<section id="writeback-buffers" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="writeback-buffers"><span class="header-section-number">8.5.2</span> Writeback Buffers</h3>
 </section>
-<section id="non-block-caches" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="non-block-caches"><span class="header-section-number">8.7</span> Non-block Caches</h2>
 </section>
-<section id="summary" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">8.8</span> Summary</h2>
+<section id="large-blocks-subblocking" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="large-blocks-subblocking"><span class="header-section-number">8.6</span> Large Blocks &amp; Subblocking</h2>
+</section>
+<section id="multi-level-caches" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="multi-level-caches"><span class="header-section-number">8.7</span> Multi-level Caches</h2>
+<p><img src="images/cache/multilvl-cache.png" class="img-fluid"></p>
+<p><img src="images/cache/multilvlcachedesign.png" class="img-fluid"></p>
+<section id="inclusion-property" class="level3" data-number="8.7.1">
+<h3 data-number="8.7.1" class="anchored" data-anchor-id="inclusion-property"><span class="header-section-number">8.7.1</span> Inclusion Property</h3>
+<p><img src="images/cache/inclusionprop.png" class="img-fluid"></p>
+<p><img src="images/cache/inclusionvio.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="non-block-caches" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="non-block-caches"><span class="header-section-number">8.8</span> Non-block Caches</h2>
+<p><img src="images/cache/nonblockingcache.png" class="img-fluid"></p>
+</section>
+<section id="summary" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="summary"><span class="header-section-number">8.9</span> Summary</h2>
 <p><img src="images/cache/improv-cache-summary.png" class="img-fluid"></p>
 
 
