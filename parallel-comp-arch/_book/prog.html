@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Summary – Parallel Computer Architecture</title>
+<title>2&nbsp; Parallel Programming Models – Parallel Computer Architecture</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./nocs.html" rel="prev">
+<link href="./dlp.html" rel="next">
+<link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prog.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Parallel Programming Models</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -120,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prog.html" class="sidebar-item-text sidebar-link">
+  <a href="./prog.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Parallel Programming Models</span></span></a>
   </div>
 </li>
@@ -156,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link active">
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
@@ -171,15 +171,29 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#message-passing" id="toc-message-passing" class="nav-link active" data-scroll-target="#message-passing"><span class="header-section-number">2.1</span> Message Passing</a>
+  <ul class="collapse">
+  <li><a href="#synchronous-vs-asynchronous" id="toc-synchronous-vs-asynchronous" class="nav-link" data-scroll-target="#synchronous-vs-asynchronous"><span class="header-section-number">2.1.1</span> Synchronous vs Asynchronous</a></li>
+  </ul></li>
+  <li><a href="#shared-memory" id="toc-shared-memory" class="nav-link" data-scroll-target="#shared-memory"><span class="header-section-number">2.2</span> Shared Memory</a>
+  <ul class="collapse">
+  <li><a href="#paired-vs-separate-processormemory" id="toc-paired-vs-separate-processormemory" class="nav-link" data-scroll-target="#paired-vs-separate-processormemory"><span class="header-section-number">2.2.1</span> Paired vs Separate Processor/Memory</a></li>
+  <li><a href="#shared-memory---summary" id="toc-shared-memory---summary" class="nav-link" data-scroll-target="#shared-memory---summary"><span class="header-section-number">2.4.1</span> Shared Memory - Summary</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Parallel Programming Models</span></h1>
 </div>
 
 
@@ -196,9 +210,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In summary…</p>
+<p><strong>Programming Model Elements</strong></p>
+<ul>
+<li>Processes and Threads
+<ul>
+<li>Process</li>
+<li>Thread</li>
+<li>Task</li>
+</ul></li>
+<li>Communication</li>
+<li>Synchronization</li>
+</ul>
+<section id="message-passing" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="message-passing"><span class="header-section-number">2.1</span> Message Passing</h2>
+<ul>
+<li>Each process has their own local address space</li>
+<li>Cannot directly access memory of another node</li>
+<li>Use explicit send/receive operations</li>
+</ul>
+<section id="synchronous-vs-asynchronous" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="synchronous-vs-asynchronous"><span class="header-section-number">2.1.1</span> Synchronous vs Asynchronous</h3>
+</section>
+</section>
+<section id="shared-memory" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="shared-memory"><span class="header-section-number">2.2</span> Shared Memory</h2>
+<ul>
+<li>Multiple execution contexts shares single address space</li>
+<li>Communicate via loads and stores to shared memory</li>
+</ul>
+<section id="paired-vs-separate-processormemory" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored"><span class="header-section-number">2.2.1</span> Paired vs Separate Processor/Memory</h3>
+<p><img src="images/prog/uma-numa.png" class="img-fluid"></p>
+<ul>
+<li><h2 id="uniform-memory-access-uma" data-number="2.3" class="anchored" data-anchor-id="paired-vs-separate-processormemory"><span class="header-section-number">2.3</span> <strong>Uniform Memory Access (UMA)</strong></h2></li>
+<li><h2 id="non-uniform-memory-access-numa" data-number="2.4" class="anchored"><span class="header-section-number">2.4</span> <strong>Non-Uniform Memory Access (NUMA)</strong></h2></li>
+</ul>
+</section>
+<section id="shared-memory---summary" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="shared-memory---summary"><span class="header-section-number">2.4.1</span> Shared Memory - Summary</h3>
+<p><img src="images/prog/shared-mem-summary.png" class="img-fluid"></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -620,13 +674,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./nocs.html" class="pagination-link" aria-label="Interconnection Networks">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Interconnection Networks</span></span>
+      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./dlp.html" class="pagination-link" aria-label="DLP, GPUs">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">DLP, GPUs</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

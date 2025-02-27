@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Empty Book Template",
+    "title": "Parallel Computer Architecture",
     "section": "",
-    "text": "Preface\nThis is my notes on ????.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
+    "text": "Preface\nMy notes on ????.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
     "crumbs": [
       "Preface"
     ]
@@ -40,13 +40,183 @@
     ]
   },
   {
+    "objectID": "prog.html",
+    "href": "prog.html",
+    "title": "2  Parallel Programming Models",
+    "section": "",
+    "text": "2.1 Message Passing\nProgramming Model Elements",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Parallel Programming Models</span>"
+    ]
+  },
+  {
+    "objectID": "prog.html#message-passing",
+    "href": "prog.html#message-passing",
+    "title": "2  Parallel Programming Models",
+    "section": "",
+    "text": "Each process has their own local address space\nCannot directly access memory of another node\nUse explicit send/receive operations\n\n\n2.1.1 Synchronous vs Asynchronous",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Parallel Programming Models</span>"
+    ]
+  },
+  {
+    "objectID": "prog.html#shared-memory",
+    "href": "prog.html#shared-memory",
+    "title": "2  Parallel Programming Models",
+    "section": "2.2 Shared Memory",
+    "text": "2.2 Shared Memory\n\nMultiple execution contexts shares single address space\nCommunicate via loads and stores to shared memory\n\n\n2.2.1 Paired vs Separate Processor/Memory\n\n\n2.3 Uniform Memory Access (UMA)\n2.4 Non-Uniform Memory Access (NUMA)\n\n\n\n2.4.1 Shared Memory - Summary",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Parallel Programming Models</span>"
+    ]
+  },
+  {
+    "objectID": "dlp.html",
+    "href": "dlp.html",
+    "title": "3  DLP, GPUs",
+    "section": "",
+    "text": "3.1 Vector Architectures\nData-Level Parallelism -",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>DLP, GPUs</span>"
+    ]
+  },
+  {
+    "objectID": "dlp.html#gpus",
+    "href": "dlp.html#gpus",
+    "title": "3  DLP, GPUs",
+    "section": "3.2 GPUs",
+    "text": "3.2 GPUs",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>DLP, GPUs</span>"
+    ]
+  },
+  {
+    "objectID": "coherence.html",
+    "href": "coherence.html",
+    "title": "5  Cache Coherence",
+    "section": "",
+    "text": "5.1 Valid-Invalid Snooping Protocol\nCache coherence ensure that all processors in a system sees a consistent view of memory, even when multiple caches store copies of the same data.\nCoherence can be thought of as two invariants:\nSnooping Cache-Coherence Protocols",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cache Coherence</span>"
+    ]
+  },
+  {
+    "objectID": "coherence.html#msi-protocol",
+    "href": "coherence.html#msi-protocol",
+    "title": "5  Cache Coherence",
+    "section": "5.2 MSI Protocol",
+    "text": "5.2 MSI Protocol",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cache Coherence</span>"
+    ]
+  },
+  {
+    "objectID": "coherence.html#mesi-protocol",
+    "href": "coherence.html#mesi-protocol",
+    "title": "5  Cache Coherence",
+    "section": "5.3 MESI Protocol",
+    "text": "5.3 MESI Protocol\n\nMSI suffers from frequent read-upgrade sequences\n\nleads to two bus transactions\n\nSolution: Add exclusive state\n\nExclusive - only one copy; writable; clean\nStores make it transition to modified to indicate data is dirty\nWe’ll be able to read with “write” permissions so the line is clean and we haven’t written to it yet\n\n\n\nTo sum:\n\nReduce unnecessary writebacks\n\nFaster S-&gt;M transition if there are no other readers\n\nIn MSI, S-&gt;M requires sending invalidates\n\nIf we’re the exclusive reader E, can directly change to M state on a store\n\nReduce bus traffic (as above)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cache Coherence</span>"
+    ]
+  },
+  {
+    "objectID": "coherence.html#moesi-protocol",
+    "href": "coherence.html#moesi-protocol",
+    "title": "5  Cache Coherence",
+    "section": "5.4 MOESI Protocol",
+    "text": "5.4 MOESI Protocol\n\n\nM-&gt;S requires writing the modified value back to memory\n\nWritebacks to mem may be unnecessary\n\nWith an O state, cache can supply modified data to other caches, avoiding memory writeback\n\nOn eviction, Owner is responsible for writeback\n\nGoing to O vs M\n\nWe go to O when another processor wants to get data (down-grade from M)\n\n\n\n\n\n\nSource",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cache Coherence</span>"
+    ]
+  },
+  {
+    "objectID": "coherence.html#mosi",
+    "href": "coherence.html#mosi",
+    "title": "5  Cache Coherence",
+    "section": "5.5 MOSI",
+    "text": "5.5 MOSI",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cache Coherence</span>"
+    ]
+  },
+  {
+    "objectID": "coherence.html#dec-firefly-protocol",
+    "href": "coherence.html#dec-firefly-protocol",
+    "title": "5  Cache Coherence",
+    "section": "5.6 DEC Firefly Protocol",
+    "text": "5.6 DEC Firefly Protocol",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cache Coherence</span>"
+    ]
+  },
+  {
+    "objectID": "coherence.html#implementing-snoopy-coherent-smps",
+    "href": "coherence.html#implementing-snoopy-coherent-smps",
+    "title": "5  Cache Coherence",
+    "section": "5.7 Implementing Snoopy Coherent SMPs",
+    "text": "5.7 Implementing Snoopy Coherent SMPs",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cache Coherence</span>"
+    ]
+  },
+  {
+    "objectID": "coherence.html#directory-based-coherenece",
+    "href": "coherence.html#directory-based-coherenece",
+    "title": "5  Cache Coherence",
+    "section": "5.8 Directory-Based Coherenece",
+    "text": "5.8 Directory-Based Coherenece\n\nWhy? Bus-based coherence doesn’t scale well",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cache Coherence</span>"
+    ]
+  },
+  {
+    "objectID": "consistency.html",
+    "href": "consistency.html",
+    "title": "6  Memory Consistency",
+    "section": "",
+    "text": "6.1 Consistency Models\nWhile cache coherence ensures that multiple copies of a single memory location are consistent across caches, memory consistency defines how updates to different memory locations appear across processors.\nWhy Does Memory Consistency Matter?\nMemory consistency model specifies the order in which memory accesses may be performed by one thread, and the order they become visible to other threads in the program.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Memory Consistency</span>"
+    ]
+  },
+  {
+    "objectID": "consistency.html#sequential-consistency",
+    "href": "consistency.html#sequential-consistency",
+    "title": "6  Memory Consistency",
+    "section": "6.2 Sequential Consistency",
+    "text": "6.2 Sequential Consistency\n\nA system is sequentially consistent if the result of any execution is the same as if all operations were executed in some sequential order, and the operations of each processor appear in that order.\nKey Properties:\n\nGlobal Total Order: All memory operations appear to execute in a single, global sequence\nProgram order preserved: each processor must execute its own operations in program order\nInterleaving across processors: The global order is an interleaving of memory operations from all processors, ensuring no reordering of loads and stores across different processors\n\nProblems:\n\nDifficult to implement efficiently in HW\nUnnecessarily restrictive\n\nMost parallel programs won’t notice out-of-order accesses\n\nConflicts with latency hiding techniques",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Memory Consistency</span>"
+    ]
+  },
+  {
+    "objectID": "consistency.html#relaxed-consistency",
+    "href": "consistency.html#relaxed-consistency",
+    "title": "6  Memory Consistency",
+    "section": "6.3 Relaxed Consistency",
+    "text": "6.3 Relaxed Consistency\nAllow:\n\nReordering of memory operations (under controlled conditions).\nStore buffering and speculative execution (to optimize performance).\nExplicit synchronization primitives (e.g., memory fences, atomic operations) to enforce ordering only where needed.\n\n\n6.3.1 Total Store Order (TSO)\nLoads can be reordered after stores, but stores appear in order to all processors\n\n\n6.3.2 Processor Consistency\nWrites from a single processor appear in order, but different processors may see updates in different orders.\n\n\n6.3.3 Partial Store Order\n\nStores can be reordered with other stores, but\nLoads still execute in order relative to each other (other loads)\n\n\n\n6.3.4 Relaxed Memory Order\n\nLoads to be reordered with loads.\nStores to be reordered with stores.\nLoads and stores to be reordered with each other.\n\n\n\n6.3.5 Weak Ordering\nMemory accesses can be reordered arbitrarily, but a synchronization operation (e.g., fence/barrier) must be issued to enforce ordering.\n\n\n6.3.6 Release Consistency\n\nAcquire operation (before a critical section) ensures visibility of all previous writes.\nRelease operation (after a critical section) ensures that writes are visible before allowing others to enter.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Memory Consistency</span>"
+    ]
+  },
+  {
+    "objectID": "consistency.html#examples",
+    "href": "consistency.html#examples",
+    "title": "6  Memory Consistency",
+    "section": "6.4 Examples",
+    "text": "6.4 Examples\n\n6.4.1 Basic\n// Processor P1\nX = 1;   // (A)\nY = 1;   // (B)\n\n// Processor P2\nr1 = Y;  // (C)\nr2 = X;  // (D)\nSince both processors are executing independently, different memory models allow different interleavings of these operations:\n\nSequential Consistency (SC) ensures a single global order.\n\nIf P2 sees r1 = 1 (because Y=1 was written at (B)), then it must see r2 = 1 (because X=1 at (A) must have happened first).\n\nRelaxed Consistency (e.g., RMO, PSO) allows reordering.\n\nr1 = 1 but r2 = 0 is possible if the store to Y (B) became visible before the store to X (A).",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Memory Consistency</span>"
+    ]
+  },
+  {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "2  Summary",
+    "title": "8  Summary",
     "section": "",
     "text": "In summary…",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Summary</span>"
     ]
   }
 ]

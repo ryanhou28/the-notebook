@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Summary – Parallel Computer Architecture</title>
+<title>6&nbsp; Memory Consistency – Parallel Computer Architecture</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./nocs.html" rel="prev">
+<link href="./nocs.html" rel="next">
+<link href="./coherence.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./consistency.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory Consistency</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -144,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./consistency.html" class="sidebar-item-text sidebar-link">
+  <a href="./consistency.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory Consistency</span></span></a>
   </div>
 </li>
@@ -156,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link active">
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
@@ -171,15 +171,35 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#consistency-models" id="toc-consistency-models" class="nav-link active" data-scroll-target="#consistency-models"><span class="header-section-number">6.1</span> Consistency Models</a></li>
+  <li><a href="#sequential-consistency" id="toc-sequential-consistency" class="nav-link" data-scroll-target="#sequential-consistency"><span class="header-section-number">6.2</span> Sequential Consistency</a></li>
+  <li><a href="#relaxed-consistency" id="toc-relaxed-consistency" class="nav-link" data-scroll-target="#relaxed-consistency"><span class="header-section-number">6.3</span> Relaxed Consistency</a>
+  <ul class="collapse">
+  <li><a href="#total-store-order-tso" id="toc-total-store-order-tso" class="nav-link" data-scroll-target="#total-store-order-tso"><span class="header-section-number">6.3.1</span> Total Store Order (TSO)</a></li>
+  <li><a href="#processor-consistency" id="toc-processor-consistency" class="nav-link" data-scroll-target="#processor-consistency"><span class="header-section-number">6.3.2</span> Processor Consistency</a></li>
+  <li><a href="#partial-store-order" id="toc-partial-store-order" class="nav-link" data-scroll-target="#partial-store-order"><span class="header-section-number">6.3.3</span> Partial Store Order</a></li>
+  <li><a href="#relaxed-memory-order" id="toc-relaxed-memory-order" class="nav-link" data-scroll-target="#relaxed-memory-order"><span class="header-section-number">6.3.4</span> Relaxed Memory Order</a></li>
+  <li><a href="#weak-ordering" id="toc-weak-ordering" class="nav-link" data-scroll-target="#weak-ordering"><span class="header-section-number">6.3.5</span> Weak Ordering</a></li>
+  <li><a href="#release-consistency" id="toc-release-consistency" class="nav-link" data-scroll-target="#release-consistency"><span class="header-section-number">6.3.6</span> Release Consistency</a></li>
+  </ul></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">6.4</span> Examples</a>
+  <ul class="collapse">
+  <li><a href="#basic" id="toc-basic" class="nav-link" data-scroll-target="#basic"><span class="header-section-number">6.4.1</span> Basic</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory Consistency</span></h1>
 </div>
 
 
@@ -196,9 +216,120 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In summary…</p>
+<p><img src="images/consistency/coherence-vs-consis.png" class="img-fluid"></p>
+<p>While cache coherence ensures that multiple copies of a single memory location are consistent across caches, memory consistency defines how updates to different memory locations appear across processors.</p>
+<p>Why Does Memory Consistency Matter?</p>
+<ul>
+<li>In a single-core processor, instructions execute sequentially, so memory operations follow a strict order. But in multi-core/multiprocessor systems, things get more complex:</li>
+<li>Multiple processors execute memory operations in parallel.</li>
+<li>Caches and store buffers can hold writes before committing to memory.</li>
+<li>Memory itself is a shared resource with limited bandwidth, and requests from different processors may arrive at the same time.</li>
+<li>Since memory can only commit one operation at a time per memory location, different processors may see memory updates in different orders.</li>
+</ul>
+<p><img src="images/consistency/issue-of-consis.png" class="img-fluid"></p>
+<ul>
+<li>“goto retry” means starting back at initial A = B = 0</li>
+<li>When we issue stores, memory may not be able to accept them right away
+<ul>
+<li>So this may allow loads to bypass stores that aren’t completed yet</li>
+<li>Since the store’s aren’t going to the same address as the loads, the values won’t be forwarded</li>
+<li>So we could be doing loads before the store actually updates memory</li>
+</ul></li>
+</ul>
+<p><img src="images/consistency/dekkers-store-buff.png" class="img-fluid"></p>
+<section id="consistency-models" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="consistency-models"><span class="header-section-number">6.1</span> Consistency Models</h2>
+<p>Memory consistency model specifies the order in which memory accesses may be performed by one thread, and the order they become visible to other threads in the program.</p>
+</section>
+<section id="sequential-consistency" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sequential-consistency"><span class="header-section-number">6.2</span> Sequential Consistency</h2>
+<p><img src="images/consistency/seq-consis.png" class="img-fluid"></p>
+<p>A system is sequentially consistent if the result of any execution is the same as if all operations were executed in some sequential order, and the operations of each processor appear in that order.</p>
+<p>Key Properties:</p>
+<ul>
+<li>Global Total Order: All memory operations appear to execute in a single, global sequence</li>
+<li>Program order preserved: each processor must execute its own operations in program order</li>
+<li>Interleaving across processors: The global order is an interleaving of memory operations from all processors, ensuring no reordering of loads and stores across different processors</li>
+</ul>
+<p>Problems:</p>
+<ul>
+<li>Difficult to implement efficiently in HW</li>
+<li>Unnecessarily restrictive
+<ul>
+<li>Most parallel programs won’t notice out-of-order accesses</li>
+</ul></li>
+<li>Conflicts with latency hiding techniques</li>
+</ul>
+</section>
+<section id="relaxed-consistency" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="relaxed-consistency"><span class="header-section-number">6.3</span> Relaxed Consistency</h2>
+<p>Allow:</p>
+<ul>
+<li>Reordering of memory operations (under controlled conditions).</li>
+<li>Store buffering and speculative execution (to optimize performance).</li>
+<li>Explicit synchronization primitives (e.g., memory fences, atomic operations) to enforce ordering only where needed.</li>
+</ul>
+<section id="total-store-order-tso" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="total-store-order-tso"><span class="header-section-number">6.3.1</span> Total Store Order (TSO)</h3>
+<p>Loads can be reordered after stores, but stores appear in order to all processors</p>
+</section>
+<section id="processor-consistency" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="processor-consistency"><span class="header-section-number">6.3.2</span> Processor Consistency</h3>
+<p>Writes from a single processor appear in order, but different processors may see updates in different orders.</p>
+</section>
+<section id="partial-store-order" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="partial-store-order"><span class="header-section-number">6.3.3</span> Partial Store Order</h3>
+<ul>
+<li>Stores can be reordered with other stores, but</li>
+<li>Loads still execute in order relative to each other (other loads)</li>
+</ul>
+</section>
+<section id="relaxed-memory-order" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="relaxed-memory-order"><span class="header-section-number">6.3.4</span> Relaxed Memory Order</h3>
+<ul>
+<li>Loads to be reordered with loads.</li>
+<li>Stores to be reordered with stores.</li>
+<li>Loads and stores to be reordered with each other.</li>
+</ul>
+</section>
+<section id="weak-ordering" class="level3" data-number="6.3.5">
+<h3 data-number="6.3.5" class="anchored" data-anchor-id="weak-ordering"><span class="header-section-number">6.3.5</span> Weak Ordering</h3>
+<p>Memory accesses can be reordered arbitrarily, but a synchronization operation (e.g., fence/barrier) must be issued to enforce ordering.</p>
+</section>
+<section id="release-consistency" class="level3" data-number="6.3.6">
+<h3 data-number="6.3.6" class="anchored" data-anchor-id="release-consistency"><span class="header-section-number">6.3.6</span> Release Consistency</h3>
+<ul>
+<li>Acquire operation (before a critical section) ensures visibility of all previous writes.</li>
+<li>Release operation (after a critical section) ensures that writes are visible before allowing others to enter.</li>
+</ul>
+</section>
+</section>
+<section id="examples" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="examples"><span class="header-section-number">6.4</span> Examples</h2>
+<section id="basic" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="basic"><span class="header-section-number">6.4.1</span> Basic</h3>
+<pre><code>// Processor P1
+X = 1;   // (A)
+Y = 1;   // (B)
+
+// Processor P2
+r1 = Y;  // (C)
+r2 = X;  // (D)</code></pre>
+<p>Since both processors are executing independently, different memory models allow different interleavings of these operations:</p>
+<ul>
+<li>Sequential Consistency (SC) ensures a single global order.
+<ul>
+<li>If P2 sees r1 = 1 (because Y=1 was written at (B)), then it must see r2 = 1 (because X=1 at (A) must have happened first).</li>
+</ul></li>
+<li>Relaxed Consistency (e.g., RMO, PSO) allows reordering.
+<ul>
+<li>r1 = 1 but r2 = 0 is possible if the store to Y (B) became visible before the store to X (A).</li>
+</ul></li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -620,13 +751,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./nocs.html" class="pagination-link" aria-label="Interconnection Networks">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Interconnection Networks</span></span>
+      <a href="./coherence.html" class="pagination-link" aria-label="Cache Coherence">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cache Coherence</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./nocs.html" class="pagination-link" aria-label="Interconnection Networks">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Interconnection Networks</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
