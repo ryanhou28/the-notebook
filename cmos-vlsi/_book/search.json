@@ -160,6 +160,16 @@
     ]
   },
   {
+    "objectID": "circuit.html#tables",
+    "href": "circuit.html#tables",
+    "title": "2  Circuit Basics",
+    "section": "2.12 Tables",
+    "text": "2.12 Tables\n\n\n\nImage Source",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Circuit Basics</span>"
+    ]
+  },
+  {
     "objectID": "highlevel.html",
     "href": "highlevel.html",
     "title": "3  High-level Overview",
@@ -374,7 +384,7 @@
     "href": "summary.html#device-mos",
     "title": "20  Summary",
     "section": "20.2 Device: MOS",
-    "text": "20.2 Device: MOS\n\n\nThreshold Voltage\n\n\n\\(V_{GS} &lt; 0\\)\n\nAccumulation of holes\n\n\\(0 &lt; V_{GS} &lt; V_T\\)\n\nDepletion: repel mobile holes\nInversion: accumulation of electrons\n\n\\(V_{GS} &gt; V_T\\)\n\nStrong inversion: surface is as strongly n-type as the substrate is p-type\n\n\nBody Effect\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n20.2.1 Capacitances and Nonidealities\n\n\n\n\n\nSummary of Capacitances\n\nParasitic capacitance of MOS transistor\n\n( C_{GS} ): overlap, gate-to-channel (linear, saturation/velocity sat)\n( C_{GD} ): overlap, gate-to-channel (linear)\n( C_{GB} ): gate-to-channel (cutoff)\n( C_{SB} ): bottom plate, side wall\n( C_{DB} ): bottom plate, side wall, reverse-bias effect\n\n\n\n\n\nSummary of Sub-threshold Conduction\n\nExponential dependence on ( V_{GS} )\nSlope factor\n\nHigher slope factor ( ) subthreshold curve bends up, much higher current when ( V_{GS} = 0 ) (more leakage when switched off)\nSlope factor is a function of process parameter ( n ) and temperature ( T )\n\n( V_T ) effect\n\nLower ( V_T ) ( ) subthreshold curve shifts up, much higher current when ( V_{GS} = 0 ) (more leakage when switched off)\n( V_T ) is a function of many parameters, in particular ( V_{SB} ) (body effect, reverse bias PN junction raises ( V_T )) and ( V_{DS} ) (drain-induced barrier lowering, higher ( V_{DS} ) lowers ( V_T ))",
+    "text": "20.2 Device: MOS\n\n\nThreshold Voltage\n\n\n\\(V_{GS} &lt; 0\\)\n\nAccumulation of holes\n\n\\(0 &lt; V_{GS} &lt; V_T\\)\n\nDepletion: repel mobile holes\nInversion: accumulation of electrons\n\n\\(V_{GS} &gt; V_T\\)\n\nStrong inversion: surface is as strongly n-type as the substrate is p-type\n\n\nBody Effect\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n20.2.1 Capacitances and Nonidealities\n\n\n\n\n\nSummary of Capacitances\n\nParasitic capacitance of MOS transistor\n\n\\(C_{GS}\\): overlap, gate-to-channel (linear, saturation/velocity sat)\n\\(C_{GD}\\): overlap, gate-to-channel (linear)\n\\(C_{GB}\\): gate-to-channel (cutoff)\n\\(C_{SB}\\): bottom plate, side wall\n\\(C_{DB}\\): bottom plate, side wall, reverse-bias effect\n\n\n\n\n\nSummary of Sub-threshold Conduction\n\nExponential dependence on ( V_{GS} )\nSlope factor\n\nHigher slope factor ( ) subthreshold curve bends up, much higher current when ( V_{GS} = 0 ) (more leakage when switched off)\nSlope factor is a function of process parameter ( n ) and temperature ( T )\n\n( V_T ) effect\n\nLower ( V_T ) ( ) subthreshold curve shifts up, much higher current when ( V_{GS} = 0 ) (more leakage when switched off)\n( V_T ) is a function of many parameters, in particular ( V_{SB} ) (body effect, reverse bias PN junction raises ( V_T )) and ( V_{DS} ) (drain-induced barrier lowering, higher ( V_{DS} ) lowers ( V_T ))",
     "crumbs": [
       "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
     ]
@@ -424,7 +434,7 @@
     "href": "summary.html#cmos-inverter-scaling",
     "title": "20  Summary",
     "section": "20.7 CMOS Inverter: Scaling",
-    "text": "20.7 CMOS Inverter: Scaling",
+    "text": "20.7 CMOS Inverter: Scaling\nGoals of Technology scaling\n\nMake things cheaper:\n\nWant to sell more functions (transistors) per chip for the same money\nBuild same products cheaper, sell the same part for less money\nPrice of a transistor has to be reduced\n\nBut also want to be faster, smaller, lower power\n\nTechnology Scaling\n\nGoals of scaling the dimensions by 30%:\n\nReduce gate delay by 30% (increase operating frequency by 43%)\nDouble transistor density\nReduce energy per transition by 65% (50% power savings @ 43% increase in frequency)\n\nTechnology generation spans 2-3 years\n\nTechnology Scaling Models\n\nFull Scaling (Constant Electrical Field)\n\nIdeal model - dimensions and voltage scale together by the same factor S\n\nFixed Voltage Scaling\n\nMost common model until recently - only dimensions scale, voltages remain constant\n\nGeneral Scaling\n\nMost realistic for today’s situation - voltages and dimensions scale with different factors",
     "crumbs": [
       "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
     ]
@@ -434,7 +444,7 @@
     "href": "summary.html#static-cmos-gates",
     "title": "20  Summary",
     "section": "20.8 Static CMOS Gates",
-    "text": "20.8 Static CMOS Gates",
+    "text": "20.8 Static CMOS Gates\n\nStatic Complementary CMOS - PUN and PDN are dual logic networks",
     "crumbs": [
       "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
     ]
@@ -500,43 +510,233 @@
     ]
   },
   {
-    "objectID": "summary.html#memories-peripherals",
-    "href": "summary.html#memories-peripherals",
-    "title": "20  Summary",
-    "section": "20.15 Memories: Peripherals",
-    "text": "20.15 Memories: Peripherals",
+    "objectID": "summary-v2.html",
+    "href": "summary-v2.html",
+    "title": "21  Summary - Version 2",
+    "section": "",
+    "text": "21.1 CMOS Basics\nStatic Logic Families\nDynamic Logic Families",
     "crumbs": [
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Summary - Version 2</span>"
     ]
   },
   {
-    "objectID": "summary.html#memories-flash-sram-dram",
-    "href": "summary.html#memories-flash-sram-dram",
-    "title": "20  Summary",
-    "section": "20.16 Memories: Flash, SRAM, DRAM",
-    "text": "20.16 Memories: Flash, SRAM, DRAM",
+    "objectID": "summary-v2.html#cmos-basics",
+    "href": "summary-v2.html#cmos-basics",
+    "title": "21  Summary - Version 2",
+    "section": "",
+    "text": "Classic CMOS\nPulse Static CMOS (PS-CMOS)\nDifferential Cascode Voltage Switch (DCVS)\nCascode Non-Threshold Logic (CNTL)\nPass gate Logic / Transistor gate Logic\nComplementary Passgate Logic (CPL)\nOutput Predicion Logic (OPL)",
     "crumbs": [
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Summary - Version 2</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v2.html#dynamic-power",
+    "href": "summary-v2.html#dynamic-power",
+    "title": "21  Summary - Version 2",
+    "section": "21.2 Dynamic Power",
+    "text": "21.2 Dynamic Power",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Summary - Version 2</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v2.html#static-power",
+    "href": "summary-v2.html#static-power",
+    "title": "21  Summary - Version 2",
+    "section": "21.3 Static Power",
+    "text": "21.3 Static Power\nTopics:\n\nLeakage mechanisms\n\nSubthreshold leakage\nGate oxide leakage\n\nLeakage reduction methods\n\nState assignment\nMTCMOS\nDual-Vth design\nVTCMOS\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConclusions\n\nLots of recent work on circuit and technology techniques to reduce static power\n\nStandby mode leakage reduction can be orders of magnitude, may lose state, takes time to switch in and out of standby mode\nActive mode leakage reduction is a tougher problem, smaller savings, must be ready for inputs to toggle at any time",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Summary - Version 2</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v2.html#interconnects",
+    "href": "summary-v2.html#interconnects",
+    "title": "21  Summary - Version 2",
+    "section": "21.4 Interconnects",
+    "text": "21.4 Interconnects",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Summary - Version 2</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v2.html#more-notes",
+    "href": "summary-v2.html#more-notes",
+    "title": "21  Summary - Version 2",
+    "section": "21.5 More Notes:",
+    "text": "21.5 More Notes:",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Summary - Version 2</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v3.html",
+    "href": "summary-v3.html",
+    "title": "22  Summary - Version 3",
+    "section": "",
+    "text": "NMOS Operation\n\nBody is usually tied to ground (0V)\nWhen the gate is at a low voltage:\n\nP-type body is at low voltage\nSource-body and drain-body diodes are OFF\nNo current flows, transistor is OFF\n\n\n\n\nWhen the gate is at a high voltage:\n\nPositive charge on gate of MOS capacitor\nNegative charge attracted to body\nInverts a channel under gate to n-type\nNow current can flow through n-type silicon from source through channel to drain, transistor is ON\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPositive skew is BAD for hold time (positive skew goes rightwards in waveform)\nNegative skew is good for hold time (skew goes leftwards)\nIf we see hold time violation, we could:\n\nadd buffers to increase T_fast and make logic slower\nCreate intentional skew (negative skew for clock)\n\n\n\n\nWhen setup time is violated\n\nincrease T_clock\nIncrease VDD such that circuit goes faster\nPipelining or do retiming\nAdjust skew",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Summary - Version 3</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html",
+    "href": "summary-v4.html",
+    "title": "23  Summary - Version 4",
+    "section": "",
+    "text": "23.1 CMOS Basics\nOhms Law: \\(V=IR\\)\nCapacitor Charge: \\(Q=CV\\)\nCapacitor Energy: \\(E=\\frac{1}{2}CV^2\\)\nCapacitor: \\(I = C \\frac{dV}{dt}\\)\nInductor Voltage: \\(V=L\\frac{dI}{dt}\\)\nRC Circuit Charging: \\(V_C(t) = V_{DD}(1-e^{-t/RC})\\)\nRC Circuit Discharging: \\(V_C(t) = V_0 e^{-t/RC}\\), initial voltage \\(V_0\\)\nRL Current Growth (applying VDD): \\(I(t) = \\frac{V_{DD}}{R}(1-e^{-Rt/L})\\)\nRL Current Decay (remove supply): \\(I(t)=I_0 e^{-Rt/L}\\)\nDiffusion - movement of charge carriers move from regions of high concentration to low concentration\nDrift - movement of charge carriers due to external electric field\nDepletion Region - region where mobile charge carriers are depleted\nInversion - mode of operation where formation of conductive channel opposite to substrate type\nWhy is PMOS “slower”?\nWhy is PMOS sized ~2x NMOS?",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#cmos-basics",
+    "href": "summary-v4.html#cmos-basics",
+    "title": "23  Summary - Version 4",
+    "section": "",
+    "text": "electrons have higher mobility than holes\ndue to this lower carrier mobility, PMOS is weaker to charge (load) capacitance\n\n\n\ndue to lower mobility of charge carrier, need to size larger (W) to match drive strength of NMOS\n\n\n23.1.1 Regions of Operation\n\nCutoff Region\n\n\\(V_{GS} &lt; V_{TH}\\)\n\nLinear Region\n\n\\(V_{GS} &gt; V_{TH}\\) and \\(V_{DS} &lt; V_{GS} - V_{TH}\\)\n\nSaturation Region\n\n\\(V_{GS} &gt; V_{TH}\\) and \\(V_{DS} \\geq V_{GS} - V_{TH}\\)\nChannel is pinched off (on drain end). Current mostly controlled by \\(V_{GS}\\)\n\nDepletion region forms on drain end\n\nEssentially current starts to plateau the more it saturates",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#cmos-inverter",
+    "href": "summary-v4.html#cmos-inverter",
+    "title": "23  Summary - Version 4",
+    "section": "23.2 CMOS Inverter",
+    "text": "23.2 CMOS Inverter\nYoutube reference\n\n\n\n\n\n\n23.2.1 Propagation Delay\n\\(t_{p} = 0.69 R_{ON} C_L\\), where R_ON is the resistance of NMOS/PMOS (whichever is ON)\n\\[t_p = 0.69 R_W C_{int} (1 + C_L / C_{int})\\]\n\n\n23.2.2 Long vs Short Channel\n\nIV characteristic is quadratic for long channel, linear for short channel\nVelocity saturation in short channel, thus current becomes linearly dependent on \\(V_{GS}\\) in saturation\nTransient Response: \\(t_p = 0.69R_{on}C_L\\)\n\n\n23.2.3 Speedup\n\nReduce capacitance\nIncrease transistor size\nIncrease VDD",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#capacitance",
+    "href": "summary-v4.html#capacitance",
+    "title": "23  Summary - Version 4",
+    "section": "23.3 Capacitance",
+    "text": "23.3 Capacitance\n\nParasitic capacitance of MOS transistor\n\n\\(C_{GS}\\): overlap, gate-to-channel (linear, saturation/velocity sat)\n\\(C_{GD}\\): overlap, gate-to-channel (linear)\n\\(C_{GB}\\): gate-to-channel (cutoff)\n\\(C_{SB}\\): bottom plate, side wall\n\\(C_{DB}\\): bottom plate, side wall, reverse-bias effect\n\nAll the caps involving the gate are gate capacitances. The rest are junction (diffusion) capacitance\n\n\\(C_{GC}=C_{OX}WL\\)",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#leakage",
+    "href": "summary-v4.html#leakage",
+    "title": "23  Summary - Version 4",
+    "section": "23.4 Leakage",
+    "text": "23.4 Leakage\n\nSubthreshold Leakage\nGate Leakage (tunneling through oxide)\nJunction Leakage (from PN junction)\n\n\n23.4.1 Subthreshold Current",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#power",
+    "href": "summary-v4.html#power",
+    "title": "23  Summary - Version 4",
+    "section": "23.5 Power",
+    "text": "23.5 Power\n\nComponents:\n\nDynamic:\n\nPower due to switching, i.e. charging and discharging capacitances through device\n\nShort-circuit (can also be categorized as static)\n\nDirect path between VDD and ground during switching transients (when both PUN PDN are partially on)\n\nStatic\n\nLeakage current consuming power when not switching\n\n\nInverter Power Derivation:\n\nInput 1-&gt;0 (Output 0-&gt;1)\nInput 0-&gt;1\n\n\n23.5.1 Dynamic\nEnergy / Transition = \\(C_L V_{DD}^2\\)\nPower = Energy / Transition * freq = \\(C_L V_{DD}^2 f_{clk}\\)\nAvg Power = \\(\\alpha C_L V_{DD}^2 f_{clk}\\)\n\n\nDVFS\n\n\n23.5.2 Static\n\nLeakage mechanisms\n\nReverse-bias PN junction current\nSubthreshold leakage\nGate induced drain leakage\nGate oxide tunneling\n\nReduction techniques\n\nPower Gating\nDual Threshold\nState assignment\nVariable Vth\n\n\n\n\n23.5.3 Short Circuit\n\n\n23.5.4 Design Space",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#logic-families",
+    "href": "summary-v4.html#logic-families",
+    "title": "23  Summary - Version 4",
+    "section": "23.6 Logic Families",
+    "text": "23.6 Logic Families\nStatic CMOS:\n\nFull rail to rail swing, high noise margins\nLow static power dissipation\n\nDynamic Logic:\n\nFaster\nNeeds pre-charging (two phases)\nno rail to rail swing\n\nneed static cmos to restore levels\n\nhigher power",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#ir-drop",
+    "href": "summary-v4.html#ir-drop",
+    "title": "23  Summary - Version 4",
+    "section": "23.7 IR Drop",
+    "text": "23.7 IR Drop\nVoltage drop across a resistance R with current I, in power grids (long metal lines with branches)",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#charge-sharing",
+    "href": "summary-v4.html#charge-sharing",
+    "title": "23  Summary - Version 4",
+    "section": "23.8 Charge Sharing",
+    "text": "23.8 Charge Sharing\nCharge stored in load capacitance could be redistributed in dynamic logic. Solution is to precharge internal nodes using clock-driven transistor",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#power-gating-power-domain-crossing",
+    "href": "summary-v4.html#power-gating-power-domain-crossing",
+    "title": "23  Summary - Version 4",
+    "section": "23.9 Power Gating / Power Domain Crossing",
+    "text": "23.9 Power Gating / Power Domain Crossing\nReference\n\nProblems that might occur:\n\nVoltage level mismatch, signal integrity, timing errors\n\nSolutions:\n\nLevel shifter: convert signal voltages between domains\nIsolation cells: Prevent leakage between domains, isolates power gated logic from always-on logic\nSynchronizers: ensure proper timing when crossing domains\nSwitch Cell: Header or Footer switch cell, gates the VDD and VSS rails\nRetention Cell: retains state when primary power supply is OFF, can restore state/",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#interconnects",
+    "href": "summary-v4.html#interconnects",
+    "title": "23  Summary - Version 4",
+    "section": "23.10 Interconnects",
+    "text": "23.10 Interconnects\n\nLower layers - smaller cross-sectional area, higher resistance and capacitance per unit length - local interconnects\nHigher layers - wider and thicker traces, lower resistance and cap - global routing & power distribution\n\n\\[R = \\frac{\\rho L}{HW}\\]",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#temperature",
+    "href": "summary-v4.html#temperature",
+    "title": "23  Summary - Version 4",
+    "section": "23.11 Temperature",
+    "text": "23.11 Temperature\n\nLeakage: increases with temperature (increased subthreshold conduction)\nDynamic: less sensitive with temperature",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#low-power-techniques",
+    "href": "summary-v4.html#low-power-techniques",
+    "title": "23  Summary - Version 4",
+    "section": "23.12 Low Power Techniques",
+    "text": "23.12 Low Power Techniques\n\nReduce capacitance\n\nSizing, P/N ratio, shorte routes\n\nReduce switching activity\n\nClock gating\nMore efficient codes (gray codes)\n\nLower VDD\n\nDVFS\n\nPipelining\n\n\n\n23.12.1 DVFS",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
+    ]
+  },
+  {
+    "objectID": "summary-v4.html#inverter-with-flipped-nmospmos",
+    "href": "summary-v4.html#inverter-with-flipped-nmospmos",
+    "title": "23  Summary - Version 4",
+    "section": "23.13 Inverter with Flipped NMOS/PMOS",
+    "text": "23.13 Inverter with Flipped NMOS/PMOS\nNMOS can only pull up to roughly\nPMOS",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Summary - Version 4</span>"
     ]
   },
   {
     "objectID": "interview.html",
     "href": "interview.html",
-    "title": "21  Interview & Problems",
+    "title": "25  Interview & Problems",
     "section": "",
-    "text": "21.1 Interview\nConcepts to know:",
+    "text": "25.1 Interview\nConcepts to know:",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Interview & Problems</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Interview & Problems</span>"
     ]
   },
   {
     "objectID": "interview.html#problems",
     "href": "interview.html#problems",
-    "title": "21  Interview & Problems",
-    "section": "21.2 Problems",
-    "text": "21.2 Problems\nCommon interview problems:\n\n21.2.1 CMOS\n\n\n21.2.2 Logic Design\n\n\n21.2.3 Power\nQ: Dynamic power dominates but why has static power consumption become increasingly important to deal with?\n\nLarge transistor count - small leakage quickly get big when multiplied by billions of transistors\nTechnology scaling - end of Dennard Scaling\n\nDennard Scaling suggested that power density remained constant at smaller transistor sizes - however the scaling has broken down at modern nodes\n\nScaling suggested VDD and VTh scales proportionally with feature size\n\nVDD stopped scaling due to reliability\nVTh stopped scaling as pushing it further down increases leakage\n\nIncreased leakage currents\n\nSubthreshold leakage - small threshold voltage leads to faster switching, but increases the leakage current even when transistor is OFF\nGate leakage - thin gate oxides in modern nodes lead to tunneling currents through the gate\nJunction leakage - small junction depths increase leakage at source/drain junctions\n\n\nQ: How to reduce dynamic power?\nQ: How to reduce static power?\nQ: What caused the end of Dennard Scaling?\n\nVDD stopped scaling due to reliability\nVTh stopped scaling as pushing it further down increases leakage\n\n\n\n21.2.4 List of Questions - To be categorized…",
+    "title": "25  Interview & Problems",
+    "section": "25.2 Problems",
+    "text": "25.2 Problems\nCommon interview problems:\n\n25.2.1 CMOS\n\n\n25.2.2 Logic Design\n\n\n25.2.3 Power\nQ: Dynamic power dominates but why has static power consumption become increasingly important to deal with?\n\nLarge transistor count - small leakage quickly get big when multiplied by billions of transistors\nTechnology scaling - end of Dennard Scaling\n\nDennard Scaling suggested that power density remained constant at smaller transistor sizes - however the scaling has broken down at modern nodes\n\nScaling suggested VDD and VTh scales proportionally with feature size\n\nVDD stopped scaling due to reliability\nVTh stopped scaling as pushing it further down increases leakage\n\nIncreased leakage currents\n\nSubthreshold leakage - small threshold voltage leads to faster switching, but increases the leakage current even when transistor is OFF\nGate leakage - thin gate oxides in modern nodes lead to tunneling currents through the gate\nJunction leakage - small junction depths increase leakage at source/drain junctions\n\n\nQ: How to reduce dynamic power?\nQ: How to reduce static power?\nQ: What caused the end of Dennard Scaling?\n\nVDD stopped scaling due to reliability\nVTh stopped scaling as pushing it further down increases leakage\n\n\n\n25.2.4 List of Questions - To be categorized…",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Interview & Problems</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Interview & Problems</span>"
     ]
   }
 ]

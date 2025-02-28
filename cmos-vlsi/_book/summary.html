@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./interview.html" rel="next">
+<link href="./summary-v2.html" rel="next">
 <link href="./testdebugverif.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -263,8 +263,32 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./summary-v2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Summary - Version 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary-v3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Summary - Version 3</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary-v4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Summary - Version 4</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary-v5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Summary - Version 5</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./interview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Interview &amp; Problems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Interview &amp; Problems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -300,8 +324,6 @@ window.Quarto = {
   <li><a href="#interconnects" id="toc-interconnects" class="nav-link" data-scroll-target="#interconnects"><span class="header-section-number">20.12</span> Interconnects</a></li>
   <li><a href="#latches-and-registers" id="toc-latches-and-registers" class="nav-link" data-scroll-target="#latches-and-registers"><span class="header-section-number">20.13</span> Latches and Registers</a></li>
   <li><a href="#memories" id="toc-memories" class="nav-link" data-scroll-target="#memories"><span class="header-section-number">20.14</span> Memories</a></li>
-  <li><a href="#memories-peripherals" id="toc-memories-peripherals" class="nav-link" data-scroll-target="#memories-peripherals"><span class="header-section-number">20.15</span> Memories: Peripherals</a></li>
-  <li><a href="#memories-flash-sram-dram" id="toc-memories-flash-sram-dram" class="nav-link" data-scroll-target="#memories-flash-sram-dram"><span class="header-section-number">20.16</span> Memories: Flash, SRAM, DRAM</a></li>
   </ul>
 </nav>
     </div>
@@ -389,11 +411,11 @@ window.Quarto = {
 <ul>
 <li>Parasitic capacitance of MOS transistor
 <ul>
-<li>( C_{GS} ): overlap, gate-to-channel (linear, saturation/velocity sat)</li>
-<li>( C_{GD} ): overlap, gate-to-channel (linear)</li>
-<li>( C_{GB} ): gate-to-channel (cutoff)</li>
-<li>( C_{SB} ): bottom plate, side wall</li>
-<li>( C_{DB} ): bottom plate, side wall, reverse-bias effect</li>
+<li><span class="math inline">\(C_{GS}\)</span>: overlap, gate-to-channel (linear, saturation/velocity sat)</li>
+<li><span class="math inline">\(C_{GD}\)</span>: overlap, gate-to-channel (linear)</li>
+<li><span class="math inline">\(C_{GB}\)</span>: gate-to-channel (cutoff)</li>
+<li><span class="math inline">\(C_{SB}\)</span>: bottom plate, side wall</li>
+<li><span class="math inline">\(C_{DB}\)</span>: bottom plate, side wall, reverse-bias effect</li>
 </ul></li>
 </ul>
 <p><img src="images/summary/thresh-var.png" class="img-fluid"></p>
@@ -423,42 +445,253 @@ window.Quarto = {
 </section>
 <section id="cmos-inverter-static-operation" class="level2" data-number="20.4">
 <h2 data-number="20.4" class="anchored" data-anchor-id="cmos-inverter-static-operation"><span class="header-section-number">20.4</span> CMOS Inverter: Static Operation</h2>
+<p><img src="images/summary/cmos-inv-first-ord.png" class="img-fluid"></p>
+<p><img src="images/summary/cmos-inv-vtc.png" class="img-fluid"></p>
+<p><img src="images/summary/dc-op-vtc.png" class="img-fluid"></p>
+<p><img src="images/summary/map-ana-dig.png" class="img-fluid"></p>
+<p><img src="images/summary/noise-marg-def.png" class="img-fluid"></p>
+<p><img src="images/summary/reliability-noise-dic.png" class="img-fluid"></p>
+<p><img src="images/summary/noise-budg.png" class="img-fluid"></p>
+<p><img src="images/summary/vih-vil-.png" class="img-fluid"></p>
+<p><img src="images/summary/pmoscurrent.png" class="img-fluid"></p>
+<p><img src="images/summary/pmoscurrent2.png" class="img-fluid"></p>
+<p><img src="images/summary/steady-state.png" class="img-fluid"></p>
+<p><img src="images/summary/solve-slope-vtc.png" class="img-fluid"></p>
+<p><img src="images/summary/solve-slope-vtc2.png" class="img-fluid"></p>
+<p><img src="images/summary/inv-gatin.png" class="img-fluid"></p>
+<p><img src="images/summary/inv-gain-vdd.png" class="img-fluid"></p>
+<p><img src="images/summary/inv-vtc-process-var.png" class="img-fluid"></p>
+<p><img src="images/summary/switch-thresh-transis-ratio.png" class="img-fluid"></p>
 </section>
 <section id="cmos-inverter-dynamic-operation" class="level2" data-number="20.5">
 <h2 data-number="20.5" class="anchored" data-anchor-id="cmos-inverter-dynamic-operation"><span class="header-section-number">20.5</span> CMOS Inverter: Dynamic Operation</h2>
+<p><img src="images/summary/delay-definitions.png" class="img-fluid"></p>
+<p><img src="images/summary/prop-delay-appr1.png" class="img-fluid"></p>
+<p><img src="images/summary/first-ord-rc-net.png" class="img-fluid"></p>
+<p><img src="images/summary/inv-prop-delay-appr2.png" class="img-fluid"></p>
+<p><img src="images/summary/inv-trans-resp.png" class="img-fluid"></p>
+<p><img src="images/summary/inv-trans-resp2.png" class="img-fluid"></p>
+<p><img src="images/summary/des-perf.png" class="img-fluid"></p>
+<p><img src="images/summary/del-func-vdd.png" class="img-fluid"></p>
+<p><img src="images/summary/dev-sizing.png" class="img-fluid"></p>
+<p><img src="images/summary/del-nmos-pmos-ratio.png" class="img-fluid"></p>
 </section>
 <section id="cmos-inverter-sizing-and-energy" class="level2" data-number="20.6">
 <h2 data-number="20.6" class="anchored" data-anchor-id="cmos-inverter-sizing-and-energy"><span class="header-section-number">20.6</span> CMOS Inverter: Sizing and Energy</h2>
+<p><img src="images/summary/inv-size-perf.png" class="img-fluid"></p>
+<p><img src="images/summary/cap-text-sum.png" class="img-fluid"></p>
+<p><img src="images/summary/inv-delay-eqns-diag.png" class="img-fluid"></p>
+<p><img src="images/summary/inv_w_ld.png" class="img-fluid"></p>
+<p><img src="images/summary/inv_w_ld2.png" class="img-fluid"></p>
+<p><img src="images/summary/del-formula_rc.png" class="img-fluid"></p>
+<p><img src="images/summary/inv_hain_appl_del.png" class="img-fluid"></p>
+<p><img src="images/summary/opt_tapering_n.png" class="img-fluid"></p>
+<p><img src="images/summary/opt_del_num_stg.png" class="img-fluid"></p>
+<p><img src="images/summary/opt_del_nuM-stg_ex.png" class="img-fluid"></p>
+<p><img src="images/summary/opt_num_stages_eqns.png" class="img-fluid"></p>
+<p><img src="images/summary/opt_eff_fanout_f.png" class="img-fluid"></p>
+<p><img src="images/summary/buff_design_inv_chain.png" class="img-fluid"></p>
+<p><img src="images/summary/cmos_power_where.png" class="img-fluid"></p>
+<p><img src="images/summary/cmos-dyn-power-diss.png" class="img-fluid"></p>
+<p><img src="images/summary/mod_cir_red_swing.png" class="img-fluid"></p>
+<p><img src="images/summary/node-trans-act-power.png" class="img-fluid"></p>
+<p><img src="images/summary/short_cir_curr.png" class="img-fluid"></p>
+<p><img src="images/summary/leakage-3.png" class="img-fluid"></p>
+<p><img src="images/summary/subthreshold-leakage-comp.png" class="img-fluid"></p>
+<p><img src="images/summary/static-power-cons.png" class="img-fluid"></p>
+<p><img src="images/summary/principles-power-redu.png" class="img-fluid"></p>
 </section>
 <section id="cmos-inverter-scaling" class="level2" data-number="20.7">
 <h2 data-number="20.7" class="anchored" data-anchor-id="cmos-inverter-scaling"><span class="header-section-number">20.7</span> CMOS Inverter: Scaling</h2>
+<p><strong>Goals of Technology scaling</strong></p>
+<ul>
+<li>Make things cheaper:
+<ul>
+<li>Want to sell more functions (transistors) per chip for the same money</li>
+<li>Build same products cheaper, sell the same part for less money</li>
+<li>Price of a transistor has to be reduced</li>
+</ul></li>
+<li>But also want to be faster, smaller, lower power</li>
+</ul>
+<p><strong>Technology Scaling</strong></p>
+<ul>
+<li>Goals of scaling the dimensions by 30%:
+<ul>
+<li>Reduce gate delay by 30% (increase operating frequency by 43%)</li>
+<li>Double transistor density</li>
+<li>Reduce energy per transition by 65% (50% power savings @ 43% increase in frequency)</li>
+</ul></li>
+<li>Technology generation spans 2-3 years</li>
+</ul>
+<p><strong>Technology Scaling Models</strong></p>
+<ul>
+<li><strong>Full Scaling (Constant Electrical Field)</strong>
+<ul>
+<li>Ideal model - dimensions and voltage scale together by the same factor S</li>
+</ul></li>
+<li><strong>Fixed Voltage Scaling</strong>
+<ul>
+<li>Most common model until recently - only dimensions scale, voltages remain constant</li>
+</ul></li>
+<li><strong>General Scaling</strong>
+<ul>
+<li>Most realistic for today’s situation - voltages and dimensions scale with different factors</li>
+</ul></li>
+</ul>
+<p><img src="images/summary/transistor-scaling-vel-sat.png" class="img-fluid"></p>
 </section>
 <section id="static-cmos-gates" class="level2" data-number="20.8">
 <h2 data-number="20.8" class="anchored" data-anchor-id="static-cmos-gates"><span class="header-section-number">20.8</span> Static CMOS Gates</h2>
+<p><img src="images/summary/static-cmos-def.png" class="img-fluid"></p>
+<p>Static Complementary CMOS - PUN and PDN are dual logic networks</p>
+<p><img src="images/summary/nmos-series-parallel.png" class="img-fluid"></p>
+<p><img src="images/summary/pmos-series-parallel.png" class="img-fluid"></p>
+<p><img src="images/summary/threshold_drops_.png" class="img-fluid"></p>
+<p><img src="images/summary/complemen-cmos-logic-style.png" class="img-fluid"></p>
+<p><img src="images/summary/nand-ex-gate.png" class="img-fluid"></p>
+<p><img src="images/summary/ex_nor_gate.png" class="img-fluid"></p>
+<p><img src="images/summary/complex-cmos-gate.png" class="img-fluid"></p>
+<p><img src="images/summary/prop-comple-cmos-gates-sum.png" class="img-fluid"></p>
+<p><img src="images/summary/cmos-properties-sum-bul.png" class="img-fluid"></p>
+<p><img src="images/summary/switch-delay-model-_.png" class="img-fluid"></p>
+<p><img src="images/summary/input_pattern_delay_eff.png" class="img-fluid"></p>
+<p><img src="images/summary/transis-sizing_.png" class="img-fluid"></p>
+<p><img src="images/summary/transistor-sizing-complex-gate.png" class="img-fluid"></p>
+<p><img src="images/summary/fan-in-consid.png" class="img-fluid"></p>
+<p><img src="images/summary/tp-func-fan-in.png" class="img-fluid"></p>
+<p><img src="images/summary/tp-func-fan-in-out-.png" class="img-fluid"></p>
+<p><img src="images/summary/fast-compl-gate-tec1.png" class="img-fluid"></p>
+<p><img src="images/summary/fast-compl-gate-tec2.png" class="img-fluid"></p>
+<p><img src="images/summary/fast-compl-gate-tec3.png" class="img-fluid"></p>
+<p><img src="images/summary/fast-compl-gate-tec4.png" class="img-fluid"></p>
+<p><img src="images/summary/fast-compl-gate-tec5.png" class="img-fluid"></p>
 </section>
 <section id="ratioed-logic" class="level2" data-number="20.9">
 <h2 data-number="20.9" class="anchored" data-anchor-id="ratioed-logic"><span class="header-section-number">20.9</span> Ratioed Logic</h2>
+<p><img src="images/summary/ratioed-logic1.png" class="img-fluid"></p>
+<p><img src="images/summary/ratioed-logic2.png" class="img-fluid"></p>
+<p><img src="images/summary/pseudonmos-1.png" class="img-fluid"></p>
+<p><img src="images/summary/pseudonmos-2.png" class="img-fluid"></p>
 </section>
 <section id="pass-transistor-logic" class="level2" data-number="20.10">
 <h2 data-number="20.10" class="anchored" data-anchor-id="pass-transistor-logic"><span class="header-section-number">20.10</span> Pass Transistor Logic</h2>
+<p><img src="images/summary/ptl1.png" class="img-fluid"></p>
+<p><img src="images/summary/ptl-nand.png" class="img-fluid"></p>
+<p><img src="images/summary/nmos-only-logic-1.png" class="img-fluid"></p>
+<p><img src="images/summary/nmos-only-switch.png" class="img-fluid"></p>
+<p><img src="images/summary/level-rest-transistor.png" class="img-fluid"></p>
+<p><img src="images/summary/restorer-sizing.png" class="img-fluid"></p>
+<p><img src="images/summary/sol2-sing-trans-pass.png" class="img-fluid"></p>
+<p><img src="images/summary/comp-ptl-1.png" class="img-fluid"></p>
+<p><img src="images/summary/transmission-gate-sol3.png" class="img-fluid"></p>
+<p><img src="images/summary/transmission-resistance.png" class="img-fluid"></p>
+<p><img src="images/summary/transmission-g-xor.png" class="img-fluid"></p>
 </section>
 <section id="dynamic-logic" class="level2" data-number="20.11">
 <h2 data-number="20.11" class="anchored" data-anchor-id="dynamic-logic"><span class="header-section-number">20.11</span> Dynamic Logic</h2>
+<p><img src="images/summary/dynamic-cmos.png" class="img-fluid"></p>
+<p><img src="images/summary/dyn-gate-1.png" class="img-fluid"></p>
+<p><img src="images/summary/dyn-gate2.png" class="img-fluid"></p>
+<p><img src="images/summary/dyn-gate-cond-output.png" class="img-fluid"></p>
+<p><img src="images/summary/dyn-gate-properties.png" class="img-fluid"></p>
+<p><img src="images/summary/dyn-gate-properties2.png" class="img-fluid"></p>
+<p><img src="images/summary/dyn-gate-issue-charge-leak.png" class="img-fluid"></p>
+<p><img src="images/summary/dyn-charge-leak-sol.png" class="img-fluid"></p>
+<p><img src="images/summary/dyn-gate-charge-share.png" class="img-fluid"></p>
+<p><img src="images/summary/charge-sharing2.png" class="img-fluid"></p>
+<p><img src="images/summary/charge-redistr-solution.png" class="img-fluid"></p>
+<p><img src="images/summary/backgate-coupling-dyn-issue.png" class="img-fluid"></p>
+<p><img src="images/summary/dyn-issue4-clock-feedthru.png" class="img-fluid"></p>
+<p><img src="images/summary/clock-feedthru.png" class="img-fluid"></p>
+<p><img src="images/summary/cascad-dyn-gates.png" class="img-fluid"></p>
+<p><img src="images/summary/domino-logi.png" class="img-fluid"></p>
+<p><img src="images/summary/why-domino.png" class="img-fluid"></p>
+<p><img src="images/summary/domino-prop.png" class="img-fluid"></p>
 </section>
 <section id="interconnects" class="level2" data-number="20.12">
 <h2 data-number="20.12" class="anchored" data-anchor-id="interconnects"><span class="header-section-number">20.12</span> Interconnects</h2>
+<p><img src="images/summary/int-intel-45nm.png" class="img-fluid"></p>
+<p><img src="images/summary/wire-model.png" class="img-fluid"></p>
+<p><img src="images/summary/impact-intercon-parasitic.png" class="img-fluid"></p>
+<p><img src="images/summary/cap-wire-int.png" class="img-fluid"></p>
+<p><img src="images/summary/cap-parallel-plate.png" class="img-fluid"></p>
+<p><img src="images/summary/permittivity-int.png" class="img-fluid"></p>
+<p><img src="images/summary/fringing-cap.png" class="img-fluid"></p>
+<p><img src="images/summary/fring-vs-para-plate.png" class="img-fluid"></p>
+<p><img src="images/summary/int-wire-cap.png" class="img-fluid"></p>
+<p><img src="images/impact-int-wire-cap.png" class="img-fluid"></p>
+<p><img src="images/summary/wiring-cap-0-25um.png" class="img-fluid"></p>
+<p><img src="images/summary/wire-cap-summary.png" class="img-fluid"></p>
+<p><img src="images/summary/wire-resis.png" class="img-fluid"></p>
+<p><img src="images/summary/intercon-resis.png" class="img-fluid"></p>
+<p><img src="images/summary/int-deal-resis.png" class="img-fluid"></p>
+<p><img src="images/summary/polycide-gate-mosfet.png" class="img-fluid"></p>
+<p><img src="images/summary/sheet-resis.png" class="img-fluid"></p>
+<p><img src="images/summary/summary-wire-resis.png" class="img-fluid"></p>
+<p><img src="images/summary/int-lumped-model.png" class="img-fluid"></p>
+<p><img src="images/summary/elmore-del-basics.png" class="img-fluid"></p>
+<p><img src="images/summary/rc-chain-.png" class="img-fluid"></p>
+<p><img src="images/summary/wire-model-1.png" class="img-fluid"></p>
+<p><img src="images/summary/step-resp-rc-wire-ts.png" class="img-fluid"></p>
+<p><img src="images/summary/rc-models.png" class="img-fluid"></p>
+<p><img src="images/summary/driving-rc-line.png" class="img-fluid"></p>
+<p><img src="images/summary/int-wire-design-rut.png" class="img-fluid"></p>
+<p><img src="images/summary/glob-long-wire-prob.png" class="img-fluid"></p>
+<p><img src="images/summary/reduc-rc-del.png" class="img-fluid"></p>
+<p><img src="images/summary/repeater-inser.png" class="img-fluid"></p>
 </section>
 <section id="latches-and-registers" class="level2" data-number="20.13">
 <h2 data-number="20.13" class="anchored" data-anchor-id="latches-and-registers"><span class="header-section-number">20.13</span> Latches and Registers</h2>
+<p><img src="images/summary/seq-logic-2-mech.png" class="img-fluid"></p>
+<p><img src="images/summary/max-clk-freq-eqns.png" class="img-fluid"></p>
+<p><img src="images/summary/mux-latch.png" class="img-fluid"></p>
+<p><img src="images/summary/mux-latch-circ.png" class="img-fluid"></p>
+<p><img src="images/summary/mux-latch2.png" class="img-fluid"></p>
+<p><img src="images/summary/mux-reg-edge.png" class="img-fluid"></p>
+<p><img src="images/summary/mux-latch-pair.png" class="img-fluid"></p>
+<p><img src="images/summary/clk-q-del-.png" class="img-fluid"></p>
+<p><img src="images/summay/setup-time-graph.png" class="img-fluid"></p>
+<p><img src="images/summary/writing-static-latch.png" class="img-fluid"></p>
+<p><img src="images/summary/storage-mech.png" class="img-fluid"></p>
+<p><img src="images/summary/latch-reg-summary.png" class="img-fluid"></p>
+<p><img src="images/summary/schmid-trigg-1.png" class="img-fluid"></p>
+<p><img src="images/summary/schmitt-triggg.png" class="img-fluid"></p>
 </section>
 <section id="memories" class="level2" data-number="20.14">
 <h2 data-number="20.14" class="anchored" data-anchor-id="memories"><span class="header-section-number">20.14</span> Memories</h2>
-</section>
-<section id="memories-peripherals" class="level2" data-number="20.15">
-<h2 data-number="20.15" class="anchored" data-anchor-id="memories-peripherals"><span class="header-section-number">20.15</span> Memories: Peripherals</h2>
-</section>
-<section id="memories-flash-sram-dram" class="level2" data-number="20.16">
-<h2 data-number="20.16" class="anchored" data-anchor-id="memories-flash-sram-dram"><span class="header-section-number">20.16</span> Memories: Flash, SRAM, DRAM</h2>
+<p><img src="images/summary/mem-classification.png" class="img-fluid"></p>
+<p><img src="images/summary/mem-timing-def.png" class="img-fluid"></p>
+<p><img src="images/summary/mem-arch-decod.png" class="img-fluid"></p>
+<p><img src="images/summary/arr-struct-mem-arch.png" class="img-fluid"></p>
+<p><img src="images/summary/hier-mem-arch.png" class="img-fluid"></p>
+<p><img src="images/summary/mem-timing-appro.png" class="img-fluid"></p>
+<p><img src="images/summary/-ram-static-dyn.png" class="img-fluid"></p>
+<p><img src="images/summary/6t-sram-cell.png" class="img-fluid"></p>
+<p><img src="images/summary/sram-read.png" class="img-fluid"></p>
+<p><img src="images/summary/sram-read-graph.png" class="img-fluid"></p>
+<p><img src="images/summary/sram-write-analysis.png" class="img-fluid"></p>
+<p><img src="images/summary/sram-write-graph.png" class="img-fluid"></p>
+<p><img src="images/summary/3t-dram.png" class="img-fluid"></p>
+<p><img src="images/summary/1t-dram.png" class="img-fluid"></p>
+<p><img src="images/summary/dram-cell-bserv.png" class="img-fluid"></p>
+<p><img src="images/summary/1t-dram-illu.png" class="img-fluid"></p>
+<p><img src="images/summary/trench-cap.png" class="img-fluid"></p>
+<p><img src="images/summary/arr-struct-mem-arch-prob.png" class="img-fluid"></p>
+<p><img src="images/summary/row-decders-.png" class="img-fluid"></p>
+<p><img src="images/summary/hierarch-decoders-multi-.png" class="img-fluid"></p>
+<p><img src="images/summary/dynamic-decoders-.png" class="img-fluid"></p>
+<p><img src="images/summary/4-inp-pass-transis-col-deco.png" class="img-fluid"></p>
+<p><img src="images/summary/4-1-tree-col-decod.png" class="img-fluid"></p>
+<p><img src="images/summary/sense-amp.png" class="img-fluid"></p>
+<p><img src="images/summary/diff-sense-amp.png" class="img-fluid"></p>
+<p><img src="images/summary/read-on-mem-cell.png" class="img-fluid"></p>
+<p><img src="images/summary/mos-or-rom.png" class="img-fluid"></p>
+<p><img src="images/summary/mosnorrom.png" class="img-fluid"></p>
+<p><img src="images/summary/mosnandrom.png" class="img-fluid"></p>
+<p><img src="images/summary/equiv-trans-model-mos-nor-rom.png" class="img-fluid"></p>
+<p><img src="images/summary/equiv-trans-model-mos-nand-rom.png" class="img-fluid"></p>
+<p><img src="images/summary/dec-wordline-del.png" class="img-fluid"></p>
+<p><img src="images/summary/prechar-mos-nor-rom.png" class="img-fluid"></p>
 
 
 </section>
@@ -888,8 +1121,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./interview.html" class="pagination-link" aria-label="Interview &amp; Problems">
-        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Interview &amp; Problems</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary-v2.html" class="pagination-link" aria-label="Summary - Version 2">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Summary - Version 2</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

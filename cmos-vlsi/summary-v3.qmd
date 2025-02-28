@@ -1,0 +1,160 @@
+# Summary - Version 3
+
+
+![](images/transis-switch-v3.png)
+
+![](images/mos-transis-v3.png)
+
+**NMOS Operation**
+
+- Body is usually tied to ground (0V)
+- When the gate is at a low voltage:
+  - P-type body is at low voltage
+  - Source-body and drain-body diodes are OFF
+  - No current flows, transistor is OFF
+
+![](images/nmos-op-v3.png)
+
+- When the gate is at a high voltage:
+  - Positive charge on gate of MOS capacitor
+  - Negative charge attracted to body
+  - Inverts a channel under gate to n-type
+  - Now current can flow through n-type silicon from source through channel to drain, transistor is ON
+
+![](images/nmos-op-high-v-v3.png)
+
+![](images/mosfet-iv-cond-v3.png)
+
+![](images/mosfet-iv-graph-v3.png)
+
+![](images/pmos-transis-ve.png)
+
+![](images/transis-switches-v3.png)
+
+![](images/cmos-inv---v3.png)
+
+![](images/and-or-func-nmos-v3.png)
+
+![](images/nmos-parallel-series-v3.png)
+
+
+
+![](images/pmos-series-parallel-v3.png)
+
+
+
+![](images/static-cmos-general-v3.png)
+
+![](images/cmos-compl-logic-cons-v3.png)
+
+![](images/static-prop-cmos-gates-v3.png)
+
+![](images/transmission-gate-v3.png)
+
+![](images/transmission-gate-xor-v3.png)
+
+![](images/full-adder--v3.png)
+
+![](images/rca---v3.png)
+
+![](images/static-cmos-fa-28t-v3.png)
+
+![](images/transmission-gate-fa-v3.png)
+
+![](images/mosfet-iv-cond-resis-s29-v3.png)
+
+![](images/capacitance-s30-v3.png)
+
+![](images/cmos-inv-tran-resp-s31-v3.png)
+
+![](images/unit-size-inv-v3.png)
+
+![](images/inv-scaling-s33-v3.png)
+
+![](images/inv-w-ld-v3.png)
+
+![](images/prop-del-analysis-v3.png)
+
+![](images/cmos-power-comp-v3.png)
+
+![](images/cmos-inv-energy-cons-v3.png)
+
+![](images/dyn-power-consump-1-v3.png)
+
+![](images/dyn-power-2-v3.png)
+
+![](images/cmos-gate-energy-power-v3.png)
+
+![](images/energy-power-cmos-v3.png)
+
+![](images/switching-act-asw-v3.png)
+
+![](images/power-delay-tradeoff-v-scale-v3.png)
+
+![](images/the-wire-v3.png)
+
+![](images/tech-scaling-v3.png)
+
+![](images/process-tech-scaling-v3.png)
+
+![](images/bit-store-mech-bist-v3.png)
+
+
+
+![](images/mux-latch-v3.png)
+
+![](images/storage-mech-stat-dyn-v3.png)
+
+
+![](images/reg-mux-diag-v3.png)
+
+
+![](images/mux-latch-pair-v3.png)
+
+![](images/reg-timing-defs-v3.png)
+
+![](images/max-clk-freq-v3.png)
+
+
+
+![](images/setup-time-v3.png)
+
+![](images/setup-cons-v3.png)
+
+![](images/pipelining-v3.png)
+
+![](images/mem-semi-class-v3.png)
+
+![](images/general-mem-struct-v3.png)
+
+![](images/precharge-mos-nor-rom-v3.png)
+
+![](images/addr-decod-v3.png)
+
+
+![](images/sram-struct-dia-v3.png)
+
+
+![](images/6tsramcell-v3.png)
+
+
+![](images/6tsram-cell2-v3.png)
+
+![](images/fast-path-hold-v3.png)
+
+- Positive skew is BAD for hold time (positive skew goes rightwards in waveform)
+- Negative skew is good for hold time (skew goes leftwards)
+- If we see hold time violation, we could:
+  - add buffers to increase T_fast and make logic slower
+  - Create intentional skew (negative skew for clock)
+
+![](images/slow-path-setup-v3.png)
+
+- When setup time is violated
+  - increase T_clock
+  - Increase VDD such that circuit goes faster
+  - Pipelining or do retiming
+  - Adjust skew
+
+![](images/pipelining-low-power-technique-v3.png)
+

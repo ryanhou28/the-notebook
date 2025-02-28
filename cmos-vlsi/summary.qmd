@@ -86,11 +86,11 @@ For a PN Junction:
 **Summary of Capacitances**
 
 - Parasitic capacitance of MOS transistor
-  - \( C_{GS} \): overlap, gate-to-channel (linear, saturation/velocity sat)
-  - \( C_{GD} \): overlap, gate-to-channel (linear)
-  - \( C_{GB} \): gate-to-channel (cutoff)
-  - \( C_{SB} \): bottom plate, side wall
-  - \( C_{DB} \): bottom plate, side wall, reverse-bias effect
+  - $C_{GS}$: overlap, gate-to-channel (linear, saturation/velocity sat)
+  - $C_{GD}$: overlap, gate-to-channel (linear)
+  - $C_{GB}$: gate-to-channel (cutoff)
+  - $C_{SB}$: bottom plate, side wall
+  - $C_{DB}$: bottom plate, side wall, reverse-bias effect
 
 
 ![](images/summary/thresh-var.png)
@@ -123,36 +123,413 @@ For a PN Junction:
 
 ## CMOS Inverter: Static Operation
 
+![](images/summary/cmos-inv-first-ord.png)
+
+![](images/summary/cmos-inv-vtc.png)
+
+![](images/summary/dc-op-vtc.png)
+
+![](images/summary/map-ana-dig.png)
+
+![](images/summary/noise-marg-def.png)
+
+![](images/summary/reliability-noise-dic.png)
+
+![](images/summary/noise-budg.png)
+
+![](images/summary/vih-vil-.png)
+
+![](images/summary/pmoscurrent.png)
+
+![](images/summary/pmoscurrent2.png)
+
+![](images/summary/steady-state.png)
+
+![](images/summary/solve-slope-vtc.png)
+
+![](images/summary/solve-slope-vtc2.png)
+
+![](images/summary/inv-gatin.png)
+
+![](images/summary/inv-gain-vdd.png)
+
+![](images/summary/inv-vtc-process-var.png)
+
+![](images/summary/switch-thresh-transis-ratio.png)
 
 ## CMOS Inverter: Dynamic Operation
+
+![](images/summary/delay-definitions.png)
+
+![](images/summary/prop-delay-appr1.png)
+
+![](images/summary/first-ord-rc-net.png)
+
+![](images/summary/inv-prop-delay-appr2.png)
+
+![](images/summary/inv-trans-resp.png)
+
+![](images/summary/inv-trans-resp2.png)
+
+![](images/summary/des-perf.png)
+
+![](images/summary/del-func-vdd.png)
+
+![](images/summary/dev-sizing.png)
+
+![](images/summary/del-nmos-pmos-ratio.png)
 
 
 ## CMOS Inverter: Sizing and Energy
 
+![](images/summary/inv-size-perf.png)
+
+![](images/summary/cap-text-sum.png)
+
+![](images/summary/inv-delay-eqns-diag.png)
+
+![](images/summary/inv_w_ld.png)
+
+![](images/summary/inv_w_ld2.png)
+
+![](images/summary/del-formula_rc.png)
+
+![](images/summary/inv_hain_appl_del.png)
+
+![](images/summary/opt_tapering_n.png)
+
+![](images/summary/opt_del_num_stg.png)
+
+![](images/summary/opt_del_nuM-stg_ex.png)
+
+![](images/summary/opt_num_stages_eqns.png)
+
+![](images/summary/opt_eff_fanout_f.png)
+
+![](images/summary/buff_design_inv_chain.png)
+
+![](images/summary/cmos_power_where.png)
+
+![](images/summary/cmos-dyn-power-diss.png)
+
+![](images/summary/mod_cir_red_swing.png)
+
+![](images/summary/node-trans-act-power.png)
+
+![](images/summary/short_cir_curr.png)
+
+![](images/summary/leakage-3.png)
+
+![](images/summary/subthreshold-leakage-comp.png)
+
+![](images/summary/static-power-cons.png)
+
+![](images/summary/principles-power-redu.png)
+
 ## CMOS Inverter: Scaling
 
+**Goals of Technology scaling**
+
+- Make things cheaper:
+  - Want to sell more functions (transistors) per chip for the same money
+  - Build same products cheaper, sell the same part for less money
+  - Price of a transistor has to be reduced
+- But also want to be faster, smaller, lower power
+
+**Technology Scaling**
+
+- Goals of scaling the dimensions by 30%:
+    - Reduce gate delay by 30% (increase operating frequency by 43%)
+    - Double transistor density
+    - Reduce energy per transition by 65% (50% power savings @ 43% increase in frequency)
+- Technology generation spans 2-3 years
+
+**Technology Scaling Models**
+
+- **Full Scaling (Constant Electrical Field)**
+  - Ideal model - dimensions and voltage scale together by the same factor S
+- **Fixed Voltage Scaling**
+  - Most common model until recently - only dimensions scale, voltages remain constant
+- **General Scaling**
+  - Most realistic for today's situation - voltages and dimensions scale with different factors
+
+![](images/summary/transistor-scaling-vel-sat.png)
 
 ## Static CMOS Gates
+
+![](images/summary/static-cmos-def.png)
+
+Static Complementary CMOS - PUN and PDN are dual logic networks
+
+![](images/summary/nmos-series-parallel.png)
+
+![](images/summary/pmos-series-parallel.png)
+
+![](images/summary/threshold_drops_.png)
+
+![](images/summary/complemen-cmos-logic-style.png)
+
+![](images/summary/nand-ex-gate.png)
+
+![](images/summary/ex_nor_gate.png)
+
+![](images/summary/complex-cmos-gate.png)
+
+![](images/summary/prop-comple-cmos-gates-sum.png)
+
+![](images/summary/cmos-properties-sum-bul.png)
+
+![](images/summary/switch-delay-model-_.png)
+
+![](images/summary/input_pattern_delay_eff.png)
+
+![](images/summary/transis-sizing_.png)
+
+![](images/summary/transistor-sizing-complex-gate.png)
+
+![](images/summary/fan-in-consid.png)
+
+![](images/summary/tp-func-fan-in.png)
+
+![](images/summary/tp-func-fan-in-out-.png)
+
+![](images/summary/fast-compl-gate-tec1.png)
+
+![](images/summary/fast-compl-gate-tec2.png)
+
+![](images/summary/fast-compl-gate-tec3.png)
+
+![](images/summary/fast-compl-gate-tec4.png)
+
+![](images/summary/fast-compl-gate-tec5.png)
 
 
 ## Ratioed Logic
 
+![](images/summary/ratioed-logic1.png)
+
+![](images/summary/ratioed-logic2.png)
+
+![](images/summary/pseudonmos-1.png)
+
+![](images/summary/pseudonmos-2.png)
+
 ## Pass Transistor Logic
 
+![](images/summary/ptl1.png)
+
+![](images/summary/ptl-nand.png)
+
+![](images/summary/nmos-only-logic-1.png)
+
+![](images/summary/nmos-only-switch.png)
+
+![](images/summary/level-rest-transistor.png)
+
+![](images/summary/restorer-sizing.png)
+
+![](images/summary/sol2-sing-trans-pass.png)
+
+![](images/summary/comp-ptl-1.png)
+
+![](images/summary/transmission-gate-sol3.png)
+
+![](images/summary/transmission-resistance.png)
+
+![](images/summary/transmission-g-xor.png)
 
 ## Dynamic Logic
 
+![](images/summary/dynamic-cmos.png)
+
+![](images/summary/dyn-gate-1.png)
+
+![](images/summary/dyn-gate2.png)
+
+![](images/summary/dyn-gate-cond-output.png)
+
+![](images/summary/dyn-gate-properties.png)
+
+![](images/summary/dyn-gate-properties2.png)
+
+![](images/summary/dyn-gate-issue-charge-leak.png)
+
+![](images/summary/dyn-charge-leak-sol.png)
+
+![](images/summary/dyn-gate-charge-share.png)
+
+![](images/summary/charge-sharing2.png)
+
+![](images/summary/charge-redistr-solution.png)
+
+![](images/summary/backgate-coupling-dyn-issue.png)
+
+![](images/summary/dyn-issue4-clock-feedthru.png)
+
+![](images/summary/clock-feedthru.png)
+
+![](images/summary/cascad-dyn-gates.png)
+
+![](images/summary/domino-logi.png)
+
+![](images/summary/why-domino.png)
+
+![](images/summary/domino-prop.png)
+
 ## Interconnects
 
+![](images/summary/int-intel-45nm.png)
+
+![](images/summary/wire-model.png)
+
+![](images/summary/impact-intercon-parasitic.png)
+
+![](images/summary/cap-wire-int.png)
+
+![](images/summary/cap-parallel-plate.png)
+
+![](images/summary/permittivity-int.png)
+
+![](images/summary/fringing-cap.png)
+
+![](images/summary/fring-vs-para-plate.png)
+
+![](images/summary/int-wire-cap.png)
+
+![](images/impact-int-wire-cap.png)
+
+![](images/summary/wiring-cap-0-25um.png)
+
+![](images/summary/wire-cap-summary.png)
+
+![](images/summary/wire-resis.png)
+
+![](images/summary/intercon-resis.png)
+
+![](images/summary/int-deal-resis.png)
+
+![](images/summary/polycide-gate-mosfet.png)
+
+![](images/summary/sheet-resis.png)
+
+![](images/summary/summary-wire-resis.png)
+
+![](images/summary/int-lumped-model.png)
+
+![](images/summary/elmore-del-basics.png)
+
+![](images/summary/rc-chain-.png)
+
+![](images/summary/wire-model-1.png)
+
+![](images/summary/step-resp-rc-wire-ts.png)
+
+![](images/summary/rc-models.png)
+
+![](images/summary/driving-rc-line.png)
+
+![](images/summary/int-wire-design-rut.png)
+
+![](images/summary/glob-long-wire-prob.png)
+
+![](images/summary/reduc-rc-del.png)
+
+![](images/summary/repeater-inser.png)
 
 ## Latches and Registers
 
+![](images/summary/seq-logic-2-mech.png)
 
+![](images/summary/max-clk-freq-eqns.png)
+
+![](images/summary/mux-latch.png)
+
+![](images/summary/mux-latch-circ.png)
+
+![](images/summary/mux-latch2.png)
+
+![](images/summary/mux-reg-edge.png)
+
+![](images/summary/mux-latch-pair.png)
+
+![](images/summary/clk-q-del-.png)
+
+![](images/summay/setup-time-graph.png)
+
+![](images/summary/writing-static-latch.png)
+
+![](images/summary/storage-mech.png)
+
+![](images/summary/latch-reg-summary.png)
+
+![](images/summary/schmid-trigg-1.png)
+
+![](images/summary/schmitt-triggg.png)
 
 ## Memories
 
+![](images/summary/mem-classification.png)
 
-## Memories: Peripherals
+![](images/summary/mem-timing-def.png)
 
-## Memories: Flash, SRAM, DRAM
+![](images/summary/mem-arch-decod.png)
 
+![](images/summary/arr-struct-mem-arch.png)
+
+![](images/summary/hier-mem-arch.png)
+
+![](images/summary/mem-timing-appro.png)
+
+![](images/summary/-ram-static-dyn.png)
+
+![](images/summary/6t-sram-cell.png)
+
+![](images/summary/sram-read.png)
+
+![](images/summary/sram-read-graph.png)
+
+![](images/summary/sram-write-analysis.png)
+
+![](images/summary/sram-write-graph.png)
+
+![](images/summary/3t-dram.png)
+
+![](images/summary/1t-dram.png)
+
+![](images/summary/dram-cell-bserv.png)
+
+![](images/summary/1t-dram-illu.png)
+
+![](images/summary/trench-cap.png)
+
+![](images/summary/arr-struct-mem-arch-prob.png)
+
+![](images/summary/row-decders-.png)
+
+![](images/summary/hierarch-decoders-multi-.png)
+
+![](images/summary/dynamic-decoders-.png)
+
+![](images/summary/4-inp-pass-transis-col-deco.png)
+
+![](images/summary/4-1-tree-col-decod.png)
+
+![](images/summary/sense-amp.png)
+
+![](images/summary/diff-sense-amp.png)
+
+![](images/summary/read-on-mem-cell.png)
+
+![](images/summary/mos-or-rom.png)
+
+![](images/summary/mosnorrom.png)
+
+![](images/summary/mosnandrom.png)
+
+![](images/summary/equiv-trans-model-mos-nor-rom.png)
+
+![](images/summary/equiv-trans-model-mos-nand-rom.png)
+
+![](images/summary/dec-wordline-del.png)
+
+![](images/summary/prechar-mos-nor-rom.png)

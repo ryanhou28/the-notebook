@@ -286,3 +286,10 @@ Many parameters in CMOS circuits have significant temperature dependencies. Key 
 - Threshold voltage: $V_{th}(T) = V_{th}(T_0) + \alpha(T-T_0)$
 - Leakage current: $I_{leak} \propto T^2e^{-E_g/2k_BT}$
 :::
+
+
+## Tables
+
+![[Image Source](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.physicsclassroom.com%2Fcalcpad%2FTransient-RC-Circuits%2FEquation-Overview&psig=AOvVaw3kjTsjcpghUHOA5iEgE4U9&ust=1740808139623000&source=images&cd=vfe&opi=89978449&ved=0CBkQjhxqFwoTCJjOi4LW5YsDFQAAAAAdAAAAABAV)](images/circuit/circuit-eqn-table--1.png)
+
+

@@ -1,0 +1,240 @@
+# Summary - Version 4
+
+
+Ohms Law: $V=IR$
+
+Capacitor Charge: $Q=CV$
+
+Capacitor Energy: $E=\frac{1}{2}CV^2$
+
+Capacitor: $I = C \frac{dV}{dt}$
+
+Inductor Voltage: $V=L\frac{dI}{dt}$
+
+RC Circuit Charging: $V_C(t) = V_{DD}(1-e^{-t/RC})$
+
+RC Circuit Discharging: $V_C(t) = V_0 e^{-t/RC}$, initial voltage $V_0$
+
+RL Current Growth (applying VDD): $I(t) = \frac{V_{DD}}{R}(1-e^{-Rt/L})$
+
+RL Current Decay (remove supply): $I(t)=I_0 e^{-Rt/L}$
+
+
+**Diffusion** - movement of charge carriers move from regions of high concentration to low concentration
+
+**Drift** - movement of charge carriers due to external electric field
+
+**Depletion Region** - region where mobile charge carriers are depleted
+
+**Inversion** - mode of operation where formation of conductive channel opposite to substrate type
+
+## CMOS Basics
+
+Why is PMOS "slower"?
+
+- electrons have higher mobility than holes
+- due to this lower carrier mobility, PMOS is weaker to charge (load) capacitance 
+
+Why is PMOS sized ~2x NMOS?
+
+- due to lower mobility of charge carrier, need to size larger (W) to match drive strength of NMOS
+
+### Regions of Operation
+
+- **Cutoff Region**
+  - $V_{GS} < V_{TH}$
+- **Linear Region**
+  - $V_{GS} > V_{TH}$ and $V_{DS} < V_{GS} - V_{TH}$
+- **Saturation Region**
+  - $V_{GS} > V_{TH}$ and $V_{DS} \geq V_{GS} - V_{TH}$
+  - Channel is pinched off (on drain end). Current mostly controlled by $V_{GS}$
+    - Depletion region forms on drain end
+  - Essentially current starts to plateau the more it saturates
+
+![](images/summary/mos-model-regions.png)
+
+
+## CMOS Inverter
+
+[Youtube reference](https://www.youtube.com/watch?v=OElKhhbiJ0E&ab_channel=Flop_n_Adder)
+
+![](images/cmos-inv-eqns-yt-tut-sh.png)
+
+![](images/summary/cmos-inv-vtc.png)
+
+![](images/cmos-inv-vtc-yt-tut-sh-.png)
+
+![](images/summary/inv-vtc-process-var.png)
+
+![](images/cmos-inv-noise-margin-yt-tut-sh.png)
+
+### Propagation Delay
+
+$t_{p} = 0.69 R_{ON} C_L$, where R_ON is the resistance of NMOS/PMOS (whichever is ON)
+
+$$t_p = 0.69 R_W C_{int} (1 + C_L / C_{int})$$
+
+### Long vs Short Channel
+
+![](images/summary/longshort-iv3.png)
+
+IV characteristic is quadratic for long channel, linear for short channel
+
+Velocity saturation in short channel, thus current becomes linearly dependent on $V_{GS}$ in saturation
+
+**Transient Response:** $t_p = 0.69R_{on}C_L$
+
+### Speedup
+
+- Reduce capacitance
+- Increase transistor size
+- Increase VDD
+
+## Capacitance
+
+- Parasitic capacitance of MOS transistor
+  - $C_{GS}$: overlap, gate-to-channel (linear, saturation/velocity sat)
+  - $C_{GD}$: overlap, gate-to-channel (linear)
+  - $C_{GB}$: gate-to-channel (cutoff)
+  - $C_{SB}$: bottom plate, side wall
+  - $C_{DB}$: bottom plate, side wall, reverse-bias effect
+- All the caps involving the gate are gate capacitances. The rest are junction (diffusion) capacitance
+
+$C_{GC}=C_{OX}WL$
+
+## Leakage
+
+- Subthreshold Leakage
+- Gate Leakage (tunneling through oxide)
+- Junction Leakage (from PN junction)
+
+### Subthreshold Current
+
+
+## Power
+
+![](images/power-energy-rev-v2.png)
+
+**Components:**
+
+- Dynamic:
+  - Power due to switching, i.e. charging and discharging capacitances through device
+- Short-circuit (can also be categorized as static)
+  - Direct path between VDD and ground during switching transients (when both PUN PDN are partially on)
+- Static
+  - Leakage current consuming power when not switching
+
+**Inverter Power Derivation:**
+
+- Input 1->0 (Output 0->1)
+- Input 0->1
+
+### Dynamic
+
+Energy / Transition = $C_L V_{DD}^2$
+
+Power = Energy / Transition * freq = $C_L V_{DD}^2 f_{clk}$
+
+Avg Power = $\alpha C_L V_{DD}^2 f_{clk}$
+
+![](images/dyn-power-consump-1-v2.png)
+
+![](images/dyn-power-consum-2-v2.png)
+
+**DVFS**
+
+### Static
+
+- Leakage mechanisms
+  - Reverse-bias PN junction current
+  - Subthreshold leakage
+  - Gate induced drain leakage
+  - Gate oxide tunneling
+
+
+- Reduction techniques
+  - Power Gating
+  - Dual Threshold
+  - State assignment
+  - Variable Vth
+
+
+### Short Circuit
+
+
+### Design Space
+
+
+![](images/pow-energy-ds-v2.png)
+
+## Logic Families
+
+Static CMOS:
+
+- Full rail to rail swing, high noise margins
+- Low static power dissipation
+
+Dynamic Logic:
+
+- Faster
+- Needs pre-charging (two phases)
+- no rail to rail swing
+  - need static cmos to restore levels
+- higher power
+
+## IR Drop
+
+Voltage drop across a resistance R with current I, in power grids (long metal lines with branches)
+
+## Charge Sharing
+
+Charge stored in load capacitance could be redistributed in dynamic logic. Solution is to precharge internal nodes using clock-driven transistor
+
+## Power Gating / Power Domain Crossing
+
+[Reference](https://anysilicon.com/power-gating/#:~:text=Adding%20the%20switch%20cells%20split,compared%20to%20the%20gated%20logic.)
+
+- Problems that might occur:
+  - Voltage level mismatch, signal integrity, timing errors
+- Solutions:
+  - Level shifter: convert signal voltages between domains
+  - Isolation cells: Prevent leakage between domains, isolates power gated logic from always-on logic
+  - Synchronizers: ensure proper timing when crossing domains
+  - Switch Cell: Header or Footer switch cell, gates the VDD and VSS rails
+  - Retention Cell: retains state when primary power supply is OFF, can restore state/
+
+## Interconnects
+
+- Lower layers - smaller cross-sectional area, higher resistance and capacitance per unit length - local interconnects
+- Higher layers - wider and thicker traces, lower resistance and cap - global routing & power distribution
+
+$$R = \frac{\rho L}{HW}$$
+
+## Temperature
+
+- Leakage: increases with temperature (increased subthreshold conduction)
+- Dynamic: less sensitive with temperature
+
+
+## Low Power Techniques
+
+- Reduce capacitance
+  - Sizing, P/N ratio, shorte routes
+- Reduce switching activity
+  - Clock gating
+  - More efficient codes (gray codes)
+- Lower VDD
+  - DVFS
+- Pipelining
+- 
+
+
+### DVFS
+
+
+
+## Inverter with Flipped NMOS/PMOS
+
+NMOS can only pull up to roughly
+
+PMOS 
