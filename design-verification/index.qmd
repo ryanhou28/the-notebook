@@ -14,6 +14,7 @@ Some relevant resources:
 
 
 UVM Specific Resources:
+
 - [ClueLogic](https://cluelogic.com/)
 
 Textbooks:

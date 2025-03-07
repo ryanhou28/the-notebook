@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -234,6 +268,46 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Q: Calculation of gigabits and speed</strong></p>
 <p><strong>Q: How do you tell if your system is little endian or big endian?</strong></p>
 <p><strong>Q: Constraint question: You have a total memory size of 4096 bytes. Each page can be 32, 64, 128 bytes. Each page must be aligned. Write a constraint / function that generates a random range that satisfy this constraint</strong></p>
+<p><strong>Q: Gray codes, why? How to convert from binary?</strong></p>
+<p>1 bit flip between consecutive numbers. To convert from binary, keep the MSB, for subsequent bits, take the XOR of corresponding binary bit and the previous (more significant) binary bit. A Verilog conversion looks something like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode verilog code-with-copy"><code class="sourceCode verilog"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">module</span> binary_to_gray #<span class="op">(</span><span class="dt">parameter</span> WIDTH <span class="op">=</span> <span class="dv">4</span><span class="op">)</span> <span class="op">(</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">input</span>  <span class="op">[</span>WIDTH<span class="dv">-1</span><span class="op">:</span><span class="dv">0</span><span class="op">]</span> binary<span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">output</span> <span class="op">[</span>WIDTH<span class="dv">-1</span><span class="op">:</span><span class="dv">0</span><span class="op">]</span> gray</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">assign</span> gray <span class="op">=</span> binary <span class="op">^</span> <span class="op">(</span>binary <span class="op">&gt;&gt;</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">endmodule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A gray code counter can be implemented as follows (<a href="https://www.chipverify.com/verilog/verilog-gray-counter">Source: ChipVerify</a>):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode verilog code-with-copy"><code class="sourceCode verilog"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">module</span> gray_ctr</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  # <span class="op">(</span><span class="dt">parameter</span> N <span class="op">=</span> <span class="dv">4</span><span class="op">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">(</span> <span class="dt">input</span>   clk<span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">input</span>   rstn<span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">output</span> <span class="dt">reg</span> <span class="op">[</span>N<span class="dv">-1</span><span class="op">:</span><span class="dv">0</span><span class="op">]</span> out<span class="op">);</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reg</span> <span class="op">[</span>N<span class="dv">-1</span><span class="op">:</span><span class="dv">0</span><span class="op">]</span> q<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">always</span> <span class="op">@</span> <span class="op">(</span><span class="kw">posedge</span> clk<span class="op">)</span> <span class="kw">begin</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">if</span> <span class="op">(!</span>rstn<span class="op">)</span> <span class="kw">begin</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        q <span class="op">&lt;=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            out <span class="op">&lt;=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">end</span> <span class="kw">else</span> <span class="kw">begin</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        q <span class="op">&lt;=</span> q <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ot">`ifdef FOR_LOOP</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="co">// For loop implementation</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="kw">for</span> <span class="op">(</span>int i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N<span class="dv">-1</span><span class="op">;</span> i<span class="op">=</span> i<span class="op">+</span><span class="dv">1</span><span class="op">)</span> <span class="kw">begin</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        out<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;=</span> q<span class="op">[</span>i<span class="op">+</span><span class="dv">1</span><span class="op">]</span> <span class="op">^</span> q<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        out<span class="op">[</span>N<span class="dv">-1</span><span class="op">]</span> <span class="op">&lt;=</span> q<span class="op">[</span>N<span class="dv">-1</span><span class="op">];</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="ot">`else</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            out <span class="op">&lt;=</span> <span class="op">{</span>q<span class="op">[</span>N<span class="dv">-1</span><span class="op">],</span> q<span class="op">[</span>N<span class="dv">-1</span><span class="op">:</span><span class="dv">1</span><span class="op">]</span> <span class="op">^</span> q<span class="op">[</span>N<span class="dv">-2</span><span class="op">:</span><span class="dv">0</span><span class="op">]};</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ot">`endif</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="kw">endmodule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Key ideais to</p>
+<p><strong>Q: What is parity bit?</strong></p>
+<p>Even parity and odd parity, indicates whether the number of 1s in a binary string is even or odd. To compute the parity bit, take the XOR of all the bits, which gives us the even parity (0 = Even, 1 = Odd). To get odd parity, flip the even parity bit (e.g.&nbsp;by XORing it with 1).</p>
 </section>
 <section id="fifos" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="fifos"><span class="header-section-number">6.2</span> FIFOs</h2>

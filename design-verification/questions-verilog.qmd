@@ -392,6 +392,45 @@ endmodule
 
 ### Gray Code Counter
 
+**Implementation with Binary Counter + Gray Code Converter**
+
+A gray code counter can be implemented as follows ([Source: ChipVerify](https://www.chipverify.com/verilog/verilog-gray-counter)):
+
+```verilog
+module gray_ctr
+  # (parameter N = 4)
+
+  (	input 	clk,
+	input 	rstn,
+	output reg [N-1:0] out);
+
+	reg [N-1:0] q;
+
+	always @ (posedge clk) begin
+		if (!rstn) begin
+    	q <= 0;
+    		out <= 0;
+      end else begin
+  		q <= q + 1;
+
+`ifdef FOR_LOOP
+        // For loop implementation
+    	for (int i = 0; i < N-1; i= i+1) begin
+      	out[i] <= q[i+1] ^ q[i];
+    	end
+    	out[N-1] <= q[N-1];
+`else
+			out <= {q[N-1], q[N-1:1] ^ q[N-2:0]};
+`endif
+    end
+	end
+endmodule
+```
+
+**Direct Implementation ([USC - Gray Counter Design](https://viterbi-web.usc.edu/www-classes/engr/ee-s/254/EE254L_CLASSNOTES/EE254_Ch11_memory/FIFO/EE560_Gray_counter_design.pdf))**
+
+Key idea: in a gray code up-counter, a bit toggles if all the bits to the right of it are 100... (1 with all 0s). However, after incrementing and flipping current bit, we still get 1 more count where bits to the right are 100.... So we also take into account the parity of the left side as well.
+
 ## Online References
 
 - [Blind Post - Design Verification Interview](https://www.teamblind.com/post/Design-Verification-Interview-aaATLRVa/4807423)

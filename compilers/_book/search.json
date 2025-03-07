@@ -1,0 +1,102 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Empty Book Template",
+    "section": "",
+    "text": "Preface\nMy notes on ???.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 Perspective\nThis note does …",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#perspective",
+    "href": "intro.html#perspective",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "Note 1.1: Definition - Some definition\n\n\n\nTerm is defined as blah blah blah…",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#high-level-ideas",
+    "href": "intro.html#high-level-ideas",
+    "title": "1  Introduction",
+    "section": "1.2 High Level Ideas",
+    "text": "1.2 High Level Ideas",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "2.1 Control Flow Analysis\nBasic Block -\nControl Flow Graph\nDominator\nImmediate Dominator\nDominator Tree\nPost Dominator\nImmediate Post Dominator\nNatural Loop\nBack Edge\nLoop Detection:\nParts of a Loop:\nRegions\nTrace\nSuperblock",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#control-flow-analysis",
+    "href": "summary.html#control-flow-analysis",
+    "title": "2  Summary",
+    "section": "",
+    "text": "Use dominator to find backedges\nEach backedge defines a loop\nThen merge all loops with same header\n\n\n\nHeader\nBody (LoopBB)\nBackedges, exitedges, preheader (preloop), postheader (postloop)\n\n\n\n\n\n2.1.1 Predicated Execution\nAn alternative to branches: Predicated execution\n\nHardware mechanism that allows operations to be conditionally executed\nAdd an additional Boolean source operand called the predicate\nOnly execute when the predicate is TRUE\nBenefits: No branches, can freely reorder independent instructions in the predicated block\nCosts: Need to execute all instructions, worst case schedule length, worst case resources required\nGuarding Predicate: Predicate that guards an instruction from being executed or not\n\nWhether or not we’re supposed to execute this instruction (1-&gt;execute, 0-&gt;fall-through)\n\n\nIf-conversion\nLoop backedge coalescing\nControl Dependence Analysis (CD)\nControl Flow Substitution - going from branching code -&gt; sequential predicated code\nWhen to use If-Conversions?\nAdvantages\n\nRemoves branches. Good if we have a 50/50 branch to get rid of mispredicts.\nIncrease potential for operation overlap -&gt; larger BBs so we can do more aggressive compiler transforms\n\nDisadvantages\n\nHigh processor resource usage. Need to execute everything!\nDependence height. Be careful with blocks with mismatched dependence heights\nHazard presence for compilers, which can cause limited optimizations.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#dataflow-analysis",
+    "href": "summary.html#dataflow-analysis",
+    "title": "2  Summary",
+    "section": "2.2 Dataflow Analysis",
+    "text": "2.2 Dataflow Analysis\nLive variable (liveness) analysis\nGen, Kill\nReaching definition analysis (rdefs)\nDU/UD Chains\nTransfer Function\nMeet function\nAvailable Definition Analysis (Adefs)\nAvailable Expression Analysis (Aexprs)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#ssa-form",
+    "href": "summary.html#ssa-form",
+    "title": "2  Summary",
+    "section": "2.3 SSA Form",
+    "text": "2.3 SSA Form\nStatic Single Assignment Form\nPhi Nodes",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#code-optimizations",
+    "href": "summary.html#code-optimizations",
+    "title": "2  Summary",
+    "section": "2.4 Code Optimizations",
+    "text": "2.4 Code Optimizations\nDead Code Elimination Remove any operation who’s result is never consumed Rules: - Cannot delete stores or branches - DU chain empty or destination register is not live This actually misses some dead code, especially in loops See algorithm in Lecture 8 for a better algorithm\nLocal Constant Propagation - Local means within a basic block - Maximally propagate constants/literals\nGlobal Constant Propagation - Propagate across BBs\nConstant Folding - Simplify operations whose source operands are all constants\nForward Copy Propagation - Forward propagation of the RHS of moves - Benefits: reduce chain of dependences and eliminate the move\nCommon Subexpression Elimination (CSE) - Eliminate re-computation of an expression by re-using the previous result - Make a new variable that stores the result of this subexpression. Replace uses of the subexpression with this new variable - Benefits: Reduce work/computation, moves can get copy propagated\nLoop Invariant Code Motion (LICM) - Move operations whose source operands do not change within the loop to the loop pre-header - Execute them only once per invocation of the loop - Rules: - Only certain operations can be moved. No stores or branches - Source operand cannot be modified in the loop body - Instruction is the only instruction to modify the destination register - … more in Lecture 8 slides - If there is a load, need to make sure there are no writes to the same address in the loop\nGlobal Variable Migration - Assign a global variable temporarily to a register for the duration of the loop - Load in preheader - Store at exit points - Global variables are mapped to memory, but for the duration of the loop we may want to put it temporarily to a register so we’re not constantly going to memory\nInduction Variable Strength Reduction - Create basic induction variables from derived induction variables - Induction variable - Has a very specific pattern that we know ahead of time - BIV (i++) - basic induction variable - DIV (j = I * 4) - derived induction variable - Convert DIVs to BIVs. This reduces the chain of instructions and makes things simpler (potentially) - Issues: Initial and increment values, where to place increments?\nInstruction-Level Parallelism (ILP) Optimizations - Instead of eliminating redundancy, this focuses on getting more parallelism and ability to overlap instructions - Increase ILP by breaking dependences\nBack Substitution - Long expressions with many source operands can lead to the compiler frontend generating a long chain of sequential instructions - Apply Tree Height Reduction - Re-compute expression as a balanced binary tree\nLoop Unrolling - Why unroll? -&gt; We can get bigger loop bodies and allow for more opportunity for overlapping instructions -&gt; more freedom to optimize and reorder - With known trip count (counted??), we can pick an unroll factor in a smart way, where the loop is unrolled a multiple of times to the unroll factor - For trip count that is not statically known (uncounted), we can peel off the first “odd” loop iterations. Create a preloop to ensure trip count of unrolled loop is a multiple of the unroll factor - Preloop computes how many non multiple loop counts we have - However, unrolling is not enough for overlapping different iterations together - We need register renaming between the unrolled iterations! - However, this is still not enough! - We need accumulator variable expansion § Create temporary accumulator variables § Each iteration targets a different accumulator § Sum up accumulator variables in the end § May not be safe for floating point operations! We can also do induction variable expansion\n\n2.4.1 Acyclic Scheduling\n\n\n2.4.2 Software Pipelining\n\n\n2.4.3 Register Allocation",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#section",
+    "href": "summary.html#section",
+    "title": "2  Summary",
+    "section": "2.5 ",
+    "text": "2.5",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  }
+]

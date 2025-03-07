@@ -85,12 +85,7 @@ For a PN Junction:
 
 **Summary of Capacitances**
 
-- Parasitic capacitance of MOS transistor
-  - $C_{GS}$: overlap, gate-to-channel (linear, saturation/velocity sat)
-  - $C_{GD}$: overlap, gate-to-channel (linear)
-  - $C_{GB}$: gate-to-channel (cutoff)
-  - $C_{SB}$: bottom plate, side wall
-  - $C_{DB}$: bottom plate, side wall, reverse-bias effect
+
 
 
 ![](images/summary/thresh-var.png)

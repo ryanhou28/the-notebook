@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ryan Hou">
-<meta name="dcterms.date" content="2025-02-18">
 
-<title>Design Verification</title>
+<title>1&nbsp; Introduction – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./summary.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -97,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Design Verification</a> 
+      <a href="./">Empty Book Template</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -109,68 +142,20 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./verif-basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Verification Basics</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./uvm-basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">UVM Basics</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./questions-fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Questions - Fundamentals of Verification</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./questions-logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Questions - Logic Design &amp; Basics of Digital Systems</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./questions-arch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Questions - Computer Architecture</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./questions-coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Questions - Coding (Non-HDL)</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./questions-verilog.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Questions - Verilog</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./questions-uvm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Questions - UVM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -189,8 +174,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  <li><a href="#perspective" id="toc-perspective" class="nav-link active" data-scroll-target="#perspective"><span class="header-section-number">1.1</span> Perspective</a></li>
+  <li><a href="#high-level-ideas" id="toc-high-level-ideas" class="nav-link" data-scroll-target="#high-level-ideas"><span class="header-section-number">1.2</span> High Level Ideas</a></li>
+  <li><a href="#hierarchy-concepts" id="toc-hierarchy-concepts" class="nav-link" data-scroll-target="#hierarchy-concepts"><span class="header-section-number">2</span> Hierarchy &amp; Concepts</a></li>
+  <li><a href="#syntax" id="toc-syntax" class="nav-link" data-scroll-target="#syntax"><span class="header-section-number">3</span> Syntax</a></li>
+  <li><a href="#program-flow" id="toc-program-flow" class="nav-link" data-scroll-target="#program-flow"><span class="header-section-number">4</span> Program Flow</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">4.1</span> Example</a></li>
+  <li><a href="#convention" id="toc-convention" class="nav-link" data-scroll-target="#convention"><span class="header-section-number">4.2</span> Convention</a></li>
+  </ul></li>
+  <li><a href="#for-loop-example" id="toc-for-loop-example" class="nav-link" data-scroll-target="#for-loop-example"><span class="header-section-number">5</span> For Loop Example</a></li>
   </ul>
 </nav>
     </div>
@@ -199,26 +192,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Design Verification</h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ryan Hou </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 18, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -228,33 +209,138 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>Notes on Design Verification. The notes will mainly cover verification concepts, Verilog and SystemVerilog, and UVM. Pre-req: digital logic design fundamentals (see my Digital Logic Design notebook). Common interviews can be found in the Questions chapters.</p>
+<section id="perspective" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="perspective"><span class="header-section-number">1.1</span> Perspective</h2>
+<!-- ::: {#nte-some-def .callout-note}
+## Definition - Some definition
+**Term** is defined as blah blah blah...
+:::
+
+This note does ... -->
 </section>
-<section id="resources" class="level1 unnumbered">
-<h1 class="unnumbered">Resources</h1>
-<p>Some relevant resources:</p>
+<section id="high-level-ideas" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="high-level-ideas"><span class="header-section-number">1.2</span> High Level Ideas</h2>
+<!-- ![Some image caption](images/xyz.png){#fig-label fig-align="center" width="70%"} -->
+</section>
+<section id="hierarchy-concepts" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Hierarchy &amp; Concepts</h1>
+<p>Grid -&gt; Block -&gt; (Warps) -&gt; Threads</p>
+<p>Host Code</p>
 <ul>
-<li><a href="https://www.chipverify.com/">ChipVerify</a></li>
-<li><a href="https://verificationguide.com/">Verification Guide</a></li>
-<li><a href="https://verificationacademy.com/">Verification Academy</a></li>
-<li><a href="https://hdlbits.01xz.net/wiki/Main_Page">HDLBits</a></li>
-<li><a href="https://docs.google.com/document/d/1xA5XUzBtz_D6aSyIBQUwFk_kSUdckrfxa2uzGjMgmCU/edit?tab=t.0#heading=h.mtsevafs4tag">BSG SystemVerilog Coding Standards</a></li>
+<li>Runs on CPU</li>
+<li>Serial</li>
+<li>Launches CUDA kernels</li>
 </ul>
-<p>UVM Specific Resources:</p>
+<p>Device Code:</p>
 <ul>
-<li><a href="https://cluelogic.com/">ClueLogic</a></li>
+<li>Runs on GPU</li>
+<li>Parallel</li>
+<li></li>
 </ul>
-<p>Textbooks:</p>
+</section>
+<section id="syntax" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Syntax</h1>
+<p>Kernel Launch:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Specify block and grid dimensions</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dim3 grid_size<span class="op">(</span>x<span class="op">,</span> y<span class="op">,</span> z<span class="op">);</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dim3 block_size<span class="op">(</span>x<span class="op">,</span> y<span class="op">,</span> z<span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Launch kernel</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>kernelName<span class="op">&lt;&lt;&lt;</span> grid_size<span class="op">,</span> block_size <span class="op">&gt;&gt;&gt;</span> <span class="op">(...);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="program-flow" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Program Flow</h1>
 <ul>
-<li><a href="url">Book 1</a></li>
-</ul>
-<p>For playing around with simulations:</p>
+<li>Host code
 <ul>
-<li><a href="">EDA Playground</a></li>
+<li>do tasks on the host</li>
+<li>prepare for kernel launch</li>
+<li>Allocate memory on the device</li>
+<li>Copy data from host to device</li>
+<li>Launch the kernel</li>
+<li>Copy data from the device to the host</li>
+</ul></li>
 </ul>
-<p>List of interview questions: - <a href="https://verificationguide.com/asic-verification/asic-verification-interview-questions/">Verification Guide - ASIC Verification Interview Questions</a> - <a href="https://verificationguide.com/interview-questions/soc-verification-interview-questions/">Verification Guide - SOC Verification Interview Questions</a> - <a href="https://verificationguide.com/interview-questions/soc-verification-interview-questions/">Verification Guide - UVM Interview Questions</a> - <a href="https://verificationguide.com/interview-questions/soc-verification-interview-questions/">Verification Guide - SystemVerilog Interview Questions</a> - <a href="https://www.chipverify.com/verilog/verilog-interview-questions-set-1">ChipVerify - Verilog Interview Set 1</a> - More can be found on their website - <a href="https://www.chipverify.com/systemverilog/systemverilog-interview-questions-set-1">ChipVerify - SystemVerilog Interview Set 1</a> - More can be found on their website - <a href="https://www.chipverify.com/uvm/uvm-interview-questions-set-1">ChipVerify - UVM Interview Set 1</a> - More can be found on their website - <a href="https://nandland.com/part-2-the-interview/">NAND LAND - FPGA Interview Questions</a></p>
+<section id="example" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="example"><span class="header-section-number">4.1</span> Example</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main <span class="op">(</span> <span class="dt">void</span> <span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    cudaMalloc<span class="op">(...);</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    cudaMemcpy<span class="op">(...);</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    kernel_0<span class="op">&lt;&lt;&lt;</span>grid_size0<span class="op">,</span> blk_size0<span class="op">&gt;&gt;&gt;(...);</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    cudaMemcpy<span class="op">(...);</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span> <span class="dt">void</span> <span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Declare variables</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>h_c<span class="op">,</span> <span class="op">*</span>d_c<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Allocate memory on the device</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    cudaMalloc<span class="op">(</span> <span class="op">(</span><span class="dt">void</span><span class="op">**)&amp;</span>d_c<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">)</span> <span class="op">);</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Copy data to the device</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    cudaMemcpy<span class="op">(</span>d_c<span class="op">,</span> h_c<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">),</span> cudaMemcpyHostToDevice <span class="op">);</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Configuration Parameters</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    dim3 grid_size<span class="op">(</span><span class="dv">1</span><span class="op">);</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    dim3 block_size<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Launch the Kernel</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    kernel<span class="op">&lt;&lt;&lt;</span>grid_size<span class="op">,</span> block_size<span class="op">&gt;&gt;&gt;(...);</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Copy data back to host</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    cudaMemcpy<span class="op">(</span> h_c<span class="op">,</span> d_c<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">),</span> cudaMemcpyDeviceToHost <span class="op">);</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// De-allocate memory</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    cudaFree<span class="op">(</span> d_c <span class="op">);</span> </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(</span> h_c <span class="op">);</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="convention" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="convention"><span class="header-section-number">4.2</span> Convention</h2>
+<p>Variables that live on host start with <code>h_</code></p>
+<p>Variables that live on device start with <code>d_</code></p>
+</section>
+</section>
+<section id="for-loop-example" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> For Loop Example</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Kernel Definition</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>__global__ <span class="dt">void</span> increment_gpu<span class="op">(</span><span class="dt">int</span> <span class="op">*</span>a<span class="op">,</span> <span class="dt">int</span> N<span class="op">)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i <span class="op">=</span> threadIdx<span class="op">.</span>x<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>i <span class="op">&lt;</span> N<span class="op">)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        a<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span> <span class="dt">void</span> <span class="op">)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> h_a<span class="op">[</span>N<span class="op">]</span> <span class="op">=</span> <span class="co">// ...</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Allocate arrays in Device memory</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">*</span> d_a<span class="op">;</span> </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    cudaMalloc<span class="op">((</span><span class="dt">void</span><span class="op">**)&amp;</span>d_a<span class="op">,</span> N <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Copy memory from Host to Device</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    cudaMemcpy<span class="op">(</span>d_a<span class="op">,</span> h_a<span class="op">,</span> N <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">),</span> cudaMemcpyHostToDevice<span class="op">);</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Block and Grid dimensions</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    dim3 grid_size<span class="op">(</span><span class="dv">1</span><span class="op">);</span> </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    dim3 block_size<span class="op">(</span>N<span class="op">);</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Launch Kernel</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    increment_gpu<span class="op">&lt;&lt;&lt;</span>grid_size<span class="op">,</span> block_size<span class="op">&gt;&gt;&gt;(</span>d_a<span class="op">,</span> N<span class="op">);</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Copy data back and cleanup (not shown in the image)</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -679,10 +765,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

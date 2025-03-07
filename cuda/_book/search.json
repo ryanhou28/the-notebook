@@ -1,0 +1,62 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Empty Book Template",
+    "section": "",
+    "text": "Preface\nMy notes on ???.\n\n\nResources\nSome relevant resources:\n\nCUDA Code Samples\nIntro to CUDA - Josh Holloway\n\nTextbooks:\n\nBook 1",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 Perspective",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#high-level-ideas",
+    "href": "intro.html#high-level-ideas",
+    "title": "1  Introduction",
+    "section": "1.2 High Level Ideas",
+    "text": "1.2 High Level Ideas",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#example",
+    "href": "intro.html#example",
+    "title": "1  Introduction",
+    "section": "4.1 Example",
+    "text": "4.1 Example\nint main ( void ) {\n    cudaMalloc(...);\n\n    cudaMemcpy(...);\n\n\n    kernel_0&lt;&lt;&lt;grid_size0, blk_size0&gt;&gt;&gt;(...);\n\n    cudaMemcpy(...);\n\n    return 0;\n}\nint main( void ) {\n\n    // Declare variables\n    int *h_c, *d_c;\n\n    // Allocate memory on the device\n    cudaMalloc( (void**)&d_c, sizeof(int) );\n\n    // Copy data to the device\n    cudaMemcpy(d_c, h_c, sizeof(int), cudaMemcpyHostToDevice );\n\n    // Configuration Parameters\n    dim3 grid_size(1); \n    dim3 block_size(1);\n\n    // Launch the Kernel\n    kernel&lt;&lt;&lt;grid_size, block_size&gt;&gt;&gt;(...);\n\n    // Copy data back to host\n    cudaMemcpy( h_c, d_c, sizeof(int), cudaMemcpyDeviceToHost );\n\n    // De-allocate memory\n    cudaFree( d_c ); \n    free( h_c );\n\n    return 0;\n}",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#convention",
+    "href": "intro.html#convention",
+    "title": "1  Introduction",
+    "section": "4.2 Convention",
+    "text": "4.2 Convention\nVariables that live on host start with h_\nVariables that live on device start with d_",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary…",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  }
+]

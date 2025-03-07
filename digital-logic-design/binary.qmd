@@ -77,3 +77,9 @@ Hexadecimal and octal have bases that are powers of 2, which makes conversion mu
 Text can also be encoded by numbers. ASCII is a common character encoding standard that represents a character in 8 bits.
 
 An ASCII conversion chart can be found [here](https://www.ascii-code.com/).
+
+### Gray Codes
+
+
+
+### Parity Bits

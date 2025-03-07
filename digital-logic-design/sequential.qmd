@@ -96,6 +96,8 @@ A **register** is a set of parallel DFFs
 
 ### T Flip FLop
 
+
+
 ## Synchronous Circuits
 
 ![](images/sequential/synchronous.png)

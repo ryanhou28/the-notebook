@@ -621,6 +621,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="gray-code-counter" class="level3" data-number="9.2.6">
 <h3 data-number="9.2.6" class="anchored" data-anchor-id="gray-code-counter"><span class="header-section-number">9.2.6</span> Gray Code Counter</h3>
+<p><strong>Implementation with Binary Counter + Gray Code Converter</strong></p>
+<p>A gray code counter can be implemented as follows (<a href="https://www.chipverify.com/verilog/verilog-gray-counter">Source: ChipVerify</a>):</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode verilog code-with-copy"><code class="sourceCode verilog"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">module</span> gray_ctr</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  # <span class="op">(</span><span class="dt">parameter</span> N <span class="op">=</span> <span class="dv">4</span><span class="op">)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">(</span> <span class="dt">input</span>   clk<span class="op">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">input</span>   rstn<span class="op">,</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">output</span> <span class="dt">reg</span> <span class="op">[</span>N<span class="dv">-1</span><span class="op">:</span><span class="dv">0</span><span class="op">]</span> out<span class="op">);</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reg</span> <span class="op">[</span>N<span class="dv">-1</span><span class="op">:</span><span class="dv">0</span><span class="op">]</span> q<span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">always</span> <span class="op">@</span> <span class="op">(</span><span class="kw">posedge</span> clk<span class="op">)</span> <span class="kw">begin</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">if</span> <span class="op">(!</span>rstn<span class="op">)</span> <span class="kw">begin</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        q <span class="op">&lt;=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>            out <span class="op">&lt;=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">end</span> <span class="kw">else</span> <span class="kw">begin</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        q <span class="op">&lt;=</span> q <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="ot">`ifdef FOR_LOOP</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        <span class="co">// For loop implementation</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="kw">for</span> <span class="op">(</span>int i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N<span class="dv">-1</span><span class="op">;</span> i<span class="op">=</span> i<span class="op">+</span><span class="dv">1</span><span class="op">)</span> <span class="kw">begin</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        out<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;=</span> q<span class="op">[</span>i<span class="op">+</span><span class="dv">1</span><span class="op">]</span> <span class="op">^</span> q<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>        out<span class="op">[</span>N<span class="dv">-1</span><span class="op">]</span> <span class="op">&lt;=</span> q<span class="op">[</span>N<span class="dv">-1</span><span class="op">];</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="ot">`else</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>            out <span class="op">&lt;=</span> <span class="op">{</span>q<span class="op">[</span>N<span class="dv">-1</span><span class="op">],</span> q<span class="op">[</span>N<span class="dv">-1</span><span class="op">:</span><span class="dv">1</span><span class="op">]</span> <span class="op">^</span> q<span class="op">[</span>N<span class="dv">-2</span><span class="op">:</span><span class="dv">0</span><span class="op">]};</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="ot">`endif</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="kw">endmodule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Direct Implementation (<a href="https://viterbi-web.usc.edu/www-classes/engr/ee-s/254/EE254L_CLASSNOTES/EE254_Ch11_memory/FIFO/EE560_Gray_counter_design.pdf">USC - Gray Counter Design</a>)</strong></p>
+<p>Key idea: in a gray code up-counter, a bit toggles if all the bits to the right of it are 100… (1 with all 0s). However, after incrementing and flipping current bit, we still get 1 more count where bits to the right are 100…. So we also take into account the parity of the left side as well.</p>
 </section>
 </section>
 <section id="online-references" class="level2" data-number="9.3">
