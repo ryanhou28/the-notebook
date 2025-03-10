@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ryan Hou">
 
-<title>Empty Book Template</title>
+<title>7&nbsp; SystemVerilog - Data Types – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./sv-control.html" rel="next">
+<link href="./v-sim.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sv-dtypes.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">SystemVerilog - Data Types</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -108,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -150,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sv-dtypes.html" class="sidebar-item-text sidebar-link">
+  <a href="./sv-dtypes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">SystemVerilog - Data Types</span></span></a>
   </div>
 </li>
@@ -218,8 +252,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  <li><a href="#enumerations" id="toc-enumerations" class="nav-link active" data-scroll-target="#enumerations"><span class="header-section-number">7.0.1</span> Enumerations</a></li>
+  <li><a href="#arrays" id="toc-arrays" class="nav-link" data-scroll-target="#arrays"><span class="header-section-number">7.1</span> Arrays</a>
+  <ul class="collapse">
+  <li><a href="#static-array" id="toc-static-array" class="nav-link" data-scroll-target="#static-array"><span class="header-section-number">7.1.1</span> Static Array</a></li>
+  <li><a href="#dynamic-array" id="toc-dynamic-array" class="nav-link" data-scroll-target="#dynamic-array"><span class="header-section-number">7.1.2</span> Dynamic Array</a></li>
+  <li><a href="#associative-array" id="toc-associative-array" class="nav-link" data-scroll-target="#associative-array"><span class="header-section-number">7.1.3</span> Associative Array</a></li>
+  <li><a href="#queue" id="toc-queue" class="nav-link" data-scroll-target="#queue"><span class="header-section-number">7.1.4</span> Queue</a></li>
+  <li><a href="#packed-array" id="toc-packed-array" class="nav-link" data-scroll-target="#packed-array"><span class="header-section-number">7.1.5</span> Packed Array</a></li>
+  <li><a href="#unpacked-array" id="toc-unpacked-array" class="nav-link" data-scroll-target="#unpacked-array"><span class="header-section-number">7.1.6</span> Unpacked Array</a></li>
+  </ul></li>
+  <li><a href="#structs" id="toc-structs" class="nav-link" data-scroll-target="#structs"><span class="header-section-number">7.2</span> Structs</a></li>
+  <li><a href="#user-defined-types" id="toc-user-defined-types" class="nav-link" data-scroll-target="#user-defined-types"><span class="header-section-number">7.3</span> User-Defined Types</a>
+  <ul class="collapse">
+  <li><a href="#alias" id="toc-alias" class="nav-link" data-scroll-target="#alias"><span class="header-section-number">7.3.1</span> Alias</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -228,26 +275,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Empty Book Template</h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">SystemVerilog - Data Types</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ryan Hou </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Invalid Date</p>
-    </div>
-  </div>
   
     
   </div>
@@ -257,22 +292,120 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>My notes on ???.</p>
+<p><code>logic</code></p>
+<p><code>bit</code></p>
+<p><code>byte</code></p>
+<p><code>int</code></p>
+<p><code>string</code></p>
+<section id="enumerations" class="level3" data-number="7.0.1">
+<h3 data-number="7.0.1" class="anchored" data-anchor-id="enumerations"><span class="header-section-number">7.0.1</span> Enumerations</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode verilog code-with-copy"><code class="sourceCode verilog"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>enum          <span class="op">{</span>RED<span class="op">,</span> YELLOW<span class="op">,</span> GREEN<span class="op">}</span>         light_1<span class="op">;</span>         <span class="co">// int type; RED = 0, YELLOW = 1, GREEN = 2</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>enum bit<span class="op">[</span><span class="dv">1</span><span class="op">:</span><span class="dv">0</span><span class="op">]</span> <span class="op">{</span>RED<span class="op">,</span> YELLOW<span class="op">,</span> GREEN<span class="op">}</span>         light_2<span class="op">;</span>         <span class="co">// bit type; RED = 0, YELLOW = 1, GREEN = 2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">// A custom data-type can be created so that the same data-type may be used to declare other variables.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>typedef enum <span class="op">{</span>TRUE<span class="op">,</span> FALSE<span class="op">}</span> e_true_false<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>e_true_false  answer<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>answer <span class="op">=</span> TRUE<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="resources" class="level1 unnumbered">
-<h1 class="unnumbered">Resources</h1>
-<p>Some relevant resources:</p>
-<ul>
-<li><a href="url">Resource Name</a></li>
-</ul>
-<p>Textbooks:</p>
-<ul>
-<li><a href="url">Book 1</a></li>
-</ul>
+<section id="arrays" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="arrays"><span class="header-section-number">7.1</span> Arrays</h2>
+<section id="static-array" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="static-array"><span class="header-section-number">7.1.1</span> Static Array</h3>
+</section>
+<section id="dynamic-array" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="dynamic-array"><span class="header-section-number">7.1.2</span> Dynamic Array</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode verilog code-with-copy"><code class="sourceCode verilog"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>data_type<span class="op">]</span> <span class="op">[</span>identifier_name<span class="op">]</span>  <span class="op">[];</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>bit <span class="op">[</span><span class="dv">7</span><span class="op">:</span><span class="dv">0</span><span class="op">]</span>   stack <span class="op">[];</span>       <span class="co">// A dynamic array of 8-bit vector</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>string      names <span class="op">[];</span>       <span class="co">// A dynamic array that can contain strings</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>int     array <span class="op">[];</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">initial</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>array <span class="op">=</span> new <span class="op">[</span><span class="dv">3</span><span class="op">];</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">// This creates one more slot in the array, while keeping old contents</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>array <span class="op">=</span> new <span class="op">[</span>array.size<span class="op">()</span> <span class="op">+</span> <span class="dv">1</span><span class="op">]</span> <span class="op">(</span>array<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Methods:</p>
+<p>size()</p>
+<p>delete()</p>
+</section>
+<section id="associative-array" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="associative-array"><span class="header-section-number">7.1.3</span> Associative Array</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode systemverilog code-with-copy"><code class="sourceCode systemverilog"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">int</span>         m_data [<span class="kw">int</span>];           <span class="co">// Key is of type int, and data is also of type int</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">int</span>         m_name [<span class="kw">string</span>];        <span class="co">// Key is of type string, and data is of type int</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>m_name [<span class="st">"Rachel"</span>] = <span class="dv">30</span>;</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>m_name [<span class="st">"Orange"</span>] = <span class="dv">2</span>;</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>m_data [<span class="bn">32'h123</span>] = <span class="dv">3333</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="queue" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="queue"><span class="header-section-number">7.1.4</span> Queue</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode systemverilog code-with-copy"><code class="sourceCode systemverilog"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">int</span>     m_queue [$];        <span class="co">// Unbound queue, no size</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>m_queue.<span class="ot">push_back</span>(<span class="dv">23</span>);      <span class="co">// Push into the queue</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">int</span> <span class="ot">data</span> = m_queue.<span class="ot">pop_front</span>(); <span class="co">// Pop from the queue</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="packed-array" class="level3" data-number="7.1.5">
+<h3 data-number="7.1.5" class="anchored" data-anchor-id="packed-array"><span class="header-section-number">7.1.5</span> Packed Array</h3>
+<p>There are two types of arrays: packed and unpacked</p>
+<p>A packed array is guaranteed to be represented as a contiguous set of bits.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode systemverilog code-with-copy"><code class="sourceCode systemverilog"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">bit</span> [<span class="dv">3</span>:<span class="dv">0</span>]   <span class="ot">data</span>;           <span class="co">// Packed array or vector</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">logic</span>       queue [<span class="dv">9</span>:<span class="dv">0</span>];    <span class="co">// Unpacked array</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Example of multi-dimensional packed array:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode systemverilog code-with-copy"><code class="sourceCode systemverilog"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">bit</span> [<span class="dv">2</span>:<span class="dv">0</span>][<span class="dv">3</span>:<span class="dv">0</span>][<span class="dv">7</span>:<span class="dv">0</span>]     m_data;     <span class="co">// An MDA, 12 bytes</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">initial</span> <span class="kw">begin</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 1. Assign a value to the MDA</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    m_data[<span class="dv">0</span>] = <span class="bn">32'hface_cafe</span>;</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    m_data[<span class="dv">1</span>] = <span class="bn">32'h1234_5678</span>;</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    m_data[<span class="dv">2</span>] = <span class="bn">32'hc0de_fade</span>;</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="unpacked-array" class="level3" data-number="7.1.6">
+<h3 data-number="7.1.6" class="anchored" data-anchor-id="unpacked-array"><span class="header-section-number">7.1.6</span> Unpacked Array</h3>
+</section>
+</section>
+<section id="structs" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="structs"><span class="header-section-number">7.2</span> Structs</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode systemverilog code-with-copy"><code class="sourceCode systemverilog"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Structures -&gt; a collection of variables of different data types</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">byte</span>    val1;</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">int</span>     val2;</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">string</span>  val3;</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>} struct_name;</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">// use typedef to actually make it a type</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> {</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">string</span> fruit;</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">int</span>    count;</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">byte</span>     expiry;</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>} st_fruit;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Packed vs unpacked struct. Struct is unpacked by default</p>
+<p>A packed structure is a mechanism for subdividing a vector into fields that can be accessed as members and are packed together in memory without gaps.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode systemverilog code-with-copy"><code class="sourceCode systemverilog"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="kw">packed</span> {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">bit</span> [<span class="dv">3</span>:<span class="dv">0</span>] mode;</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">bit</span> [<span class="dv">2</span>:<span class="dv">0</span>] cfg;</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">bit</span>       en;</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>} st_ctrl;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="user-defined-types" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="user-defined-types"><span class="header-section-number">7.3</span> User-Defined Types</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode systemverilog code-with-copy"><code class="sourceCode systemverilog"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Declare an alias for this long definition</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">unsigned</span> <span class="kw">shortint</span>           u_shorti;</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">enum</span> {RED, YELLOW, GREEN}   e_light;</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">bit</span> [<span class="dv">7</span>:<span class="dv">0</span>]                   ubyte;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="alias" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="alias"><span class="header-section-number">7.3.1</span> Alias</h3>
+<p>alias keyword</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -695,10 +828,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./v-sim.html" class="pagination-link" aria-label="v-sim.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">v-sim.html</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./sv-control.html" class="pagination-link" aria-label="SystemVerilog - Control Flow">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">SystemVerilog - Control Flow</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

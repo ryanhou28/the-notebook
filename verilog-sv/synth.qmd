@@ -1,0 +1,15 @@
+# Synthesis
+
+## Verilog
+
+Verilog constructs that are not synthesizable:
+
+- Initial blocks
+- Delay constructs
+- Real Data Types
+- Forj/Join Constructs
+- Random Functions
+- X and Z States
+- Primitives
+- Force and Release
+

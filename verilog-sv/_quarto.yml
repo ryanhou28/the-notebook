@@ -8,6 +8,19 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
+    - v-dtypes.qmd
+    - v-block.qmd
+    - v-behav.qmd
+    - v-gate.qmd
+    - v-sim.qmd
+    - sv-dtypes.qmd
+    - sv-control.qmd
+    - sv-process.qmd
+    - sv-intf.qmd
+    - sv-oop.qmd
+    - sv-constraint.qmd
+    - sv-assert.qmd
+    - synth.qmd
     - summary.qmd
     - references.qmd
 

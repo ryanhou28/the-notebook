@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ryan Hou">
 
-<title>Empty Book Template</title>
+<title>2&nbsp; Verilog - Data Types – Empty Book Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./v-block.html" rel="next">
+<link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./v-dtypes.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Verilog - Data Types</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -108,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -120,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./v-dtypes.html" class="sidebar-item-text sidebar-link">
+  <a href="./v-dtypes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Verilog - Data Types</span></span></a>
   </div>
 </li>
@@ -218,8 +252,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link active" data-scroll-target="#data-types"><span class="header-section-number">2.1</span> Data Types</a></li>
+  <li><a href="#scalarvector" id="toc-scalarvector" class="nav-link" data-scroll-target="#scalarvector"><span class="header-section-number">2.2</span> Scalar/Vector</a></li>
+  <li><a href="#arrays" id="toc-arrays" class="nav-link" data-scroll-target="#arrays"><span class="header-section-number">2.3</span> Arrays</a></li>
+  <li><a href="#net-types-strength" id="toc-net-types-strength" class="nav-link" data-scroll-target="#net-types-strength"><span class="header-section-number">2.4</span> Net Types &amp; Strength</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">2.5</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -228,26 +265,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Empty Book Template</h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Verilog - Data Types</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ryan Hou </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Invalid Date</p>
-    </div>
-  </div>
   
     
   </div>
@@ -257,19 +282,36 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>My notes on ???.</p>
+<section id="data-types" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="data-types"><span class="header-section-number">2.1</span> Data Types</h2>
+<p>Almost all data types can only have one of four different values (0, 1, X, Z) except for <code>real</code> and <code>event</code> types.</p>
+<p>(Note difference between logic and bit in SystemVerilog, where bit is a two-state variable)</p>
+<p><code>wire</code></p>
+<p><code>reg</code></p>
+<p>Non-synthesizable types:</p>
+<p><code>integer</code> - general purpose 32bit int. Not synthesizable, good for loop counters, simulation tasks, etc.</p>
+<p><code>time</code> - unsigned 64b for storing time quantities</p>
+<p><code>realtime</code> - stores time as floating point</p>
+<p><code>real</code> - float</p>
+<p>Strings are stored in <code>reg</code>, using 1 byte per char</p>
 </section>
-<section id="resources" class="level1 unnumbered">
-<h1 class="unnumbered">Resources</h1>
-<p>Some relevant resources:</p>
+<section id="scalarvector" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="scalarvector"><span class="header-section-number">2.2</span> Scalar/Vector</h2>
+<p>Note that part selection is inclusive from [high:low]</p>
+</section>
+<section id="arrays" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="arrays"><span class="header-section-number">2.3</span> Arrays</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode verilog code-with-copy"><code class="sourceCode verilog"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">reg</span>        y1 <span class="op">[</span><span class="dv">11</span><span class="op">:</span><span class="dv">0</span><span class="op">];</span>        <span class="co">// y is an scalar reg array of depth=12, each 1-bit wide</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">wire</span> <span class="op">[</span><span class="dv">0</span><span class="op">:</span><span class="dv">7</span><span class="op">]</span> y2 <span class="op">[</span><span class="dv">3</span><span class="op">:</span><span class="dv">0</span><span class="op">]</span>          <span class="co">// y is an 8-bit vector net with a depth of 4</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">reg</span>  <span class="op">[</span><span class="dv">7</span><span class="op">:</span><span class="dv">0</span><span class="op">]</span> y3 <span class="op">[</span><span class="dv">0</span><span class="op">:</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">:</span><span class="dv">3</span><span class="op">];</span>    <span class="co">// y is a 2D array rows=2,cols=4 each 8-bit wide</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="net-types-strength" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="net-types-strength"><span class="header-section-number">2.4</span> Net Types &amp; Strength</h2>
+</section>
+<section id="references" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="references"><span class="header-section-number">2.5</span> References</h2>
 <ul>
-<li><a href="url">Resource Name</a></li>
-</ul>
-<p>Textbooks:</p>
-<ul>
-<li><a href="url">Book 1</a></li>
+<li><a href="https://www.chipverify.com/tutorials/verilog">ChipVerify - Verilog</a></li>
 </ul>
 
 
@@ -695,10 +737,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./v-block.html" class="pagination-link" aria-label="Verilog - Building Blocks">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Verilog - Building Blocks</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

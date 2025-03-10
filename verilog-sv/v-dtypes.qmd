@@ -1,0 +1,50 @@
+# Verilog - Data Types
+
+
+
+## Data Types
+
+Almost all data types can only have one of four different values (0, 1, X, Z) except for `real` and `event` types.
+
+(Note difference between logic and bit in SystemVerilog, where bit is a two-state variable)
+
+`wire`
+
+`reg`
+
+Non-synthesizable types:
+
+`integer` - general purpose 32bit int. Not synthesizable, good for loop counters, simulation tasks, etc.
+
+`time` - unsigned 64b for storing time quantities
+
+`realtime` - stores time as floating point
+
+`real` - float
+
+Strings are stored in `reg`, using 1 byte per char
+
+## Scalar/Vector
+
+
+Note that part selection is inclusive from [high:low]
+
+
+## Arrays
+
+```verilog
+reg        y1 [11:0];        // y is an scalar reg array of depth=12, each 1-bit wide
+wire [0:7] y2 [3:0]          // y is an 8-bit vector net with a depth of 4
+reg  [7:0] y3 [0:1][0:3];    // y is a 2D array rows=2,cols=4 each 8-bit wide
+```
+
+## Net Types & Strength
+
+
+
+
+
+
+## References
+
+- [ChipVerify - Verilog](https://www.chipverify.com/tutorials/verilog)

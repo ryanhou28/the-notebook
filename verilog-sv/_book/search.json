@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Empty Book Template",
     "section": "",
-    "text": "Preface\nThis is my notes on ????.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
+    "text": "Preface\nMy notes on ???.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
     "crumbs": [
       "Preface"
     ]
@@ -40,13 +40,263 @@
     ]
   },
   {
+    "objectID": "v-dtypes.html",
+    "href": "v-dtypes.html",
+    "title": "2  Verilog - Data Types",
+    "section": "",
+    "text": "2.1 Data Types\nAlmost all data types can only have one of four different values (0, 1, X, Z) except for real and event types.\n(Note difference between logic and bit in SystemVerilog, where bit is a two-state variable)\nwire\nreg\nNon-synthesizable types:\ninteger - general purpose 32bit int. Not synthesizable, good for loop counters, simulation tasks, etc.\ntime - unsigned 64b for storing time quantities\nrealtime - stores time as floating point\nreal - float\nStrings are stored in reg, using 1 byte per char",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verilog - Data Types</span>"
+    ]
+  },
+  {
+    "objectID": "v-dtypes.html#scalarvector",
+    "href": "v-dtypes.html#scalarvector",
+    "title": "2  Verilog - Data Types",
+    "section": "2.2 Scalar/Vector",
+    "text": "2.2 Scalar/Vector\nNote that part selection is inclusive from [high:low]",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verilog - Data Types</span>"
+    ]
+  },
+  {
+    "objectID": "v-dtypes.html#arrays",
+    "href": "v-dtypes.html#arrays",
+    "title": "2  Verilog - Data Types",
+    "section": "2.3 Arrays",
+    "text": "2.3 Arrays\nreg        y1 [11:0];        // y is an scalar reg array of depth=12, each 1-bit wide\nwire [0:7] y2 [3:0]          // y is an 8-bit vector net with a depth of 4\nreg  [7:0] y3 [0:1][0:3];    // y is a 2D array rows=2,cols=4 each 8-bit wide",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verilog - Data Types</span>"
+    ]
+  },
+  {
+    "objectID": "v-dtypes.html#net-types-strength",
+    "href": "v-dtypes.html#net-types-strength",
+    "title": "2  Verilog - Data Types",
+    "section": "2.4 Net Types & Strength",
+    "text": "2.4 Net Types & Strength",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verilog - Data Types</span>"
+    ]
+  },
+  {
+    "objectID": "v-dtypes.html#references",
+    "href": "v-dtypes.html#references",
+    "title": "2  Verilog - Data Types",
+    "section": "2.5 References",
+    "text": "2.5 References\n\nChipVerify - Verilog",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Verilog - Data Types</span>"
+    ]
+  },
+  {
+    "objectID": "v-block.html",
+    "href": "v-block.html",
+    "title": "3  Verilog - Building Blocks",
+    "section": "",
+    "text": "3.1 Modules",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Verilog - Building Blocks</span>"
+    ]
+  },
+  {
+    "objectID": "v-block.html#assign",
+    "href": "v-block.html#assign",
+    "title": "3  Verilog - Building Blocks",
+    "section": "3.2 Assign",
+    "text": "3.2 Assign",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Verilog - Building Blocks</span>"
+    ]
+  },
+  {
+    "objectID": "v-block.html#operators",
+    "href": "v-block.html#operators",
+    "title": "3  Verilog - Building Blocks",
+    "section": "3.3 Operators",
+    "text": "3.3 Operators\n// Arithmetic Operators\na + b\na - b\na * b\na / b\na % b\na ** b\n\n// Relational Operators\n\n// Equality Operators\na === b // a equal to b, including x and z\na !== b // a not equal to b, including x and z\na == b  // a equal to b, result can be unknown\na != b  // a not equal to b, result can be unknown\n\n// Logical Operators\n\n\n// Bitwise\n\n\n// Shift",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Verilog - Building Blocks</span>"
+    ]
+  },
+  {
+    "objectID": "v-block.html#concatenation",
+    "href": "v-block.html#concatenation",
+    "title": "3  Verilog - Building Blocks",
+    "section": "3.4 Concatenation",
+    "text": "3.4 Concatenation\nConcatenation\nReplication\nSign extension",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Verilog - Building Blocks</span>"
+    ]
+  },
+  {
+    "objectID": "v-block.html#always-block",
+    "href": "v-block.html#always-block",
+    "title": "3  Verilog - Building Blocks",
+    "section": "3.5 Always Block",
+    "text": "3.5 Always Block",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Verilog - Building Blocks</span>"
+    ]
+  },
+  {
+    "objectID": "v-block.html#initial-block",
+    "href": "v-block.html#initial-block",
+    "title": "3  Verilog - Building Blocks",
+    "section": "3.6 Initial Block",
+    "text": "3.6 Initial Block\nThere are mainly two types of procedural blocks in Verilog - initial and always\ninitial block is not synthesizable\n$finish",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Verilog - Building Blocks</span>"
+    ]
+  },
+  {
+    "objectID": "v-block.html#generate",
+    "href": "v-block.html#generate",
+    "title": "3  Verilog - Building Blocks",
+    "section": "3.7 Generate",
+    "text": "3.7 Generate",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Verilog - Building Blocks</span>"
+    ]
+  },
+  {
+    "objectID": "v-behav.html",
+    "href": "v-behav.html",
+    "title": "4  Verilog - Behavioral Modeling",
+    "section": "",
+    "text": "4.1 Blocking / Non-Blocking",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Verilog - Behavioral Modeling</span>"
+    ]
+  },
+  {
+    "objectID": "v-behav.html#functions-tasks",
+    "href": "v-behav.html#functions-tasks",
+    "title": "4  Verilog - Behavioral Modeling",
+    "section": "4.2 Functions & Tasks",
+    "text": "4.2 Functions & Tasks",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Verilog - Behavioral Modeling</span>"
+    ]
+  },
+  {
+    "objectID": "v-behav.html#delays",
+    "href": "v-behav.html#delays",
+    "title": "4  Verilog - Behavioral Modeling",
+    "section": "4.3 Delays",
+    "text": "4.3 Delays\nInter-assignment Delays:\n// Delay is specified on the left side\n#&lt;delay&gt; &lt;LHS&gt; = &lt;RHS&gt;\nIntra-assignment Delays:\n// Delay is specified on the right side\n&lt;LHS&gt; = #&lt;delay&gt; &lt;RHS&gt;",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Verilog - Behavioral Modeling</span>"
+    ]
+  },
+  {
+    "objectID": "sv-dtypes.html",
+    "href": "sv-dtypes.html",
+    "title": "7  SystemVerilog - Data Types",
+    "section": "",
+    "text": "7.0.1 Enumerations\nlogic\nbit\nbyte\nint\nstring",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>SystemVerilog - Data Types</span>"
+    ]
+  },
+  {
+    "objectID": "sv-dtypes.html#arrays",
+    "href": "sv-dtypes.html#arrays",
+    "title": "7  SystemVerilog - Data Types",
+    "section": "7.1 Arrays",
+    "text": "7.1 Arrays\n\n7.1.1 Static Array\n\n\n7.1.2 Dynamic Array\n[data_type] [identifier_name]  [];\n\nbit [7:0]   stack [];       // A dynamic array of 8-bit vector\nstring      names [];       // A dynamic array that can contain strings\n\n\nint     array [];\n\ninitial\narray = new [3];\n// This creates one more slot in the array, while keeping old contents\narray = new [array.size() + 1] (array);\nMethods:\nsize()\ndelete()\n\n\n7.1.3 Associative Array\nint         m_data [int];           // Key is of type int, and data is also of type int\nint         m_name [string];        // Key is of type string, and data is of type int\n\nm_name [\"Rachel\"] = 30;\nm_name [\"Orange\"] = 2;\n\nm_data [32'h123] = 3333;\n\n\n7.1.4 Queue\nint     m_queue [$];        // Unbound queue, no size\n\n\nm_queue.push_back(23);      // Push into the queue\n\nint data = m_queue.pop_front(); // Pop from the queue\n\n\n7.1.5 Packed Array\nThere are two types of arrays: packed and unpacked\nA packed array is guaranteed to be represented as a contiguous set of bits.\nbit [3:0]   data;           // Packed array or vector\nlogic       queue [9:0];    // Unpacked array\nExample of multi-dimensional packed array:\nbit [2:0][3:0][7:0]     m_data;     // An MDA, 12 bytes\n\ninitial begin\n    // 1. Assign a value to the MDA\n    m_data[0] = 32'hface_cafe;\n    m_data[1] = 32'h1234_5678;\n    m_data[2] = 32'hc0de_fade;\nend\n\n\n7.1.6 Unpacked Array",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>SystemVerilog - Data Types</span>"
+    ]
+  },
+  {
+    "objectID": "sv-dtypes.html#structs",
+    "href": "sv-dtypes.html#structs",
+    "title": "7  SystemVerilog - Data Types",
+    "section": "7.2 Structs",
+    "text": "7.2 Structs\n// Structures -&gt; a collection of variables of different data types\nstruct {\n    byte    val1;\n    int     val2;\n    string  val3;\n} struct_name;\n\n// use typedef to actually make it a type\n\ntypedef struct {\n    string fruit;\n    int    count;\n    byte     expiry;\n} st_fruit;\nPacked vs unpacked struct. Struct is unpacked by default\nA packed structure is a mechanism for subdividing a vector into fields that can be accessed as members and are packed together in memory without gaps.\ntypedef struct packed {\n  bit [3:0] mode;\n  bit [2:0] cfg;\n  bit       en;\n} st_ctrl;",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>SystemVerilog - Data Types</span>"
+    ]
+  },
+  {
+    "objectID": "sv-dtypes.html#user-defined-types",
+    "href": "sv-dtypes.html#user-defined-types",
+    "title": "7  SystemVerilog - Data Types",
+    "section": "7.3 User-Defined Types",
+    "text": "7.3 User-Defined Types\n// Declare an alias for this long definition\ntypedef unsigned shortint           u_shorti;\ntypedef enum {RED, YELLOW, GREEN}   e_light;\ntypedef bit [7:0]                   ubyte;\n\n7.3.1 Alias\nalias keyword",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>SystemVerilog - Data Types</span>"
+    ]
+  },
+  {
+    "objectID": "sv-control.html",
+    "href": "sv-control.html",
+    "title": "8  SystemVerilog - Control Flow",
+    "section": "",
+    "text": "8.1 Functions",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>SystemVerilog - Control Flow</span>"
+    ]
+  },
+  {
+    "objectID": "sv-control.html#tasks",
+    "href": "sv-control.html#tasks",
+    "title": "8  SystemVerilog - Control Flow",
+    "section": "8.2 Tasks",
+    "text": "8.2 Tasks",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>SystemVerilog - Control Flow</span>"
+    ]
+  },
+  {
+    "objectID": "sv-intf.html",
+    "href": "sv-intf.html",
+    "title": "10  SystemVerilog - Interface",
+    "section": "",
+    "text": "10.1 Clocking Block\nExample\nPort directions:\nExample usage:\nExample Usage:",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>SystemVerilog - Interface</span>"
+    ]
+  },
+  {
+    "objectID": "sv-intf.html#clocking-block",
+    "href": "sv-intf.html#clocking-block",
+    "title": "10  SystemVerilog - Interface",
+    "section": "",
+    "text": "interface my_int (input bit clk);\n    // Rest of interface code\n\n    clocking cb_clk @(posedge clk);\n        default input #3ns output #2ns;\n        input enable;\n        output data;\n    endclocking\nendinterface\n\n// To wait for posedge of clock\n@busIf.cb_clk;\n\n// To use clocking block signals\nbusIf.cb_clk.enable = 1;",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>SystemVerilog - Interface</span>"
+    ]
+  },
+  {
+    "objectID": "synth.html",
+    "href": "synth.html",
+    "title": "14  Synthesis",
+    "section": "",
+    "text": "14.1 Verilog\nVerilog constructs that are not synthesizable:",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Synthesis</span>"
+    ]
+  },
+  {
+    "objectID": "synth.html#verilog",
+    "href": "synth.html#verilog",
+    "title": "14  Synthesis",
+    "section": "",
+    "text": "Initial blocks\nDelay constructs\nReal Data Types\nForj/Join Constructs\nRandom Functions\nX and Z States\nPrimitives\nForce and Release",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Synthesis</span>"
+    ]
+  },
+  {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "2  Summary",
+    "title": "15  Summary",
     "section": "",
     "text": "In summary…",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Summary</span>"
     ]
   }
 ]

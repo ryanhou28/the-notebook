@@ -1,0 +1,24 @@
+# Verilog - Behavioral Modeling
+
+
+## Blocking / Non-Blocking
+
+
+## Functions & Tasks
+
+
+## Delays
+
+Inter-assignment Delays:
+
+```verilog
+// Delay is specified on the left side
+#<delay> <LHS> = <RHS>
+```
+
+Intra-assignment Delays:
+
+```verilog
+// Delay is specified on the right side
+<LHS> = #<delay> <RHS>
+```

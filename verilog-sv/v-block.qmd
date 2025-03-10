@@ -1,0 +1,57 @@
+# Verilog - Building Blocks
+
+## Modules
+
+
+## Assign
+
+## Operators
+
+```verilog
+// Arithmetic Operators
+a + b
+a - b
+a * b
+a / b
+a % b
+a ** b
+
+// Relational Operators
+
+// Equality Operators
+a === b	// a equal to b, including x and z
+a !== b	// a not equal to b, including x and z
+a == b	// a equal to b, result can be unknown
+a != b	// a not equal to b, result can be unknown
+
+// Logical Operators
+
+
+// Bitwise
+
+
+// Shift
+```
+
+## Concatenation
+
+Concatenation
+
+Replication
+
+Sign extension
+
+## Always Block
+
+## Initial Block
+
+There are mainly two types of procedural blocks in Verilog - initial and always
+
+initial block is not synthesizable
+
+`$finish`
+
+## Generate
+
+
+
