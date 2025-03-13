@@ -61,6 +61,10 @@ Key concepts
 
 ## Verilog Modules
 
+### Edge Detection
+
+![[Source](https://i.ytimg.com/vi/m2D4iYep_pQ/maxresdefault.jpg)](images/questions-verilog/edge-det-fig.png)
+
 ### Asynchronous FIFO
 
 - Asynchronous FIFO: data read and writes use different clock frequencies (i.e. reads and writes are not synchronized)
@@ -430,6 +434,88 @@ endmodule
 **Direct Implementation ([USC - Gray Counter Design](https://viterbi-web.usc.edu/www-classes/engr/ee-s/254/EE254L_CLASSNOTES/EE254_Ch11_memory/FIFO/EE560_Gray_counter_design.pdf))**
 
 Key idea: in a gray code up-counter, a bit toggles if all the bits to the right of it are 100... (1 with all 0s). However, after incrementing and flipping current bit, we still get 1 more count where bits to the right are 100.... So we also take into account the parity of the left side as well.
+
+### State Machine
+
+[Reference](https://vlsiverify.com/verilog/verilog-codes/mealy-sequence-detector/)
+
+
+```systemverilog
+module seq_detector_1010(input bit clk, rst_n, x, output z);
+  parameter A = 4'h1;
+  parameter B = 4'h2;
+  parameter C = 4'h3;
+  parameter D = 4'h4;
+  
+  bit [3:0] state, next_state;
+  always @(posedge clk or negedge rst_n) begin
+    if(!rst_n) begin 
+      state <= A;
+    end
+    else state <= next_state;
+  end
+  
+  always @(state or x) begin
+    case(state)
+      A: begin
+           if(x == 0) next_state = A;
+           else       next_state = B;
+         end
+      B: begin
+           if(x == 0) next_state = C;
+           else       next_state = B;
+         end
+      C: begin
+           if(x == 0) next_state = A;
+           else       next_state = D;
+         end
+      D: begin
+        if(x == 0) next_state = A; //This state only differs when compared with Mealy Overlaping Machine
+           else       next_state = B;
+         end
+      default: next_state = A;
+    endcase
+  end
+  assign z = (state == D) && (x == 0)? 1:0;
+endmodule
+```
+
+### Fibonacci Number
+
+```verilog
+module fibonacci ( input clock , reset , input [7:0] nth_number , output [ 19 : 0]
+fibonacci_number );
+  reg [ 19 : 0 ] previous_value , current_value;
+  reg [ 7 : 0 ] internal_counter;
+  reg number_ready;
+
+  always @( posedge reset)
+  begin
+    previous_value <= 'd0; //1st Fibonacci Number
+    current_value <= 'd1; //2nd Fibonacci Number
+    internal_counter <= 'd1;
+  end
+
+  always @( posedge clock)
+  begin
+    internal_counter <= internal_counter + 1;
+    current_value <= current_value + previous_value;
+    previous_value <= current_value;
+    if ( internal_counter == ( nth_number - 2 ))
+      number_ready <= 1;
+    else
+      number_ready <= 0;
+  end
+
+  assign fibonacci_number = current_value;
+
+  always @( number_ready)
+    if ( number_ready )
+      $display ( "N =%d, Nth Fibonacci Number = %d" , nth_number ,
+      fibonacci_number );
+
+endmodule
+```
 
 ## Online References
 

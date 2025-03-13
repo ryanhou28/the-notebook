@@ -1,0 +1,39 @@
+# SystemVerilog - Processes
+
+Example of forking processes
+
+```systemverilog
+module fork_join;
+
+  initial begin
+    fork
+      //Process-1
+      begin
+        $display($time,"\tProcess-1 Started");
+        #5;
+        $display($time,"\tProcess-1 Finished");
+      end
+
+      //Process-2
+      begin
+        $display($time,"\tProcess-2 Started");
+        #20;
+        $display($time,"\tProcess-2 Finished");
+      end
+
+      //Process-3
+      begin
+        $display("this is process 3");
+      end
+    join
+
+    $finish;
+  end
+endmodule
+```
+
+Types of fork joins:
+
+- fork join - Finishes when all child threads are over
+- fork join_any - Finishes when any child thread gets over
+- fork join_none - Finishes soon after child threads are spawned

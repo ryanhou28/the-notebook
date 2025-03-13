@@ -75,7 +75,9 @@ class myChildClass extends myClass;
 endclass
 ```
 
-## Abstract/Virtual
+If a function exists for both parent and child, invocation of function depends on the type of the handle used. E.g., if both parent and child have function `display()`, where the function is not virtual in the parent, the parent's function is run if the handle is of the parent class, and the child's function is run if the handle is of the child class. Functions/properties are called based on the type of the handle, rather than the type of the object the handle points to.
+
+## Abstract/Virtual Class
 
 Objects of an abstract class cannot be created. A class must extend it to be used.
 
@@ -93,9 +95,165 @@ endclass
 
 ## Polymorphism
 
-Polymorphism allows base class handles to hold subclass objects and reference subclass properties/methods. Also allows child class method to have different definition from its parent class method when parent class method is `virtual`
+Polymorphism allows base class handles to hold subclass objects and reference subclass properties/methods. Also allows child class method to have different definition from its parent class method when parent class method is `virtual`. We can only set a base class handle to a child class object, but NOT a child class handle to a base class object!
 
 ```systemverilog
+module tb;
+	Packet      bc; 	// bc stands for BaseClass
+	ExtPacket   sc; 	// sc stands for SubClass
 
+	initial begin
+		sc = new (32'hfeed_feed, 32'h1234_5678);
+
+		// Assign sub-class to base-class handle
+		bc = sc;
+
+		bc.display ();
+		sc.display ();
+	end
+endmodule
 ```
 
+Use `$cast()` to assign parent class handle to a variable of child class. However, they need to be compatible or else a runtime error occurs.
+
+It is legal to assign a super-class handle to a subclass variable if the super-class handle refers to an object of the given subclass.
+
+```systemverilog
+parent_class = child_class ;
+child_class  = parent_class; //allowed because parent_class is pointing to child_class.
+// however this results in a compilation error. This is where $cast can be used instead:
+$cast(child_class,parent_class);
+```
+
+Syntax:
+
+```systemverilog
+$cast(<target_object_handle>,<original_object_handle>);
+```
+
+Example:
+
+```systemverilog
+module
+	initial begin
+		bc = new (32'hface_cafe);
+
+        // Dynamic cast base class object to sub-class type
+		$cast (sc, bc);
+
+		bc.display ();
+	end
+endmodule
+```
+
+Example 2:
+
+```systemverilog
+class parent;
+    virtual task print();
+        $display("calling from parent class");
+    endtask
+endclass
+
+class child extends parent;
+    task print();
+        $display("calling from child class");
+    endtask
+endclass
+
+module casting();
+    initial
+    begin
+        int x;
+        parent p_obj;
+        child c_obj1, c_obj2;
+
+        x = 45.23; // implict casting
+        $display("x = %0d", x);
+
+        x = int'("s"); //explicit casting
+        $display("x = %0d", x);
+
+        p_obj = new();
+        c_obj1 = new();
+
+        // legal assignment (upcasting)
+        p_obj = c_obj1;
+        p_obj.print();
+
+        // explicit dynamic casting (downcasting)
+        if($cast(c_obj2,p_obj))
+        begin
+            $display("casting was successfull!!");
+            c_obj2.print();
+        end
+        else
+            $error("cast unsuccessfull!");
+    end
+endmodule
+
+// Outputs:
+// x = 45
+// x = 115
+// calling from child class
+// casting was successfull!!
+// calling from child class
+```
+
+### Virtual Methods
+
+For a base class handle to use the method of a subclass (while the handle points to a subclass object), the function (of the same name in the base class, if there is one) needs to be declared `virtual`. Otherwise, the method of the base class will be called instead.
+
+```systemverilog
+class Packet;
+   int addr;
+
+   function new (int addr);
+      this.addr = addr;
+   endfunction
+
+   // Here the function is declared as "virtual"
+   // so that a different definition can be given
+   // in any child class
+   virtual function void display ();
+		$display ("[Base] addr=0x%0h", addr);
+	endfunction
+endclass
+
+class ExtPacket extends Packet;
+
+	// This is a new variable only available in child class
+	int data;
+
+   function new (int addr, data);
+      super.new (addr); 	// Calls 'new' method of parent class
+      this.data = data;
+   endfunction
+
+	function display ();
+		$display ("[Child] addr=0x%0h data=0x%0h", addr, data);
+	endfunction
+endclass
+
+module tb;
+   Packet bc;
+   ExtPacket sc;
+
+	initial begin
+        sc = new (32'hfeed_feed, 32'h1234_5678);
+
+        bc = sc;
+		bc.display ();
+	end
+endmodule
+
+// Output:
+// [Child] addr=0xfeedfeed data=0x12345678
+// If it was NOT virtual:
+// Output:
+// [Base] addr=0xfeedfeed
+```
+
+## Typedef
+
+use `typedef` if compiler errors on a class being used before the declaration of the class itself.

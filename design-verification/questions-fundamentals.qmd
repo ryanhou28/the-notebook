@@ -45,6 +45,59 @@ Key concepts:
 
 **Q: Verification plan - table of contents**
 
+**Q: Given this spec, How will you verify the design? How will you generate stimulus and checkers? What will be some of your corner cases for verification?**
+ 
+A:
+
+Approach for these types of problems:
+
+1. Understand spec and ask clarifying questions
+2. Identify scenarios/features to be verified and come up with verification plan
+   1. List down features/scenarios
+   2. Methodologies for verification (directed, constrained random, coverage, assertion, etc)
+   3. How to check for correctness
+3. Consider how stimulus can be generated
+4. Consider how checking is done
+5. Identify corner cases
+
+Example Answer:
+
+Now, let’s try to list down how this simple router design can be verified:
+
+1. Following are some of the scenarios that need to be verified:
+    - a) Test for proper switching of packets from Port A to both output ports based on destination address.
+    - b) Test for different packet sizes - minimum size, maximum size and random sizes in between will be good.
+    - c) Test for all possible values of Source and Destination Address.
+    - d) Test for different data patterns.
+    - e) Test for streaming packets (back to back with no delay, few cycles delay and large cycles delay), same size packets streamed or different size packets streamed.
+    - f) Test for correct CRC functionality by expecting the correct CRC.
+    - g) Tests where some bits of SA/DA or data or even the CRC are corrupted.
+    - h) What more can you think of?
+2. Now, in order to verify above scenarios, we need to design a constrained random packet generator and we also need a scoreboard/checker that checks for packet correctness and correct switching behavior. If the tests are random, we will also need to write some coverage monitors that make sure all the important scenarios as mentioned above are getting covered.
+3. If an interviewer wants to test you more, then he can also continue with questions asking you to actually write a SystemVerilog packet generator code or a checker or driver etc.
+
+Example 2:
+
+Given a RAM with a single port for read and write - what all
+conditions need to be verified?
+
+A single port RAM has only a single port for read and write. So, it can only do a
+read or a write at any given point of time. Other design specifications that need
+to be considered for verification are the RAM size, and width of address and
+data bus.
+Based on this, following are some of the scenarios that should to be verified:
+1) Single Read and Write behaves correctly,
+2) Back to Back reads or writes to same address and different addresses,
+3) Writes followed by reads to same address back to back,
+4) Reads followed by writes to same address back to back,
+5) Verifying the boundary of RAM sizes - reads and writes,
+6) Verifying the different patterns of writing into memory location like
+writing all zeros, all ones, alternating zero/one, walking one/zero patterns.
+If you are further requested to define a verification environment, you can
+consider scenarios like above and define whether a directed or constrained
+random environment will work better and how the stimulus generator and
+checkers can be designed.
+
 ## Constraints
 
 **Q: You have 4 animal types: Dog, Cat, Sheep, Horse. Each dog can eat exactly 4 apples, each cat can eat exactly 3 apples, each sheep can eat exactly 1 apple, and each horse can eat exactly 10 apples. There are a total of 1024 apples. Write a constraint such that all animal types in total will eat more than 16 apples.**

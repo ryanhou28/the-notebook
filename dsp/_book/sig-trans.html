@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b6b4e5ca75ba39a1f986e6d06a1c53b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wireless-sys.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wireless Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wireless Communication Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -159,8 +159,19 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#dft-idft" id="toc-dft-idft" class="nav-link active" data-scroll-target="#dft-idft"><span class="header-section-number">2.1</span> DFT, IDFT</a>
+  <ul class="collapse">
+  <li><a href="#orthogonal-basis-function" id="toc-orthogonal-basis-function" class="nav-link" data-scroll-target="#orthogonal-basis-function"><span class="header-section-number">2.1.1</span> Orthogonal Basis Function</a></li>
+  <li><a href="#linear-vs-circular-convolution" id="toc-linear-vs-circular-convolution" class="nav-link" data-scroll-target="#linear-vs-circular-convolution"><span class="header-section-number">2.1.2</span> Linear vs Circular Convolution</a></li>
+  </ul></li>
+  <li><a href="#fast-fourier-transform-fft" id="toc-fast-fourier-transform-fft" class="nav-link" data-scroll-target="#fast-fourier-transform-fft"><span class="header-section-number">2.2</span> Fast Fourier Transform (FFT)</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -184,8 +195,39 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>What is signal transform?</p>
+<ul>
+<li>Basis</li>
+<li>Coefficients</li>
+</ul>
+<p>Transform Examples:</p>
+<ul>
+<li>DFT (FFT)</li>
+<li>DCT</li>
+<li>Wavelet Transform</li>
+<li>Laplace Transform, Z transform, …</li>
+</ul>
+<p>Why signal transform needed?</p>
+<ul>
+<li>Feature extraction</li>
+<li>Compression (compact signal representation)</li>
+<li>Complexity reduction</li>
+<li>Easier manipulation and analysis of signal</li>
+</ul>
+<section id="dft-idft" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="dft-idft"><span class="header-section-number">2.1</span> DFT, IDFT</h2>
+<section id="orthogonal-basis-function" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="orthogonal-basis-function"><span class="header-section-number">2.1.1</span> Orthogonal Basis Function</h3>
+</section>
+<section id="linear-vs-circular-convolution" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="linear-vs-circular-convolution"><span class="header-section-number">2.1.2</span> Linear vs Circular Convolution</h3>
+</section>
+</section>
+<section id="fast-fourier-transform-fft" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="fast-fourier-transform-fft"><span class="header-section-number">2.2</span> Fast Fourier Transform (FFT)</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -612,8 +654,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./wireless-sys.html" class="pagination-link" aria-label="Wireless Systems">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wireless Systems</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./wireless-sys.html" class="pagination-link" aria-label="Wireless Communication Systems">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wireless Communication Systems</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

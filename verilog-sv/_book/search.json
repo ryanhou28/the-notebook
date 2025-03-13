@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Empty Book Template",
+    "title": "Verilog/SystemVerilog",
     "section": "",
     "text": "Preface\nMy notes on ???.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
     "crumbs": [
@@ -184,7 +184,7 @@
     "href": "v-behav.html#delays",
     "title": "4  Verilog - Behavioral Modeling",
     "section": "4.3 Delays",
-    "text": "4.3 Delays\nInter-assignment Delays:\n// Delay is specified on the left side\n#&lt;delay&gt; &lt;LHS&gt; = &lt;RHS&gt;\nIntra-assignment Delays:\n// Delay is specified on the right side\n&lt;LHS&gt; = #&lt;delay&gt; &lt;RHS&gt;",
+    "text": "4.3 Delays\nInter-assignment Delays:\n// Delay is specified on the left side\n#&lt;delay&gt; &lt;LHS&gt; = &lt;RHS&gt;\nIntra-assignment Delays:\n// Delay is specified on the right side\n&lt;LHS&gt; = #&lt;delay&gt; &lt;RHS&gt;\n    // Inter-assignment delay: Wait for #5 time units\n    // and then assign a and c to 1. Note that 'a' and 'c'\n    // gets updated at the end of current timestep\n    #5  a &lt;= 1;\n        c &lt;= 1;\n\n    // Intra-assignment delay: First execute the statement\n    // then wait for 5 time units and then assign the evaluated\n    // value to q\n    q &lt;= #5 a & b | c;",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Verilog - Behavioral Modeling</span>"
     ]
@@ -250,11 +250,31 @@
     ]
   },
   {
+    "objectID": "sv-process.html",
+    "href": "sv-process.html",
+    "title": "9  SystemVerilog - Processes",
+    "section": "",
+    "text": "Example of forking processes\nmodule fork_join;\n\n  initial begin\n    fork\n      //Process-1\n      begin\n        $display($time,\"\\tProcess-1 Started\");\n        #5;\n        $display($time,\"\\tProcess-1 Finished\");\n      end\n\n      //Process-2\n      begin\n        $display($time,\"\\tProcess-2 Started\");\n        #20;\n        $display($time,\"\\tProcess-2 Finished\");\n      end\n\n      //Process-3\n      begin\n        $display(\"this is process 3\");\n      end\n    join\n\n    $finish;\n  end\nendmodule\nTypes of fork joins:\n\nfork join - Finishes when all child threads are over\nfork join_any - Finishes when any child thread gets over\nfork join_none - Finishes soon after child threads are spawned",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>SystemVerilog - Processes</span>"
+    ]
+  },
+  {
     "objectID": "sv-intf.html",
     "href": "sv-intf.html",
     "title": "10  SystemVerilog - Interface",
     "section": "",
-    "text": "10.1 Clocking Block\nExample\nDirection doesn’t need to be explicitly stated, but modport helps specify directionality.\nPort directions:\nExample usage:\nExample Usage:",
+    "text": "10.1 Virtual Interface\nExample\nDirection doesn’t need to be explicitly stated, but modport helps specify directionality.\nPort directions:\nExample usage:\nSystemVerilog interface is static in nature, whereas classes are dynamic in nature. because of this reason, it is not allowed to declare the interface within classes, but it is allowed to refer to or point to the interface. A virtual interface is a variable of an interface type that is used in classes to provide access to the interface signals.\nSyntax:\nExample:",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>SystemVerilog - Interface</span>"
+    ]
+  },
+  {
+    "objectID": "sv-intf.html#virtual-interface",
+    "href": "sv-intf.html#virtual-interface",
+    "title": "10  SystemVerilog - Interface",
+    "section": "",
+    "text": "virtual interface_name instance_name;\n\n//virtual interface\nvirtual intf vif;\n\n//constructor\nfunction new(virtual intf vif);\n  //get the interface from test\n  this.vif = vif;\nendfunction",
     "crumbs": [
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>SystemVerilog - Interface</span>"
     ]
@@ -263,10 +283,70 @@
     "objectID": "sv-intf.html#clocking-block",
     "href": "sv-intf.html#clocking-block",
     "title": "10  SystemVerilog - Interface",
-    "section": "",
-    "text": "interface my_int (input bit clk);\n    // Rest of interface code\n\n    clocking cb_clk @(posedge clk);\n        default input #3ns output #2ns;\n        input enable;\n        output data;\n    endclocking\nendinterface\n\n// To wait for posedge of clock\n@busIf.cb_clk;\n\n// To use clocking block signals\nbusIf.cb_clk.enable = 1;",
+    "section": "10.2 Clocking Block",
+    "text": "10.2 Clocking Block\n\ninterface my_int (input bit clk);\n    // Rest of interface code\n\n    clocking cb_clk @(posedge clk);\n        default input #3ns output #2ns;\n        input enable;\n        output data;\n    endclocking\nendinterface\nExample Usage:\n// To wait for posedge of clock\n@busIf.cb_clk;\n\n// To use clocking block signals\nbusIf.cb_clk.enable = 1;",
     "crumbs": [
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>SystemVerilog - Interface</span>"
+    ]
+  },
+  {
+    "objectID": "sv-oop.html",
+    "href": "sv-oop.html",
+    "title": "11  SystemVerilog - Object Oriented Programming",
+    "section": "",
+    "text": "11.1 Class\nTo declare a class:\nTo use a class:\nNote that instantiating myClass gives you a class handle (essentially a pointer), which is null when unassigned. An actual class object is created when using new().",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
+    ]
+  },
+  {
+    "objectID": "sv-oop.html#class",
+    "href": "sv-oop.html#class",
+    "title": "11  SystemVerilog - Object Oriented Programming",
+    "section": "",
+    "text": "class myClass;\n    bit [2:0] my_bits;\n    logic [7:0] my_logic;\n\n    // Constructor\n    function new (bit [2:0] bits = 3'b101, logic [7:0] in_byte = 0);\n        this.my_bits = bits;\n        this.my_logic = in_byte;\n    endfunction\n\n    // Class Method\n    function display();\n        $display(\"myClass - my_bits:%0b, my_logic:%0b\",\n                            this.my_bits, this.my_logic);\n    endfunction\n\nendclass\n\nmodule tb_top;\n\n    myClass myobj1;\n\n    myClass myobjs [5]; // an array of 5 objects\n    \n\n    initial begin\n        // Create a single new object\n        myobj1 = new(3'b111, 2);\n        myobj1.display();\n\n        // Creating an array of objects of the class\n        for (int i = 0; i &lt; $size(myobjs); i++) begin\n            myobjs[i] = new();\n            myobjs[i].display();\n        end\n\n    end\n\nendmodule",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
+    ]
+  },
+  {
+    "objectID": "sv-oop.html#inheritance",
+    "href": "sv-oop.html#inheritance",
+    "title": "11  SystemVerilog - Object Oriented Programming",
+    "section": "11.2 Inheritance",
+    "text": "11.2 Inheritance\nChild classes can inherit methods/properties of a parent class. The extend keyword denotes a parent class, and the super keyword gives access to the parent class functions/properties.\nclass myChildClass extends myClass;\n    bit [1:0] childProp;\n\n    // Child Class Constructor\n    function new ();\n        super.new();\n        this.childProp = 2'b11;\n    endfunction\n\n    function display();\n        super.display();\n        $display(\" Child - childProp = %0b\", this.childProp);\n    endfunction\n\nendclass\nIf a function exists for both parent and child, invocation of function depends on the type of the handle used. E.g., if both parent and child have function display(), where the function is not virtual in the parent, the parent’s function is run if the handle is of the parent class, and the child’s function is run if the handle is of the child class. Functions/properties are called based on the type of the handle, rather than the type of the object the handle points to.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
+    ]
+  },
+  {
+    "objectID": "sv-oop.html#abstractvirtual-class",
+    "href": "sv-oop.html#abstractvirtual-class",
+    "title": "11  SystemVerilog - Object Oriented Programming",
+    "section": "11.3 Abstract/Virtual Class",
+    "text": "11.3 Abstract/Virtual Class\nObjects of an abstract class cannot be created. A class must extend it to be used.\nvirtual class BaseClass;\n    bit [7:0] data;\n\nendclass\n\nclass ChildClass extends BaseClass;\n    // Define the child class here\nendclass",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
+    ]
+  },
+  {
+    "objectID": "sv-oop.html#polymorphism",
+    "href": "sv-oop.html#polymorphism",
+    "title": "11  SystemVerilog - Object Oriented Programming",
+    "section": "11.4 Polymorphism",
+    "text": "11.4 Polymorphism\nPolymorphism allows base class handles to hold subclass objects and reference subclass properties/methods. Also allows child class method to have different definition from its parent class method when parent class method is virtual. We can only set a base class handle to a child class object, but NOT a child class handle to a base class object!\nmodule tb;\n    Packet      bc;     // bc stands for BaseClass\n    ExtPacket   sc;     // sc stands for SubClass\n\n    initial begin\n        sc = new (32'hfeed_feed, 32'h1234_5678);\n\n        // Assign sub-class to base-class handle\n        bc = sc;\n\n        bc.display ();\n        sc.display ();\n    end\nendmodule\nUse $cast() to assign parent class handle to a variable of child class. However, they need to be compatible or else a runtime error occurs.\nIt is legal to assign a super-class handle to a subclass variable if the super-class handle refers to an object of the given subclass.\nparent_class = child_class ;\nchild_class  = parent_class; //allowed because parent_class is pointing to child_class.\n// however this results in a compilation error. This is where $cast can be used instead:\n$cast(child_class,parent_class);\nSyntax:\n$cast(&lt;target_object_handle&gt;,&lt;original_object_handle&gt;);\nExample:\nmodule\n    initial begin\n        bc = new (32'hface_cafe);\n\n        // Dynamic cast base class object to sub-class type\n        $cast (sc, bc);\n\n        bc.display ();\n    end\nendmodule\nExample 2:\nclass parent;\n    virtual task print();\n        $display(\"calling from parent class\");\n    endtask\nendclass\n\nclass child extends parent;\n    task print();\n        $display(\"calling from child class\");\n    endtask\nendclass\n\nmodule casting();\n    initial\n    begin\n        int x;\n        parent p_obj;\n        child c_obj1, c_obj2;\n\n        x = 45.23; // implict casting\n        $display(\"x = %0d\", x);\n\n        x = int'(\"s\"); //explicit casting\n        $display(\"x = %0d\", x);\n\n        p_obj = new();\n        c_obj1 = new();\n\n        // legal assignment (upcasting)\n        p_obj = c_obj1;\n        p_obj.print();\n\n        // explicit dynamic casting (downcasting)\n        if($cast(c_obj2,p_obj))\n        begin\n            $display(\"casting was successfull!!\");\n            c_obj2.print();\n        end\n        else\n            $error(\"cast unsuccessfull!\");\n    end\nendmodule\n\n// Outputs:\n// x = 45\n// x = 115\n// calling from child class\n// casting was successfull!!\n// calling from child class\n\n11.4.1 Virtual Methods\nFor a base class handle to use the method of a subclass (while the handle points to a subclass object), the function (of the same name in the base class, if there is one) needs to be declared virtual. Otherwise, the method of the base class will be called instead.\nclass Packet;\n   int addr;\n\n   function new (int addr);\n      this.addr = addr;\n   endfunction\n\n   // Here the function is declared as \"virtual\"\n   // so that a different definition can be given\n   // in any child class\n   virtual function void display ();\n        $display (\"[Base] addr=0x%0h\", addr);\n    endfunction\nendclass\n\nclass ExtPacket extends Packet;\n\n    // This is a new variable only available in child class\n    int data;\n\n   function new (int addr, data);\n      super.new (addr);     // Calls 'new' method of parent class\n      this.data = data;\n   endfunction\n\n    function display ();\n        $display (\"[Child] addr=0x%0h data=0x%0h\", addr, data);\n    endfunction\nendclass\n\nmodule tb;\n   Packet bc;\n   ExtPacket sc;\n\n    initial begin\n        sc = new (32'hfeed_feed, 32'h1234_5678);\n\n        bc = sc;\n        bc.display ();\n    end\nendmodule\n\n// Output:\n// [Child] addr=0xfeedfeed data=0x12345678\n// If it was NOT virtual:\n// Output:\n// [Base] addr=0xfeedfeed",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
+    ]
+  },
+  {
+    "objectID": "sv-oop.html#typedef",
+    "href": "sv-oop.html#typedef",
+    "title": "11  SystemVerilog - Object Oriented Programming",
+    "section": "11.5 Typedef",
+    "text": "11.5 Typedef\nuse typedef if compiler errors on a class being used before the declaration of the class itself.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
     ]
   },
   {
@@ -297,56 +377,6 @@
     "text": "In summary…",
     "crumbs": [
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Summary</span>"
-    ]
-  },
-  {
-    "objectID": "sv-oop.html",
-    "href": "sv-oop.html",
-    "title": "11  SystemVerilog - Object Oriented Programming",
-    "section": "",
-    "text": "11.1 Class\nTo declare a class:\nTo use a class:\nNote that instantiating myClass gives you a class handle (essentially a pointer), which is null when unassigned. An actual class object is created when using new().",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
-    ]
-  },
-  {
-    "objectID": "sv-oop.html#inheritance",
-    "href": "sv-oop.html#inheritance",
-    "title": "11  SystemVerilog - Object Oriented Programming",
-    "section": "11.2 Inheritance",
-    "text": "11.2 Inheritance\nChild classes can inherit methods/properties of a parent class. The extend keyword denotes a parent class, and the super keyword gives access to the parent class functions/properties.\nclass myChildClass extends myClass;\n    bit [1:0] childProp;\n\n    // Child Class Constructor\n    function new ();\n        super.new();\n        this.childProp = 2'b11;\n    endfunction\n\n    function display();\n        super.display();\n        $display(\" Child - childProp = %0b\", this.childProp);\n    endfunction\n\nendclass",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
-    ]
-  },
-  {
-    "objectID": "sv-oop.html#polymorphism",
-    "href": "sv-oop.html#polymorphism",
-    "title": "11  SystemVerilog - Object Oriented Programming",
-    "section": "11.4 Polymorphism",
-    "text": "11.4 Polymorphism\nPolymorphism allows base class handles to hold subclass objects and reference subclass properties/methods. Also allows child class method to have different definition from its parent class method when parent class method is virtual",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
-    ]
-  },
-  {
-    "objectID": "sv-oop.html#class",
-    "href": "sv-oop.html#class",
-    "title": "11  SystemVerilog - Object Oriented Programming",
-    "section": "",
-    "text": "class myClass;\n    bit [2:0] my_bits;\n    logic [7:0] my_logic;\n\n    // Constructor\n    function new (bit [2:0] bits = 3'b101, logic [7:0] in_byte = 0);\n        this.my_bits = bits;\n        this.my_logic = in_byte;\n    endfunction\n\n    // Class Method\n    function display();\n        $display(\"myClass - my_bits:%0b, my_logic:%0b\",\n                            this.my_bits, this.my_logic);\n    endfunction\n\nendclass\n\nmodule tb_top;\n\n    myClass myobj1;\n\n    myClass myobjs [5]; // an array of 5 objects\n    \n\n    initial begin\n        // Create a single new object\n        myobj1 = new(3'b111, 2);\n        myobj1.display();\n\n        // Creating an array of objects of the class\n        for (int i = 0; i &lt; $size(myobjs); i++) begin\n            myobjs[i] = new();\n            myobjs[i].display();\n        end\n\n    end\n\nendmodule",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
-    ]
-  },
-  {
-    "objectID": "sv-oop.html#abstractvirtual",
-    "href": "sv-oop.html#abstractvirtual",
-    "title": "11  SystemVerilog - Object Oriented Programming",
-    "section": "11.3 Abstract/Virtual",
-    "text": "11.3 Abstract/Virtual\nObjects of an abstract class cannot be created. A class must extend it to be used.\nvirtual class BaseClass;\n    bit [7:0] data;\n\nendclass\n\nclass ChildClass extends BaseClass;\n    // Define the child class here\nendclass",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
     ]
   }
 ]

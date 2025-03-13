@@ -3,6 +3,9 @@
 
 - Source Coding
   - Entropy coding, transform compression, compressive sensing
+    - Entropy Coding: Uses principles from information theory (Shannon entropy) to remove redundancy. Examples: Huffman coding, Arithmetic coding.
+    - Transform Compression: Uses mathematical transforms (e.g., DCT in JPEG, FFT in OFDM) to represent signals efficiently.
+    - Compressive Sensing: Uses sparse signal representations to reduce the number of required samples while preserving information.
 - Cryptography
   - Authentication, encryption
   - Mostly in finite field arithmetic
@@ -12,24 +15,42 @@
 
 ## Modulation
 
+High-level: Converts digital data into analog signals for transmission.
+
 ### Linear Modulation
+
+Used in WiFi, LTE, 5G due to efficient spectral usage.
 
 
 ### Non-Linear Modulation
 
+Used in Bluetooth, GSM due to power efficiency.
 
 ### Passband Modulation
 
+High-level: Involves shifting baseband signals to a higher frequency for RF transmission.
 
 ## Wireless Channel Model
 
 ## Demodulation
 
+High-level: The process of recovering transmitted data.
+
 ### Demodulation: Down-Conversion
+
+High-level: Converts the received RF signal back to baseband using a local oscillator.
 
 ### Demodulation: AWGN, Linear & Non-Linear Modulation
 
+- AWGN: Basic noise model.
+- Linear & Non-Linear Modulation: Different detection techniques apply based on the modulation scheme.
+
 ### OFDM
+
+(Orthogonal Frequency Division Multiplexing)
+
+Uses multiple subcarriers to mitigate frequency-selective fading.
+Used in WiFi, LTE, 5G.
 
 ### Zigbee (BPSK) Example
 
@@ -37,9 +58,16 @@
 
 ### WiFi IEEE 802.11a/g/n
 
+Uses OFDM with various QAM levels for high data rates.
+
+
 ### MIMO
 
+High-level: Enhances spectral efficiency and reliability by using multiple antennas.
+
 ### Spatial Multiplexing
+
+High-level: Transmits independent data streams over multiple antennas to increase data rates.
 
 ### MIMO Detection
 

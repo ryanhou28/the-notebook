@@ -66,6 +66,28 @@ module tb_top;
 endmodule
 ```
 
+## Virtual Interface
+
+SystemVerilog interface is static in nature, whereas classes are dynamic in nature. because of this reason, it is not allowed to declare the interface within classes, but it is allowed to refer to or point to the interface. A virtual interface is a variable of an interface type that is used in classes to provide access to the interface signals.
+
+Syntax:
+
+```systemverilog
+virtual interface_name instance_name;
+```
+
+Example:
+
+```systemverilog
+//virtual interface
+virtual intf vif;
+
+//constructor
+function new(virtual intf vif);
+  //get the interface from test
+  this.vif = vif;
+endfunction
+```
 
 
 ## Clocking Block

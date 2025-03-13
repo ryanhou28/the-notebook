@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b6b4e5ca75ba39a1f986e6d06a1c53b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -245,6 +245,57 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Q: Come up with a verification plan for priority arbiter with ack. What test cases would you run? What is your test plan? How would you structure your testbench?</strong></p>
 <p><strong>Q: Given a round robin arbiter, where each input to the round robin arbiter is a FIFO, how would you verify this module?</strong></p>
 <p><strong>Q: Verification plan - table of contents</strong></p>
+<p><strong>Q: Given this spec, How will you verify the design? How will you generate stimulus and checkers? What will be some of your corner cases for verification?</strong></p>
+<p>A:</p>
+<p>Approach for these types of problems:</p>
+<ol type="1">
+<li>Understand spec and ask clarifying questions</li>
+<li>Identify scenarios/features to be verified and come up with verification plan
+<ol type="1">
+<li>List down features/scenarios</li>
+<li>Methodologies for verification (directed, constrained random, coverage, assertion, etc)</li>
+<li>How to check for correctness</li>
+</ol></li>
+<li>Consider how stimulus can be generated</li>
+<li>Consider how checking is done</li>
+<li>Identify corner cases</li>
+</ol>
+<p>Example Answer:</p>
+<p>Now, let’s try to list down how this simple router design can be verified:</p>
+<ol type="1">
+<li>Following are some of the scenarios that need to be verified:
+<ul>
+<li><ol type="a">
+<li>Test for proper switching of packets from Port A to both output ports based on destination address.</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Test for different packet sizes - minimum size, maximum size and random sizes in between will be good.</li>
+</ol></li>
+<li><ol start="3" type="a">
+<li>Test for all possible values of Source and Destination Address.</li>
+</ol></li>
+<li><ol start="4" type="a">
+<li>Test for different data patterns.</li>
+</ol></li>
+<li><ol start="5" type="a">
+<li>Test for streaming packets (back to back with no delay, few cycles delay and large cycles delay), same size packets streamed or different size packets streamed.</li>
+</ol></li>
+<li><ol start="6" type="a">
+<li>Test for correct CRC functionality by expecting the correct CRC.</li>
+</ol></li>
+<li><ol start="7" type="a">
+<li>Tests where some bits of SA/DA or data or even the CRC are corrupted.</li>
+</ol></li>
+<li><ol start="8" type="a">
+<li>What more can you think of?</li>
+</ol></li>
+</ul></li>
+<li>Now, in order to verify above scenarios, we need to design a constrained random packet generator and we also need a scoreboard/checker that checks for packet correctness and correct switching behavior. If the tests are random, we will also need to write some coverage monitors that make sure all the important scenarios as mentioned above are getting covered.</li>
+<li>If an interviewer wants to test you more, then he can also continue with questions asking you to actually write a SystemVerilog packet generator code or a checker or driver etc.</li>
+</ol>
+<p>Example 2:</p>
+<p>Given a RAM with a single port for read and write - what all conditions need to be verified?</p>
+<p>A single port RAM has only a single port for read and write. So, it can only do a read or a write at any given point of time. Other design specifications that need to be considered for verification are the RAM size, and width of address and data bus. Based on this, following are some of the scenarios that should to be verified: 1) Single Read and Write behaves correctly, 2) Back to Back reads or writes to same address and different addresses, 3) Writes followed by reads to same address back to back, 4) Reads followed by writes to same address back to back, 5) Verifying the boundary of RAM sizes - reads and writes, 6) Verifying the different patterns of writing into memory location like writing all zeros, all ones, alternating zero/one, walking one/zero patterns. If you are further requested to define a verification environment, you can consider scenarios like above and define whether a directed or constrained random environment will work better and how the stimulus generator and checkers can be designed.</p>
 </section>
 <section id="constraints" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="constraints"><span class="header-section-number">5.3</span> Constraints</h2>
