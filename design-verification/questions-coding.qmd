@@ -82,6 +82,28 @@ void fibonacci_iterative(int n) {
 
 **Q: Deleting objects at the end after execution (freeing up dynamic memory): use linked list, vector, or a counter**
 
+**Q: Write C code to detect if the underlying architecture uses Little Endian or Big Endian**
+
+Recall that:
+
+- Big Endian stores most significant byte of the word at a smaller address
+- Little Endian stores most significant byte at a larger address
+
+```c
+#include <stdio.h>
+int main ()
+{
+    unsigned int i = 1;
+    char * c = ( char *) & i;
+    if (* c )
+        printf ( "Little Endian \n" );
+    else
+        printf ( "Big Endian \n" );
+    return 0;
+}
+
+```
+
 ## Object-Oriented Design
 
 **Q: What is polymorphism? What is inheritance?**
