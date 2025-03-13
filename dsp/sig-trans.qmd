@@ -1,0 +1,28 @@
+# Signal Transform
+
+What is signal transform?
+
+- Basis
+- Coefficients
+
+Transform Examples:
+
+- DFT (FFT)
+- DCT
+- Wavelet Transform
+- Laplace Transform, Z transform, ...
+
+Why signal transform needed?
+
+- Feature extraction
+- Compression (compact signal representation)
+- Complexity reduction
+- Easier manipulation and analysis of signal
+
+## DFT, IDFT
+
+### Orthogonal Basis Function
+
+### Linear vs Circular Convolution
+
+## Fast Fourier Transform (FFT)

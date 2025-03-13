@@ -26,14 +26,15 @@ For playing around with simulations:
 - [EDA Playground]()
 
 List of interview questions:
+
 - [Verification Guide - ASIC Verification Interview Questions](https://verificationguide.com/asic-verification/asic-verification-interview-questions/)
 - [Verification Guide - SOC Verification Interview Questions](https://verificationguide.com/interview-questions/soc-verification-interview-questions/)
 - [Verification Guide - UVM Interview Questions](https://verificationguide.com/interview-questions/soc-verification-interview-questions/)
 - [Verification Guide - SystemVerilog Interview Questions](https://verificationguide.com/interview-questions/soc-verification-interview-questions/)
 - [ChipVerify - Verilog Interview Set 1](https://www.chipverify.com/verilog/verilog-interview-questions-set-1)
-  - More can be found on their website
+  - More questions can be found on their website
 - [ChipVerify - SystemVerilog Interview Set 1](https://www.chipverify.com/systemverilog/systemverilog-interview-questions-set-1)
-  - More can be found on their website
+  - More questions can be found on their website
 - [ChipVerify - UVM Interview Set 1](https://www.chipverify.com/uvm/uvm-interview-questions-set-1)
-  - More can be found on their website
+  - More questions can be found on their website
 - [NAND LAND - FPGA Interview Questions](https://nandland.com/part-2-the-interview/)

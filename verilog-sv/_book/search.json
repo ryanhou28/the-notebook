@@ -254,7 +254,7 @@
     "href": "sv-intf.html",
     "title": "10  SystemVerilog - Interface",
     "section": "",
-    "text": "10.1 Clocking Block\nExample\nPort directions:\nExample usage:\nExample Usage:",
+    "text": "10.1 Clocking Block\nExample\nDirection doesn’t need to be explicitly stated, but modport helps specify directionality.\nPort directions:\nExample usage:\nExample Usage:",
     "crumbs": [
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>SystemVerilog - Interface</span>"
     ]
@@ -297,6 +297,56 @@
     "text": "In summary…",
     "crumbs": [
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "sv-oop.html",
+    "href": "sv-oop.html",
+    "title": "11  SystemVerilog - Object Oriented Programming",
+    "section": "",
+    "text": "11.1 Class\nTo declare a class:\nTo use a class:\nNote that instantiating myClass gives you a class handle (essentially a pointer), which is null when unassigned. An actual class object is created when using new().",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
+    ]
+  },
+  {
+    "objectID": "sv-oop.html#inheritance",
+    "href": "sv-oop.html#inheritance",
+    "title": "11  SystemVerilog - Object Oriented Programming",
+    "section": "11.2 Inheritance",
+    "text": "11.2 Inheritance\nChild classes can inherit methods/properties of a parent class. The extend keyword denotes a parent class, and the super keyword gives access to the parent class functions/properties.\nclass myChildClass extends myClass;\n    bit [1:0] childProp;\n\n    // Child Class Constructor\n    function new ();\n        super.new();\n        this.childProp = 2'b11;\n    endfunction\n\n    function display();\n        super.display();\n        $display(\" Child - childProp = %0b\", this.childProp);\n    endfunction\n\nendclass",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
+    ]
+  },
+  {
+    "objectID": "sv-oop.html#polymorphism",
+    "href": "sv-oop.html#polymorphism",
+    "title": "11  SystemVerilog - Object Oriented Programming",
+    "section": "11.4 Polymorphism",
+    "text": "11.4 Polymorphism\nPolymorphism allows base class handles to hold subclass objects and reference subclass properties/methods. Also allows child class method to have different definition from its parent class method when parent class method is virtual",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
+    ]
+  },
+  {
+    "objectID": "sv-oop.html#class",
+    "href": "sv-oop.html#class",
+    "title": "11  SystemVerilog - Object Oriented Programming",
+    "section": "",
+    "text": "class myClass;\n    bit [2:0] my_bits;\n    logic [7:0] my_logic;\n\n    // Constructor\n    function new (bit [2:0] bits = 3'b101, logic [7:0] in_byte = 0);\n        this.my_bits = bits;\n        this.my_logic = in_byte;\n    endfunction\n\n    // Class Method\n    function display();\n        $display(\"myClass - my_bits:%0b, my_logic:%0b\",\n                            this.my_bits, this.my_logic);\n    endfunction\n\nendclass\n\nmodule tb_top;\n\n    myClass myobj1;\n\n    myClass myobjs [5]; // an array of 5 objects\n    \n\n    initial begin\n        // Create a single new object\n        myobj1 = new(3'b111, 2);\n        myobj1.display();\n\n        // Creating an array of objects of the class\n        for (int i = 0; i &lt; $size(myobjs); i++) begin\n            myobjs[i] = new();\n            myobjs[i].display();\n        end\n\n    end\n\nendmodule",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
+    ]
+  },
+  {
+    "objectID": "sv-oop.html#abstractvirtual",
+    "href": "sv-oop.html#abstractvirtual",
+    "title": "11  SystemVerilog - Object Oriented Programming",
+    "section": "11.3 Abstract/Virtual",
+    "text": "11.3 Abstract/Virtual\nObjects of an abstract class cannot be created. A class must extend it to be used.\nvirtual class BaseClass;\n    bit [7:0] data;\n\nendclass\n\nclass ChildClass extends BaseClass;\n    // Define the child class here\nendclass",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>SystemVerilog - Object Oriented Programming</span>"
     ]
   }
 ]

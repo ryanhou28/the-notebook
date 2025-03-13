@@ -1,0 +1,49 @@
+# Wireless Communication Systems
+
+
+- Source Coding
+  - Entropy coding, transform compression, compressive sensing
+- Cryptography
+  - Authentication, encryption
+  - Mostly in finite field arithmetic
+- Channel Coding
+  - Error correction coding: convolutional code, block code, Polar, LDPC,turbo code, ...
+
+
+## Modulation
+
+### Linear Modulation
+
+
+### Non-Linear Modulation
+
+
+### Passband Modulation
+
+
+## Wireless Channel Model
+
+## Demodulation
+
+### Demodulation: Down-Conversion
+
+### Demodulation: AWGN, Linear & Non-Linear Modulation
+
+### OFDM
+
+### Zigbee (BPSK) Example
+
+### Bluetooth Example
+
+### WiFi IEEE 802.11a/g/n
+
+### MIMO
+
+### Spatial Multiplexing
+
+### MIMO Detection
+
+### MMSE
+
+### Eigen Beam-Forming
+

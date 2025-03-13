@@ -1,0 +1,27 @@
+project:
+  type: book
+
+book:
+  title: "Digital Signal Processing"
+  author: "Ryan Hou"
+  date: "mm/dd/year"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - sig-trans.qmd
+    - wireless-sys.qmd
+    - src-chn-cod.qmd
+    - dsp-vlsi.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

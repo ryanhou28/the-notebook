@@ -1,0 +1,101 @@
+# SystemVerilog - Object Oriented Programming
+
+
+
+## Class
+
+To declare a class:
+
+```systemverilog
+class myClass;
+    bit [2:0] my_bits;
+    logic [7:0] my_logic;
+
+    // Constructor
+    function new (bit [2:0] bits = 3'b101, logic [7:0] in_byte = 0);
+        this.my_bits = bits;
+        this.my_logic = in_byte;
+    endfunction
+
+    // Class Method
+    function display();
+        $display("myClass - my_bits:%0b, my_logic:%0b",
+                            this.my_bits, this.my_logic);
+    endfunction
+
+endclass
+```
+
+To use a class:
+
+```systemverilog
+module tb_top;
+
+    myClass myobj1;
+
+    myClass myobjs [5]; // an array of 5 objects
+    
+
+    initial begin
+        // Create a single new object
+        myobj1 = new(3'b111, 2);
+        myobj1.display();
+
+        // Creating an array of objects of the class
+        for (int i = 0; i < $size(myobjs); i++) begin
+            myobjs[i] = new();
+            myobjs[i].display();
+        end
+
+    end
+
+endmodule
+```
+Note that instantiating `myClass` gives you a **class handle** (essentially a pointer), which is `null` when unassigned. An actual class object is created when using `new()`.
+
+## Inheritance
+
+Child classes can inherit methods/properties of a parent class. The `extend` keyword denotes a parent class, and the `super` keyword gives access to the parent class functions/properties.
+
+```systemverilog
+class myChildClass extends myClass;
+    bit [1:0] childProp;
+
+    // Child Class Constructor
+    function new ();
+        super.new();
+        this.childProp = 2'b11;
+    endfunction
+
+    function display();
+        super.display();
+        $display(" Child - childProp = %0b", this.childProp);
+    endfunction
+
+endclass
+```
+
+## Abstract/Virtual
+
+Objects of an abstract class cannot be created. A class must extend it to be used.
+
+```systemverilog
+virtual class BaseClass;
+    bit [7:0] data;
+
+endclass
+
+class ChildClass extends BaseClass;
+    // Define the child class here
+endclass
+
+```
+
+## Polymorphism
+
+Polymorphism allows base class handles to hold subclass objects and reference subclass properties/methods. Also allows child class method to have different definition from its parent class method when parent class method is `virtual`
+
+```systemverilog
+
+```
+

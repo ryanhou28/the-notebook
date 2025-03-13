@@ -13,6 +13,8 @@ interface apb_if (input pclk);
 endinterface
 ```
 
+Direction doesn't need to be explicitly stated, but `modport` helps specify directionality.
+
 Port directions:
 
 ```systemverilog

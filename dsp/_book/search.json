@@ -1,0 +1,172 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Digital Signal Processing",
+    "section": "",
+    "text": "Preface\nMy notes on ???.\n\n\nResources\nSome relevant resources:\n\nResource Name\n\nTextbooks:\n\nBook 1",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 Perspective\nThis note does …",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#perspective",
+    "href": "intro.html#perspective",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "Note 1.1: Definition - Some definition\n\n\n\nTerm is defined as blah blah blah…",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#high-level-ideas",
+    "href": "intro.html#high-level-ideas",
+    "title": "1  Introduction",
+    "section": "1.2 High Level Ideas",
+    "text": "1.2 High Level Ideas",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "6  Summary",
+    "section": "",
+    "text": "In summary…",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "src-chn-cod.html",
+    "href": "src-chn-cod.html",
+    "title": "4  Source Channel Coding",
+    "section": "",
+    "text": "4.1 Information Entropy",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Source Channel Coding</span>"
+    ]
+  },
+  {
+    "objectID": "src-chn-cod.html#modulation",
+    "href": "src-chn-cod.html#modulation",
+    "title": "4  Source Channel Coding",
+    "section": "",
+    "text": "4.1.1 Linear Modulation\n\n\n4.1.2 Non-Linear Modulation\n\n\n4.1.3 Passband Modulation",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Source Channel Coding</span>"
+    ]
+  },
+  {
+    "objectID": "src-chn-cod.html#wireless-channel-model",
+    "href": "src-chn-cod.html#wireless-channel-model",
+    "title": "4  Source Channel Coding",
+    "section": "4.2 Wireless Channel Model",
+    "text": "4.2 Wireless Channel Model",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Source Channel Coding</span>"
+    ]
+  },
+  {
+    "objectID": "src-chn-cod.html#demodulation",
+    "href": "src-chn-cod.html#demodulation",
+    "title": "4  Source Channel Coding",
+    "section": "4.3 Demodulation",
+    "text": "4.3 Demodulation\n\n4.3.1 Demodulation: Down-Conversion\n\n\n4.3.2 Demodulation: AWGN, Linear & Non-Linear Modulation\n\n\n4.3.3 OFDM\n\n\n4.3.4 Zigbee (BPSK) Example\n\n\n4.3.5 Bluetooth Example\n\n\n4.3.6 WiFi IEEE 802.11a/g/n\n\n\n4.3.7 MIMO\n\n\n4.3.8 Spatial Multiplexing\n\n\n4.3.9 MIMO Detection\n\n\n4.3.10 MMSE\n\n\n4.3.11 Eigen Beam-Forming",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Source Channel Coding</span>"
+    ]
+  },
+  {
+    "objectID": "wireless-sys.html",
+    "href": "wireless-sys.html",
+    "title": "3  Wireless Communication Systems",
+    "section": "",
+    "text": "3.1 Modulation",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Wireless Communication Systems</span>"
+    ]
+  },
+  {
+    "objectID": "wireless-sys.html#modulation",
+    "href": "wireless-sys.html#modulation",
+    "title": "3  Wireless Communication Systems",
+    "section": "",
+    "text": "3.1.1 Linear Modulation\n\n\n3.1.2 Non-Linear Modulation\n\n\n3.1.3 Passband Modulation",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Wireless Communication Systems</span>"
+    ]
+  },
+  {
+    "objectID": "wireless-sys.html#wireless-channel-model",
+    "href": "wireless-sys.html#wireless-channel-model",
+    "title": "3  Wireless Communication Systems",
+    "section": "3.2 Wireless Channel Model",
+    "text": "3.2 Wireless Channel Model",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Wireless Communication Systems</span>"
+    ]
+  },
+  {
+    "objectID": "wireless-sys.html#demodulation",
+    "href": "wireless-sys.html#demodulation",
+    "title": "3  Wireless Communication Systems",
+    "section": "3.3 Demodulation",
+    "text": "3.3 Demodulation\n\n3.3.1 Demodulation: Down-Conversion\n\n\n3.3.2 Demodulation: AWGN, Linear & Non-Linear Modulation\n\n\n3.3.3 OFDM\n\n\n3.3.4 Zigbee (BPSK) Example\n\n\n3.3.5 Bluetooth Example\n\n\n3.3.6 WiFi IEEE 802.11a/g/n\n\n\n3.3.7 MIMO\n\n\n3.3.8 Spatial Multiplexing\n\n\n3.3.9 MIMO Detection\n\n\n3.3.10 MMSE\n\n\n3.3.11 Eigen Beam-Forming",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Wireless Communication Systems</span>"
+    ]
+  },
+  {
+    "objectID": "src-chn-cod.html#huffman-code",
+    "href": "src-chn-cod.html#huffman-code",
+    "title": "4  Source Channel Coding",
+    "section": "4.2 Huffman Code",
+    "text": "4.2 Huffman Code\n\n4.2.1 Huffman Decode",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Source Channel Coding</span>"
+    ]
+  },
+  {
+    "objectID": "src-chn-cod.html#finite-field-galois-field",
+    "href": "src-chn-cod.html#finite-field-galois-field",
+    "title": "4  Source Channel Coding",
+    "section": "4.3 Finite Field (Galois Field)",
+    "text": "4.3 Finite Field (Galois Field)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Source Channel Coding</span>"
+    ]
+  },
+  {
+    "objectID": "src-chn-cod.html#scrambler-de-scrambler",
+    "href": "src-chn-cod.html#scrambler-de-scrambler",
+    "title": "4  Source Channel Coding",
+    "section": "4.4 Scrambler / De-Scrambler",
+    "text": "4.4 Scrambler / De-Scrambler",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Source Channel Coding</span>"
+    ]
+  },
+  {
+    "objectID": "src-chn-cod.html#cyclic-redundancy-check",
+    "href": "src-chn-cod.html#cyclic-redundancy-check",
+    "title": "4  Source Channel Coding",
+    "section": "4.5 Cyclic Redundancy Check",
+    "text": "4.5 Cyclic Redundancy Check",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Source Channel Coding</span>"
+    ]
+  }
+]

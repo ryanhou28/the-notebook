@@ -1,0 +1,21 @@
+# Source Channel Coding
+
+
+## Information Entropy
+
+
+## Huffman Code
+
+### Huffman Decode
+
+## Finite Field (Galois Field)
+
+
+## Scrambler / De-Scrambler
+
+
+
+
+## Cyclic Redundancy Check
+
+
